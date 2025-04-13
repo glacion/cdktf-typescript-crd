@@ -1,0 +1,42 @@
+{
+  "name": "workspace",
+  "workspaces": [
+    "generator/",
+    "crd/"
+  ],
+  "version": "0.0.0",
+  "scripts": {
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glacion/cdktf-typescript-crd.git"
+  },
+  "keywords": [
+    "crd",
+    "cdktf"
+  ],
+  "author": "Can Güvendiren <can@glacion.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/glacion/cdktf-typescript-crd/issues"
+  },
+  "homepage": "https://github.com/glacion/cdktf-typescript-crd#readme",
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@tsconfig/strictest": "^2.0.5",
+    "@types/node": "^22.14.0",
+    "eslint": "^9.19.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.4.2",
+    "prettier-eslint": "^16.3.0",
+    "tsx": "^4.19.3",
+    "typescript-eslint": "^8.23.0"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
