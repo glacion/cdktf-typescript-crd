@@ -2,7 +2,6 @@ import type { V1CustomResourceDefinitionVersion } from "@kubernetes/client-node"
 import openapiTS, { type SchemaObject } from "openapi-typescript";
 import {
   factory,
-  isIdentifier,
   isInterfaceDeclaration,
   isPropertySignature,
   isTypeLiteralNode,
@@ -16,7 +15,7 @@ import {
 import createMetadataSignature from "./metadata";
 
 const isTypeIdentifier = (node: Node): node is PropertySignature & { type: TypeLiteralNode; name: Identifier } =>
-  isPropertySignature(node) && node.type !== undefined && isTypeLiteralNode(node.type) && isIdentifier(node.name);
+  isPropertySignature(node) && node.type !== undefined && isTypeLiteralNode(node.type);
 
 const findMembers = (nodes: Node[]) =>
   nodes
