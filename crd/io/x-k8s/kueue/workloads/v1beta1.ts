@@ -727,7 +727,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Other management of the container blocks until the hook completes.
                  *     More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks */
                 postStart?: {
-                  /** @description Exec specifies the action to take. */
+                  /** @description Exec specifies a command to execute in the container. */
                   exec?: {
                     /** @description Command is the command line to execute inside the container, the working directory for the
                      *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
@@ -736,7 +736,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                      *     Exit status of 0 is treated as live/healthy and non-zero is unhealthy. */
                     command?: string[];
                   };
-                  /** @description HTTPGet specifies the http request to perform. */
+                  /** @description HTTPGet specifies an HTTP GET request to perform. */
                   httpGet?: {
                     /** @description Host name to connect to, defaults to the pod IP. You probably want to set
                      *     "Host" in httpHeaders instead. */
@@ -759,7 +759,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                      *     Defaults to HTTP. */
                     scheme?: string;
                   };
-                  /** @description Sleep represents the duration that the container should sleep before being terminated. */
+                  /** @description Sleep represents a duration that the container should sleep. */
                   sleep?: {
                     /**
                      * Format: int64
@@ -768,8 +768,8 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                     seconds: number;
                   };
                   /** @description Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept
-                   *     for the backward compatibility. There are no validation of this field and
-                   *     lifecycle hooks will fail in runtime when tcp handler is specified. */
+                   *     for backward compatibility. There is no validation of this field and
+                   *     lifecycle hooks will fail at runtime when it is specified. */
                   tcpSocket?: {
                     /** @description Optional: Host name to connect to, defaults to the pod IP. */
                     host?: string;
@@ -789,7 +789,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     or until the termination grace period is reached.
                  *     More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks */
                 preStop?: {
-                  /** @description Exec specifies the action to take. */
+                  /** @description Exec specifies a command to execute in the container. */
                   exec?: {
                     /** @description Command is the command line to execute inside the container, the working directory for the
                      *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
@@ -798,7 +798,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                      *     Exit status of 0 is treated as live/healthy and non-zero is unhealthy. */
                     command?: string[];
                   };
-                  /** @description HTTPGet specifies the http request to perform. */
+                  /** @description HTTPGet specifies an HTTP GET request to perform. */
                   httpGet?: {
                     /** @description Host name to connect to, defaults to the pod IP. You probably want to set
                      *     "Host" in httpHeaders instead. */
@@ -821,7 +821,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                      *     Defaults to HTTP. */
                     scheme?: string;
                   };
-                  /** @description Sleep represents the duration that the container should sleep before being terminated. */
+                  /** @description Sleep represents a duration that the container should sleep. */
                   sleep?: {
                     /**
                      * Format: int64
@@ -830,8 +830,8 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                     seconds: number;
                   };
                   /** @description Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept
-                   *     for the backward compatibility. There are no validation of this field and
-                   *     lifecycle hooks will fail in runtime when tcp handler is specified. */
+                   *     for backward compatibility. There is no validation of this field and
+                   *     lifecycle hooks will fail at runtime when it is specified. */
                   tcpSocket?: {
                     /** @description Optional: Host name to connect to, defaults to the pod IP. */
                     host?: string;
@@ -847,7 +847,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                *     Cannot be updated.
                *     More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes */
               livenessProbe?: {
-                /** @description Exec specifies the action to take. */
+                /** @description Exec specifies a command to execute in the container. */
                 exec?: {
                   /** @description Command is the command line to execute inside the container, the working directory for the
                    *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
@@ -862,7 +862,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 3. Minimum value is 1.
                  */
                 failureThreshold?: number;
-                /** @description GRPC specifies an action involving a GRPC port. */
+                /** @description GRPC specifies a GRPC HealthCheckRequest. */
                 grpc?: {
                   /**
                    * Format: int32
@@ -878,7 +878,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                    */
                   service: string;
                 };
-                /** @description HTTPGet specifies the http request to perform. */
+                /** @description HTTPGet specifies an HTTP GET request to perform. */
                 httpGet?: {
                   /** @description Host name to connect to, defaults to the pod IP. You probably want to set
                    *     "Host" in httpHeaders instead. */
@@ -919,7 +919,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
                  */
                 successThreshold?: number;
-                /** @description TCPSocket specifies an action involving a TCP port. */
+                /** @description TCPSocket specifies a connection to a TCP port. */
                 tcpSocket?: {
                   /** @description Optional: Host name to connect to, defaults to the pod IP. */
                   host?: string;
@@ -994,7 +994,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                *     Cannot be updated.
                *     More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes */
               readinessProbe?: {
-                /** @description Exec specifies the action to take. */
+                /** @description Exec specifies a command to execute in the container. */
                 exec?: {
                   /** @description Command is the command line to execute inside the container, the working directory for the
                    *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
@@ -1009,7 +1009,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 3. Minimum value is 1.
                  */
                 failureThreshold?: number;
-                /** @description GRPC specifies an action involving a GRPC port. */
+                /** @description GRPC specifies a GRPC HealthCheckRequest. */
                 grpc?: {
                   /**
                    * Format: int32
@@ -1025,7 +1025,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                    */
                   service: string;
                 };
-                /** @description HTTPGet specifies the http request to perform. */
+                /** @description HTTPGet specifies an HTTP GET request to perform. */
                 httpGet?: {
                   /** @description Host name to connect to, defaults to the pod IP. You probably want to set
                    *     "Host" in httpHeaders instead. */
@@ -1066,7 +1066,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
                  */
                 successThreshold?: number;
-                /** @description TCPSocket specifies an action involving a TCP port. */
+                /** @description TCPSocket specifies a connection to a TCP port. */
                 tcpSocket?: {
                   /** @description Optional: Host name to connect to, defaults to the pod IP. */
                   host?: string;
@@ -1297,7 +1297,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                *     This cannot be updated.
                *     More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes */
               startupProbe?: {
-                /** @description Exec specifies the action to take. */
+                /** @description Exec specifies a command to execute in the container. */
                 exec?: {
                   /** @description Command is the command line to execute inside the container, the working directory for the
                    *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
@@ -1312,7 +1312,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 3. Minimum value is 1.
                  */
                 failureThreshold?: number;
-                /** @description GRPC specifies an action involving a GRPC port. */
+                /** @description GRPC specifies a GRPC HealthCheckRequest. */
                 grpc?: {
                   /**
                    * Format: int32
@@ -1328,7 +1328,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                    */
                   service: string;
                 };
-                /** @description HTTPGet specifies the http request to perform. */
+                /** @description HTTPGet specifies an HTTP GET request to perform. */
                 httpGet?: {
                   /** @description Host name to connect to, defaults to the pod IP. You probably want to set
                    *     "Host" in httpHeaders instead. */
@@ -1369,7 +1369,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
                  */
                 successThreshold?: number;
-                /** @description TCPSocket specifies an action involving a TCP port. */
+                /** @description TCPSocket specifies a connection to a TCP port. */
                 tcpSocket?: {
                   /** @description Optional: Host name to connect to, defaults to the pod IP. */
                   host?: string;
@@ -1501,8 +1501,10 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                *     Duplicated entries will be removed. Resolution options given in Options
                *     will override those that appear in the base DNSPolicy. */
               options?: {
-                /** @description Required. */
+                /** @description Name is this DNS resolver option's name.
+                 *     Required. */
                 name?: string;
+                /** @description Value is this DNS resolver option's value. */
                 value?: string;
               }[];
               /** @description A list of DNS search domains for host-name lookup.
@@ -1667,7 +1669,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Other management of the container blocks until the hook completes.
                  *     More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks */
                 postStart?: {
-                  /** @description Exec specifies the action to take. */
+                  /** @description Exec specifies a command to execute in the container. */
                   exec?: {
                     /** @description Command is the command line to execute inside the container, the working directory for the
                      *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
@@ -1676,7 +1678,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                      *     Exit status of 0 is treated as live/healthy and non-zero is unhealthy. */
                     command?: string[];
                   };
-                  /** @description HTTPGet specifies the http request to perform. */
+                  /** @description HTTPGet specifies an HTTP GET request to perform. */
                   httpGet?: {
                     /** @description Host name to connect to, defaults to the pod IP. You probably want to set
                      *     "Host" in httpHeaders instead. */
@@ -1699,7 +1701,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                      *     Defaults to HTTP. */
                     scheme?: string;
                   };
-                  /** @description Sleep represents the duration that the container should sleep before being terminated. */
+                  /** @description Sleep represents a duration that the container should sleep. */
                   sleep?: {
                     /**
                      * Format: int64
@@ -1708,8 +1710,8 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                     seconds: number;
                   };
                   /** @description Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept
-                   *     for the backward compatibility. There are no validation of this field and
-                   *     lifecycle hooks will fail in runtime when tcp handler is specified. */
+                   *     for backward compatibility. There is no validation of this field and
+                   *     lifecycle hooks will fail at runtime when it is specified. */
                   tcpSocket?: {
                     /** @description Optional: Host name to connect to, defaults to the pod IP. */
                     host?: string;
@@ -1729,7 +1731,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     or until the termination grace period is reached.
                  *     More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks */
                 preStop?: {
-                  /** @description Exec specifies the action to take. */
+                  /** @description Exec specifies a command to execute in the container. */
                   exec?: {
                     /** @description Command is the command line to execute inside the container, the working directory for the
                      *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
@@ -1738,7 +1740,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                      *     Exit status of 0 is treated as live/healthy and non-zero is unhealthy. */
                     command?: string[];
                   };
-                  /** @description HTTPGet specifies the http request to perform. */
+                  /** @description HTTPGet specifies an HTTP GET request to perform. */
                   httpGet?: {
                     /** @description Host name to connect to, defaults to the pod IP. You probably want to set
                      *     "Host" in httpHeaders instead. */
@@ -1761,7 +1763,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                      *     Defaults to HTTP. */
                     scheme?: string;
                   };
-                  /** @description Sleep represents the duration that the container should sleep before being terminated. */
+                  /** @description Sleep represents a duration that the container should sleep. */
                   sleep?: {
                     /**
                      * Format: int64
@@ -1770,8 +1772,8 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                     seconds: number;
                   };
                   /** @description Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept
-                   *     for the backward compatibility. There are no validation of this field and
-                   *     lifecycle hooks will fail in runtime when tcp handler is specified. */
+                   *     for backward compatibility. There is no validation of this field and
+                   *     lifecycle hooks will fail at runtime when it is specified. */
                   tcpSocket?: {
                     /** @description Optional: Host name to connect to, defaults to the pod IP. */
                     host?: string;
@@ -1784,7 +1786,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
               };
               /** @description Probes are not allowed for ephemeral containers. */
               livenessProbe?: {
-                /** @description Exec specifies the action to take. */
+                /** @description Exec specifies a command to execute in the container. */
                 exec?: {
                   /** @description Command is the command line to execute inside the container, the working directory for the
                    *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
@@ -1799,7 +1801,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 3. Minimum value is 1.
                  */
                 failureThreshold?: number;
-                /** @description GRPC specifies an action involving a GRPC port. */
+                /** @description GRPC specifies a GRPC HealthCheckRequest. */
                 grpc?: {
                   /**
                    * Format: int32
@@ -1815,7 +1817,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                    */
                   service: string;
                 };
-                /** @description HTTPGet specifies the http request to perform. */
+                /** @description HTTPGet specifies an HTTP GET request to perform. */
                 httpGet?: {
                   /** @description Host name to connect to, defaults to the pod IP. You probably want to set
                    *     "Host" in httpHeaders instead. */
@@ -1856,7 +1858,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
                  */
                 successThreshold?: number;
-                /** @description TCPSocket specifies an action involving a TCP port. */
+                /** @description TCPSocket specifies a connection to a TCP port. */
                 tcpSocket?: {
                   /** @description Optional: Host name to connect to, defaults to the pod IP. */
                   host?: string;
@@ -1921,7 +1923,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
               }[];
               /** @description Probes are not allowed for ephemeral containers. */
               readinessProbe?: {
-                /** @description Exec specifies the action to take. */
+                /** @description Exec specifies a command to execute in the container. */
                 exec?: {
                   /** @description Command is the command line to execute inside the container, the working directory for the
                    *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
@@ -1936,7 +1938,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 3. Minimum value is 1.
                  */
                 failureThreshold?: number;
-                /** @description GRPC specifies an action involving a GRPC port. */
+                /** @description GRPC specifies a GRPC HealthCheckRequest. */
                 grpc?: {
                   /**
                    * Format: int32
@@ -1952,7 +1954,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                    */
                   service: string;
                 };
-                /** @description HTTPGet specifies the http request to perform. */
+                /** @description HTTPGet specifies an HTTP GET request to perform. */
                 httpGet?: {
                   /** @description Host name to connect to, defaults to the pod IP. You probably want to set
                    *     "Host" in httpHeaders instead. */
@@ -1993,7 +1995,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
                  */
                 successThreshold?: number;
-                /** @description TCPSocket specifies an action involving a TCP port. */
+                /** @description TCPSocket specifies a connection to a TCP port. */
                 tcpSocket?: {
                   /** @description Optional: Host name to connect to, defaults to the pod IP. */
                   host?: string;
@@ -2205,7 +2207,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
               };
               /** @description Probes are not allowed for ephemeral containers. */
               startupProbe?: {
-                /** @description Exec specifies the action to take. */
+                /** @description Exec specifies a command to execute in the container. */
                 exec?: {
                   /** @description Command is the command line to execute inside the container, the working directory for the
                    *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
@@ -2220,7 +2222,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 3. Minimum value is 1.
                  */
                 failureThreshold?: number;
-                /** @description GRPC specifies an action involving a GRPC port. */
+                /** @description GRPC specifies a GRPC HealthCheckRequest. */
                 grpc?: {
                   /**
                    * Format: int32
@@ -2236,7 +2238,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                    */
                   service: string;
                 };
-                /** @description HTTPGet specifies the http request to perform. */
+                /** @description HTTPGet specifies an HTTP GET request to perform. */
                 httpGet?: {
                   /** @description Host name to connect to, defaults to the pod IP. You probably want to set
                    *     "Host" in httpHeaders instead. */
@@ -2277,7 +2279,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
                  */
                 successThreshold?: number;
-                /** @description TCPSocket specifies an action involving a TCP port. */
+                /** @description TCPSocket specifies a connection to a TCP port. */
                 tcpSocket?: {
                   /** @description Optional: Host name to connect to, defaults to the pod IP. */
                   host?: string;
@@ -2606,7 +2608,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Other management of the container blocks until the hook completes.
                  *     More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks */
                 postStart?: {
-                  /** @description Exec specifies the action to take. */
+                  /** @description Exec specifies a command to execute in the container. */
                   exec?: {
                     /** @description Command is the command line to execute inside the container, the working directory for the
                      *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
@@ -2615,7 +2617,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                      *     Exit status of 0 is treated as live/healthy and non-zero is unhealthy. */
                     command?: string[];
                   };
-                  /** @description HTTPGet specifies the http request to perform. */
+                  /** @description HTTPGet specifies an HTTP GET request to perform. */
                   httpGet?: {
                     /** @description Host name to connect to, defaults to the pod IP. You probably want to set
                      *     "Host" in httpHeaders instead. */
@@ -2638,7 +2640,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                      *     Defaults to HTTP. */
                     scheme?: string;
                   };
-                  /** @description Sleep represents the duration that the container should sleep before being terminated. */
+                  /** @description Sleep represents a duration that the container should sleep. */
                   sleep?: {
                     /**
                      * Format: int64
@@ -2647,8 +2649,8 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                     seconds: number;
                   };
                   /** @description Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept
-                   *     for the backward compatibility. There are no validation of this field and
-                   *     lifecycle hooks will fail in runtime when tcp handler is specified. */
+                   *     for backward compatibility. There is no validation of this field and
+                   *     lifecycle hooks will fail at runtime when it is specified. */
                   tcpSocket?: {
                     /** @description Optional: Host name to connect to, defaults to the pod IP. */
                     host?: string;
@@ -2668,7 +2670,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     or until the termination grace period is reached.
                  *     More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks */
                 preStop?: {
-                  /** @description Exec specifies the action to take. */
+                  /** @description Exec specifies a command to execute in the container. */
                   exec?: {
                     /** @description Command is the command line to execute inside the container, the working directory for the
                      *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
@@ -2677,7 +2679,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                      *     Exit status of 0 is treated as live/healthy and non-zero is unhealthy. */
                     command?: string[];
                   };
-                  /** @description HTTPGet specifies the http request to perform. */
+                  /** @description HTTPGet specifies an HTTP GET request to perform. */
                   httpGet?: {
                     /** @description Host name to connect to, defaults to the pod IP. You probably want to set
                      *     "Host" in httpHeaders instead. */
@@ -2700,7 +2702,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                      *     Defaults to HTTP. */
                     scheme?: string;
                   };
-                  /** @description Sleep represents the duration that the container should sleep before being terminated. */
+                  /** @description Sleep represents a duration that the container should sleep. */
                   sleep?: {
                     /**
                      * Format: int64
@@ -2709,8 +2711,8 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                     seconds: number;
                   };
                   /** @description Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept
-                   *     for the backward compatibility. There are no validation of this field and
-                   *     lifecycle hooks will fail in runtime when tcp handler is specified. */
+                   *     for backward compatibility. There is no validation of this field and
+                   *     lifecycle hooks will fail at runtime when it is specified. */
                   tcpSocket?: {
                     /** @description Optional: Host name to connect to, defaults to the pod IP. */
                     host?: string;
@@ -2726,7 +2728,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                *     Cannot be updated.
                *     More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes */
               livenessProbe?: {
-                /** @description Exec specifies the action to take. */
+                /** @description Exec specifies a command to execute in the container. */
                 exec?: {
                   /** @description Command is the command line to execute inside the container, the working directory for the
                    *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
@@ -2741,7 +2743,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 3. Minimum value is 1.
                  */
                 failureThreshold?: number;
-                /** @description GRPC specifies an action involving a GRPC port. */
+                /** @description GRPC specifies a GRPC HealthCheckRequest. */
                 grpc?: {
                   /**
                    * Format: int32
@@ -2757,7 +2759,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                    */
                   service: string;
                 };
-                /** @description HTTPGet specifies the http request to perform. */
+                /** @description HTTPGet specifies an HTTP GET request to perform. */
                 httpGet?: {
                   /** @description Host name to connect to, defaults to the pod IP. You probably want to set
                    *     "Host" in httpHeaders instead. */
@@ -2798,7 +2800,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
                  */
                 successThreshold?: number;
-                /** @description TCPSocket specifies an action involving a TCP port. */
+                /** @description TCPSocket specifies a connection to a TCP port. */
                 tcpSocket?: {
                   /** @description Optional: Host name to connect to, defaults to the pod IP. */
                   host?: string;
@@ -2873,7 +2875,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                *     Cannot be updated.
                *     More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes */
               readinessProbe?: {
-                /** @description Exec specifies the action to take. */
+                /** @description Exec specifies a command to execute in the container. */
                 exec?: {
                   /** @description Command is the command line to execute inside the container, the working directory for the
                    *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
@@ -2888,7 +2890,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 3. Minimum value is 1.
                  */
                 failureThreshold?: number;
-                /** @description GRPC specifies an action involving a GRPC port. */
+                /** @description GRPC specifies a GRPC HealthCheckRequest. */
                 grpc?: {
                   /**
                    * Format: int32
@@ -2904,7 +2906,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                    */
                   service: string;
                 };
-                /** @description HTTPGet specifies the http request to perform. */
+                /** @description HTTPGet specifies an HTTP GET request to perform. */
                 httpGet?: {
                   /** @description Host name to connect to, defaults to the pod IP. You probably want to set
                    *     "Host" in httpHeaders instead. */
@@ -2945,7 +2947,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
                  */
                 successThreshold?: number;
-                /** @description TCPSocket specifies an action involving a TCP port. */
+                /** @description TCPSocket specifies a connection to a TCP port. */
                 tcpSocket?: {
                   /** @description Optional: Host name to connect to, defaults to the pod IP. */
                   host?: string;
@@ -3176,7 +3178,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                *     This cannot be updated.
                *     More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes */
               startupProbe?: {
-                /** @description Exec specifies the action to take. */
+                /** @description Exec specifies a command to execute in the container. */
                 exec?: {
                   /** @description Command is the command line to execute inside the container, the working directory for the
                    *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
@@ -3191,7 +3193,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 3. Minimum value is 1.
                  */
                 failureThreshold?: number;
-                /** @description GRPC specifies an action involving a GRPC port. */
+                /** @description GRPC specifies a GRPC HealthCheckRequest. */
                 grpc?: {
                   /**
                    * Format: int32
@@ -3207,7 +3209,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                    */
                   service: string;
                 };
-                /** @description HTTPGet specifies the http request to perform. */
+                /** @description HTTPGet specifies an HTTP GET request to perform. */
                 httpGet?: {
                   /** @description Host name to connect to, defaults to the pod IP. You probably want to set
                    *     "Host" in httpHeaders instead. */
@@ -3248,7 +3250,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
                  */
                 successThreshold?: number;
-                /** @description TCPSocket specifies an action involving a TCP port. */
+                /** @description TCPSocket specifies a connection to a TCP port. */
                 tcpSocket?: {
                   /** @description Optional: Host name to connect to, defaults to the pod IP. */
                   host?: string;
@@ -3491,6 +3493,46 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                *     be set. */
               resourceClaimTemplateName?: string;
             }[];
+            /** @description Resources is the total amount of CPU and Memory resources required by all
+             *     containers in the pod. It supports specifying Requests and Limits for
+             *     "cpu" and "memory" resource names only. ResourceClaims are not supported.
+             *
+             *     This field enables fine-grained control over resource allocation for the
+             *     entire pod, allowing resource sharing among containers in a pod.
+             *
+             *     This is an alpha field and requires enabling the PodLevelResources feature
+             *     gate. */
+            resources?: {
+              /** @description Claims lists the names of resources, defined in spec.resourceClaims,
+               *     that are used by this container.
+               *
+               *     This is an alpha field and requires enabling the
+               *     DynamicResourceAllocation feature gate.
+               *
+               *     This field is immutable. It can only be set for containers. */
+              claims?: {
+                /** @description Name must match the name of one entry in pod.spec.resourceClaims of
+                 *     the Pod where this field is used. It makes that resource available
+                 *     inside a container. */
+                name: string;
+                /** @description Request is the name chosen for a request in the referenced claim.
+                 *     If empty, everything from the claim is made available, otherwise
+                 *     only the result of this request. */
+                request?: string;
+              }[];
+              /** @description Limits describes the maximum amount of compute resources allowed.
+               *     More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ */
+              limits?: {
+                [key: string]: number | string;
+              };
+              /** @description Requests describes the minimum amount of compute resources required.
+               *     If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,
+               *     otherwise to an implementation-defined value. Requests cannot exceed Limits.
+               *     More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ */
+              requests?: {
+                [key: string]: number | string;
+              };
+            };
             /** @description Restart policy for all containers within the pod.
              *     One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted.
              *     Default to Always.
@@ -3582,6 +3624,30 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                *     Note that this field cannot be set when spec.os.name is windows.
                */
               runAsUser?: number;
+              /** @description seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod.
+               *     It has no effect on nodes that do not support SELinux or to volumes does not support SELinux.
+               *     Valid values are "MountOption" and "Recursive".
+               *
+               *     "Recursive" means relabeling of all files on all Pod volumes by the container runtime.
+               *     This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node.
+               *
+               *     "MountOption" mounts all eligible Pod volumes with `-o context` mount option.
+               *     This requires all Pods that share the same volume to use the same SELinux label.
+               *     It is not possible to share the same volume among privileged and unprivileged Pods.
+               *     Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes
+               *     whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their
+               *     CSIDriver instance. Other volumes are always re-labelled recursively.
+               *     "MountOption" value is allowed only when SELinuxMount feature gate is enabled.
+               *
+               *     If not specified and SELinuxMount feature gate is enabled, "MountOption" is used.
+               *     If not specified and SELinuxMount feature gate is disabled, "MountOption" is used for ReadWriteOncePod volumes
+               *     and "Recursive" for all other volumes.
+               *
+               *     This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers.
+               *
+               *     All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state.
+               *     Note that this field cannot be set when spec.os.name is windows. */
+              seLinuxChangePolicy?: string;
               /** @description The SELinux context to be applied to all containers.
                *     If unspecified, the container runtime will allocate a random SELinux context for each
                *     container.  May also be set in SecurityContext.  If set in
@@ -3856,6 +3922,8 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
             volumes?: {
               /** @description awsElasticBlockStore represents an AWS Disk resource that is attached to a
                *     kubelet's host machine and then exposed to the pod.
+               *     Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree
+               *     awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver.
                *     More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore */
               awsElasticBlockStore?: {
                 /** @description fsType is the filesystem type of the volume that you want to mount.
@@ -3878,7 +3946,9 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore */
                 volumeID: string;
               };
-              /** @description azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. */
+              /** @description azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.
+               *     Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type
+               *     are redirected to the disk.csi.azure.com CSI driver. */
               azureDisk?: {
                 /** @description cachingMode is the Host Caching mode: None, Read Only, Read Write. */
                 cachingMode?: string;
@@ -3902,7 +3972,9 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  */
                 readOnly: boolean;
               };
-              /** @description azureFile represents an Azure File Service mount on the host and bind mount to the pod. */
+              /** @description azureFile represents an Azure File Service mount on the host and bind mount to the pod.
+               *     Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type
+               *     are redirected to the file.csi.azure.com CSI driver. */
               azureFile?: {
                 /** @description readOnly defaults to false (read/write). ReadOnly here will force
                  *     the ReadOnly setting in VolumeMounts. */
@@ -3912,7 +3984,8 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                 /** @description shareName is the azure share Name */
                 shareName: string;
               };
-              /** @description cephFS represents a Ceph FS mount on the host that shares a pod's lifetime */
+              /** @description cephFS represents a Ceph FS mount on the host that shares a pod's lifetime.
+               *     Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported. */
               cephfs?: {
                 /** @description monitors is Required: Monitors is a collection of Ceph monitors
                  *     More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it */
@@ -3944,6 +4017,8 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                 user?: string;
               };
               /** @description cinder represents a cinder volume attached and mounted on kubelets host machine.
+               *     Deprecated: Cinder is deprecated. All operations for the in-tree cinder type
+               *     are redirected to the cinder.csi.openstack.org CSI driver.
                *     More info: https://examples.k8s.io/mysql-cinder-pd/README.md */
               cinder?: {
                 /** @description fsType is the filesystem type to mount.
@@ -4023,7 +4098,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                 /** @description optional specify whether the ConfigMap or its keys must be defined */
                 optional?: boolean;
               };
-              /** @description csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature). */
+              /** @description csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers. */
               csi?: {
                 /** @description driver is the name of the CSI driver that handles this volume.
                  *     Consult with your admin for the correct name as registered in the cluster. */
@@ -4330,7 +4405,8 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                 wwids?: string[];
               };
               /** @description flexVolume represents a generic volume resource that is
-               *     provisioned/attached using an exec based plugin. */
+               *     provisioned/attached using an exec based plugin.
+               *     Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead. */
               flexVolume?: {
                 /** @description driver is the name of the driver to use for this volume. */
                 driver: string;
@@ -4362,7 +4438,8 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                   name: string;
                 };
               };
-              /** @description flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running */
+              /** @description flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running.
+               *     Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported. */
               flocker?: {
                 /** @description datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker
                  *     should be considered as deprecated */
@@ -4372,6 +4449,8 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
               };
               /** @description gcePersistentDisk represents a GCE Disk resource that is attached to a
                *     kubelet's host machine and then exposed to the pod.
+               *     Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree
+               *     gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver.
                *     More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk */
               gcePersistentDisk?: {
                 /** @description fsType is filesystem type of the volume that you want to mount.
@@ -4397,7 +4476,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                 readOnly?: boolean;
               };
               /** @description gitRepo represents a git repository at a particular revision.
-               *     DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an
+               *     Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an
                *     EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir
                *     into the Pod's container. */
               gitRepo?: {
@@ -4412,6 +4491,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                 revision?: string;
               };
               /** @description glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime.
+               *     Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported.
                *     More info: https://examples.k8s.io/volumes/glusterfs/README.md */
               glusterfs?: {
                 /** @description endpoints is the endpoint name that details Glusterfs topology.
@@ -4550,7 +4630,8 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Default false. */
                 readOnly?: boolean;
               };
-              /** @description photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine */
+              /** @description photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine.
+               *     Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported. */
               photonPersistentDisk?: {
                 /** @description fsType is the filesystem type to mount.
                  *     Must be a filesystem type supported by the host operating system.
@@ -4559,7 +4640,10 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                 /** @description pdID is the ID that identifies Photon Controller persistent disk */
                 pdID: string;
               };
-              /** @description portworxVolume represents a portworx volume attached and mounted on kubelets host machine */
+              /** @description portworxVolume represents a portworx volume attached and mounted on kubelets host machine.
+               *     Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type
+               *     are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate
+               *     is on. */
               portworxVolume?: {
                 /** @description fSType represents the filesystem type to mount
                  *     Must be a filesystem type supported by the host operating system.
@@ -4779,7 +4863,8 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                   };
                 }[];
               };
-              /** @description quobyte represents a Quobyte mount on the host that shares a pod's lifetime */
+              /** @description quobyte represents a Quobyte mount on the host that shares a pod's lifetime.
+               *     Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported. */
               quobyte?: {
                 /** @description group to map volume access to
                  *     Default is no group */
@@ -4801,6 +4886,7 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                 volume: string;
               };
               /** @description rbd represents a Rados Block Device mount on the host that shares a pod's lifetime.
+               *     Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported.
                *     More info: https://examples.k8s.io/volumes/rbd/README.md */
               rbd?: {
                 /** @description fsType is the filesystem type of the volume that you want to mount.
@@ -4855,7 +4941,8 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  */
                 user: string;
               };
-              /** @description scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. */
+              /** @description scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.
+               *     Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported. */
               scaleIO?: {
                 /**
                  * @description fsType is the filesystem type to mount.
@@ -4947,7 +5034,8 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     More info: https://kubernetes.io/docs/concepts/storage/volumes#secret */
                 secretName?: string;
               };
-              /** @description storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. */
+              /** @description storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.
+               *     Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported. */
               storageos?: {
                 /** @description fsType is the filesystem type to mount.
                  *     Must be a filesystem type supported by the host operating system.
@@ -4980,7 +5068,9 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
                  *     Namespaces that do not pre-exist within StorageOS will be created. */
                 volumeNamespace?: string;
               };
-              /** @description vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine */
+              /** @description vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine.
+               *     Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type
+               *     are redirected to the csi.vsphere.vmware.com CSI driver. */
               vsphereVolume?: {
                 /** @description fsType is filesystem type to mount.
                  *     Must be a filesystem type supported by the host operating system.
@@ -4998,6 +5088,12 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
         };
         /** @description topologyRequest defines the topology request for the PodSet. */
         topologyRequest?: {
+          /** @description PodIndexLabel indicates the name of the label indexing the pods.
+           *     For example, in the context of
+           *     - kubernetes job this is: kubernetes.io/job-completion-index
+           *     - JobSet: kubernetes.io/job-completion-index (inherited from Job)
+           *     - Kubeflow: training.kubeflow.org/replica-index */
+          podIndexLabel?: string;
           /** @description preferred indicates the topology level preferred by the PodSet, as
            *     indicated by the `kueue.x-k8s.io/podset-preferred-topology` PodSet
            *     annotation. */
@@ -5006,6 +5102,19 @@ export interface KubernetesWorkloadV1beta1Config extends ManifestConfig {
            *     indicated by the `kueue.x-k8s.io/podset-required-topology` PodSet
            *     annotation. */
           required?: string;
+          /**
+           * Format: int32
+           * @description SubGroupIndexLabel indicates the count of replicated Jobs (groups) within a PodSet.
+           *     For example, in the context of JobSet this value is read from jobset.sigs.k8s.io/replicatedjob-replicas.
+           */
+          subGroupCount?: number;
+          /** @description SubGroupIndexLabel indicates the name of the label indexing the instances of replicated Jobs (groups)
+           *     within a PodSet. For example, in the context of JobSet this is jobset.sigs.k8s.io/job-index. */
+          subGroupIndexLabel?: string;
+          /** @description unconstrained indicates that Kueue has the freedom to schedule the PodSet within
+           *     the entire available capacity, without constraints on the compactness of the placement.
+           *     This is indicated by the `kueue.x-k8s.io/podset-unconstrained-topology` PodSet annotation. */
+          unconstrained?: boolean;
         };
       }[];
       /**

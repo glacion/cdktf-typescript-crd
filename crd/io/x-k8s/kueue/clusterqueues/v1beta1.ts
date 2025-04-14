@@ -47,22 +47,22 @@ export interface KubernetesClusterQueueV1beta1Config extends ManifestConfig {
        *     vice versa.
        *
        *     A cohort is a name that links CQs together, but it doesn't reference any
-       *     object.
-       *
-       *     Validation of a cohort name is equivalent to that of object names:
-       *     subdomain in DNS (RFC 1123). */
+       *     object. */
       cohort?: string;
-      /** @description fairSharing defines the properties of the ClusterQueue when participating in fair sharing.
-       *     The values are only relevant if fair sharing is enabled in the Kueue configuration. */
+      /** @description fairSharing defines the properties of the ClusterQueue when
+       *     participating in FairSharing.  The values are only relevant
+       *     if FairSharing is enabled in the Kueue configuration. */
       fairSharing?: {
-        /** @description weight gives a comparative advantage to this ClusterQueue when competing for unused
-         *     resources in the cohort against other ClusterQueues.
-         *     The share of a ClusterQueue is based on the dominant resource usage above nominal
-         *     quotas for each resource, divided by the weight.
-         *     Admission prioritizes scheduling workloads from ClusterQueues with the lowest share
-         *     and preempting workloads from the ClusterQueues with the highest share.
-         *     A zero weight implies infinite share value, meaning that this ClusterQueue will always
-         *     be at disadvantage against other ClusterQueues. */
+        /** @description weight gives a comparative advantage to this ClusterQueue
+         *     or Cohort when competing for unused resources in the
+         *     Cohort.  The share is based on the dominant resource usage
+         *     above nominal quotas for each resource, divided by the
+         *     weight.  Admission prioritizes scheduling workloads from
+         *     ClusterQueues and Cohorts with the lowest share and
+         *     preempting workloads from the ClusterQueues and Cohorts
+         *     with the highest share.  A zero weight implies infinite
+         *     share value, meaning that this Node will always be at
+         *     disadvantage against other ClusterQueues and Cohorts. */
         weight?: number | string;
       };
       /** @description flavorFungibility defines whether a workload should try the next flavor
@@ -110,24 +110,30 @@ export interface KubernetesClusterQueueV1beta1Config extends ManifestConfig {
           [key: string]: string;
         };
       };
-      /** @description preemption describes policies to preempt Workloads from this ClusterQueue
-       *     or the ClusterQueue's cohort.
+      /** @description ClusterQueuePreemption contains policies to preempt Workloads from this
+       *     ClusterQueue or the ClusterQueue's cohort.
        *
-       *     Preemption can happen in two scenarios:
+       *     Preemption may be configured to work in the following scenarios:
        *
-       *     - When a Workload fits within the nominal quota of the ClusterQueue, but
-       *       the quota is currently borrowed by other ClusterQueues in the cohort.
-       *       Preempting Workloads in other ClusterQueues allows this ClusterQueue to
-       *       reclaim its nominal quota.
-       *     - When a Workload doesn't fit within the nominal quota of the ClusterQueue
-       *       and there are admitted Workloads in the ClusterQueue with lower priority.
+       *       - When a Workload fits within the nominal quota of the ClusterQueue, but
+       *         the quota is currently borrowed by other ClusterQueues in the cohort.
+       *         We preempt workloads in other ClusterQueues to allow this ClusterQueue to
+       *         reclaim its nominal quota. Configured using reclaimWithinCohort.
+       *       - When a Workload doesn't fit within the nominal quota of the ClusterQueue
+       *         and there are admitted Workloads in the ClusterQueue with lower priority.
+       *         Configured using withinClusterQueue.
+       *       - When a Workload may fit while both borrowing and preempting
+       *         low priority workloads in the Cohort. Configured using borrowWithinCohort.
+       *       - When FairSharing is enabled, to maintain fair distribution of
+       *         unused resources. See FairSharing documentation.
        *
        *     The preemption algorithm tries to find a minimal set of Workloads to
        *     preempt to accomomdate the pending Workload, preempting Workloads with
        *     lower priority first. */
       preemption?: {
-        /** @description borrowWithinCohort provides configuration to allow preemption within
-         *     cohort while borrowing. */
+        /** @description BorrowWithinCohort contains configuration which allows to preempt workloads
+         *     within cohort while borrowing. It only works with Classical Preemption,
+         *     __not__ with Fair Sharing. */
         borrowWithinCohort?: {
           /**
            * Format: int32
@@ -157,11 +163,11 @@ export interface KubernetesClusterQueueV1beta1Config extends ManifestConfig {
          *       Workloads in the cohort that have lower priority than the pending
          *       Workload. **Fair Sharing** only preempt Workloads in the cohort that
          *       have lower priority than the pending Workload and that satisfy the
-         *       fair sharing preemptionStategies.
+         *       Fair Sharing preemptionStategies.
          *     - `Any`: **Classic Preemption** if the pending Workload fits within
          *        the nominal quota of its ClusterQueue, preempt any Workload in the
          *        cohort, irrespective of priority. **Fair Sharing** preempt Workloads
-         *        in the cohort that satisfy the fair sharing preemptionStrategies. */
+         *        in the cohort that satisfy the Fair Sharing preemptionStrategies. */
         reclaimWithinCohort?: string;
         /** @description withinClusterQueue determines whether a pending Workload that doesn't fit
          *     within the nominal quota for its ClusterQueue, can preempt active Workloads in
