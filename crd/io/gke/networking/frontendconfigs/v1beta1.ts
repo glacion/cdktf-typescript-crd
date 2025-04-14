@@ -9,34 +9,25 @@ export class KubernetesFrontendConfigV1beta1 extends Manifest {
   }
 }
 export interface KubernetesFrontendConfigV1beta1Config extends ManifestConfig {
-  metadata: {
-    annotations?: {
-      [key: string]: string;
-    };
-    labels?: {
-      [key: string]: string;
-    };
-    name: string;
-    namespace: string;
-  };
   manifest: {
-    spec: {
-      /** @description APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
-      apiVersion?: string;
-      /** @description Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
-      kind?: string;
-      metadata?: Record<string, never>;
-      /** @description FrontendConfigSpec is the spec for a FrontendConfig resource */
-      spec?: {
-        /** @description HttpsRedirectConfig representing the configuration of Https redirects */
-        redirectToHttps?: {
-          enabled: boolean;
-          /** @description String representing the HTTP response code Options are MOVED_PERMANENTLY_DEFAULT, FOUND, TEMPORARY_REDIRECT, or PERMANENT_REDIRECT */
-          responseCodeName?: string;
-        };
-        sslPolicy?: string;
+    metadata: {
+      annotations?: {
+        [key: string]: string;
       };
-      status?: Record<string, never>;
+      labels?: {
+        [key: string]: string;
+      };
+      name: string;
+      namespace: string;
+    };
+    spec: {
+      /** @description HttpsRedirectConfig representing the configuration of Https redirects */
+      redirectToHttps?: {
+        enabled: boolean;
+        /** @description String representing the HTTP response code Options are MOVED_PERMANENTLY_DEFAULT, FOUND, TEMPORARY_REDIRECT, or PERMANENT_REDIRECT */
+        responseCodeName?: string;
+      };
+      sslPolicy?: string;
     };
   };
 }

@@ -9,26 +9,24 @@ export class KubernetesUpdateInfoV1alpha1 extends Manifest {
   }
 }
 export interface KubernetesUpdateInfoV1alpha1Config extends ManifestConfig {
-  metadata: {
-    annotations?: {
-      [key: string]: string;
-    };
-    labels?: {
-      [key: string]: string;
-    };
-    name: string;
-    namespace: string;
-  };
   manifest: {
-    spec: {
-      spec?: {
-        Type?: string;
-        instanceGroupUrl?: string;
-        surgeNode?: string;
-        targetNode?: string;
-        /** Format: date-time */
-        validUntil?: string;
+    metadata: {
+      annotations?: {
+        [key: string]: string;
       };
+      labels?: {
+        [key: string]: string;
+      };
+      name: string;
+      namespace: string;
+    };
+    spec: {
+      Type?: string;
+      instanceGroupUrl?: string;
+      surgeNode?: string;
+      targetNode?: string;
+      /** Format: date-time */
+      validUntil?: string;
     };
   };
 }

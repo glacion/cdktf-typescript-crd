@@ -9,31 +9,19 @@ export class KubernetesManagedCertificateV1 extends Manifest {
   }
 }
 export interface KubernetesManagedCertificateV1Config extends ManifestConfig {
-  metadata: {
-    annotations?: {
-      [key: string]: string;
-    };
-    labels?: {
-      [key: string]: string;
-    };
-    name: string;
-    namespace: string;
-  };
   manifest: {
+    metadata: {
+      annotations?: {
+        [key: string]: string;
+      };
+      labels?: {
+        [key: string]: string;
+      };
+      name: string;
+      namespace: string;
+    };
     spec: {
-      spec?: {
-        domains?: string[];
-      };
-      status?: {
-        certificateName?: string;
-        certificateStatus?: string;
-        domainStatus?: {
-          domain: string;
-          status: string;
-        }[];
-        /** Format: date-time */
-        expireTime?: string;
-      };
+      domains?: string[];
     };
   };
 }

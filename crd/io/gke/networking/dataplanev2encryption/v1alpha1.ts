@@ -9,29 +9,22 @@ export class KubernetesDataplaneV2EncryptionV1alpha1 extends Manifest {
   }
 }
 export interface KubernetesDataplaneV2EncryptionV1alpha1Config extends ManifestConfig {
-  metadata: {
-    annotations?: {
-      [key: string]: string;
-    };
-    labels?: {
-      [key: string]: string;
-    };
-    name: string;
-    namespace: string;
-  };
   manifest: {
-    /** @description DataplaneV2Encryption describes the specification to be used for node-to-node encryption. */
+    metadata: {
+      annotations?: {
+        [key: string]: string;
+      };
+      labels?: {
+        [key: string]: string;
+      };
+      name: string;
+      namespace: string;
+    };
     spec: {
-      metadata?: {
-        name?: string;
-      };
-      /** @description Spec is the desired configuration for node-to-node encryption. */
-      spec?: {
-        /** @description Enable node-to-node encryption. */
-        enabled: boolean;
-        /** @description Type of encryption to be used. */
-        type: string;
-      };
+      /** @description Enable node-to-node encryption. */
+      enabled: boolean;
+      /** @description Type of encryption to be used. */
+      type: string;
     };
   };
 }

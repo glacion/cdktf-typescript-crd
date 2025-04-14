@@ -9,70 +9,67 @@ export class KubernetesMultidimPodAutoscalerV1beta1 extends Manifest {
   }
 }
 export interface KubernetesMultidimPodAutoscalerV1beta1Config extends ManifestConfig {
-  metadata: {
-    annotations?: {
-      [key: string]: string;
-    };
-    labels?: {
-      [key: string]: string;
-    };
-    name: string;
-    namespace: string;
-  };
   manifest: {
+    metadata: {
+      annotations?: {
+        [key: string]: string;
+      };
+      labels?: {
+        [key: string]: string;
+      };
+      name: string;
+      namespace: string;
+    };
     spec: {
-      spec: {
-        constraints: {
-          container?: {
-            name?: string;
-            requests?: {
-              maxAllowed?: Record<string, never>;
-              minAllowed?: Record<string, never>;
-            };
-          }[];
-          containerControlledResources: "memory"[];
-          global?: {
-            maxReplicas?: number;
-            minReplicas?: number;
-            requests?: {
-              maxAllowed?: Record<string, never>;
-              minAllowed?: Record<string, never>;
-            };
-          };
-          pod?: {
-            requests?: {
-              maxAllowed?: Record<string, never>;
-              minAllowed?: Record<string, never>;
-            };
-          };
-        };
-        goals: {
-          metrics: {
-            resource: {
-              /** @enum {string} */
-              name: "cpu";
-              target: {
-                averageUtilization?: number;
-                averageValue?: unknown;
-                /** @enum {string} */
-                type?: "Utilization" | "Value" | "AverageValue";
-                value?: unknown;
-              };
-            };
-            /** @enum {string} */
-            type: "Resource";
-          }[];
-        };
-        policy?: {
-          updateMode?: string;
-        };
-        scaleTargetRef: {
-          apiVersion?: string;
-          kind?: string;
+      constraints: {
+        container?: {
           name?: string;
+          requests?: {
+            maxAllowed?: Record<string, never>;
+            minAllowed?: Record<string, never>;
+          };
+        }[];
+        containerControlledResources: "memory"[];
+        global?: {
+          maxReplicas?: number;
+          minReplicas?: number;
+          requests?: {
+            maxAllowed?: Record<string, never>;
+            minAllowed?: Record<string, never>;
+          };
+        };
+        pod?: {
+          requests?: {
+            maxAllowed?: Record<string, never>;
+            minAllowed?: Record<string, never>;
+          };
         };
       };
-      status?: Record<string, never>;
+      goals: {
+        metrics: {
+          resource: {
+            /** @enum {string} */
+            name: "cpu";
+            target: {
+              averageUtilization?: number;
+              averageValue?: unknown;
+              /** @enum {string} */
+              type?: "Utilization" | "Value" | "AverageValue";
+              value?: unknown;
+            };
+          };
+          /** @enum {string} */
+          type: "Resource";
+        }[];
+      };
+      policy?: {
+        updateMode?: string;
+      };
+      scaleTargetRef: {
+        apiVersion?: string;
+        kind?: string;
+        name?: string;
+      };
     };
   };
 }

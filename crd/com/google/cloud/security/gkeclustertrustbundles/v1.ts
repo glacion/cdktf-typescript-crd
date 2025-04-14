@@ -9,23 +9,21 @@ export class KubernetesGKEClusterTrustBundleV1 extends Manifest {
   }
 }
 export interface KubernetesGKEClusterTrustBundleV1Config extends ManifestConfig {
-  metadata: {
-    annotations?: {
-      [key: string]: string;
-    };
-    labels?: {
-      [key: string]: string;
-    };
-    name: string;
-    namespace: string;
-  };
   manifest: {
-    spec: {
-      spec: {
-        /** @description The trust bundle certificates, which are concatenated with "\n".
-         *      */
-        trustBundle?: string;
+    metadata: {
+      annotations?: {
+        [key: string]: string;
       };
+      labels?: {
+        [key: string]: string;
+      };
+      name: string;
+      namespace: string;
+    };
+    spec: {
+      /** @description The trust bundle certificates, which are concatenated with "\n".
+       *      */
+      trustBundle?: string;
     };
   };
 }

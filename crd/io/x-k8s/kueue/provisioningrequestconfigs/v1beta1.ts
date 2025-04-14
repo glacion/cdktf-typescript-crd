@@ -9,91 +9,75 @@ export class KubernetesProvisioningRequestConfigV1beta1 extends Manifest {
   }
 }
 export interface KubernetesProvisioningRequestConfigV1beta1Config extends ManifestConfig {
-  metadata: {
-    annotations?: {
-      [key: string]: string;
-    };
-    labels?: {
-      [key: string]: string;
-    };
-    name: string;
-    namespace: string;
-  };
   manifest: {
-    /** @description ProvisioningRequestConfig is the Schema for the provisioningrequestconfig API */
+    metadata: {
+      annotations?: {
+        [key: string]: string;
+      };
+      labels?: {
+        [key: string]: string;
+      };
+      name: string;
+      namespace: string;
+    };
     spec: {
-      /** @description APIVersion defines the versioned schema of this representation of an object.
-       *     Servers should convert recognized schemas to the latest internal value, and
-       *     may reject unrecognized values.
-       *     More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
-      apiVersion?: string;
-      /** @description Kind is a string value representing the REST resource this object represents.
-       *     Servers may infer this from the endpoint the client submits requests to.
-       *     Cannot be updated.
-       *     In CamelCase.
-       *     More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
-      kind?: string;
-      metadata?: Record<string, never>;
-      /** @description ProvisioningRequestConfigSpec defines the desired state of ProvisioningRequestConfig */
-      spec?: {
-        /** @description managedResources contains the list of resources managed by the autoscaling.
+      /** @description managedResources contains the list of resources managed by the autoscaling.
+       *
+       *     If empty, all resources are considered managed.
+       *
+       *     If not empty, the ProvisioningRequest will contain only the podsets that are
+       *     requesting at least one of them.
+       *
+       *     If none of the workloads podsets is requesting at least a managed resource,
+       *     the workload is considered ready. */
+      managedResources?: string[];
+      /** @description Parameters contains all other parameters classes may require. */
+      parameters?: {
+        [key: string]: string;
+      };
+      /** @description ProvisioningClassName describes the different modes of provisioning the resources.
+       *     Check autoscaling.x-k8s.io ProvisioningRequestSpec.ProvisioningClassName for details. */
+      provisioningClassName: string;
+      /** @description retryStrategy defines strategy for retrying ProvisioningRequest.
+       *     If null, then the default configuration is applied with the following parameter values:
+       *     backoffLimitCount:  3
+       *     backoffBaseSeconds: 60 - 1 min
+       *     backoffMaxSeconds:  1800 - 30 mins
+       *
+       *     To switch off retry mechanism
+       *     set retryStrategy.backoffLimitCount to 0. */
+      retryStrategy?: {
+        /**
+         * Format: int32
+         * @description BackoffBaseSeconds defines the base for the exponential backoff for
+         *     re-queuing an evicted workload.
          *
-         *     If empty, all resources are considered managed.
+         *     Defaults to 60.
+         */
+        backoffBaseSeconds?: number;
+        /**
+         * Format: int32
+         * @description BackoffLimitCount defines the maximum number of re-queuing retries.
+         *     Once the number is reached, the workload is deactivated (`.spec.activate`=`false`).
          *
-         *     If not empty, the ProvisioningRequest will contain only the podsets that are
-         *     requesting at least one of them.
+         *     Every backoff duration is about "b*2^(n-1)+Rand" where:
+         *     - "b" represents the base set by "BackoffBaseSeconds" parameter,
+         *     - "n" represents the "workloadStatus.requeueState.count",
+         *     - "Rand" represents the random jitter.
+         *     During this time, the workload is taken as an inadmissible and
+         *     other workloads will have a chance to be admitted.
+         *     By default, the consecutive requeue delays are around: (60s, 120s, 240s, ...).
          *
-         *     If none of the workloads podsets is requesting at least a managed resource,
-         *     the workload is considered ready. */
-        managedResources?: string[];
-        /** @description Parameters contains all other parameters classes may require. */
-        parameters?: {
-          [key: string]: string;
-        };
-        /** @description ProvisioningClassName describes the different modes of provisioning the resources.
-         *     Check autoscaling.x-k8s.io ProvisioningRequestSpec.ProvisioningClassName for details. */
-        provisioningClassName: string;
-        /** @description retryStrategy defines strategy for retrying ProvisioningRequest.
-         *     If null, then the default configuration is applied with the following parameter values:
-         *     backoffLimitCount:  3
-         *     backoffBaseSeconds: 60 - 1 min
-         *     backoffMaxSeconds:  1800 - 30 mins
+         *     Defaults to 3.
+         */
+        backoffLimitCount?: number;
+        /**
+         * Format: int32
+         * @description BackoffMaxSeconds defines the maximum backoff time to re-queue an evicted workload.
          *
-         *     To switch off retry mechanism
-         *     set retryStrategy.backoffLimitCount to 0. */
-        retryStrategy?: {
-          /**
-           * Format: int32
-           * @description BackoffBaseSeconds defines the base for the exponential backoff for
-           *     re-queuing an evicted workload.
-           *
-           *     Defaults to 60.
-           */
-          backoffBaseSeconds?: number;
-          /**
-           * Format: int32
-           * @description BackoffLimitCount defines the maximum number of re-queuing retries.
-           *     Once the number is reached, the workload is deactivated (`.spec.activate`=`false`).
-           *
-           *     Every backoff duration is about "b*2^(n-1)+Rand" where:
-           *     - "b" represents the base set by "BackoffBaseSeconds" parameter,
-           *     - "n" represents the "workloadStatus.requeueState.count",
-           *     - "Rand" represents the random jitter.
-           *     During this time, the workload is taken as an inadmissible and
-           *     other workloads will have a chance to be admitted.
-           *     By default, the consecutive requeue delays are around: (60s, 120s, 240s, ...).
-           *
-           *     Defaults to 3.
-           */
-          backoffLimitCount?: number;
-          /**
-           * Format: int32
-           * @description BackoffMaxSeconds defines the maximum backoff time to re-queue an evicted workload.
-           *
-           *     Defaults to 1800.
-           */
-          backoffMaxSeconds?: number;
-        };
+         *     Defaults to 1800.
+         */
+        backoffMaxSeconds?: number;
       };
     };
   };

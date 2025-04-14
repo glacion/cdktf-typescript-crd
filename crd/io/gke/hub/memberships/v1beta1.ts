@@ -6,17 +6,17 @@ export class KubernetesMembershipV1beta1 extends Manifest {
   }
 }
 export interface KubernetesMembershipV1beta1Config extends ManifestConfig {
-  metadata: {
-    annotations?: {
-      [key: string]: string;
-    };
-    labels?: {
-      [key: string]: string;
-    };
-    name: string;
-    namespace: string;
-  };
   manifest: {
-    spec: Record<string, never>;
+    metadata: {
+      annotations?: {
+        [key: string]: string;
+      };
+      labels?: {
+        [key: string]: string;
+      };
+      name: string;
+      namespace: string;
+    };
+    spec: object;
   };
 }

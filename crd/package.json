@@ -1,6 +1,10 @@
 {
   "name": "cdktf-crd",
-  "version": "0.0.2",
+  "version": "0.1.0",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/glacion/cdktf-typescript-crd.git"
@@ -19,5 +23,8 @@
     "@cdktf/provider-kubernetes": "^11",
     "cdktf": "^0",
     "constructs": "^10"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
   }
 }

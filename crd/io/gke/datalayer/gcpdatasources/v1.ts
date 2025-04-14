@@ -9,27 +9,21 @@ export class KubernetesGCPDataSourceV1 extends Manifest {
   }
 }
 export interface KubernetesGCPDataSourceV1Config extends ManifestConfig {
-  metadata: {
-    annotations?: {
-      [key: string]: string;
-    };
-    labels?: {
-      [key: string]: string;
-    };
-    name: string;
-    namespace: string;
-  };
   manifest: {
-    spec: {
-      spec?: {
-        cloudStorage?: {
-          serviceAccountName?: string;
-          uri?: string;
-        };
+    metadata: {
+      annotations?: {
+        [key: string]: string;
       };
-      status?: {
-        error?: string;
-        instanceHandle?: string;
+      labels?: {
+        [key: string]: string;
+      };
+      name: string;
+      namespace: string;
+    };
+    spec: {
+      cloudStorage?: {
+        serviceAccountName?: string;
+        uri?: string;
       };
     };
   };
