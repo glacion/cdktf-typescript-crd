@@ -15,9 +15,9 @@
     "url": "https://github.com/glacion/cdktf-typescript-crd/issues"
   },
   "homepage": "https://github.com/glacion/cdktf-typescript-crd#readme",
-  "dependencies": {
-    "@cdktf/provider-kubernetes": "^11.11.0",
-    "cdktf": "^0.20.11",
-    "constructs": "^10.4.2"
+  "peerDependencies": {
+    "@cdktf/provider-kubernetes": "^11",
+    "cdktf": "^0",
+    "constructs": "^10"
   }
 }

@@ -9,10 +9,7 @@ export default [
   ...tseslint.configs.recommended,
   {
     rules: {
-      "@typescript-eslint/no-empty-object-type": [
-        "error",
-        { allowInterfaces: "with-single-extends", allowObjectTypes: "never" },
-      ],
+      "no-irregular-whitespace": ["error", { skipComments: true }],
     },
   },
   prettier,
