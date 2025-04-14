@@ -6,6 +6,7 @@ import {
   isInterfaceDeclaration,
   isPropertySignature,
   isTypeLiteralNode,
+  SyntaxKind,
   type Identifier,
   type Node,
   type PropertySignature,
@@ -34,21 +35,22 @@ const findMembers = (nodes: Node[]) =>
         isTypeIdentifier(node) && node.name.text === "spec",
     )?.type.members ?? [];
 
-const createSpecSignature = async (version: V1CustomResourceDefinitionVersion) =>
-  factory.createPropertySignature(
+const createSpecSignature = async (version: V1CustomResourceDefinitionVersion) => {
+  const openapi = await openapiTS({
+    openapi: "3.0.0",
+    info: { title: version.name, version: version.name },
+    components: { schemas: { spec: version.schema?.openAPIV3Schema as SchemaObject } },
+  });
+  const members = findMembers(openapi);
+  return factory.createPropertySignature(
     undefined,
     "spec",
     undefined,
-    factory.createTypeLiteralNode(
-      findMembers(
-        await openapiTS({
-          openapi: "3.0.0",
-          info: { title: version.name, version: version.name },
-          components: { schemas: { spec: version.schema?.openAPIV3Schema as SchemaObject } },
-        }),
-      ),
-    ),
+    members.length !== 0
+      ? factory.createTypeLiteralNode(members)
+      : factory.createKeywordTypeNode(SyntaxKind.ObjectKeyword),
   );
+};
 
 export default async (version: V1CustomResourceDefinitionVersion) =>
   factory.createPropertySignature(
