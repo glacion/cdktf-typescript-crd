@@ -1,8 +1,14 @@
 {
   "name": "cdktf-crd",
-  "version": "0.1.0",
-  "files": ["dist"],
+  "version": "0.2.1",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./*": "./dist/*.js"
+  },
   "scripts": {
+    "prepublish": "tsc",
     "build": "tsc"
   },
   "repository": {
