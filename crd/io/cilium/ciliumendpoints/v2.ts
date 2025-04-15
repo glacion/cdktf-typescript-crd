@@ -17,6 +17,6 @@ export interface KubernetesCiliumEndpointV2Config extends ManifestConfig {
       name: string;
       namespace: string;
     };
-    spec: object;
+    spec: unknown;
   };
 }

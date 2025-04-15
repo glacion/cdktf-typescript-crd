@@ -24,6 +24,6 @@ export interface KubernetesServiceNetworkEndpointGroupV1beta1Config extends Mani
       name: string;
       namespace: string;
     };
-    spec: object;
+    spec: Record;
   };
 }

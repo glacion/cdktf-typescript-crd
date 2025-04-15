@@ -20,6 +20,6 @@ export interface KubernetesOperatorConfigV1alpha1Config extends ManifestConfig {
       name: string;
       namespace: string;
     };
-    spec: object;
+    spec: unknown;
   };
 }

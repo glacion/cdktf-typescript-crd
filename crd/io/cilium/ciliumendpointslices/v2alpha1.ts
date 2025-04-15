@@ -20,6 +20,6 @@ export interface KubernetesCiliumEndpointSliceV2alpha1Config extends ManifestCon
       name: string;
       namespace: string;
     };
-    spec: object;
+    spec: unknown;
   };
 }

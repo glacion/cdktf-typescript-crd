@@ -20,6 +20,6 @@ export interface KubernetesSecretProviderClassPodStatusV1Config extends Manifest
       name: string;
       namespace: string;
     };
-    spec: object;
+    spec: unknown;
   };
 }

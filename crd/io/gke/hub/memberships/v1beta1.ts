@@ -17,6 +17,6 @@ export interface KubernetesMembershipV1beta1Config extends ManifestConfig {
       name: string;
       namespace: string;
     };
-    spec: object;
+    spec: unknown;
   };
 }

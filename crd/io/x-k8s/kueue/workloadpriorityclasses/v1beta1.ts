@@ -20,6 +20,6 @@ export interface KubernetesWorkloadPriorityClassV1beta1Config extends ManifestCo
       name: string;
       namespace: string;
     };
-    spec: object;
+    spec: unknown;
   };
 }

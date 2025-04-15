@@ -20,6 +20,6 @@ export interface KubernetesClusterPolicyReportV1alpha2Config extends ManifestCon
       name: string;
       namespace: string;
     };
-    spec: object;
+    spec: unknown;
   };
 }

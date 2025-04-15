@@ -28,6 +28,6 @@ export interface KubernetesComputeSharedVPCHostProjectV1beta1Config extends Mani
       name: string;
       namespace: string;
     };
-    spec: object;
+    spec: unknown;
   };
 }

@@ -20,6 +20,6 @@ export interface KubernetesPolicyReportV1alpha2Config extends ManifestConfig {
       name: string;
       namespace: string;
     };
-    spec: object;
+    spec: unknown;
   };
 }

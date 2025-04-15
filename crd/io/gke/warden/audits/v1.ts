@@ -17,6 +17,6 @@ export interface KubernetesAuditV1Config extends ManifestConfig {
       name: string;
       namespace: string;
     };
-    spec: object;
+    spec: Record;
   };
 }

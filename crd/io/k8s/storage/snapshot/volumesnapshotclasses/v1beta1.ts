@@ -20,6 +20,6 @@ export interface KubernetesVolumeSnapshotClassV1beta1Config extends ManifestConf
       name: string;
       namespace: string;
     };
-    spec: object;
+    spec: unknown;
   };
 }
