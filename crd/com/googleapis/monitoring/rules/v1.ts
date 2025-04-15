@@ -1,15 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesRulesV1 extends Manifest {
-  constructor(scope: Construct, id: string, { manifest, ...config }: KubernetesRulesV1Config) {
-    super(scope, id, {
-      manifest: { apiVersion: "monitoring.googleapis.com/v1", kind: "Rules", ...manifest },
-      ...config,
-    });
+export class KubernetesRulesV1Manifest extends Manifest {
+  constructor(scope: Construct, id: string, config: KubernetesRulesV1ManifestConfig) {
+    super(scope, id, config);
   }
 }
-export interface KubernetesRulesV1Config extends ManifestConfig {
+export interface KubernetesRulesV1ManifestConfig extends ManifestConfig {
   manifest: {
+    apiVersion: "monitoring.googleapis.com/v1";
+    kind: "Rules";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -20,6 +19,7 @@ export interface KubernetesRulesV1Config extends ManifestConfig {
       name: string;
       namespace: string;
     };
+    /** @description Specification of rules to record and alert on. */
     spec: {
       /** @description A list of Prometheus rule groups. */
       groups: {
@@ -51,6 +51,35 @@ export interface KubernetesRulesV1Config extends ManifestConfig {
           record?: string;
         }[];
       }[];
+    };
+    /** @description Most recently observed status of the resource. */
+    status?: {
+      /** @description Represents the latest available observations of a podmonitor's current state. */
+      conditions?: {
+        /**
+         * Format: date-time
+         * @description Last time the condition transitioned from one status to another.
+         */
+        lastTransitionTime?: string;
+        /**
+         * Format: date-time
+         * @description The last time this condition was updated.
+         */
+        lastUpdateTime?: string;
+        /** @description A human-readable message indicating details about the transition. */
+        message?: string;
+        /** @description The reason for the condition's last transition. */
+        reason?: string;
+        /** @description Status of the condition, one of True, False, Unknown. */
+        status: string;
+        /** @description MonitoringConditionType is the type of MonitoringCondition. */
+        type: string;
+      }[];
+      /**
+       * Format: int64
+       * @description The generation observed by the controller.
+       */
+      observedGeneration?: number;
     };
   };
 }

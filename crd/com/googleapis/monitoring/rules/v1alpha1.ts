@@ -1,15 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesRulesV1alpha1 extends Manifest {
-  constructor(scope: Construct, id: string, { manifest, ...config }: KubernetesRulesV1alpha1Config) {
-    super(scope, id, {
-      manifest: { apiVersion: "monitoring.googleapis.com/v1alpha1", kind: "Rules", ...manifest },
-      ...config,
-    });
+export class KubernetesRulesV1alpha1Manifest extends Manifest {
+  constructor(scope: Construct, id: string, config: KubernetesRulesV1alpha1ManifestConfig) {
+    super(scope, id, config);
   }
 }
-export interface KubernetesRulesV1alpha1Config extends ManifestConfig {
+export interface KubernetesRulesV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
+    apiVersion: "monitoring.googleapis.com/v1alpha1";
+    kind: "Rules";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -20,6 +19,7 @@ export interface KubernetesRulesV1alpha1Config extends ManifestConfig {
       name: string;
       namespace: string;
     };
+    /** @description Specification of rules to record and alert on. */
     spec: {
       /** @description A list of Prometheus rule groups. */
       groups: {
@@ -52,5 +52,7 @@ export interface KubernetesRulesV1alpha1Config extends ManifestConfig {
         }[];
       }[];
     };
+    /** @description Most recently observed status of the resource. */
+    status?: Record<string, never>;
   };
 }
