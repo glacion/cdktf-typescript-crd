@@ -1,6 +1,6 @@
 import type { V1CustomResourceDefinitionVersion } from "@kubernetes/client-node";
 import { factory, ModifierFlags, SyntaxKind } from "typescript";
-import createManifestMembers from "./manifest";
+import { createManifestPropertySignature } from "./manifest";
 
 const createHeritageClauses = () => [
   factory.createHeritageClause(SyntaxKind.ExtendsKeyword, [
@@ -8,12 +8,17 @@ const createHeritageClauses = () => [
   ]),
 ];
 
-export default async (name: string, version: V1CustomResourceDefinitionVersion) => {
+export const createManifestConfigInterfaceDeclaration = async (
+  apiVersion: string,
+  kind: string,
+  typeName: string,
+  version: V1CustomResourceDefinitionVersion,
+) => {
   return factory.createInterfaceDeclaration(
     factory.createModifiersFromModifierFlags(ModifierFlags.Export),
-    name,
+    typeName,
     undefined,
     createHeritageClauses(),
-    [await createManifestMembers(version)],
+    [await createManifestPropertySignature(apiVersion, kind, version)],
   );
 };

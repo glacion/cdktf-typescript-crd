@@ -1,6 +1,6 @@
 import { factory, SyntaxKind } from "typescript";
 
-const createParameters = (typeName: string) => [
+const createParameterDeclarations = (configTypeName: string) => [
   factory.createParameterDeclaration(
     undefined,
     undefined,
@@ -18,39 +18,22 @@ const createParameters = (typeName: string) => [
   factory.createParameterDeclaration(
     undefined,
     undefined,
-    factory.createObjectBindingPattern([
-      factory.createBindingElement(undefined, undefined, factory.createIdentifier("manifest")),
-      factory.createBindingElement(
-        factory.createToken(SyntaxKind.DotDotDotToken),
-        undefined,
-        factory.createIdentifier("config"),
-      ),
-    ]),
+    factory.createIdentifier("config"),
     undefined,
-    factory.createTypeReferenceNode(typeName),
+    factory.createTypeReferenceNode(configTypeName),
   ),
 ];
 
-const createBody = (apiVersion: string, kind: string) =>
+const createBodyBlock = () =>
   factory.createBlock([
     factory.createExpressionStatement(
       factory.createCallExpression(factory.createSuper(), undefined, [
         factory.createIdentifier("scope"),
         factory.createIdentifier("id"),
-        factory.createObjectLiteralExpression([
-          factory.createPropertyAssignment(
-            "manifest",
-            factory.createObjectLiteralExpression([
-              factory.createPropertyAssignment("apiVersion", factory.createStringLiteral(apiVersion)),
-              factory.createPropertyAssignment("kind", factory.createStringLiteral(kind)),
-              factory.createSpreadAssignment(factory.createIdentifier("manifest")),
-            ]),
-          ),
-          factory.createSpreadAssignment(factory.createIdentifier("config")),
-        ]),
+        factory.createIdentifier("config"),
       ]),
     ),
   ]);
 
-export default (apiVersion: string, kind: string, typeName: string) =>
-  factory.createConstructorDeclaration(undefined, createParameters(typeName), createBody(apiVersion, kind));
+export const createConstructorDeclaration = (configTypeName: string) =>
+  factory.createConstructorDeclaration(undefined, createParameterDeclarations(configTypeName), createBodyBlock());

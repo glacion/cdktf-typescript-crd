@@ -1,6 +1,6 @@
 import { factory, SyntaxKind } from "typescript";
 
-const createStringKeyValuePropertySignature = (name: string) =>
+const createStringIndexPropertySignature = (name: string) =>
   factory.createPropertySignature(
     undefined,
     name,
@@ -26,13 +26,13 @@ const createStringPropertySignature = (name: string) =>
   factory.createPropertySignature(undefined, name, undefined, factory.createKeywordTypeNode(SyntaxKind.StringKeyword));
 
 const createMetadataMembers = () => [
-  createStringKeyValuePropertySignature("annotations"),
-  createStringKeyValuePropertySignature("labels"),
+  createStringIndexPropertySignature("annotations"),
+  createStringIndexPropertySignature("labels"),
   createStringPropertySignature("name"),
   createStringPropertySignature("namespace"),
 ];
 
-export default () =>
+export const createMetadataPropertySignature = () =>
   factory.createPropertySignature(
     undefined,
     "metadata",

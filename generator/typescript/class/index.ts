@@ -1,17 +1,17 @@
 import { factory, ModifierFlags, SyntaxKind } from "typescript";
-import createConstructor from "./constructor";
+import { createConstructorDeclaration } from "./constructor";
 
-const createHeritageClauses = () => [
+const createManifestHeritageClause = () => [
   factory.createHeritageClause(SyntaxKind.ExtendsKeyword, [
     factory.createExpressionWithTypeArguments(factory.createIdentifier("Manifest"), undefined),
   ]),
 ];
 
-export default (apiVersion: string, kind: string, name: string, typeName: string) =>
+export const createManifestClassDeclaration = (typeName: string, configTypeName: string) =>
   factory.createClassDeclaration(
     factory.createModifiersFromModifierFlags(ModifierFlags.Export),
-    name,
+    typeName,
     undefined,
-    createHeritageClauses(),
-    [createConstructor(apiVersion, kind, typeName)],
+    createManifestHeritageClause(),
+    [createConstructorDeclaration(configTypeName)],
   );

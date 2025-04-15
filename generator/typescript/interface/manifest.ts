@@ -2,59 +2,80 @@ import type { V1CustomResourceDefinitionVersion } from "@kubernetes/client-node"
 import openapiTS, { type SchemaObject } from "openapi-typescript";
 import {
   factory,
+  isIdentifier,
   isInterfaceDeclaration,
   isPropertySignature,
   isTypeLiteralNode,
-  SyntaxKind,
+  isTypeNode,
   type Identifier,
   type Node,
   type PropertySignature,
+  type TypeElement,
   type TypeLiteralNode,
+  type TypeNode,
 } from "typescript";
 
-import createMetadataSignature from "./metadata";
+import { logger } from "../../logger";
+import { createMetadataPropertySignature } from "./metadata";
 
-const isTypeIdentifier = (node: Node): node is PropertySignature & { type: TypeLiteralNode; name: Identifier } =>
-  isPropertySignature(node) && node.type !== undefined && isTypeLiteralNode(node.type);
+const ignoreList = ["apiVersion", "kind", "metadata"];
 
-const findMembers = (nodes: Node[]) =>
+const isPropertySignatureWithIdentifier = (node: TypeElement): node is PropertySignature & { name: Identifier } =>
+  isPropertySignature(node) && isIdentifier(node.name);
+
+const isPropertySignatureWithIdentifierAndTypeLiteralNode = (
+  node: TypeElement,
+): node is PropertySignature & { name: Identifier; type: TypeLiteralNode } =>
+  isPropertySignatureWithIdentifier(node) && node.type !== undefined && isTypeLiteralNode(node.type);
+
+const findPropertySignatures = (name: string, kind: string, nodes: Node[]) =>
   nodes
     .filter(isInterfaceDeclaration)
     .find((node) => node.name.text === "components")
     ?.members.find(
-      (node): node is PropertySignature & { type: TypeLiteralNode } =>
-        isTypeIdentifier(node) && node.name.text === "schemas",
+      (node): node is PropertySignature & { name: Identifier; type: TypeLiteralNode } =>
+        isPropertySignatureWithIdentifierAndTypeLiteralNode(node) && node.name.text === "schemas",
     )
     ?.type.members.find(
-      (node): node is PropertySignature & { type: TypeLiteralNode } =>
-        isTypeIdentifier(node) && node.name.text === "spec",
+      (node): node is PropertySignature & { name: Identifier; type: TypeLiteralNode } =>
+        isPropertySignatureWithIdentifierAndTypeLiteralNode(node) && node.name.text === "spec",
     )
-    ?.type.members.find(
-      (node): node is PropertySignature & { type: TypeLiteralNode } =>
-        isTypeIdentifier(node) && node.name.text === "spec",
-    )?.type.members ?? [];
+    ?.type.members.filter(
+      (node): node is PropertySignature & { name: Identifier; type: TypeNode } =>
+        isPropertySignatureWithIdentifier(node) && node.type !== undefined && isTypeNode(node.type),
+    )
+    .filter((node) => !ignoreList.includes(node.name.text)) ??
+  (logger.warn({ name, kind }, "no type member found"), []);
 
-const createSpecSignature = async (version: V1CustomResourceDefinitionVersion) => {
-  const openapi = await openapiTS({
-    openapi: "3.0.0",
-    info: { title: version.name, version: version.name },
-    components: { schemas: { spec: version.schema?.openAPIV3Schema as SchemaObject } },
-  });
-  const members = findMembers(openapi);
-  return factory.createPropertySignature(
+const createStringLiteralPropertySignature = (name: string, value: string) =>
+  factory.createPropertySignature(
     undefined,
-    "spec",
+    name,
     undefined,
-    members.length !== 0
-      ? factory.createTypeLiteralNode(members)
-      : factory.createKeywordTypeNode(SyntaxKind.ObjectKeyword),
+    factory.createLiteralTypeNode(factory.createStringLiteral(value)),
   );
-};
 
-export default async (version: V1CustomResourceDefinitionVersion) =>
+export const createManifestPropertySignature = async (
+  apiVersion: string,
+  kind: string,
+  version: V1CustomResourceDefinitionVersion,
+) =>
   factory.createPropertySignature(
     undefined,
     "manifest",
     undefined,
-    factory.createTypeLiteralNode([createMetadataSignature(), await createSpecSignature(version)]),
+    factory.createTypeLiteralNode([
+      createStringLiteralPropertySignature("apiVersion", apiVersion),
+      createStringLiteralPropertySignature("kind", kind),
+      createMetadataPropertySignature(),
+      ...findPropertySignatures(
+        apiVersion,
+        kind,
+        await openapiTS({
+          openapi: "3.0.0",
+          info: { title: kind, version: apiVersion },
+          components: { schemas: { spec: version.schema?.openAPIV3Schema as SchemaObject } },
+        }),
+      ),
+    ]),
   );
