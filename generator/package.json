@@ -2,6 +2,9 @@
   "name": "generator",
   "version": "0.0.1",
   "main": "index.ts",
+  "scripts": {
+    "build": "tsx ."
+  },
   "dependencies": {
     "@kubernetes/client-node": "^1.1.2",
     "change-case": "^5.4.4",
