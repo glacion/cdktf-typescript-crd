@@ -7,8 +7,8 @@ export class KubernetesAtlasPrivateEndpointV1Manifest extends Manifest {
 }
 export interface KubernetesAtlasPrivateEndpointV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "atlas.mongodb.com/v1";
-    kind: "AtlasPrivateEndpoint";
+    apiVersion?: "atlas.mongodb.com/v1";
+    kind?: "AtlasPrivateEndpoint";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAtlasPrivateEndpointV1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description AtlasPrivateEndpointSpec is the specification of the desired configuration of a project private endpoint */
     spec?: {

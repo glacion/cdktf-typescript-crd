@@ -7,8 +7,8 @@ export class KubernetesServiceAttachmentV1beta1Manifest extends Manifest {
 }
 export interface KubernetesServiceAttachmentV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1beta1";
-    kind: "ServiceAttachment";
+    apiVersion?: "networking.gke.io/v1beta1";
+    kind?: "ServiceAttachment";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesServiceAttachmentV1beta1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ServiceAttachmentSpec is the spec for a ServiceAttachment resource */
     spec?: {

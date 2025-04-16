@@ -7,8 +7,8 @@ export class KubernetesDLPInspectTemplateV1beta1Manifest extends Manifest {
 }
 export interface KubernetesDLPInspectTemplateV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "dlp.cnrm.cloud.google.com/v1beta1";
-    kind: "DLPInspectTemplate";
+    apiVersion?: "dlp.cnrm.cloud.google.com/v1beta1";
+    kind?: "DLPInspectTemplate";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesDLPInspectTemplateV1beta1ManifestConfig extends Manif
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Short description (max 256 chars). */

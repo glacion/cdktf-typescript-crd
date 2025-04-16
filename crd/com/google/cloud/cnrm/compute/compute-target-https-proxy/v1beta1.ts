@@ -7,8 +7,8 @@ export class KubernetesComputeTargetHTTPSProxyV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeTargetHTTPSProxyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeTargetHTTPSProxy";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeTargetHTTPSProxy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeTargetHTTPSProxyV1beta1ManifestConfig extends 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       certificateManagerCertificates?: ({

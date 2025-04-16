@@ -7,8 +7,8 @@ export class KubernetesAtlasDatabaseUserV1Manifest extends Manifest {
 }
 export interface KubernetesAtlasDatabaseUserV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "atlas.mongodb.com/v1";
-    kind: "AtlasDatabaseUser";
+    apiVersion?: "atlas.mongodb.com/v1";
+    kind?: "AtlasDatabaseUser";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAtlasDatabaseUserV1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description AtlasDatabaseUserSpec defines the desired state of Database User in Atlas */
     spec?: {

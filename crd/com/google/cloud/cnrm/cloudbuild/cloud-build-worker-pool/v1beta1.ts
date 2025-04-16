@@ -7,8 +7,8 @@ export class KubernetesCloudBuildWorkerPoolV1beta1Manifest extends Manifest {
 }
 export interface KubernetesCloudBuildWorkerPoolV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cloudbuild.cnrm.cloud.google.com/v1beta1";
-    kind: "CloudBuildWorkerPool";
+    apiVersion?: "cloudbuild.cnrm.cloud.google.com/v1beta1";
+    kind?: "CloudBuildWorkerPool";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCloudBuildWorkerPoolV1beta1ManifestConfig extends Man
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description CloudBuildWorkerPoolSpec defines the desired state of Instance */
     spec?: {

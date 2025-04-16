@@ -7,8 +7,8 @@ export class KubernetesNetworkSecurityClientTLSPolicyV1beta1Manifest extends Man
 }
 export interface KubernetesNetworkSecurityClientTLSPolicyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networksecurity.cnrm.cloud.google.com/v1beta1";
-    kind: "NetworkSecurityClientTLSPolicy";
+    apiVersion?: "networksecurity.cnrm.cloud.google.com/v1beta1";
+    kind?: "NetworkSecurityClientTLSPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesNetworkSecurityClientTLSPolicyV1beta1ManifestConfig e
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Optional. Defines a mechanism to provision client identity (public and private keys) for peer to peer authentication. The presence of this dictates mTLS. */

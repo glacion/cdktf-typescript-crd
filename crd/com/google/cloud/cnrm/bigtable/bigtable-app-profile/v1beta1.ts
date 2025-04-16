@@ -7,8 +7,8 @@ export class KubernetesBigtableAppProfileV1beta1Manifest extends Manifest {
 }
 export interface KubernetesBigtableAppProfileV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "bigtable.cnrm.cloud.google.com/v1beta1";
-    kind: "BigtableAppProfile";
+    apiVersion?: "bigtable.cnrm.cloud.google.com/v1beta1";
+    kind?: "BigtableAppProfile";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesBigtableAppProfileV1beta1ManifestConfig extends Manif
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Long form description of the use case for this app profile. */

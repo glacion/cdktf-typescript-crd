@@ -7,8 +7,8 @@ export class KubernetesEventarcTriggerV1beta1Manifest extends Manifest {
 }
 export interface KubernetesEventarcTriggerV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "eventarc.cnrm.cloud.google.com/v1beta1";
-    kind: "EventarcTrigger";
+    apiVersion?: "eventarc.cnrm.cloud.google.com/v1beta1";
+    kind?: "EventarcTrigger";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesEventarcTriggerV1beta1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. */

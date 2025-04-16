@@ -7,8 +7,8 @@ export class KubernetesBundleV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesBundleV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "trust.cert-manager.io/v1alpha1";
-    kind: "Bundle";
+    apiVersion?: "trust.cert-manager.io/v1alpha1";
+    kind?: "Bundle";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesBundleV1alpha1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Desired state of the Bundle resource. */
     spec: {

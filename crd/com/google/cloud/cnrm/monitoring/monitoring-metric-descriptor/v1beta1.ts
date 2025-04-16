@@ -7,8 +7,8 @@ export class KubernetesMonitoringMetricDescriptorV1beta1Manifest extends Manifes
 }
 export interface KubernetesMonitoringMetricDescriptorV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.cnrm.cloud.google.com/v1beta1";
-    kind: "MonitoringMetricDescriptor";
+    apiVersion?: "monitoring.cnrm.cloud.google.com/v1beta1";
+    kind?: "MonitoringMetricDescriptor";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesMonitoringMetricDescriptorV1beta1ManifestConfig exten
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. A detailed description of the metric, which can be used in documentation. */

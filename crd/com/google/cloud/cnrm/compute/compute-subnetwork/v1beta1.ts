@@ -7,8 +7,8 @@ export class KubernetesComputeSubnetworkV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeSubnetworkV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeSubnetwork";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeSubnetwork";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeSubnetworkV1beta1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. An optional description of this resource. Provide this property when

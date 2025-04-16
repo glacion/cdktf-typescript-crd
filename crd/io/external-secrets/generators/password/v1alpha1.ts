@@ -7,8 +7,8 @@ export class KubernetesPasswordV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesPasswordV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "generators.external-secrets.io/v1alpha1";
-    kind: "Password";
+    apiVersion?: "generators.external-secrets.io/v1alpha1";
+    kind?: "Password";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPasswordV1alpha1ManifestConfig extends ManifestConfig
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description PasswordSpec controls the behavior of the password generator. */
     spec?: {

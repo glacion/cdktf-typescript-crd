@@ -7,8 +7,8 @@ export class KubernetesEntitlementV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesEntitlementV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "anthos.gke.io/v1alpha1";
-    kind: "Entitlement";
+    apiVersion?: "anthos.gke.io/v1alpha1";
+    kind?: "Entitlement";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesEntitlementV1alpha1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /**

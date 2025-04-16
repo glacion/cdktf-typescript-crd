@@ -7,8 +7,8 @@ export class KubernetesAtlasDataFederationV1Manifest extends Manifest {
 }
 export interface KubernetesAtlasDataFederationV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "atlas.mongodb.com/v1";
-    kind: "AtlasDataFederation";
+    apiVersion?: "atlas.mongodb.com/v1";
+    kind?: "AtlasDataFederation";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAtlasDataFederationV1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       cloudProviderConfig?: {

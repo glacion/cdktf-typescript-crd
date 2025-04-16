@@ -7,8 +7,8 @@ export class KubernetesComputeSharedVPCHostProjectV1beta1Manifest extends Manife
 }
 export interface KubernetesComputeSharedVPCHostProjectV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeSharedVPCHostProject";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeSharedVPCHostProject";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeSharedVPCHostProjectV1beta1ManifestConfig exte
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     status?: {
       /** @description Conditions represent the latest available observation of the resource's current state. */

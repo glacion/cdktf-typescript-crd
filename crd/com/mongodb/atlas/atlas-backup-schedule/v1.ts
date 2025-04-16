@@ -7,8 +7,8 @@ export class KubernetesAtlasBackupScheduleV1Manifest extends Manifest {
 }
 export interface KubernetesAtlasBackupScheduleV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "atlas.mongodb.com/v1";
-    kind: "AtlasBackupSchedule";
+    apiVersion?: "atlas.mongodb.com/v1";
+    kind?: "AtlasBackupSchedule";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAtlasBackupScheduleV1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description AtlasBackupScheduleSpec defines the desired state of AtlasBackupSchedule */
     spec?: {

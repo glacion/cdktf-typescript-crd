@@ -7,8 +7,8 @@ export class KubernetesFirestoreDatabaseV1beta1Manifest extends Manifest {
 }
 export interface KubernetesFirestoreDatabaseV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "firestore.cnrm.cloud.google.com/v1beta1";
-    kind: "FirestoreDatabase";
+    apiVersion?: "firestore.cnrm.cloud.google.com/v1beta1";
+    kind?: "FirestoreDatabase";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesFirestoreDatabaseV1beta1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description FirestoreDatabaseSpec defines the desired state of FirestoreDatabase */
     spec?: {

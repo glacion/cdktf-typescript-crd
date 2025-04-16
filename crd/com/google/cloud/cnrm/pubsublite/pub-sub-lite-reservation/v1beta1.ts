@@ -7,8 +7,8 @@ export class KubernetesPubSubLiteReservationV1beta1Manifest extends Manifest {
 }
 export interface KubernetesPubSubLiteReservationV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "pubsublite.cnrm.cloud.google.com/v1beta1";
-    kind: "PubSubLiteReservation";
+    apiVersion?: "pubsublite.cnrm.cloud.google.com/v1beta1";
+    kind?: "PubSubLiteReservation";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPubSubLiteReservationV1beta1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The project that this resource belongs to. */

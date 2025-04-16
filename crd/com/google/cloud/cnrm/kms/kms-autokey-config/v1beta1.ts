@@ -7,8 +7,8 @@ export class KubernetesKMSAutokeyConfigV1beta1Manifest extends Manifest {
 }
 export interface KubernetesKMSAutokeyConfigV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kms.cnrm.cloud.google.com/v1beta1";
-    kind: "KMSAutokeyConfig";
+    apiVersion?: "kms.cnrm.cloud.google.com/v1beta1";
+    kind?: "KMSAutokeyConfig";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesKMSAutokeyConfigV1beta1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description KMSAutokeyConfigSpec defines the desired state of KMSAutokeyConfig */
     spec?: {

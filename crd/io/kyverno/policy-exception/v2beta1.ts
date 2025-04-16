@@ -7,8 +7,8 @@ export class KubernetesPolicyExceptionV2beta1Manifest extends Manifest {
 }
 export interface KubernetesPolicyExceptionV2beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kyverno.io/v2beta1";
-    kind: "PolicyException";
+    apiVersion?: "kyverno.io/v2beta1";
+    kind?: "PolicyException";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPolicyExceptionV2beta1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec declares policy exception behaviors. */
     spec: {

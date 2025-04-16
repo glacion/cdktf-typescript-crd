@@ -7,8 +7,8 @@ export class KubernetesComputeSecurityPolicyV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeSecurityPolicyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeSecurityPolicy";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeSecurityPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeSecurityPolicyV1beta1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Adaptive Protection Config of this security policy. */

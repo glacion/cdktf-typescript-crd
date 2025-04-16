@@ -7,8 +7,8 @@ export class KubernetesClusterIssuerV1Manifest extends Manifest {
 }
 export interface KubernetesClusterIssuerV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cert-manager.io/v1";
-    kind: "ClusterIssuer";
+    apiVersion?: "cert-manager.io/v1";
+    kind?: "ClusterIssuer";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesClusterIssuerV1ManifestConfig extends ManifestConfig 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Desired state of the ClusterIssuer resource. */
     spec: {

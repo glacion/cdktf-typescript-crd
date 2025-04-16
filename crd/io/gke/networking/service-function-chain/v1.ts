@@ -7,8 +7,8 @@ export class KubernetesServiceFunctionChainV1Manifest extends Manifest {
 }
 export interface KubernetesServiceFunctionChainV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1";
-    kind: "ServiceFunctionChain";
+    apiVersion?: "networking.gke.io/v1";
+    kind?: "ServiceFunctionChain";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesServiceFunctionChainV1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ServiceFunctionChainSpec defines the desired state of ServiceFunctionChain */
     spec: {

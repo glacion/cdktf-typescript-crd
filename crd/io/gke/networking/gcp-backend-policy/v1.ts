@@ -7,8 +7,8 @@ export class KubernetesGCPBackendPolicyV1Manifest extends Manifest {
 }
 export interface KubernetesGCPBackendPolicyV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1";
-    kind: "GCPBackendPolicy";
+    apiVersion?: "networking.gke.io/v1";
+    kind?: "GCPBackendPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGCPBackendPolicyV1ManifestConfig extends ManifestConf
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec defines the desired state of GCPBackendPolicy. */
     spec: {

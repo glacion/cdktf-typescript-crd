@@ -7,8 +7,8 @@ export class KubernetesDataFusionInstanceV1beta1Manifest extends Manifest {
 }
 export interface KubernetesDataFusionInstanceV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "datafusion.cnrm.cloud.google.com/v1beta1";
-    kind: "DataFusionInstance";
+    apiVersion?: "datafusion.cnrm.cloud.google.com/v1beta1";
+    kind?: "DataFusionInstance";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesDataFusionInstanceV1beta1ManifestConfig extends Manif
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       dataprocServiceAccountRef?: {

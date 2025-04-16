@@ -7,8 +7,8 @@ export class KubernetesServiceNetworkingConnectionV1beta1Manifest extends Manife
 }
 export interface KubernetesServiceNetworkingConnectionV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "servicenetworking.cnrm.cloud.google.com/v1beta1";
-    kind: "ServiceNetworkingConnection";
+    apiVersion?: "servicenetworking.cnrm.cloud.google.com/v1beta1";
+    kind?: "ServiceNetworkingConnection";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesServiceNetworkingConnectionV1beta1ManifestConfig exte
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       networkRef: {

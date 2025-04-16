@@ -11,8 +11,8 @@ export class KubernetesAccessContextManagerServicePerimeterResourceV1beta1Manife
 }
 export interface KubernetesAccessContextManagerServicePerimeterResourceV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "accesscontextmanager.cnrm.cloud.google.com/v1beta1";
-    kind: "AccessContextManagerServicePerimeterResource";
+    apiVersion?: "accesscontextmanager.cnrm.cloud.google.com/v1beta1";
+    kind?: "AccessContextManagerServicePerimeterResource";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -21,7 +21,7 @@ export interface KubernetesAccessContextManagerServicePerimeterResourceV1beta1Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Only the `external` field is supported to configure the reference.

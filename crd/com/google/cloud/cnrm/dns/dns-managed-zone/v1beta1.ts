@@ -7,8 +7,8 @@ export class KubernetesDNSManagedZoneV1beta1Manifest extends Manifest {
 }
 export interface KubernetesDNSManagedZoneV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "dns.cnrm.cloud.google.com/v1beta1";
-    kind: "DNSManagedZone";
+    apiVersion?: "dns.cnrm.cloud.google.com/v1beta1";
+    kind?: "DNSManagedZone";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesDNSManagedZoneV1beta1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Cloud logging configuration. */

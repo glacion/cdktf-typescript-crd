@@ -7,8 +7,8 @@ export class KubernetesSQLSSLCertV1beta1Manifest extends Manifest {
 }
 export interface KubernetesSQLSSLCertV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "sql.cnrm.cloud.google.com/v1beta1";
-    kind: "SQLSSLCert";
+    apiVersion?: "sql.cnrm.cloud.google.com/v1beta1";
+    kind?: "SQLSSLCert";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesSQLSSLCertV1beta1ManifestConfig extends ManifestConfi
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. The common name to be used in the certificate to identify the client. Constrained to [a-zA-Z.-_ ]+. Changing this forces a new resource to be created. */

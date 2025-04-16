@@ -7,8 +7,8 @@ export class KubernetesFolderV1beta1Manifest extends Manifest {
 }
 export interface KubernetesFolderV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "resourcemanager.cnrm.cloud.google.com/v1beta1";
-    kind: "Folder";
+    apiVersion?: "resourcemanager.cnrm.cloud.google.com/v1beta1";
+    kind?: "Folder";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesFolderV1beta1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The folder's display name. A folder's display name must be unique amongst its siblings, e.g. no two folders with the same parent can share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters. */

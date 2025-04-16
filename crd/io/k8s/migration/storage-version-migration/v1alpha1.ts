@@ -7,8 +7,8 @@ export class KubernetesStorageVersionMigrationV1alpha1Manifest extends Manifest 
 }
 export interface KubernetesStorageVersionMigrationV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "migration.k8s.io/v1alpha1";
-    kind: "StorageVersionMigration";
+    apiVersion?: "migration.k8s.io/v1alpha1";
+    kind?: "StorageVersionMigration";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesStorageVersionMigrationV1alpha1ManifestConfig extends
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of the migration. */
     spec?: {

@@ -7,8 +7,8 @@ export class KubernetesCiliumLocalRedirectPolicyV2Manifest extends Manifest {
 }
 export interface KubernetesCiliumLocalRedirectPolicyV2ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cilium.io/v2";
-    kind: "CiliumLocalRedirectPolicy";
+    apiVersion?: "cilium.io/v2";
+    kind?: "CiliumLocalRedirectPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCiliumLocalRedirectPolicyV2ManifestConfig extends Man
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec is the desired behavior of the local redirect policy. */
     spec?: {

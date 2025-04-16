@@ -7,8 +7,8 @@ export class KubernetesAdmissionCheckV1beta1Manifest extends Manifest {
 }
 export interface KubernetesAdmissionCheckV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kueue.x-k8s.io/v1beta1";
-    kind: "AdmissionCheck";
+    apiVersion?: "kueue.x-k8s.io/v1beta1";
+    kind?: "AdmissionCheck";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAdmissionCheckV1beta1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description AdmissionCheckSpec defines the desired state of AdmissionCheck */
     spec?: {

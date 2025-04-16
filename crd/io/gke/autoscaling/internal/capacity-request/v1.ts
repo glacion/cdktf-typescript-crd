@@ -7,8 +7,8 @@ export class KubernetesCapacityRequestV1Manifest extends Manifest {
 }
 export interface KubernetesCapacityRequestV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "internal.autoscaling.gke.io/v1";
-    kind: "CapacityRequest";
+    apiVersion?: "internal.autoscaling.gke.io/v1";
+    kind?: "CapacityRequest";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCapacityRequestV1ManifestConfig extends ManifestConfi
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of the CapacityRequest object. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status. */
     spec?: {

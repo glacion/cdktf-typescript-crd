@@ -7,8 +7,8 @@ export class KubernetesIAPIdentityAwareProxyClientV1beta1Manifest extends Manife
 }
 export interface KubernetesIAPIdentityAwareProxyClientV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "iap.cnrm.cloud.google.com/v1beta1";
-    kind: "IAPIdentityAwareProxyClient";
+    apiVersion?: "iap.cnrm.cloud.google.com/v1beta1";
+    kind?: "IAPIdentityAwareProxyClient";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesIAPIdentityAwareProxyClientV1beta1ManifestConfig exte
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. */

@@ -7,8 +7,8 @@ export class KubernetesBackendConfigV1beta1Manifest extends Manifest {
 }
 export interface KubernetesBackendConfigV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cloud.google.com/v1beta1";
-    kind: "BackendConfig";
+    apiVersion?: "cloud.google.com/v1beta1";
+    kind?: "BackendConfig";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesBackendConfigV1beta1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description BackendConfigSpec is the spec for a BackendConfig resource */
     spec?: {

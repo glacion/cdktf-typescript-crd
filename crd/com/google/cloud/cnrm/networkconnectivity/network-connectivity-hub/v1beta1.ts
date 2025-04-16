@@ -7,8 +7,8 @@ export class KubernetesNetworkConnectivityHubV1beta1Manifest extends Manifest {
 }
 export interface KubernetesNetworkConnectivityHubV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networkconnectivity.cnrm.cloud.google.com/v1beta1";
-    kind: "NetworkConnectivityHub";
+    apiVersion?: "networkconnectivity.cnrm.cloud.google.com/v1beta1";
+    kind?: "NetworkConnectivityHub";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesNetworkConnectivityHubV1beta1ManifestConfig extends M
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description An optional description of the hub. */

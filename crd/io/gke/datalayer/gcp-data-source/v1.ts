@@ -7,8 +7,8 @@ export class KubernetesGCPDataSourceV1Manifest extends Manifest {
 }
 export interface KubernetesGCPDataSourceV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "datalayer.gke.io/v1";
-    kind: "GCPDataSource";
+    apiVersion?: "datalayer.gke.io/v1";
+    kind?: "GCPDataSource";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGCPDataSourceV1ManifestConfig extends ManifestConfig 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       cloudStorage?: {

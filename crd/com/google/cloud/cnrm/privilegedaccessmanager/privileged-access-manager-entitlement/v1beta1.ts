@@ -7,8 +7,8 @@ export class KubernetesPrivilegedAccessManagerEntitlementV1beta1Manifest extends
 }
 export interface KubernetesPrivilegedAccessManagerEntitlementV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "privilegedaccessmanager.cnrm.cloud.google.com/v1beta1";
-    kind: "PrivilegedAccessManagerEntitlement";
+    apiVersion?: "privilegedaccessmanager.cnrm.cloud.google.com/v1beta1";
+    kind?: "PrivilegedAccessManagerEntitlement";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPrivilegedAccessManagerEntitlementV1beta1ManifestConf
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description PrivilegedAccessManagerEntitlementSpec defines the desired state of PrivilegedAccessManagerEntitlement. */
     spec?: {

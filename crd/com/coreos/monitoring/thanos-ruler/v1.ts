@@ -7,8 +7,8 @@ export class KubernetesThanosRulerV1Manifest extends Manifest {
 }
 export interface KubernetesThanosRulerV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.coreos.com/v1";
-    kind: "ThanosRuler";
+    apiVersion?: "monitoring.coreos.com/v1";
+    kind?: "ThanosRuler";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesThanosRulerV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of the desired behavior of the ThanosRuler cluster. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
     spec: {

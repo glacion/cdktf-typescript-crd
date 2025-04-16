@@ -7,8 +7,8 @@ export class KubernetesContainerAttachedClusterV1beta1Manifest extends Manifest 
 }
 export interface KubernetesContainerAttachedClusterV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "containerattached.cnrm.cloud.google.com/v1beta1";
-    kind: "ContainerAttachedCluster";
+    apiVersion?: "containerattached.cnrm.cloud.google.com/v1beta1";
+    kind?: "ContainerAttachedCluster";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesContainerAttachedClusterV1beta1ManifestConfig extends
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ContainerAttachedClusterSpec defines the desired state of ContainerAttachedCluster */
     spec: {

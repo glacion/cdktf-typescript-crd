@@ -7,8 +7,8 @@ export class KubernetesPodMonitorV1Manifest extends Manifest {
 }
 export interface KubernetesPodMonitorV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.coreos.com/v1";
-    kind: "PodMonitor";
+    apiVersion?: "monitoring.coreos.com/v1";
+    kind?: "PodMonitor";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPodMonitorV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of desired Pod selection for target discovery by Prometheus. */
     spec: {

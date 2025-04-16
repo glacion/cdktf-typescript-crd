@@ -7,8 +7,8 @@ export class KubernetesStorageDefaultObjectAccessControlV1beta1Manifest extends 
 }
 export interface KubernetesStorageDefaultObjectAccessControlV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "storage.cnrm.cloud.google.com/v1beta1";
-    kind: "StorageDefaultObjectAccessControl";
+    apiVersion?: "storage.cnrm.cloud.google.com/v1beta1";
+    kind?: "StorageDefaultObjectAccessControl";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesStorageDefaultObjectAccessControlV1beta1ManifestConfi
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Reference to the bucket. */

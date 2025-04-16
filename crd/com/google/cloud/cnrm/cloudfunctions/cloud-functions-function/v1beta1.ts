@@ -7,8 +7,8 @@ export class KubernetesCloudFunctionsFunctionV1beta1Manifest extends Manifest {
 }
 export interface KubernetesCloudFunctionsFunctionV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cloudfunctions.cnrm.cloud.google.com/v1beta1";
-    kind: "CloudFunctionsFunction";
+    apiVersion?: "cloudfunctions.cnrm.cloud.google.com/v1beta1";
+    kind?: "CloudFunctionsFunction";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCloudFunctionsFunctionV1beta1ManifestConfig extends M
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /**

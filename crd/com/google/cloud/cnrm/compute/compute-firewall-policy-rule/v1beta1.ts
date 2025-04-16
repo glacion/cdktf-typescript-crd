@@ -7,8 +7,8 @@ export class KubernetesComputeFirewallPolicyRuleV1beta1Manifest extends Manifest
 }
 export interface KubernetesComputeFirewallPolicyRuleV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeFirewallPolicyRule";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeFirewallPolicyRule";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeFirewallPolicyRuleV1beta1ManifestConfig extend
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description The Action to perform when the client connection triggers the rule. Valid actions are "allow", "deny" and "goto_next". */

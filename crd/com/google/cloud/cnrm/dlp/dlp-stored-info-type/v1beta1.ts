@@ -7,8 +7,8 @@ export class KubernetesDLPStoredInfoTypeV1beta1Manifest extends Manifest {
 }
 export interface KubernetesDLPStoredInfoTypeV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "dlp.cnrm.cloud.google.com/v1beta1";
-    kind: "DLPStoredInfoType";
+    apiVersion?: "dlp.cnrm.cloud.google.com/v1beta1";
+    kind?: "DLPStoredInfoType";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesDLPStoredInfoTypeV1beta1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Description of the StoredInfoType (max 256 characters). */

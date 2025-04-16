@@ -7,8 +7,8 @@ export class KubernetesComputeClassV1Manifest extends Manifest {
 }
 export interface KubernetesComputeClassV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cloud.google.com/v1";
-    kind: "ComputeClass";
+    apiVersion?: "cloud.google.com/v1";
+    kind?: "ComputeClass";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeClassV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of the ComputeClass object.
      *     More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status. */

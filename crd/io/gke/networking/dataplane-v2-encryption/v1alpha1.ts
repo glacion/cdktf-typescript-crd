@@ -7,8 +7,8 @@ export class KubernetesDataplaneV2EncryptionV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesDataplaneV2EncryptionV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1alpha1";
-    kind: "DataplaneV2Encryption";
+    apiVersion?: "networking.gke.io/v1alpha1";
+    kind?: "DataplaneV2Encryption";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesDataplaneV2EncryptionV1alpha1ManifestConfig extends M
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec is the desired configuration for node-to-node encryption. */
     spec?: {

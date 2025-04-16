@@ -7,8 +7,8 @@ export class KubernetesApplicationSetV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesApplicationSetV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "argoproj.io/v1alpha1";
-    kind: "ApplicationSet";
+    apiVersion?: "argoproj.io/v1alpha1";
+    kind?: "ApplicationSet";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesApplicationSetV1alpha1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       applyNestedSelectors?: boolean;

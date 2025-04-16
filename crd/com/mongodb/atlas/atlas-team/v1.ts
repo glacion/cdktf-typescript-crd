@@ -7,8 +7,8 @@ export class KubernetesAtlasTeamV1Manifest extends Manifest {
 }
 export interface KubernetesAtlasTeamV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "atlas.mongodb.com/v1";
-    kind: "AtlasTeam";
+    apiVersion?: "atlas.mongodb.com/v1";
+    kind?: "AtlasTeam";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAtlasTeamV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description TeamSpec defines the desired state of a Team in Atlas */
     spec: {

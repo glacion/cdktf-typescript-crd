@@ -7,8 +7,8 @@ export class KubernetesDataformRepositoryV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesDataformRepositoryV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "dataform.cnrm.cloud.google.com/v1alpha1";
-    kind: "DataformRepository";
+    apiVersion?: "dataform.cnrm.cloud.google.com/v1alpha1";
+    kind?: "DataformRepository";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesDataformRepositoryV1alpha1ManifestConfig extends Mani
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Optional. The repository's user-friendly name. */

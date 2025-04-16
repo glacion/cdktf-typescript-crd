@@ -7,8 +7,8 @@ export class KubernetesTagsTagKeyV1beta1Manifest extends Manifest {
 }
 export interface KubernetesTagsTagKeyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "tags.cnrm.cloud.google.com/v1beta1";
-    kind: "TagsTagKey";
+    apiVersion?: "tags.cnrm.cloud.google.com/v1beta1";
+    kind?: "TagsTagKey";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesTagsTagKeyV1beta1ManifestConfig extends ManifestConfi
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description User-assigned description of the TagKey. Must not exceed 256 characters. */

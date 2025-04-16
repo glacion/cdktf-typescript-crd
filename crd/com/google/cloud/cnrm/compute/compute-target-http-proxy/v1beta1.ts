@@ -7,8 +7,8 @@ export class KubernetesComputeTargetHTTPProxyV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeTargetHTTPProxyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeTargetHTTPProxy";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeTargetHTTPProxy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeTargetHTTPProxyV1beta1ManifestConfig extends M
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. An optional description of this resource. */

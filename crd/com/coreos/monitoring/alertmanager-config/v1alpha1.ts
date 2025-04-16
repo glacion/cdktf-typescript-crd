@@ -7,8 +7,8 @@ export class KubernetesAlertmanagerConfigV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesAlertmanagerConfigV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.coreos.com/v1alpha1";
-    kind: "AlertmanagerConfig";
+    apiVersion?: "monitoring.coreos.com/v1alpha1";
+    kind?: "AlertmanagerConfig";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAlertmanagerConfigV1alpha1ManifestConfig extends Mani
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description AlertmanagerConfigSpec is a specification of the desired behavior of the Alertmanager configuration. By definition, the Alertmanager configuration only applies to alerts for which the `namespace` label is equal to the namespace of the AlertmanagerConfig resource. */
     spec: {

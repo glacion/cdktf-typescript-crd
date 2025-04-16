@@ -7,8 +7,8 @@ export class KubernetesDataflowFlexTemplateJobV1beta1Manifest extends Manifest {
 }
 export interface KubernetesDataflowFlexTemplateJobV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "dataflow.cnrm.cloud.google.com/v1beta1";
-    kind: "DataflowFlexTemplateJob";
+    apiVersion?: "dataflow.cnrm.cloud.google.com/v1beta1";
+    kind?: "DataflowFlexTemplateJob";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesDataflowFlexTemplateJobV1beta1ManifestConfig extends 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description DataflowFlexTemplateJobSpec defines the desired state of DataflowFlexTemplateJob */
     spec: {

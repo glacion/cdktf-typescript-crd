@@ -7,8 +7,8 @@ export class KubernetesSTSSessionTokenV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesSTSSessionTokenV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "generators.external-secrets.io/v1alpha1";
-    kind: "STSSessionToken";
+    apiVersion?: "generators.external-secrets.io/v1alpha1";
+    kind?: "STSSessionToken";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesSTSSessionTokenV1alpha1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Auth defines how to authenticate with AWS */

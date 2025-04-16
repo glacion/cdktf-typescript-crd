@@ -7,8 +7,8 @@ export class KubernetesComputeImageV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeImageV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeImage";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeImage";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeImageV1beta1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Immutable. An optional description of this resource. Provide this property when

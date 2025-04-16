@@ -7,8 +7,8 @@ export class KubernetesOSConfigOSPolicyAssignmentV1beta1Manifest extends Manifes
 }
 export interface KubernetesOSConfigOSPolicyAssignmentV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "osconfig.cnrm.cloud.google.com/v1beta1";
-    kind: "OSConfigOSPolicyAssignment";
+    apiVersion?: "osconfig.cnrm.cloud.google.com/v1beta1";
+    kind?: "OSConfigOSPolicyAssignment";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesOSConfigOSPolicyAssignmentV1beta1ManifestConfig exten
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description OS policy assignment description. Length of the description is limited to 1024 characters. */

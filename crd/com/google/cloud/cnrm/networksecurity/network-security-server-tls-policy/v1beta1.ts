@@ -7,8 +7,8 @@ export class KubernetesNetworkSecurityServerTLSPolicyV1beta1Manifest extends Man
 }
 export interface KubernetesNetworkSecurityServerTLSPolicyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networksecurity.cnrm.cloud.google.com/v1beta1";
-    kind: "NetworkSecurityServerTLSPolicy";
+    apiVersion?: "networksecurity.cnrm.cloud.google.com/v1beta1";
+    kind?: "NetworkSecurityServerTLSPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesNetworkSecurityServerTLSPolicyV1beta1ManifestConfig e
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Optional. Determines if server allows plaintext connections. If set to true, server allows plain text connections. By default, it is set to false. This setting is not exclusive of other encryption modes. For example, if allow_open and mtls_policy are set, server allows both plain text and mTLS connections. See documentation of other encryption modes to confirm compatibility. */

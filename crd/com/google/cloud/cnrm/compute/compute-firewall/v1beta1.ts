@@ -7,8 +7,8 @@ export class KubernetesComputeFirewallV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeFirewallV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeFirewall";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeFirewall";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeFirewallV1beta1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The list of ALLOW rules specified by this firewall. Each rule

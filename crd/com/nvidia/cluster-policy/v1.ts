@@ -7,8 +7,8 @@ export class KubernetesClusterPolicyV1Manifest extends Manifest {
 }
 export interface KubernetesClusterPolicyV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "nvidia.com/v1";
-    kind: "ClusterPolicy";
+    apiVersion?: "nvidia.com/v1";
+    kind?: "ClusterPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesClusterPolicyV1ManifestConfig extends ManifestConfig 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ClusterPolicySpec defines the desired state of ClusterPolicy */
     spec?: {

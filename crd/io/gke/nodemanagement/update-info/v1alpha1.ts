@@ -7,8 +7,8 @@ export class KubernetesUpdateInfoV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesUpdateInfoV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "nodemanagement.gke.io/v1alpha1";
-    kind: "UpdateInfo";
+    apiVersion?: "nodemanagement.gke.io/v1alpha1";
+    kind?: "UpdateInfo";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesUpdateInfoV1alpha1ManifestConfig extends ManifestConf
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       Type?: string;

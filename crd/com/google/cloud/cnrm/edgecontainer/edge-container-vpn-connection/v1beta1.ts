@@ -7,8 +7,8 @@ export class KubernetesEdgeContainerVpnConnectionV1beta1Manifest extends Manifes
 }
 export interface KubernetesEdgeContainerVpnConnectionV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "edgecontainer.cnrm.cloud.google.com/v1beta1";
-    kind: "EdgeContainerVpnConnection";
+    apiVersion?: "edgecontainer.cnrm.cloud.google.com/v1beta1";
+    kind?: "EdgeContainerVpnConnection";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesEdgeContainerVpnConnectionV1beta1ManifestConfig exten
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       clusterRef: {

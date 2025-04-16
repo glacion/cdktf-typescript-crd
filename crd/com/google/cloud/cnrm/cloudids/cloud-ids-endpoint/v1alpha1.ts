@@ -7,8 +7,8 @@ export class KubernetesCloudIDSEndpointV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesCloudIDSEndpointV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cloudids.cnrm.cloud.google.com/v1alpha1";
-    kind: "CloudIDSEndpoint";
+    apiVersion?: "cloudids.cnrm.cloud.google.com/v1alpha1";
+    kind?: "CloudIDSEndpoint";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCloudIDSEndpointV1alpha1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. An optional description of the endpoint. */

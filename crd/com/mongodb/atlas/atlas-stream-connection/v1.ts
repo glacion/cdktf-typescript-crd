@@ -7,8 +7,8 @@ export class KubernetesAtlasStreamConnectionV1Manifest extends Manifest {
 }
 export interface KubernetesAtlasStreamConnectionV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "atlas.mongodb.com/v1";
-    kind: "AtlasStreamConnection";
+    apiVersion?: "atlas.mongodb.com/v1";
+    kind?: "AtlasStreamConnection";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAtlasStreamConnectionV1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description The configuration to be used to connect to a Atlas Cluster */

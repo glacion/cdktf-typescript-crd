@@ -7,8 +7,8 @@ export class KubernetesChallengeV1Manifest extends Manifest {
 }
 export interface KubernetesChallengeV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "acme.cert-manager.io/v1";
-    kind: "Challenge";
+    apiVersion?: "acme.cert-manager.io/v1";
+    kind?: "Challenge";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesChallengeV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The URL to the ACME Authorization resource that this

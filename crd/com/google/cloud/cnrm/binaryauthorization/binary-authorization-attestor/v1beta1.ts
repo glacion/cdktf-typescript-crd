@@ -7,8 +7,8 @@ export class KubernetesBinaryAuthorizationAttestorV1beta1Manifest extends Manife
 }
 export interface KubernetesBinaryAuthorizationAttestorV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "binaryauthorization.cnrm.cloud.google.com/v1beta1";
-    kind: "BinaryAuthorizationAttestor";
+    apiVersion?: "binaryauthorization.cnrm.cloud.google.com/v1beta1";
+    kind?: "BinaryAuthorizationAttestor";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesBinaryAuthorizationAttestorV1beta1ManifestConfig exte
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Optional. A descriptive comment. This field may be updated. The field may be displayed in chooser dialogs. */

@@ -7,8 +7,8 @@ export class KubernetesIAMWorkloadIdentityPoolV1beta1Manifest extends Manifest {
 }
 export interface KubernetesIAMWorkloadIdentityPoolV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "iam.cnrm.cloud.google.com/v1beta1";
-    kind: "IAMWorkloadIdentityPool";
+    apiVersion?: "iam.cnrm.cloud.google.com/v1beta1";
+    kind?: "IAMWorkloadIdentityPool";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesIAMWorkloadIdentityPoolV1beta1ManifestConfig extends 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description A description of the pool. Cannot exceed 256 characters. */

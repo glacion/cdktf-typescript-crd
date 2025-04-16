@@ -7,8 +7,8 @@ export class KubernetesSQLInstanceV1beta1Manifest extends Manifest {
 }
 export interface KubernetesSQLInstanceV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "sql.cnrm.cloud.google.com/v1beta1";
-    kind: "SQLInstance";
+    apiVersion?: "sql.cnrm.cloud.google.com/v1beta1";
+    kind?: "SQLInstance";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesSQLInstanceV1beta1ManifestConfig extends ManifestConf
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Create this database as a clone of a source instance. Immutable. */

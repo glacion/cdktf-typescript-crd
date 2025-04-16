@@ -7,8 +7,8 @@ export class KubernetesMultiKueueConfigV1beta1Manifest extends Manifest {
 }
 export interface KubernetesMultiKueueConfigV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kueue.x-k8s.io/v1beta1";
-    kind: "MultiKueueConfig";
+    apiVersion?: "kueue.x-k8s.io/v1beta1";
+    kind?: "MultiKueueConfig";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesMultiKueueConfigV1beta1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description MultiKueueConfigSpec defines the desired state of MultiKueueConfig */
     spec?: {

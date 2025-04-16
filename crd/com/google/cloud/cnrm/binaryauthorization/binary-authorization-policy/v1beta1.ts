@@ -7,8 +7,8 @@ export class KubernetesBinaryAuthorizationPolicyV1beta1Manifest extends Manifest
 }
 export interface KubernetesBinaryAuthorizationPolicyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "binaryauthorization.cnrm.cloud.google.com/v1beta1";
-    kind: "BinaryAuthorizationPolicy";
+    apiVersion?: "binaryauthorization.cnrm.cloud.google.com/v1beta1";
+    kind?: "BinaryAuthorizationPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesBinaryAuthorizationPolicyV1beta1ManifestConfig extend
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Optional. Admission policy allowlisting. A matching admission request will always be permitted. This feature is typically used to exclude Google or third-party infrastructure images from Binary Authorization policies. */

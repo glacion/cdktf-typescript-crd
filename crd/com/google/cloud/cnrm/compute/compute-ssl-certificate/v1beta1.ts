@@ -7,8 +7,8 @@ export class KubernetesComputeSSLCertificateV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeSSLCertificateV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeSSLCertificate";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeSSLCertificate";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeSSLCertificateV1beta1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. The certificate in PEM format.

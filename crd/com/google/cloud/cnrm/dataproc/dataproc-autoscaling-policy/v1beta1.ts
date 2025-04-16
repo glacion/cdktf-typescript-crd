@@ -7,8 +7,8 @@ export class KubernetesDataprocAutoscalingPolicyV1beta1Manifest extends Manifest
 }
 export interface KubernetesDataprocAutoscalingPolicyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "dataproc.cnrm.cloud.google.com/v1beta1";
-    kind: "DataprocAutoscalingPolicy";
+    apiVersion?: "dataproc.cnrm.cloud.google.com/v1beta1";
+    kind?: "DataprocAutoscalingPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesDataprocAutoscalingPolicyV1beta1ManifestConfig extend
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       basicAlgorithm: {

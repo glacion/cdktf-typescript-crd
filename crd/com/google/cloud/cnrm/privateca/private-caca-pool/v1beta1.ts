@@ -7,8 +7,8 @@ export class KubernetesPrivateCACAPoolV1beta1Manifest extends Manifest {
 }
 export interface KubernetesPrivateCACAPoolV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "privateca.cnrm.cloud.google.com/v1beta1";
-    kind: "PrivateCACAPool";
+    apiVersion?: "privateca.cnrm.cloud.google.com/v1beta1";
+    kind?: "PrivateCACAPool";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPrivateCACAPoolV1beta1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Optional. The IssuancePolicy to control how Certificates will be issued from this CaPool. */

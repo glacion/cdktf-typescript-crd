@@ -7,8 +7,8 @@ export class KubernetesStorageNotificationV1beta1Manifest extends Manifest {
 }
 export interface KubernetesStorageNotificationV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "storage.cnrm.cloud.google.com/v1beta1";
-    kind: "StorageNotification";
+    apiVersion?: "storage.cnrm.cloud.google.com/v1beta1";
+    kind?: "StorageNotification";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesStorageNotificationV1beta1ManifestConfig extends Mani
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       bucketRef: {

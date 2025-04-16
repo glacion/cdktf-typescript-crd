@@ -7,8 +7,8 @@ export class KubernetesAlloyDBInstanceV1beta1Manifest extends Manifest {
 }
 export interface KubernetesAlloyDBInstanceV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "alloydb.cnrm.cloud.google.com/v1beta1";
-    kind: "AlloyDBInstance";
+    apiVersion?: "alloydb.cnrm.cloud.google.com/v1beta1";
+    kind?: "AlloyDBInstance";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAlloyDBInstanceV1beta1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description AlloyDBInstanceSpec defines the desired state of AlloyDBInstance */
     spec: {

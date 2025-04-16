@@ -7,8 +7,8 @@ export class KubernetesAlloyDBBackupV1beta1Manifest extends Manifest {
 }
 export interface KubernetesAlloyDBBackupV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "alloydb.cnrm.cloud.google.com/v1beta1";
-    kind: "AlloyDBBackup";
+    apiVersion?: "alloydb.cnrm.cloud.google.com/v1beta1";
+    kind?: "AlloyDBBackup";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAlloyDBBackupV1beta1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The full resource name of the backup source cluster (e.g., projects/{project}/locations/{location}/clusters/{clusterId}). */

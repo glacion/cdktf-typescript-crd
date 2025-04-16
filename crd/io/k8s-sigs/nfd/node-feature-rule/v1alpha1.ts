@@ -7,8 +7,8 @@ export class KubernetesNodeFeatureRuleV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesNodeFeatureRuleV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "nfd.k8s-sigs.io/v1alpha1";
-    kind: "NodeFeatureRule";
+    apiVersion?: "nfd.k8s-sigs.io/v1alpha1";
+    kind?: "NodeFeatureRule";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesNodeFeatureRuleV1alpha1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description NodeFeatureRuleSpec describes a NodeFeatureRule. */
     spec: {

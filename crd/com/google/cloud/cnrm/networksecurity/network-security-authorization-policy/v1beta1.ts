@@ -7,8 +7,8 @@ export class KubernetesNetworkSecurityAuthorizationPolicyV1beta1Manifest extends
 }
 export interface KubernetesNetworkSecurityAuthorizationPolicyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networksecurity.cnrm.cloud.google.com/v1beta1";
-    kind: "NetworkSecurityAuthorizationPolicy";
+    apiVersion?: "networksecurity.cnrm.cloud.google.com/v1beta1";
+    kind?: "NetworkSecurityAuthorizationPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesNetworkSecurityAuthorizationPolicyV1beta1ManifestConf
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Required. The action to take when a rule match is found. Possible values are "ALLOW" or "DENY". Possible values: ACTION_UNSPECIFIED, ALLOW, DENY */

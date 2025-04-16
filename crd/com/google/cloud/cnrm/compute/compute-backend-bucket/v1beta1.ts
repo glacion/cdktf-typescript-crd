@@ -7,8 +7,8 @@ export class KubernetesComputeBackendBucketV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeBackendBucketV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeBackendBucket";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeBackendBucket";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeBackendBucketV1beta1ManifestConfig extends Man
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Reference to the bucket. */

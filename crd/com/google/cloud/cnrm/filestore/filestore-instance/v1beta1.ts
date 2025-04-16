@@ -7,8 +7,8 @@ export class KubernetesFilestoreInstanceV1beta1Manifest extends Manifest {
 }
 export interface KubernetesFilestoreInstanceV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "filestore.cnrm.cloud.google.com/v1beta1";
-    kind: "FilestoreInstance";
+    apiVersion?: "filestore.cnrm.cloud.google.com/v1beta1";
+    kind?: "FilestoreInstance";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesFilestoreInstanceV1beta1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The description of the instance (2048 characters or less). */

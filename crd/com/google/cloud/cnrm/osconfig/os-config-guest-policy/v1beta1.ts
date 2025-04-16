@@ -7,8 +7,8 @@ export class KubernetesOSConfigGuestPolicyV1beta1Manifest extends Manifest {
 }
 export interface KubernetesOSConfigGuestPolicyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "osconfig.cnrm.cloud.google.com/v1beta1";
-    kind: "OSConfigGuestPolicy";
+    apiVersion?: "osconfig.cnrm.cloud.google.com/v1beta1";
+    kind?: "OSConfigGuestPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesOSConfigGuestPolicyV1beta1ManifestConfig extends Mani
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Specifies the VMs that are assigned this policy. This allows you to target sets or groups of VMs by different parameters such as labels, names, OS, or zones. Empty assignments will target ALL VMs underneath this policy. Conflict Management Policies that exist higher up in the resource hierarchy (closer to the Org) will override those lower down if there is a conflict. At the same level in the resource hierarchy (ie. within a project), the service will prevent the creation of multiple policies that conflict with each other. If there are multiple policies that specify the same config (eg. package, software recipe, repository, etc.), the service will ensure that no VM could potentially receive instructions from both policies. To create multiple policies that specify different versions of a package or different configs for different Operating Systems, each policy must be mutually exclusive in their targeting according to labels, OS, or other criteria. Different configs are identified for conflicts in different ways. Packages are identified by their name and the package manager(s) they target. Package repositories are identified by their unique id where applicable. Some package managers don't have a unique identifier for repositories and where that's the case, no uniqueness is validated by the service. Note that if OS Inventory is disabled, a VM will not be assigned a policy that targets by OS because the service will see this VM's OS as unknown. */

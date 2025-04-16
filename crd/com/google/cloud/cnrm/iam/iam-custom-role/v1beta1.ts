@@ -7,8 +7,8 @@ export class KubernetesIAMCustomRoleV1beta1Manifest extends Manifest {
 }
 export interface KubernetesIAMCustomRoleV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "iam.cnrm.cloud.google.com/v1beta1";
-    kind: "IAMCustomRole";
+    apiVersion?: "iam.cnrm.cloud.google.com/v1beta1";
+    kind?: "IAMCustomRole";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesIAMCustomRoleV1beta1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description A human-readable description for the role. */

@@ -7,8 +7,8 @@ export class KubernetesLoggingLogMetricV1beta1Manifest extends Manifest {
 }
 export interface KubernetesLoggingLogMetricV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "logging.cnrm.cloud.google.com/v1beta1";
-    kind: "LoggingLogMetric";
+    apiVersion?: "logging.cnrm.cloud.google.com/v1beta1";
+    kind?: "LoggingLogMetric";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesLoggingLogMetricV1beta1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Optional. The `bucket_options` are required when the logs-based metric is using a DISTRIBUTION value type and it describes the bucket boundaries used to create a histogram of the extracted values. */

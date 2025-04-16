@@ -7,8 +7,8 @@ export class KubernetesCertificateRequestV1Manifest extends Manifest {
 }
 export interface KubernetesCertificateRequestV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cert-manager.io/v1";
-    kind: "CertificateRequest";
+    apiVersion?: "cert-manager.io/v1";
+    kind?: "CertificateRequest";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCertificateRequestV1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of the desired state of the CertificateRequest resource.
      *     https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */

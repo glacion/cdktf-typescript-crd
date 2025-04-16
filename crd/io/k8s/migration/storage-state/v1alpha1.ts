@@ -7,8 +7,8 @@ export class KubernetesStorageStateV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesStorageStateV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "migration.k8s.io/v1alpha1";
-    kind: "StorageState";
+    apiVersion?: "migration.k8s.io/v1alpha1";
+    kind?: "StorageState";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesStorageStateV1alpha1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of the storage state. */
     spec?: {

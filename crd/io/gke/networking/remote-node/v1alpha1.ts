@@ -7,8 +7,8 @@ export class KubernetesRemoteNodeV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesRemoteNodeV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1alpha1";
-    kind: "RemoteNode";
+    apiVersion?: "networking.gke.io/v1alpha1";
+    kind?: "RemoteNode";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesRemoteNodeV1alpha1ManifestConfig extends ManifestConf
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec is a subset of runtime configuration node is another cluster. */
     spec?: {

@@ -7,8 +7,8 @@ export class KubernetesVolumeSnapshotClassV1beta1Manifest extends Manifest {
 }
 export interface KubernetesVolumeSnapshotClassV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "snapshot.storage.k8s.io/v1beta1";
-    kind: "VolumeSnapshotClass";
+    apiVersion?: "snapshot.storage.k8s.io/v1beta1";
+    kind?: "VolumeSnapshotClass";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesVolumeSnapshotClassV1beta1ManifestConfig extends Mani
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description deletionPolicy determines whether a VolumeSnapshotContent created through the VolumeSnapshotClass should be deleted when its bound VolumeSnapshot is deleted. Supported values are "Retain" and "Delete". "Retain" means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are kept. "Delete" means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are deleted. Required. */
     deletionPolicy: string;

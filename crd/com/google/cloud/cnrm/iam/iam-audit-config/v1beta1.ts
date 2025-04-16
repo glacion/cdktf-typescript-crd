@@ -7,8 +7,8 @@ export class KubernetesIAMAuditConfigV1beta1Manifest extends Manifest {
 }
 export interface KubernetesIAMAuditConfigV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "iam.cnrm.cloud.google.com/v1beta1";
-    kind: "IAMAuditConfig";
+    apiVersion?: "iam.cnrm.cloud.google.com/v1beta1";
+    kind?: "IAMAuditConfig";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesIAMAuditConfigV1beta1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description IAMAuditConfigSpec defines the desired state of IAMAuditConfig. */
     spec?: {

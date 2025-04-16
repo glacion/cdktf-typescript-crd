@@ -7,8 +7,8 @@ export class KubernetesGKEIPRouteV1Manifest extends Manifest {
 }
 export interface KubernetesGKEIPRouteV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1";
-    kind: "GKEIPRoute";
+    apiVersion?: "networking.gke.io/v1";
+    kind?: "GKEIPRoute";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGKEIPRouteV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description GKEIPRouteSpec defines the desired state of IPRoute. */
     spec?: {

@@ -7,8 +7,8 @@ export class KubernetesComputeInstanceGroupManagerV1beta1Manifest extends Manife
 }
 export interface KubernetesComputeInstanceGroupManagerV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeInstanceGroupManager";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeInstanceGroupManager";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeInstanceGroupManagerV1beta1ManifestConfig exte
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The autohealing policy for this managed instance group. You can specify only one value. */

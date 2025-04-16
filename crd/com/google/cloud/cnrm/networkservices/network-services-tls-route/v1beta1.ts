@@ -7,8 +7,8 @@ export class KubernetesNetworkServicesTLSRouteV1beta1Manifest extends Manifest {
 }
 export interface KubernetesNetworkServicesTLSRouteV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networkservices.cnrm.cloud.google.com/v1beta1";
-    kind: "NetworkServicesTLSRoute";
+    apiVersion?: "networkservices.cnrm.cloud.google.com/v1beta1";
+    kind?: "NetworkServicesTLSRoute";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesNetworkServicesTLSRouteV1beta1ManifestConfig extends 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Optional. A free-text description of the resource. Max length 1024 characters. */

@@ -7,8 +7,8 @@ export class KubernetesNetworkLoggingV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesNetworkLoggingV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1alpha1";
-    kind: "NetworkLogging";
+    apiVersion?: "networking.gke.io/v1alpha1";
+    kind?: "NetworkLogging";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesNetworkLoggingV1alpha1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec is the desired configuration for network logging. */
     spec?: {

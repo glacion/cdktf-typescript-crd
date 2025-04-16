@@ -7,8 +7,8 @@ export class KubernetesAlloyDBClusterV1beta1Manifest extends Manifest {
 }
 export interface KubernetesAlloyDBClusterV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "alloydb.cnrm.cloud.google.com/v1beta1";
-    kind: "AlloyDBCluster";
+    apiVersion?: "alloydb.cnrm.cloud.google.com/v1beta1";
+    kind?: "AlloyDBCluster";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAlloyDBClusterV1beta1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description AlloyDBClusterSpec defines the desired state of AlloyDBCluster */
     spec: {

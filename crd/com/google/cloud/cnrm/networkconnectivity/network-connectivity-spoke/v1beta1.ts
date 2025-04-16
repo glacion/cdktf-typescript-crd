@@ -7,8 +7,8 @@ export class KubernetesNetworkConnectivitySpokeV1beta1Manifest extends Manifest 
 }
 export interface KubernetesNetworkConnectivitySpokeV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networkconnectivity.cnrm.cloud.google.com/v1beta1";
-    kind: "NetworkConnectivitySpoke";
+    apiVersion?: "networkconnectivity.cnrm.cloud.google.com/v1beta1";
+    kind?: "NetworkConnectivitySpoke";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesNetworkConnectivitySpokeV1beta1ManifestConfig extends
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description An optional description of the spoke. */

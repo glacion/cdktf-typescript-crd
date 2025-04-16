@@ -7,8 +7,8 @@ export class KubernetesDataCatalogPolicyTagV1beta1Manifest extends Manifest {
 }
 export interface KubernetesDataCatalogPolicyTagV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "datacatalog.cnrm.cloud.google.com/v1beta1";
-    kind: "DataCatalogPolicyTag";
+    apiVersion?: "datacatalog.cnrm.cloud.google.com/v1beta1";
+    kind?: "DataCatalogPolicyTag";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesDataCatalogPolicyTagV1beta1ManifestConfig extends Man
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Description of this policy tag. It must: contain only unicode characters, tabs,

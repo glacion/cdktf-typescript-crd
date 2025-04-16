@@ -7,8 +7,8 @@ export class KubernetesPushSecretV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesPushSecretV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "external-secrets.io/v1alpha1";
-    kind: "PushSecret";
+    apiVersion?: "external-secrets.io/v1alpha1";
+    kind?: "PushSecret";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPushSecretV1alpha1ManifestConfig extends ManifestConf
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description PushSecretSpec configures the behavior of the PushSecret. */
     spec?: {

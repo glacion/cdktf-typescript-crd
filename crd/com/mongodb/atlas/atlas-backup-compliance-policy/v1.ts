@@ -7,8 +7,8 @@ export class KubernetesAtlasBackupCompliancePolicyV1Manifest extends Manifest {
 }
 export interface KubernetesAtlasBackupCompliancePolicyV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "atlas.mongodb.com/v1";
-    kind: "AtlasBackupCompliancePolicy";
+    apiVersion?: "atlas.mongodb.com/v1";
+    kind?: "AtlasBackupCompliancePolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAtlasBackupCompliancePolicyV1ManifestConfig extends M
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Email address of the user who authorized to update the Backup Compliance Policy settings. */

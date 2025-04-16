@@ -7,8 +7,8 @@ export class KubernetesIssuerV1Manifest extends Manifest {
 }
 export interface KubernetesIssuerV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cert-manager.io/v1";
-    kind: "Issuer";
+    apiVersion?: "cert-manager.io/v1";
+    kind?: "Issuer";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesIssuerV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Desired state of the Issuer resource. */
     spec: {

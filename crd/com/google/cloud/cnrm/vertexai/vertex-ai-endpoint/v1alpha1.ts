@@ -7,8 +7,8 @@ export class KubernetesVertexAIEndpointV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesVertexAIEndpointV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "vertexai.cnrm.cloud.google.com/v1alpha1";
-    kind: "VertexAIEndpoint";
+    apiVersion?: "vertexai.cnrm.cloud.google.com/v1alpha1";
+    kind?: "VertexAIEndpoint";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesVertexAIEndpointV1alpha1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The description of the Endpoint. */

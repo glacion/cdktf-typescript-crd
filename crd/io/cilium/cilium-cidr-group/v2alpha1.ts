@@ -7,8 +7,8 @@ export class KubernetesCiliumCIDRGroupV2alpha1Manifest extends Manifest {
 }
 export interface KubernetesCiliumCIDRGroupV2alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cilium.io/v2alpha1";
-    kind: "CiliumCIDRGroup";
+    apiVersion?: "cilium.io/v2alpha1";
+    kind?: "CiliumCIDRGroup";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCiliumCIDRGroupV2alpha1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description ExternalCIDRs is a list of CIDRs selecting peers outside the clusters. */

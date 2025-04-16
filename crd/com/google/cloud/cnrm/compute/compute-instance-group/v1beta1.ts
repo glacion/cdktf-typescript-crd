@@ -7,8 +7,8 @@ export class KubernetesComputeInstanceGroupV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeInstanceGroupV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeInstanceGroup";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeInstanceGroup";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeInstanceGroupV1beta1ManifestConfig extends Man
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. An optional textual description of the instance group. */

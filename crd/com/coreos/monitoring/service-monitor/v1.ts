@@ -7,8 +7,8 @@ export class KubernetesServiceMonitorV1Manifest extends Manifest {
 }
 export interface KubernetesServiceMonitorV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.coreos.com/v1";
-    kind: "ServiceMonitor";
+    apiVersion?: "monitoring.coreos.com/v1";
+    kind?: "ServiceMonitor";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesServiceMonitorV1ManifestConfig extends ManifestConfig
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of desired Service selection for target discovery by Prometheus. */
     spec: {

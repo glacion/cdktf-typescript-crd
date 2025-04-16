@@ -7,8 +7,8 @@ export class KubernetesAtlasProjectV1Manifest extends Manifest {
 }
 export interface KubernetesAtlasProjectV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "atlas.mongodb.com/v1";
-    kind: "AtlasProject";
+    apiVersion?: "atlas.mongodb.com/v1";
+    kind?: "AtlasProject";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAtlasProjectV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description AtlasProjectSpec defines the desired state of Project in Atlas */
     spec?: {

@@ -7,8 +7,8 @@ export class KubernetesMembershipV1Manifest extends Manifest {
 }
 export interface KubernetesMembershipV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "hub.gke.io/v1";
-    kind: "Membership";
+    apiVersion?: "hub.gke.io/v1";
+    kind?: "Membership";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesMembershipV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Name of the Identity Provider corresponding to this Membership. This is useful for workloads running in this cluster to use Workload Identity. */

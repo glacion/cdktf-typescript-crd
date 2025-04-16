@@ -7,8 +7,8 @@ export class KubernetesPrometheusV1Manifest extends Manifest {
 }
 export interface KubernetesPrometheusV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.coreos.com/v1";
-    kind: "Prometheus";
+    apiVersion?: "monitoring.coreos.com/v1";
+    kind?: "Prometheus";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPrometheusV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of the desired behavior of the Prometheus cluster. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
     spec: {

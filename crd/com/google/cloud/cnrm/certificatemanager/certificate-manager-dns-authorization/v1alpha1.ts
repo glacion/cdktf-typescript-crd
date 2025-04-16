@@ -11,8 +11,8 @@ export class KubernetesCertificateManagerDNSAuthorizationV1alpha1Manifest extend
 }
 export interface KubernetesCertificateManagerDNSAuthorizationV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "certificatemanager.cnrm.cloud.google.com/v1alpha1";
-    kind: "CertificateManagerDNSAuthorization";
+    apiVersion?: "certificatemanager.cnrm.cloud.google.com/v1alpha1";
+    kind?: "CertificateManagerDNSAuthorization";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -21,7 +21,7 @@ export interface KubernetesCertificateManagerDNSAuthorizationV1alpha1ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description CertificateManagerDNSAuthorizationSpec defines the desired state of CertificateManagerDNSAuthorization */
     spec: {

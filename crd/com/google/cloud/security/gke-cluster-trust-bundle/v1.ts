@@ -7,8 +7,8 @@ export class KubernetesGKEClusterTrustBundleV1Manifest extends Manifest {
 }
 export interface KubernetesGKEClusterTrustBundleV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "security.cloud.google.com/v1";
-    kind: "GKEClusterTrustBundle";
+    apiVersion?: "security.cloud.google.com/v1";
+    kind?: "GKEClusterTrustBundle";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGKEClusterTrustBundleV1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The trust bundle certificates, which are concatenated with "\n".

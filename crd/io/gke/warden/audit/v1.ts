@@ -7,8 +7,8 @@ export class KubernetesAuditV1Manifest extends Manifest {
 }
 export interface KubernetesAuditV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "warden.gke.io/v1";
-    kind: "Audit";
+    apiVersion?: "warden.gke.io/v1";
+    kind?: "Audit";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAuditV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec is the custom resource spec. */
     spec?: Record<string, never>;

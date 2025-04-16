@@ -7,8 +7,8 @@ export class KubernetesScaledJobV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesScaledJobV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "keda.sh/v1alpha1";
-    kind: "ScaledJob";
+    apiVersion?: "keda.sh/v1alpha1";
+    kind?: "ScaledJob";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesScaledJobV1alpha1ManifestConfig extends ManifestConfi
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ScaledJobSpec defines the desired state of ScaledJob */
     spec?: {

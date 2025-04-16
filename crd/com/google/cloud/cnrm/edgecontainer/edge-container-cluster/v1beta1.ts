@@ -7,8 +7,8 @@ export class KubernetesEdgeContainerClusterV1beta1Manifest extends Manifest {
 }
 export interface KubernetesEdgeContainerClusterV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "edgecontainer.cnrm.cloud.google.com/v1beta1";
-    kind: "EdgeContainerCluster";
+    apiVersion?: "edgecontainer.cnrm.cloud.google.com/v1beta1";
+    kind?: "EdgeContainerCluster";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesEdgeContainerClusterV1beta1ManifestConfig extends Man
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. RBAC policy that will be applied and managed by GEC. */

@@ -7,8 +7,8 @@ export class KubernetesContainerNodePoolV1beta1Manifest extends Manifest {
 }
 export interface KubernetesContainerNodePoolV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "container.cnrm.cloud.google.com/v1beta1";
-    kind: "ContainerNodePool";
+    apiVersion?: "container.cnrm.cloud.google.com/v1beta1";
+    kind?: "ContainerNodePool";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesContainerNodePoolV1beta1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Configuration required by cluster autoscaler to adjust the size of the node pool to the current cluster usage. To disable autoscaling, set minNodeCount and maxNodeCount to 0. */

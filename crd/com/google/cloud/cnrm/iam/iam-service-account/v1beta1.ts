@@ -7,8 +7,8 @@ export class KubernetesIAMServiceAccountV1beta1Manifest extends Manifest {
 }
 export interface KubernetesIAMServiceAccountV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "iam.cnrm.cloud.google.com/v1beta1";
-    kind: "IAMServiceAccount";
+    apiVersion?: "iam.cnrm.cloud.google.com/v1beta1";
+    kind?: "IAMServiceAccount";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesIAMServiceAccountV1beta1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description A text description of the service account. Must be less than or equal to 256 UTF-8 bytes. */

@@ -7,8 +7,8 @@ export class KubernetesManagedKafkaClusterV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesManagedKafkaClusterV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "managedkafka.cnrm.cloud.google.com/v1alpha1";
-    kind: "ManagedKafkaCluster";
+    apiVersion?: "managedkafka.cnrm.cloud.google.com/v1alpha1";
+    kind?: "ManagedKafkaCluster";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesManagedKafkaClusterV1alpha1ManifestConfig extends Man
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ManagedKafkaClusterSpec defines the desired state of ManagedKafkaCluster */
     spec: {

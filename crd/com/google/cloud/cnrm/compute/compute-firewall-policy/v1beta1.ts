@@ -7,8 +7,8 @@ export class KubernetesComputeFirewallPolicyV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeFirewallPolicyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeFirewallPolicy";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeFirewallPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeFirewallPolicyV1beta1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description An optional description of this resource. Provide this property when you create the resource. */

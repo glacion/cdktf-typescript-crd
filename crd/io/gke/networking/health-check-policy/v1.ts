@@ -7,8 +7,8 @@ export class KubernetesHealthCheckPolicyV1Manifest extends Manifest {
 }
 export interface KubernetesHealthCheckPolicyV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1";
-    kind: "HealthCheckPolicy";
+    apiVersion?: "networking.gke.io/v1";
+    kind?: "HealthCheckPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesHealthCheckPolicyV1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec defines the desired state of HealthCheckPolicy. */
     spec: {

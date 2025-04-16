@@ -7,8 +7,8 @@ export class KubernetesLBPolicyV1Manifest extends Manifest {
 }
 export interface KubernetesLBPolicyV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1";
-    kind: "LBPolicy";
+    apiVersion?: "networking.gke.io/v1";
+    kind?: "LBPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesLBPolicyV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec defines the desired state of LBPolicy. */
     spec: {

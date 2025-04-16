@@ -7,8 +7,8 @@ export class KubernetesUpdateRequestV1beta1Manifest extends Manifest {
 }
 export interface KubernetesUpdateRequestV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kyverno.io/v1beta1";
-    kind: "UpdateRequest";
+    apiVersion?: "kyverno.io/v1beta1";
+    kind?: "UpdateRequest";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesUpdateRequestV1beta1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ResourceSpec is the information to identify the trigger resource. */
     spec?: {

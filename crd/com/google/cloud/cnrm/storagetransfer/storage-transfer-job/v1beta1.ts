@@ -7,8 +7,8 @@ export class KubernetesStorageTransferJobV1beta1Manifest extends Manifest {
 }
 export interface KubernetesStorageTransferJobV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "storagetransfer.cnrm.cloud.google.com/v1beta1";
-    kind: "StorageTransferJob";
+    apiVersion?: "storagetransfer.cnrm.cloud.google.com/v1beta1";
+    kind?: "StorageTransferJob";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesStorageTransferJobV1beta1ManifestConfig extends Manif
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Unique description to identify the Transfer Job. */

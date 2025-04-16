@@ -7,8 +7,8 @@ export class KubernetesOperatorConfigV1Manifest extends Manifest {
 }
 export interface KubernetesOperatorConfigV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.googleapis.com/v1";
-    kind: "OperatorConfig";
+    apiVersion?: "monitoring.googleapis.com/v1";
+    kind?: "OperatorConfig";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesOperatorConfigV1ManifestConfig extends ManifestConfig
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Collection specifies how the operator configures collection, including
      *     scraping and an integrated export to Google Cloud Monitoring. */

@@ -7,8 +7,8 @@ export class KubernetesAtlasFederatedAuthV1Manifest extends Manifest {
 }
 export interface KubernetesAtlasFederatedAuthV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "atlas.mongodb.com/v1";
-    kind: "AtlasFederatedAuth";
+    apiVersion?: "atlas.mongodb.com/v1";
+    kind?: "AtlasFederatedAuth";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAtlasFederatedAuthV1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Connection secret with API credentials for configuring the federation.

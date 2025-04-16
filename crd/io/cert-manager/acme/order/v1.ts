@@ -7,8 +7,8 @@ export class KubernetesOrderV1Manifest extends Manifest {
 }
 export interface KubernetesOrderV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "acme.cert-manager.io/v1";
-    kind: "Order";
+    apiVersion?: "acme.cert-manager.io/v1";
+    kind?: "Order";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesOrderV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description CommonName is the common name as specified on the DER encoded CSR.

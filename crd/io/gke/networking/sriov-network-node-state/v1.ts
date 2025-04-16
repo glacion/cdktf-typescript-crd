@@ -7,8 +7,8 @@ export class KubernetesSriovNetworkNodeStateV1Manifest extends Manifest {
 }
 export interface KubernetesSriovNetworkNodeStateV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1";
-    kind: "SriovNetworkNodeState";
+    apiVersion?: "networking.gke.io/v1";
+    kind?: "SriovNetworkNodeState";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesSriovNetworkNodeStateV1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description SriovNetworkNodeStateSpec defines the desired state of SriovNetworkNodeState */
     spec?: {

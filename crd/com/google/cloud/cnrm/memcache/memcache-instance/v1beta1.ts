@@ -7,8 +7,8 @@ export class KubernetesMemcacheInstanceV1beta1Manifest extends Manifest {
 }
 export interface KubernetesMemcacheInstanceV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "memcache.cnrm.cloud.google.com/v1beta1";
-    kind: "MemcacheInstance";
+    apiVersion?: "memcache.cnrm.cloud.google.com/v1beta1";
+    kind?: "MemcacheInstance";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesMemcacheInstanceV1beta1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description A user-visible name for the instance. */

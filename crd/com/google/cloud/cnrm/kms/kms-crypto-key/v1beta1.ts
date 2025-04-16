@@ -7,8 +7,8 @@ export class KubernetesKMSCryptoKeyV1beta1Manifest extends Manifest {
 }
 export interface KubernetesKMSCryptoKeyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kms.cnrm.cloud.google.com/v1beta1";
-    kind: "KMSCryptoKey";
+    apiVersion?: "kms.cnrm.cloud.google.com/v1beta1";
+    kind?: "KMSCryptoKey";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesKMSCryptoKeyV1beta1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. The period of time that versions of this key spend in the DESTROY_SCHEDULED state before transitioning to DESTROYED.

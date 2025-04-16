@@ -7,8 +7,8 @@ export class KubernetesBigtableTableV1beta1Manifest extends Manifest {
 }
 export interface KubernetesBigtableTableV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "bigtable.cnrm.cloud.google.com/v1beta1";
-    kind: "BigtableTable";
+    apiVersion?: "bigtable.cnrm.cloud.google.com/v1beta1";
+    kind?: "BigtableTable";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesBigtableTableV1beta1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Duration to retain change stream data for the table. Set to 0 to disable. Must be between 1 and 7 days. */

@@ -7,8 +7,8 @@ export class KubernetesPrometheusRuleV1Manifest extends Manifest {
 }
 export interface KubernetesPrometheusRuleV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.coreos.com/v1";
-    kind: "PrometheusRule";
+    apiVersion?: "monitoring.coreos.com/v1";
+    kind?: "PrometheusRule";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPrometheusRuleV1ManifestConfig extends ManifestConfig
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of desired alerting rule definitions for Prometheus. */
     spec: {

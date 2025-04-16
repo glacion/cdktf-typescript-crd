@@ -7,8 +7,8 @@ export class KubernetesStorageBucketAccessControlV1beta1Manifest extends Manifes
 }
 export interface KubernetesStorageBucketAccessControlV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "storage.cnrm.cloud.google.com/v1beta1";
-    kind: "StorageBucketAccessControl";
+    apiVersion?: "storage.cnrm.cloud.google.com/v1beta1";
+    kind?: "StorageBucketAccessControl";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesStorageBucketAccessControlV1beta1ManifestConfig exten
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Reference to the bucket. */

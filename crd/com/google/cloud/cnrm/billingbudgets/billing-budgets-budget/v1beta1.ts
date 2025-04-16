@@ -7,8 +7,8 @@ export class KubernetesBillingBudgetsBudgetV1beta1Manifest extends Manifest {
 }
 export interface KubernetesBillingBudgetsBudgetV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "billingbudgets.cnrm.cloud.google.com/v1beta1";
-    kind: "BillingBudgetsBudget";
+    apiVersion?: "billingbudgets.cnrm.cloud.google.com/v1beta1";
+    kind?: "BillingBudgetsBudget";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesBillingBudgetsBudgetV1beta1ManifestConfig extends Man
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Optional. Rules to apply to notifications sent based on budget spend and thresholds. */

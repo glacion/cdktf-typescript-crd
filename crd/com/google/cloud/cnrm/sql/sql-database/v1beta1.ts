@@ -7,8 +7,8 @@ export class KubernetesSQLDatabaseV1beta1Manifest extends Manifest {
 }
 export interface KubernetesSQLDatabaseV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "sql.cnrm.cloud.google.com/v1beta1";
-    kind: "SQLDatabase";
+    apiVersion?: "sql.cnrm.cloud.google.com/v1beta1";
+    kind?: "SQLDatabase";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesSQLDatabaseV1beta1ManifestConfig extends ManifestConf
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The charset value. See MySQL's

@@ -7,8 +7,8 @@ export class KubernetesSourceRepoRepositoryV1beta1Manifest extends Manifest {
 }
 export interface KubernetesSourceRepoRepositoryV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "sourcerepo.cnrm.cloud.google.com/v1beta1";
-    kind: "SourceRepoRepository";
+    apiVersion?: "sourcerepo.cnrm.cloud.google.com/v1beta1";
+    kind?: "SourceRepoRepository";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesSourceRepoRepositoryV1beta1ManifestConfig extends Man
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description How this repository publishes a change in the repository through Cloud Pub/Sub.

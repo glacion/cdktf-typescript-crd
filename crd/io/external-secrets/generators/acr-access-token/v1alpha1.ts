@@ -7,8 +7,8 @@ export class KubernetesACRAccessTokenV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesACRAccessTokenV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "generators.external-secrets.io/v1alpha1";
-    kind: "ACRAccessToken";
+    apiVersion?: "generators.external-secrets.io/v1alpha1";
+    kind?: "ACRAccessToken";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesACRAccessTokenV1alpha1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ACRAccessTokenSpec defines how to generate the access token
      *     e.g. how to authenticate and which registry to use.

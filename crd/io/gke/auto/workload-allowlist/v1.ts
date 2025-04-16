@@ -7,8 +7,8 @@ export class KubernetesWorkloadAllowlistV1Manifest extends Manifest {
 }
 export interface KubernetesWorkloadAllowlistV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "auto.gke.io/v1";
-    kind: "WorkloadAllowlist";
+    apiVersion?: "auto.gke.io/v1";
+    kind?: "WorkloadAllowlist";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesWorkloadAllowlistV1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description GKE Warden constraints that this workload allowlist exempts. */
     exemptions: string[];

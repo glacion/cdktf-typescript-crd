@@ -7,8 +7,8 @@ export class KubernetesSecretStoreV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesSecretStoreV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "external-secrets.io/v1alpha1";
-    kind: "SecretStore";
+    apiVersion?: "external-secrets.io/v1alpha1";
+    kind?: "SecretStore";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesSecretStoreV1alpha1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description SecretStoreSpec defines the desired state of SecretStore. */
     spec?: {

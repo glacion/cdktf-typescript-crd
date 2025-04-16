@@ -7,8 +7,8 @@ export class KubernetesVertexAIIndexV1beta1Manifest extends Manifest {
 }
 export interface KubernetesVertexAIIndexV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "vertexai.cnrm.cloud.google.com/v1beta1";
-    kind: "VertexAIIndex";
+    apiVersion?: "vertexai.cnrm.cloud.google.com/v1beta1";
+    kind?: "VertexAIIndex";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesVertexAIIndexV1beta1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The description of the Index. */

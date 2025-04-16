@@ -7,8 +7,8 @@ export class KubernetesDLPDeidentifyTemplateV1beta1Manifest extends Manifest {
 }
 export interface KubernetesDLPDeidentifyTemplateV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "dlp.cnrm.cloud.google.com/v1beta1";
-    kind: "DLPDeidentifyTemplate";
+    apiVersion?: "dlp.cnrm.cloud.google.com/v1beta1";
+    kind?: "DLPDeidentifyTemplate";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesDLPDeidentifyTemplateV1beta1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description The core content of the template. */

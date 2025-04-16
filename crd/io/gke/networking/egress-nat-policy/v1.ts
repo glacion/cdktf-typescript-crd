@@ -7,8 +7,8 @@ export class KubernetesEgressNATPolicyV1Manifest extends Manifest {
 }
 export interface KubernetesEgressNATPolicyV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1";
-    kind: "EgressNATPolicy";
+    apiVersion?: "networking.gke.io/v1";
+    kind?: "EgressNATPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesEgressNATPolicyV1ManifestConfig extends ManifestConfi
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description EgressNATPolicySpec defines the desired state of EgressNATPolicy. */
     spec?: {

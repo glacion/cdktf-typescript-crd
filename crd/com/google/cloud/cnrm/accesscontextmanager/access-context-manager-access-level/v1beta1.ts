@@ -7,8 +7,8 @@ export class KubernetesAccessContextManagerAccessLevelV1beta1Manifest extends Ma
 }
 export interface KubernetesAccessContextManagerAccessLevelV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "accesscontextmanager.cnrm.cloud.google.com/v1beta1";
-    kind: "AccessContextManagerAccessLevel";
+    apiVersion?: "accesscontextmanager.cnrm.cloud.google.com/v1beta1";
+    kind?: "AccessContextManagerAccessLevel";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAccessContextManagerAccessLevelV1beta1ManifestConfig 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The AccessContextManagerAccessPolicy this

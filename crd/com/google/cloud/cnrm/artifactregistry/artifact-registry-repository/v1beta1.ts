@@ -7,8 +7,8 @@ export class KubernetesArtifactRegistryRepositoryV1beta1Manifest extends Manifes
 }
 export interface KubernetesArtifactRegistryRepositoryV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "artifactregistry.cnrm.cloud.google.com/v1beta1";
-    kind: "ArtifactRegistryRepository";
+    apiVersion?: "artifactregistry.cnrm.cloud.google.com/v1beta1";
+    kind?: "ArtifactRegistryRepository";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesArtifactRegistryRepositoryV1beta1ManifestConfig exten
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Cleanup policies for this repository. Cleanup policies indicate when

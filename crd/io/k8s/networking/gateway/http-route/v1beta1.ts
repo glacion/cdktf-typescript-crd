@@ -7,8 +7,8 @@ export class KubernetesHTTPRouteV1beta1Manifest extends Manifest {
 }
 export interface KubernetesHTTPRouteV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "gateway.networking.k8s.io/v1beta1";
-    kind: "HTTPRoute";
+    apiVersion?: "gateway.networking.k8s.io/v1beta1";
+    kind?: "HTTPRoute";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesHTTPRouteV1beta1ManifestConfig extends ManifestConfig
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec defines the desired state of HTTPRoute. */
     spec: {

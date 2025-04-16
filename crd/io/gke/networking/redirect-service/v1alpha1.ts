@@ -7,8 +7,8 @@ export class KubernetesRedirectServiceV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesRedirectServiceV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1alpha1";
-    kind: "RedirectService";
+    apiVersion?: "networking.gke.io/v1alpha1";
+    kind?: "RedirectService";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesRedirectServiceV1alpha1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec is the desired configuration for Google redirect service. */
     spec?: {

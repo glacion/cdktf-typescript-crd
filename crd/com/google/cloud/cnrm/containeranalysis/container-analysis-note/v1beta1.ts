@@ -7,8 +7,8 @@ export class KubernetesContainerAnalysisNoteV1beta1Manifest extends Manifest {
 }
 export interface KubernetesContainerAnalysisNoteV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "containeranalysis.cnrm.cloud.google.com/v1beta1";
-    kind: "ContainerAnalysisNote";
+    apiVersion?: "containeranalysis.cnrm.cloud.google.com/v1beta1";
+    kind?: "ContainerAnalysisNote";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesContainerAnalysisNoteV1beta1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description A note describing an attestation role. */

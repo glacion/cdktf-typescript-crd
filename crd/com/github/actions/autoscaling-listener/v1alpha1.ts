@@ -7,8 +7,8 @@ export class KubernetesAutoscalingListenerV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesAutoscalingListenerV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "actions.github.com/v1alpha1";
-    kind: "AutoscalingListener";
+    apiVersion?: "actions.github.com/v1alpha1";
+    kind?: "AutoscalingListener";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAutoscalingListenerV1alpha1ManifestConfig extends Man
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description AutoscalingListenerSpec defines the desired state of AutoscalingListener */
     spec?: {

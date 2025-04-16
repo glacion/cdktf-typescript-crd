@@ -7,8 +7,8 @@ export class KubernetesMonitoringServiceV1beta1Manifest extends Manifest {
 }
 export interface KubernetesMonitoringServiceV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.cnrm.cloud.google.com/v1beta1";
-    kind: "MonitoringService";
+    apiVersion?: "monitoring.cnrm.cloud.google.com/v1beta1";
+    kind?: "MonitoringService";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesMonitoringServiceV1beta1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Name used for UI elements listing this Service. */

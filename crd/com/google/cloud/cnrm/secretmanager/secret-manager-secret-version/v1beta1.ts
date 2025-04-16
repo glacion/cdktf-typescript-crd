@@ -7,8 +7,8 @@ export class KubernetesSecretManagerSecretVersionV1beta1Manifest extends Manifes
 }
 export interface KubernetesSecretManagerSecretVersionV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "secretmanager.cnrm.cloud.google.com/v1beta1";
-    kind: "SecretManagerSecretVersion";
+    apiVersion?: "secretmanager.cnrm.cloud.google.com/v1beta1";
+    kind?: "SecretManagerSecretVersion";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesSecretManagerSecretVersionV1beta1ManifestConfig exten
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description SecretManagerSecretVersionSpec defines the desired state of SecretManagerSecretVersion */
     spec: {

@@ -7,8 +7,8 @@ export class KubernetesCleanupPolicyV2Manifest extends Manifest {
 }
 export interface KubernetesCleanupPolicyV2ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kyverno.io/v2";
-    kind: "CleanupPolicy";
+    apiVersion?: "kyverno.io/v2";
+    kind?: "CleanupPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCleanupPolicyV2ManifestConfig extends ManifestConfig 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec declares policy behaviors. */
     spec: {

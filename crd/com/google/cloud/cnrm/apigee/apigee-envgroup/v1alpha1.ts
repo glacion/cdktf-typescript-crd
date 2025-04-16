@@ -7,8 +7,8 @@ export class KubernetesApigeeEnvgroupV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesApigeeEnvgroupV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "apigee.cnrm.cloud.google.com/v1alpha1";
-    kind: "ApigeeEnvgroup";
+    apiVersion?: "apigee.cnrm.cloud.google.com/v1alpha1";
+    kind?: "ApigeeEnvgroup";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesApigeeEnvgroupV1alpha1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ApigeeEnvgroupSpec defines the desired state of ApigeeEnvgroup */
     spec: {

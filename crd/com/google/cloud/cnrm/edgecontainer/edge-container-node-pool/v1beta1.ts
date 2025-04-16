@@ -7,8 +7,8 @@ export class KubernetesEdgeContainerNodePoolV1beta1Manifest extends Manifest {
 }
 export interface KubernetesEdgeContainerNodePoolV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "edgecontainer.cnrm.cloud.google.com/v1beta1";
-    kind: "EdgeContainerNodePool";
+    apiVersion?: "edgecontainer.cnrm.cloud.google.com/v1beta1";
+    kind?: "EdgeContainerNodePool";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesEdgeContainerNodePoolV1beta1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       clusterRef: {

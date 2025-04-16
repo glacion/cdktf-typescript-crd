@@ -7,8 +7,8 @@ export class KubernetesKMSKeyRingV1beta1Manifest extends Manifest {
 }
 export interface KubernetesKMSKeyRingV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kms.cnrm.cloud.google.com/v1beta1";
-    kind: "KMSKeyRing";
+    apiVersion?: "kms.cnrm.cloud.google.com/v1beta1";
+    kind?: "KMSKeyRing";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesKMSKeyRingV1beta1ManifestConfig extends ManifestConfi
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. The location for the KeyRing. A full list of valid locations can be found by running 'gcloud kms locations list'. */

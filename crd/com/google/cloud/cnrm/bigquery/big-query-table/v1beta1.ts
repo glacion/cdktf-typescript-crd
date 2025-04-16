@@ -7,8 +7,8 @@ export class KubernetesBigQueryTableV1beta1Manifest extends Manifest {
 }
 export interface KubernetesBigQueryTableV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "bigquery.cnrm.cloud.google.com/v1beta1";
-    kind: "BigQueryTable";
+    apiVersion?: "bigquery.cnrm.cloud.google.com/v1beta1";
+    kind?: "BigQueryTable";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesBigQueryTableV1beta1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Specifies column names to use for data clustering. Up to four top-level columns are allowed, and should be specified in descending priority order. */

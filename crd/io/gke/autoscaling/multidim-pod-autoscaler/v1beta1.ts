@@ -7,8 +7,8 @@ export class KubernetesMultidimPodAutoscalerV1beta1Manifest extends Manifest {
 }
 export interface KubernetesMultidimPodAutoscalerV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "autoscaling.gke.io/v1beta1";
-    kind: "MultidimPodAutoscaler";
+    apiVersion?: "autoscaling.gke.io/v1beta1";
+    kind?: "MultidimPodAutoscaler";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesMultidimPodAutoscalerV1beta1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       constraints: {

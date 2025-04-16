@@ -7,8 +7,8 @@ export class KubernetesWorkstationConfigV1beta1Manifest extends Manifest {
 }
 export interface KubernetesWorkstationConfigV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "workstations.cnrm.cloud.google.com/v1beta1";
-    kind: "WorkstationConfig";
+    apiVersion?: "workstations.cnrm.cloud.google.com/v1beta1";
+    kind?: "WorkstationConfig";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesWorkstationConfigV1beta1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description WorkstationConfigSpec defines the desired state of WorkstationConfig */
     spec?: {

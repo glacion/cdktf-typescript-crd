@@ -7,8 +7,8 @@ export class KubernetesAtlasIPAccessListV1Manifest extends Manifest {
 }
 export interface KubernetesAtlasIPAccessListV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "atlas.mongodb.com/v1";
-    kind: "AtlasIPAccessList";
+    apiVersion?: "atlas.mongodb.com/v1";
+    kind?: "AtlasIPAccessList";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAtlasIPAccessListV1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description AtlasIPAccessListSpec defines the desired state of AtlasIPAccessList. */
     spec?: {

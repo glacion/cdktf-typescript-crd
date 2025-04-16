@@ -7,8 +7,8 @@ export class KubernetesVolumeSnapshotContentV1beta1Manifest extends Manifest {
 }
 export interface KubernetesVolumeSnapshotContentV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "snapshot.storage.k8s.io/v1beta1";
-    kind: "VolumeSnapshotContent";
+    apiVersion?: "snapshot.storage.k8s.io/v1beta1";
+    kind?: "VolumeSnapshotContent";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesVolumeSnapshotContentV1beta1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description spec defines properties of a VolumeSnapshotContent created by the underlying storage system. Required. */
     spec: {

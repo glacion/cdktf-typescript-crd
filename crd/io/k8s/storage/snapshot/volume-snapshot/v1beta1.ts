@@ -7,8 +7,8 @@ export class KubernetesVolumeSnapshotV1beta1Manifest extends Manifest {
 }
 export interface KubernetesVolumeSnapshotV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "snapshot.storage.k8s.io/v1beta1";
-    kind: "VolumeSnapshot";
+    apiVersion?: "snapshot.storage.k8s.io/v1beta1";
+    kind?: "VolumeSnapshot";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesVolumeSnapshotV1beta1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description spec defines the desired characteristics of a snapshot requested by a user. More info: https://kubernetes.io/docs/concepts/storage/volume-snapshots#volumesnapshots Required. */
     spec: {

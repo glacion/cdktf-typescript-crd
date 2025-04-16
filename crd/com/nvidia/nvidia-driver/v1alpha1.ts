@@ -7,8 +7,8 @@ export class KubernetesNVIDIADriverV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesNVIDIADriverV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "nvidia.com/v1alpha1";
-    kind: "NVIDIADriver";
+    apiVersion?: "nvidia.com/v1alpha1";
+    kind?: "NVIDIADriver";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesNVIDIADriverV1alpha1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description NVIDIADriverSpec defines the desired state of NVIDIADriver */
     spec?: {

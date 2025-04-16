@@ -7,8 +7,8 @@ export class KubernetesIdentityPlatformOAuthIDPConfigV1beta1Manifest extends Man
 }
 export interface KubernetesIdentityPlatformOAuthIDPConfigV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "identityplatform.cnrm.cloud.google.com/v1beta1";
-    kind: "IdentityPlatformOAuthIDPConfig";
+    apiVersion?: "identityplatform.cnrm.cloud.google.com/v1beta1";
+    kind?: "IdentityPlatformOAuthIDPConfig";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesIdentityPlatformOAuthIDPConfigV1beta1ManifestConfig e
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description The client id of an OAuth client. */

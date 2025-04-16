@@ -7,8 +7,8 @@ export class KubernetesComputeTargetVPNGatewayV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeTargetVPNGatewayV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeTargetVPNGateway";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeTargetVPNGateway";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeTargetVPNGatewayV1beta1ManifestConfig extends 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. An optional description of this resource. */

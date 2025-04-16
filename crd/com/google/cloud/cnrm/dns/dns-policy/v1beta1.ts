@@ -7,8 +7,8 @@ export class KubernetesDNSPolicyV1beta1Manifest extends Manifest {
 }
 export interface KubernetesDNSPolicyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "dns.cnrm.cloud.google.com/v1beta1";
-    kind: "DNSPolicy";
+    apiVersion?: "dns.cnrm.cloud.google.com/v1beta1";
+    kind?: "DNSPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesDNSPolicyV1beta1ManifestConfig extends ManifestConfig
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Sets an alternative name server for the associated networks.

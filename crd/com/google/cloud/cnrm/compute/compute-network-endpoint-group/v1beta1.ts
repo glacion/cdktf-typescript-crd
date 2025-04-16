@@ -7,8 +7,8 @@ export class KubernetesComputeNetworkEndpointGroupV1beta1Manifest extends Manife
 }
 export interface KubernetesComputeNetworkEndpointGroupV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeNetworkEndpointGroup";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeNetworkEndpointGroup";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeNetworkEndpointGroupV1beta1ManifestConfig exte
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. The default port used if the port number is not specified in the

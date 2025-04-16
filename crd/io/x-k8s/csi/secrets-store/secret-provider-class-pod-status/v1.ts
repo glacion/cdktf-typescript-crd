@@ -7,8 +7,8 @@ export class KubernetesSecretProviderClassPodStatusV1Manifest extends Manifest {
 }
 export interface KubernetesSecretProviderClassPodStatusV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "secrets-store.csi.x-k8s.io/v1";
-    kind: "SecretProviderClassPodStatus";
+    apiVersion?: "secrets-store.csi.x-k8s.io/v1";
+    kind?: "SecretProviderClassPodStatus";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesSecretProviderClassPodStatusV1ManifestConfig extends 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description SecretProviderClassPodStatusStatus defines the observed state of SecretProviderClassPodStatus */
     status?: {

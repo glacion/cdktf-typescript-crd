@@ -7,8 +7,8 @@ export class KubernetesPrometheusAgentV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesPrometheusAgentV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.coreos.com/v1alpha1";
-    kind: "PrometheusAgent";
+    apiVersion?: "monitoring.coreos.com/v1alpha1";
+    kind?: "PrometheusAgent";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPrometheusAgentV1alpha1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of the desired behavior of the Prometheus agent. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
     spec: {

@@ -7,8 +7,8 @@ export class KubernetesComputeNodeTemplateV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeNodeTemplateV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeNodeTemplate";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeNodeTemplate";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeNodeTemplateV1beta1ManifestConfig extends Mani
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. CPU overcommit. Default value: "NONE" Possible values: ["ENABLED", "NONE"]. */

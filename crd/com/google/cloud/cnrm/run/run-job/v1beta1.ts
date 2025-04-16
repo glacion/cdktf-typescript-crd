@@ -7,8 +7,8 @@ export class KubernetesRunJobV1beta1Manifest extends Manifest {
 }
 export interface KubernetesRunJobV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "run.cnrm.cloud.google.com/v1beta1";
-    kind: "RunJob";
+    apiVersion?: "run.cnrm.cloud.google.com/v1beta1";
+    kind?: "RunJob";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesRunJobV1beta1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects.

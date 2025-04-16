@@ -7,8 +7,8 @@ export class KubernetesManagedCertificateV1beta1Manifest extends Manifest {
 }
 export interface KubernetesManagedCertificateV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1beta1";
-    kind: "ManagedCertificate";
+    apiVersion?: "networking.gke.io/v1beta1";
+    kind?: "ManagedCertificate";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesManagedCertificateV1beta1ManifestConfig extends Manif
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       domains?: string[];

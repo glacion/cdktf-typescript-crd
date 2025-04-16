@@ -7,8 +7,8 @@ export class KubernetesResourceManagerPolicyV1beta1Manifest extends Manifest {
 }
 export interface KubernetesResourceManagerPolicyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "resourcemanager.cnrm.cloud.google.com/v1beta1";
-    kind: "ResourceManagerPolicy";
+    apiVersion?: "resourcemanager.cnrm.cloud.google.com/v1beta1";
+    kind?: "ResourceManagerPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesResourceManagerPolicyV1beta1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description A boolean policy is a constraint that is either enforced or not. */

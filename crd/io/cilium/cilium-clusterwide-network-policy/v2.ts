@@ -7,8 +7,8 @@ export class KubernetesCiliumClusterwideNetworkPolicyV2Manifest extends Manifest
 }
 export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cilium.io/v2";
-    kind: "CiliumClusterwideNetworkPolicy";
+    apiVersion?: "cilium.io/v2";
+    kind?: "CiliumClusterwideNetworkPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec is the desired Cilium specific rule specification. */
     spec?: {

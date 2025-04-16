@@ -7,8 +7,8 @@ export class KubernetesSpannerDatabaseV1beta1Manifest extends Manifest {
 }
 export interface KubernetesSpannerDatabaseV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "spanner.cnrm.cloud.google.com/v1beta1";
-    kind: "SpannerDatabase";
+    apiVersion?: "spanner.cnrm.cloud.google.com/v1beta1";
+    kind?: "SpannerDatabase";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesSpannerDatabaseV1beta1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. The dialect of the Cloud Spanner Database.

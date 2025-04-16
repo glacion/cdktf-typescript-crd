@@ -7,8 +7,8 @@ export class KubernetesProjectV1beta1Manifest extends Manifest {
 }
 export interface KubernetesProjectV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "resourcemanager.cnrm.cloud.google.com/v1beta1";
-    kind: "Project";
+    apiVersion?: "resourcemanager.cnrm.cloud.google.com/v1beta1";
+    kind?: "Project";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesProjectV1beta1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       billingAccountRef?: {

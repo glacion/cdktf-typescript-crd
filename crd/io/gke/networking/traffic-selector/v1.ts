@@ -7,8 +7,8 @@ export class KubernetesTrafficSelectorV1Manifest extends Manifest {
 }
 export interface KubernetesTrafficSelectorV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1";
-    kind: "TrafficSelector";
+    apiVersion?: "networking.gke.io/v1";
+    kind?: "TrafficSelector";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesTrafficSelectorV1ManifestConfig extends ManifestConfi
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description TrafficSelectorSpec defines the desired state of TrafficSelector
      *     Exactly one of {`Ingress`, `Egress`} pointers should be set. */

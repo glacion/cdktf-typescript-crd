@@ -7,8 +7,8 @@ export class KubernetesCertificateManagerCertificateV1alpha1Manifest extends Man
 }
 export interface KubernetesCertificateManagerCertificateV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "certificatemanager.cnrm.cloud.google.com/v1alpha1";
-    kind: "CertificateManagerCertificate";
+    apiVersion?: "certificatemanager.cnrm.cloud.google.com/v1alpha1";
+    kind?: "CertificateManagerCertificate";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCertificateManagerCertificateV1alpha1ManifestConfig e
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description A human-readable description of the resource. */

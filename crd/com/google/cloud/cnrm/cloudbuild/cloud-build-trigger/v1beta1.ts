@@ -7,8 +7,8 @@ export class KubernetesCloudBuildTriggerV1beta1Manifest extends Manifest {
 }
 export interface KubernetesCloudBuildTriggerV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cloudbuild.cnrm.cloud.google.com/v1beta1";
-    kind: "CloudBuildTrigger";
+    apiVersion?: "cloudbuild.cnrm.cloud.google.com/v1beta1";
+    kind?: "CloudBuildTrigger";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCloudBuildTriggerV1beta1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Configuration for manual approval to start a build invocation of this BuildTrigger.

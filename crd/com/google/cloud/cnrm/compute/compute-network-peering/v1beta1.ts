@@ -7,8 +7,8 @@ export class KubernetesComputeNetworkPeeringV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeNetworkPeeringV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeNetworkPeering";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeNetworkPeering";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeNetworkPeeringV1beta1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Whether to export the custom routes to the peer network. Defaults to false. */

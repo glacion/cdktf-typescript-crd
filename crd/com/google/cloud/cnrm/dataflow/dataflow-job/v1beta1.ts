@@ -7,8 +7,8 @@ export class KubernetesDataflowJobV1beta1Manifest extends Manifest {
 }
 export interface KubernetesDataflowJobV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "dataflow.cnrm.cloud.google.com/v1beta1";
-    kind: "DataflowJob";
+    apiVersion?: "dataflow.cnrm.cloud.google.com/v1beta1";
+    kind?: "DataflowJob";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesDataflowJobV1beta1ManifestConfig extends ManifestConf
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description List of experiments that should be used by the job. An example value is ["enable_stackdriver_agent_metrics"]. */

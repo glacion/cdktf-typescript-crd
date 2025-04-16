@@ -7,8 +7,8 @@ export class KubernetesTagsTagBindingV1beta1Manifest extends Manifest {
 }
 export interface KubernetesTagsTagBindingV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "tags.cnrm.cloud.google.com/v1beta1";
-    kind: "TagsTagBinding";
+    apiVersion?: "tags.cnrm.cloud.google.com/v1beta1";
+    kind?: "TagsTagBinding";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesTagsTagBindingV1beta1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       parentRef: {

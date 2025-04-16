@@ -7,8 +7,8 @@ export class KubernetesCiliumEndpointSliceV2alpha1Manifest extends Manifest {
 }
 export interface KubernetesCiliumEndpointSliceV2alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cilium.io/v2alpha1";
-    kind: "CiliumEndpointSlice";
+    apiVersion?: "cilium.io/v2alpha1";
+    kind?: "CiliumEndpointSlice";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCiliumEndpointSliceV2alpha1ManifestConfig extends Man
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Endpoints is a list of coreCEPs packed in a CiliumEndpointSlice */
     endpoints: {

@@ -7,8 +7,8 @@ export class KubernetesComputeSharedVPCServiceProjectV1beta1Manifest extends Man
 }
 export interface KubernetesComputeSharedVPCServiceProjectV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeSharedVPCServiceProject";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeSharedVPCServiceProject";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeSharedVPCServiceProjectV1beta1ManifestConfig e
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The deletion policy for the shared VPC service. Setting ABANDON allows the resource

@@ -7,8 +7,8 @@ export class KubernetesNetworkServicesEndpointPolicyV1beta1Manifest extends Mani
 }
 export interface KubernetesNetworkServicesEndpointPolicyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networkservices.cnrm.cloud.google.com/v1beta1";
-    kind: "NetworkServicesEndpointPolicy";
+    apiVersion?: "networkservices.cnrm.cloud.google.com/v1beta1";
+    kind?: "NetworkServicesEndpointPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesNetworkServicesEndpointPolicyV1beta1ManifestConfig ex
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       authorizationPolicyRef?: {

@@ -7,8 +7,8 @@ export class KubernetesMonitoringNotificationChannelV1beta1Manifest extends Mani
 }
 export interface KubernetesMonitoringNotificationChannelV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.cnrm.cloud.google.com/v1beta1";
-    kind: "MonitoringNotificationChannel";
+    apiVersion?: "monitoring.cnrm.cloud.google.com/v1beta1";
+    kind?: "MonitoringNotificationChannel";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesMonitoringNotificationChannelV1beta1ManifestConfig ex
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description An optional human-readable description of this notification channel. This description may provide additional details, beyond the display name, for the channel. This may not exceed 1024 Unicode characters. */

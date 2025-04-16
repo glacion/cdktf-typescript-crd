@@ -7,8 +7,8 @@ export class KubernetesCiliumExternalWorkloadV2Manifest extends Manifest {
 }
 export interface KubernetesCiliumExternalWorkloadV2ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cilium.io/v2";
-    kind: "CiliumExternalWorkload";
+    apiVersion?: "cilium.io/v2";
+    kind?: "CiliumExternalWorkload";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCiliumExternalWorkloadV2ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec is the desired configuration of the external Cilium workload. */
     spec?: {

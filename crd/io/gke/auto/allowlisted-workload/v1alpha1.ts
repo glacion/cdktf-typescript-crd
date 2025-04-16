@@ -7,8 +7,8 @@ export class KubernetesAllowlistedWorkloadV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesAllowlistedWorkloadV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "auto.gke.io/v1alpha1";
-    kind: "AllowlistedWorkload";
+    apiVersion?: "auto.gke.io/v1alpha1";
+    kind?: "AllowlistedWorkload";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAllowlistedWorkloadV1alpha1ManifestConfig extends Man
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       containers?: {

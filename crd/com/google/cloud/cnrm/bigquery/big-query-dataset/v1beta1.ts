@@ -7,8 +7,8 @@ export class KubernetesBigQueryDatasetV1beta1Manifest extends Manifest {
 }
 export interface KubernetesBigQueryDatasetV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "bigquery.cnrm.cloud.google.com/v1beta1";
-    kind: "BigQueryDataset";
+    apiVersion?: "bigquery.cnrm.cloud.google.com/v1beta1";
+    kind?: "BigQueryDataset";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesBigQueryDatasetV1beta1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description BigQueryDatasetSpec defines the desired state of BigQueryDataset */
     spec?: {

@@ -7,8 +7,8 @@ export class KubernetesLoggingLogViewV1beta1Manifest extends Manifest {
 }
 export interface KubernetesLoggingLogViewV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "logging.cnrm.cloud.google.com/v1beta1";
-    kind: "LoggingLogView";
+    apiVersion?: "logging.cnrm.cloud.google.com/v1beta1";
+    kind?: "LoggingLogView";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesLoggingLogViewV1beta1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. The BillingAccount that this resource belongs to. Only one of [billingAccountRef, folderRef, organizationRef, projectRef] may be specified. */

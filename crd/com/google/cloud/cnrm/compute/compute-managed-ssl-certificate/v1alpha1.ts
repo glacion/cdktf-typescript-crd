@@ -7,8 +7,8 @@ export class KubernetesComputeManagedSSLCertificateV1alpha1Manifest extends Mani
 }
 export interface KubernetesComputeManagedSSLCertificateV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1alpha1";
-    kind: "ComputeManagedSSLCertificate";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1alpha1";
+    kind?: "ComputeManagedSSLCertificate";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeManagedSSLCertificateV1alpha1ManifestConfig ex
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. An optional description of this resource. */

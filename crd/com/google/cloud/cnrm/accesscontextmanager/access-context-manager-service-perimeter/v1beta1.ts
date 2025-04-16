@@ -11,8 +11,8 @@ export class KubernetesAccessContextManagerServicePerimeterV1beta1Manifest exten
 }
 export interface KubernetesAccessContextManagerServicePerimeterV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "accesscontextmanager.cnrm.cloud.google.com/v1beta1";
-    kind: "AccessContextManagerServicePerimeter";
+    apiVersion?: "accesscontextmanager.cnrm.cloud.google.com/v1beta1";
+    kind?: "AccessContextManagerServicePerimeter";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -21,7 +21,7 @@ export interface KubernetesAccessContextManagerServicePerimeterV1beta1ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The AccessContextManagerAccessPolicy this

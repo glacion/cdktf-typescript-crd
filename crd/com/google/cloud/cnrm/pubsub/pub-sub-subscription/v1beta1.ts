@@ -7,8 +7,8 @@ export class KubernetesPubSubSubscriptionV1beta1Manifest extends Manifest {
 }
 export interface KubernetesPubSubSubscriptionV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "pubsub.cnrm.cloud.google.com/v1beta1";
-    kind: "PubSubSubscription";
+    apiVersion?: "pubsub.cnrm.cloud.google.com/v1beta1";
+    kind?: "PubSubSubscription";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPubSubSubscriptionV1beta1ManifestConfig extends Manif
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description This value is the maximum time after a subscriber receives a message

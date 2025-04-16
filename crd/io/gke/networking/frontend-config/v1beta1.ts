@@ -7,8 +7,8 @@ export class KubernetesFrontendConfigV1beta1Manifest extends Manifest {
 }
 export interface KubernetesFrontendConfigV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1beta1";
-    kind: "FrontendConfig";
+    apiVersion?: "networking.gke.io/v1beta1";
+    kind?: "FrontendConfig";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesFrontendConfigV1beta1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description FrontendConfigSpec is the spec for a FrontendConfig resource */
     spec?: {

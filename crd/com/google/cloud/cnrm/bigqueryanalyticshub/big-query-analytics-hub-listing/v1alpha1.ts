@@ -7,8 +7,8 @@ export class KubernetesBigQueryAnalyticsHubListingV1alpha1Manifest extends Manif
 }
 export interface KubernetesBigQueryAnalyticsHubListingV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "bigqueryanalyticshub.cnrm.cloud.google.com/v1alpha1";
-    kind: "BigQueryAnalyticsHubListing";
+    apiVersion?: "bigqueryanalyticshub.cnrm.cloud.google.com/v1alpha1";
+    kind?: "BigQueryAnalyticsHubListing";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesBigQueryAnalyticsHubListingV1alpha1ManifestConfig ext
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description BigQueryAnalyticsHubListingSpec defines the desired state of BigQueryAnalyticsHubDataExchangeListing */
     spec?: {

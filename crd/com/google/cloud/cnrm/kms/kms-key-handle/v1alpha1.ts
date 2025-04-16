@@ -7,8 +7,8 @@ export class KubernetesKMSKeyHandleV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesKMSKeyHandleV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kms.cnrm.cloud.google.com/v1alpha1";
-    kind: "KMSKeyHandle";
+    apiVersion?: "kms.cnrm.cloud.google.com/v1alpha1";
+    kind?: "KMSKeyHandle";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesKMSKeyHandleV1alpha1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description KMSKeyHandleSpec defines the desired state of KMSKeyHandle */
     spec: {

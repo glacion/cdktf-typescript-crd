@@ -7,8 +7,8 @@ export class KubernetesControllerResourceV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesControllerResourceV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "customize.core.cnrm.cloud.google.com/v1alpha1";
-    kind: "ControllerResource";
+    apiVersion?: "customize.core.cnrm.cloud.google.com/v1alpha1";
+    kind?: "ControllerResource";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesControllerResourceV1alpha1ManifestConfig extends Mani
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ControllerResourceSpec is the specification of the resource customization for containers of
      *     a config connector controller. */

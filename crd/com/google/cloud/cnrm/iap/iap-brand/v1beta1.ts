@@ -7,8 +7,8 @@ export class KubernetesIAPBrandV1beta1Manifest extends Manifest {
 }
 export interface KubernetesIAPBrandV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "iap.cnrm.cloud.google.com/v1beta1";
-    kind: "IAPBrand";
+    apiVersion?: "iap.cnrm.cloud.google.com/v1beta1";
+    kind?: "IAPBrand";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesIAPBrandV1beta1ManifestConfig extends ManifestConfig 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Immutable. Application name displayed on OAuth consent screen. */

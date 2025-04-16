@@ -7,8 +7,8 @@ export class KubernetesGatewayClassV1beta1Manifest extends Manifest {
 }
 export interface KubernetesGatewayClassV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "gateway.networking.k8s.io/v1beta1";
-    kind: "GatewayClass";
+    apiVersion?: "gateway.networking.k8s.io/v1beta1";
+    kind?: "GatewayClass";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGatewayClassV1beta1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec defines the desired state of GatewayClass. */
     spec: {

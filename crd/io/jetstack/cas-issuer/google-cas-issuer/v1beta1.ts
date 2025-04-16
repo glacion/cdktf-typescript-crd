@@ -7,8 +7,8 @@ export class KubernetesGoogleCASIssuerV1beta1Manifest extends Manifest {
 }
 export interface KubernetesGoogleCASIssuerV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cas-issuer.jetstack.io/v1beta1";
-    kind: "GoogleCASIssuer";
+    apiVersion?: "cas-issuer.jetstack.io/v1beta1";
+    kind?: "GoogleCASIssuer";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGoogleCASIssuerV1beta1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description GoogleCASIssuerSpec defines the desired state of GoogleCASIssuer */
     spec?: {

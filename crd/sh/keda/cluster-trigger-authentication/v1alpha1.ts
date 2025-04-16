@@ -7,8 +7,8 @@ export class KubernetesClusterTriggerAuthenticationV1alpha1Manifest extends Mani
 }
 export interface KubernetesClusterTriggerAuthenticationV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "keda.sh/v1alpha1";
-    kind: "ClusterTriggerAuthentication";
+    apiVersion?: "keda.sh/v1alpha1";
+    kind?: "ClusterTriggerAuthentication";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesClusterTriggerAuthenticationV1alpha1ManifestConfig ex
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description TriggerAuthenticationSpec defines the various ways to authenticate */
     spec: {

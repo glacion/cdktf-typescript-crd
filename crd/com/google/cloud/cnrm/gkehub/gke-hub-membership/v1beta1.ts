@@ -7,8 +7,8 @@ export class KubernetesGKEHubMembershipV1beta1Manifest extends Manifest {
 }
 export interface KubernetesGKEHubMembershipV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "gkehub.cnrm.cloud.google.com/v1beta1";
-    kind: "GKEHubMembership";
+    apiVersion?: "gkehub.cnrm.cloud.google.com/v1beta1";
+    kind?: "GKEHubMembership";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGKEHubMembershipV1beta1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Optional. How to identify workloads from this Membership. See the documentation on Workload Identity for more details: https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity */

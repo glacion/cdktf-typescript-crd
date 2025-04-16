@@ -7,8 +7,8 @@ export class KubernetesMonitoringDashboardV1beta1Manifest extends Manifest {
 }
 export interface KubernetesMonitoringDashboardV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.cnrm.cloud.google.com/v1beta1";
-    kind: "MonitoringDashboard";
+    apiVersion?: "monitoring.cnrm.cloud.google.com/v1beta1";
+    kind?: "MonitoringDashboard";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesMonitoringDashboardV1beta1ManifestConfig extends Mani
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The content is divided into equally spaced columns and the widgets are arranged vertically. */

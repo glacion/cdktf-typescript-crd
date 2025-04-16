@@ -7,8 +7,8 @@ export class KubernetesCiliumIdentityV2Manifest extends Manifest {
 }
 export interface KubernetesCiliumIdentityV2ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cilium.io/v2";
-    kind: "CiliumIdentity";
+    apiVersion?: "cilium.io/v2";
+    kind?: "CiliumIdentity";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCiliumIdentityV2ManifestConfig extends ManifestConfig
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
   };
 }

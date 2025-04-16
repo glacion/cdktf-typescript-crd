@@ -7,8 +7,8 @@ export class KubernetesAlertmanagerV1Manifest extends Manifest {
 }
 export interface KubernetesAlertmanagerV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.coreos.com/v1";
-    kind: "Alertmanager";
+    apiVersion?: "monitoring.coreos.com/v1";
+    kind?: "Alertmanager";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAlertmanagerV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of the desired behavior of the Alertmanager cluster. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
     spec: {

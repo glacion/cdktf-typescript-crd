@@ -7,8 +7,8 @@ export class KubernetesBigtableGCPolicyV1beta1Manifest extends Manifest {
 }
 export interface KubernetesBigtableGCPolicyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "bigtable.cnrm.cloud.google.com/v1beta1";
-    kind: "BigtableGCPolicy";
+    apiVersion?: "bigtable.cnrm.cloud.google.com/v1beta1";
+    kind?: "BigtableGCPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesBigtableGCPolicyV1beta1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. The name of the column family. */

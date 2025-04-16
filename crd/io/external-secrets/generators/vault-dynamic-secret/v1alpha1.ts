@@ -7,8 +7,8 @@ export class KubernetesVaultDynamicSecretV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesVaultDynamicSecretV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "generators.external-secrets.io/v1alpha1";
-    kind: "VaultDynamicSecret";
+    apiVersion?: "generators.external-secrets.io/v1alpha1";
+    kind?: "VaultDynamicSecret";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesVaultDynamicSecretV1alpha1ManifestConfig extends Mani
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Used to select the correct ESO controller (think: ingress.ingressClassName)

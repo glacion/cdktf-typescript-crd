@@ -7,8 +7,8 @@ export class KubernetesCohortV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesCohortV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kueue.x-k8s.io/v1alpha1";
-    kind: "Cohort";
+    apiVersion?: "kueue.x-k8s.io/v1alpha1";
+    kind?: "Cohort";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCohortV1alpha1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description CohortSpec defines the desired state of Cohort */
     spec?: {

@@ -7,8 +7,8 @@ export class KubernetesNamespacedControllerResourceV1beta1Manifest extends Manif
 }
 export interface KubernetesNamespacedControllerResourceV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "customize.core.cnrm.cloud.google.com/v1beta1";
-    kind: "NamespacedControllerResource";
+    apiVersion?: "customize.core.cnrm.cloud.google.com/v1beta1";
+    kind?: "NamespacedControllerResource";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesNamespacedControllerResourceV1beta1ManifestConfig ext
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description NamespacedControllerResourceSpec is the specification of the resource customization for containers of
      *     a namespaced config connector controller. */

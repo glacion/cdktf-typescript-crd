@@ -7,8 +7,8 @@ export class KubernetesNetworkV1Manifest extends Manifest {
 }
 export interface KubernetesNetworkV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1";
-    kind: "Network";
+    apiVersion?: "networking.gke.io/v1";
+    kind?: "Network";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesNetworkV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description NetworkSpec contains the specifications for network object */
     spec?: {

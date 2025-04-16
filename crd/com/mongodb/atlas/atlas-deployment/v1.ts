@@ -7,8 +7,8 @@ export class KubernetesAtlasDeploymentV1Manifest extends Manifest {
 }
 export interface KubernetesAtlasDeploymentV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "atlas.mongodb.com/v1";
-    kind: "AtlasDeployment";
+    apiVersion?: "atlas.mongodb.com/v1";
+    kind?: "AtlasDeployment";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAtlasDeploymentV1ManifestConfig extends ManifestConfi
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description AtlasDeploymentSpec defines the desired state of AtlasDeployment
      *     Only one of DeploymentSpec, AdvancedDeploymentSpec and ServerlessSpec should be defined */

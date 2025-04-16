@@ -7,8 +7,8 @@ export class KubernetesServiceNetworkEndpointGroupV1beta1Manifest extends Manife
 }
 export interface KubernetesServiceNetworkEndpointGroupV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1beta1";
-    kind: "ServiceNetworkEndpointGroup";
+    apiVersion?: "networking.gke.io/v1beta1";
+    kind?: "ServiceNetworkEndpointGroup";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesServiceNetworkEndpointGroupV1beta1ManifestConfig exte
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: Record<string, never>;
     /** @description ServiceNetworkEndpointGroupStatus is the status for a ServiceNetworkEndpointGroup resource */

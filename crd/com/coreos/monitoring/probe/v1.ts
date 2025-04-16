@@ -7,8 +7,8 @@ export class KubernetesProbeV1Manifest extends Manifest {
 }
 export interface KubernetesProbeV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.coreos.com/v1";
-    kind: "Probe";
+    apiVersion?: "monitoring.coreos.com/v1";
+    kind?: "Probe";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesProbeV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of desired Ingress selection for target discovery by Prometheus. */
     spec: {

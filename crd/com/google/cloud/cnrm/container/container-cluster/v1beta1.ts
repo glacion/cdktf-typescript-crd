@@ -7,8 +7,8 @@ export class KubernetesContainerClusterV1beta1Manifest extends Manifest {
 }
 export interface KubernetesContainerClusterV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "container.cnrm.cloud.google.com/v1beta1";
-    kind: "ContainerCluster";
+    apiVersion?: "container.cnrm.cloud.google.com/v1beta1";
+    kind?: "ContainerCluster";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesContainerClusterV1beta1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The configuration for addons supported by GKE. */

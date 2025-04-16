@@ -7,8 +7,8 @@ export class KubernetesMonitoringGroupV1beta1Manifest extends Manifest {
 }
 export interface KubernetesMonitoringGroupV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.cnrm.cloud.google.com/v1beta1";
-    kind: "MonitoringGroup";
+    apiVersion?: "monitoring.cnrm.cloud.google.com/v1beta1";
+    kind?: "MonitoringGroup";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesMonitoringGroupV1beta1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description A user-assigned name for this group, used only for display purposes. */

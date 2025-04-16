@@ -7,8 +7,8 @@ export class KubernetesConfigConnectorV1beta1Manifest extends Manifest {
 }
 export interface KubernetesConfigConnectorV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "core.cnrm.cloud.google.com/v1beta1";
-    kind: "ConfigConnector";
+    apiVersion?: "core.cnrm.cloud.google.com/v1beta1";
+    kind?: "ConfigConnector";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesConfigConnectorV1beta1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ConfigConnectorSpec defines the desired state of ConfigConnector */
     spec?:

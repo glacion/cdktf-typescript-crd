@@ -7,8 +7,8 @@ export class KubernetesCiliumNodeV2Manifest extends Manifest {
 }
 export interface KubernetesCiliumNodeV2ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cilium.io/v2";
-    kind: "CiliumNode";
+    apiVersion?: "cilium.io/v2";
+    kind?: "CiliumNode";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCiliumNodeV2ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec defines the desired specification/configuration of the node. */
     spec: {

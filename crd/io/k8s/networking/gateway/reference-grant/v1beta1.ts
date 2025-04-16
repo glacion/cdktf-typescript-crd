@@ -7,8 +7,8 @@ export class KubernetesReferenceGrantV1beta1Manifest extends Manifest {
 }
 export interface KubernetesReferenceGrantV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "gateway.networking.k8s.io/v1beta1";
-    kind: "ReferenceGrant";
+    apiVersion?: "gateway.networking.k8s.io/v1beta1";
+    kind?: "ReferenceGrant";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesReferenceGrantV1beta1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec defines the desired state of ReferenceGrant. */
     spec?: {

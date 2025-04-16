@@ -7,8 +7,8 @@ export class KubernetesPrivateCACertificateTemplateV1beta1Manifest extends Manif
 }
 export interface KubernetesPrivateCACertificateTemplateV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "privateca.cnrm.cloud.google.com/v1beta1";
-    kind: "PrivateCACertificateTemplate";
+    apiVersion?: "privateca.cnrm.cloud.google.com/v1beta1";
+    kind?: "PrivateCACertificateTemplate";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPrivateCACertificateTemplateV1beta1ManifestConfig ext
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Optional. A human-readable description of scenarios this template is intended for. */

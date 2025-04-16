@@ -7,8 +7,8 @@ export class KubernetesGithubAccessTokenV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesGithubAccessTokenV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "generators.external-secrets.io/v1alpha1";
-    kind: "GithubAccessToken";
+    apiVersion?: "generators.external-secrets.io/v1alpha1";
+    kind?: "GithubAccessToken";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGithubAccessTokenV1alpha1ManifestConfig extends Manif
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       appID: string;

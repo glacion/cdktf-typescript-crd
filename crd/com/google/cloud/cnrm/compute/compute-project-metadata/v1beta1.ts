@@ -7,8 +7,8 @@ export class KubernetesComputeProjectMetadataV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeProjectMetadataV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeProjectMetadata";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeProjectMetadata";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeProjectMetadataV1beta1ManifestConfig extends M
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description A series of key value pairs. */

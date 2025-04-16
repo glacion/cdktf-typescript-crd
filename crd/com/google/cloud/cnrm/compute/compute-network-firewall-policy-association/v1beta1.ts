@@ -11,8 +11,8 @@ export class KubernetesComputeNetworkFirewallPolicyAssociationV1beta1Manifest ex
 }
 export interface KubernetesComputeNetworkFirewallPolicyAssociationV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeNetworkFirewallPolicyAssociation";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeNetworkFirewallPolicyAssociation";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -21,7 +21,7 @@ export interface KubernetesComputeNetworkFirewallPolicyAssociationV1beta1Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The target that the firewall policy is attached to. */

@@ -7,8 +7,8 @@ export class KubernetesNetworkServicesGatewayV1beta1Manifest extends Manifest {
 }
 export interface KubernetesNetworkServicesGatewayV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networkservices.cnrm.cloud.google.com/v1beta1";
-    kind: "NetworkServicesGateway";
+    apiVersion?: "networkservices.cnrm.cloud.google.com/v1beta1";
+    kind?: "NetworkServicesGateway";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesNetworkServicesGatewayV1beta1ManifestConfig extends M
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description One or more addresses with ports in format of ":" that the Gateway must receive traffic on. The proxy binds to the ports specified. IP address can be anything that is allowed by the underlying infrastructure (auto-allocation, static IP, BYOIP). */

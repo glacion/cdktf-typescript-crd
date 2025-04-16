@@ -7,8 +7,8 @@ export class KubernetesGoogleCASClusterIssuerV1beta1Manifest extends Manifest {
 }
 export interface KubernetesGoogleCASClusterIssuerV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cas-issuer.jetstack.io/v1beta1";
-    kind: "GoogleCASClusterIssuer";
+    apiVersion?: "cas-issuer.jetstack.io/v1beta1";
+    kind?: "GoogleCASClusterIssuer";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGoogleCASClusterIssuerV1beta1ManifestConfig extends M
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description GoogleCASIssuerSpec defines the desired state of GoogleCASIssuer */
     spec?: {

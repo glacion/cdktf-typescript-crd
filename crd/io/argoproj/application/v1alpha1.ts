@@ -7,8 +7,8 @@ export class KubernetesApplicationV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesApplicationV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "argoproj.io/v1alpha1";
-    kind: "Application";
+    apiVersion?: "argoproj.io/v1alpha1";
+    kind?: "Application";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesApplicationV1alpha1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Operation contains information about a requested or running operation */
     operation?: {

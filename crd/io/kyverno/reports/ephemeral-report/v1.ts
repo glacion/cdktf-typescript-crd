@@ -7,8 +7,8 @@ export class KubernetesEphemeralReportV1Manifest extends Manifest {
 }
 export interface KubernetesEphemeralReportV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "reports.kyverno.io/v1";
-    kind: "EphemeralReport";
+    apiVersion?: "reports.kyverno.io/v1";
+    kind?: "EphemeralReport";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesEphemeralReportV1ManifestConfig extends ManifestConfi
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Owner is a reference to the report owner (e.g. a Deployment, Namespace, or Node) */

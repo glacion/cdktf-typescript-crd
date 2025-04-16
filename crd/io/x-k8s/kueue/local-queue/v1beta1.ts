@@ -7,8 +7,8 @@ export class KubernetesLocalQueueV1beta1Manifest extends Manifest {
 }
 export interface KubernetesLocalQueueV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kueue.x-k8s.io/v1beta1";
-    kind: "LocalQueue";
+    apiVersion?: "kueue.x-k8s.io/v1beta1";
+    kind?: "LocalQueue";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesLocalQueueV1beta1ManifestConfig extends ManifestConfi
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description LocalQueueSpec defines the desired state of LocalQueue */
     spec?: {

@@ -7,8 +7,8 @@ export class KubernetesDataCatalogTaxonomyV1beta1Manifest extends Manifest {
 }
 export interface KubernetesDataCatalogTaxonomyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "datacatalog.cnrm.cloud.google.com/v1beta1";
-    kind: "DataCatalogTaxonomy";
+    apiVersion?: "datacatalog.cnrm.cloud.google.com/v1beta1";
+    kind?: "DataCatalogTaxonomy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesDataCatalogTaxonomyV1beta1ManifestConfig extends Mani
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description A list of policy types that are activated for this taxonomy. If not set,

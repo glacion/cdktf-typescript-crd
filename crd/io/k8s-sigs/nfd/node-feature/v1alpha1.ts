@@ -7,8 +7,8 @@ export class KubernetesNodeFeatureV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesNodeFeatureV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "nfd.k8s-sigs.io/v1alpha1";
-    kind: "NodeFeature";
+    apiVersion?: "nfd.k8s-sigs.io/v1alpha1";
+    kind?: "NodeFeature";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesNodeFeatureV1alpha1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description NodeFeatureSpec describes a NodeFeature object. */
     spec: {

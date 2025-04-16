@@ -7,8 +7,8 @@ export class KubernetesAccessContextManagerAccessPolicyV1beta1Manifest extends M
 }
 export interface KubernetesAccessContextManagerAccessPolicyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "accesscontextmanager.cnrm.cloud.google.com/v1beta1";
-    kind: "AccessContextManagerAccessPolicy";
+    apiVersion?: "accesscontextmanager.cnrm.cloud.google.com/v1beta1";
+    kind?: "AccessContextManagerAccessPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAccessContextManagerAccessPolicyV1beta1ManifestConfig
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. Optional. The service-generated name of the resource. Used for acquisition only. Leave unset to create a new resource. */

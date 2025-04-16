@@ -7,8 +7,8 @@ export class KubernetesGCPResourceAllowlistV1Manifest extends Manifest {
 }
 export interface KubernetesGCPResourceAllowlistV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "node.gke.io/v1";
-    kind: "GCPResourceAllowlist";
+    apiVersion?: "node.gke.io/v1";
+    kind?: "GCPResourceAllowlist";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGCPResourceAllowlistV1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description GCPResourceAllowlistSpec defines the desired state of GCPResourceAllowlist */
     spec?: {

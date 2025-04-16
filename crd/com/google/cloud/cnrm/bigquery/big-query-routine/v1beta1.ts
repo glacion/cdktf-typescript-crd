@@ -7,8 +7,8 @@ export class KubernetesBigQueryRoutineV1beta1Manifest extends Manifest {
 }
 export interface KubernetesBigQueryRoutineV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "bigquery.cnrm.cloud.google.com/v1beta1";
-    kind: "BigQueryRoutine";
+    apiVersion?: "bigquery.cnrm.cloud.google.com/v1beta1";
+    kind?: "BigQueryRoutine";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesBigQueryRoutineV1beta1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Input/output argument of a function or a stored procedure. */

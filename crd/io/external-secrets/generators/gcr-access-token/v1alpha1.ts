@@ -7,8 +7,8 @@ export class KubernetesGCRAccessTokenV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesGCRAccessTokenV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "generators.external-secrets.io/v1alpha1";
-    kind: "GCRAccessToken";
+    apiVersion?: "generators.external-secrets.io/v1alpha1";
+    kind?: "GCRAccessToken";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGCRAccessTokenV1alpha1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Auth defines the means for authenticating with GCP */

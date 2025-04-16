@@ -7,8 +7,8 @@ export class KubernetesAutoscalingRunnerSetV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesAutoscalingRunnerSetV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "actions.github.com/v1alpha1";
-    kind: "AutoscalingRunnerSet";
+    apiVersion?: "actions.github.com/v1alpha1";
+    kind?: "AutoscalingRunnerSet";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAutoscalingRunnerSetV1alpha1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description AutoscalingRunnerSetSpec defines the desired state of AutoscalingRunnerSet */
     spec?: {

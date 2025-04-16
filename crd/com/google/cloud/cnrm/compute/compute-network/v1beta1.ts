@@ -7,8 +7,8 @@ export class KubernetesComputeNetworkV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeNetworkV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeNetwork";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeNetwork";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeNetworkV1beta1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Immutable. When set to 'true', the network is created in "auto subnet mode" and

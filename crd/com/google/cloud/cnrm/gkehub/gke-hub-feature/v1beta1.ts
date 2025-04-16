@@ -7,8 +7,8 @@ export class KubernetesGKEHubFeatureV1beta1Manifest extends Manifest {
 }
 export interface KubernetesGKEHubFeatureV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "gkehub.cnrm.cloud.google.com/v1beta1";
-    kind: "GKEHubFeature";
+    apiVersion?: "gkehub.cnrm.cloud.google.com/v1beta1";
+    kind?: "GKEHubFeature";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGKEHubFeatureV1beta1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. The location for the resource */

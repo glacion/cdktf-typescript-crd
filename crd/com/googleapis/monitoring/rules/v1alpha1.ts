@@ -7,8 +7,8 @@ export class KubernetesRulesV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesRulesV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.googleapis.com/v1alpha1";
-    kind: "Rules";
+    apiVersion?: "monitoring.googleapis.com/v1alpha1";
+    kind?: "Rules";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesRulesV1alpha1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of rules to record and alert on. */
     spec: {

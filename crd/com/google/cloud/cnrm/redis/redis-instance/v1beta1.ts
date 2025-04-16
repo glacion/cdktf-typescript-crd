@@ -7,8 +7,8 @@ export class KubernetesRedisInstanceV1beta1Manifest extends Manifest {
 }
 export interface KubernetesRedisInstanceV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "redis.cnrm.cloud.google.com/v1beta1";
-    kind: "RedisInstance";
+    apiVersion?: "redis.cnrm.cloud.google.com/v1beta1";
+    kind?: "RedisInstance";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesRedisInstanceV1beta1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. Only applicable to STANDARD_HA tier which protects the instance

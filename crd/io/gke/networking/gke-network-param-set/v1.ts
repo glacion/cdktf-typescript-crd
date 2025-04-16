@@ -7,8 +7,8 @@ export class KubernetesGKENetworkParamSetV1Manifest extends Manifest {
 }
 export interface KubernetesGKENetworkParamSetV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1";
-    kind: "GKENetworkParamSet";
+    apiVersion?: "networking.gke.io/v1";
+    kind?: "GKENetworkParamSet";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGKENetworkParamSetV1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description GKENetworkParamSetSpec contains the specifications for network object */
     spec?: {

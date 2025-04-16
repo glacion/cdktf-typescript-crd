@@ -7,8 +7,8 @@ export class KubernetesComputeRegionNetworkEndpointGroupV1beta1Manifest extends 
 }
 export interface KubernetesComputeRegionNetworkEndpointGroupV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeRegionNetworkEndpointGroup";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeRegionNetworkEndpointGroup";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeRegionNetworkEndpointGroupV1beta1ManifestConfi
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. Only valid when networkEndpointType is "SERVERLESS".

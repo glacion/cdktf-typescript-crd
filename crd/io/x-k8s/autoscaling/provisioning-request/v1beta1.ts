@@ -7,8 +7,8 @@ export class KubernetesProvisioningRequestV1beta1Manifest extends Manifest {
 }
 export interface KubernetesProvisioningRequestV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "autoscaling.x-k8s.io/v1beta1";
-    kind: "ProvisioningRequest";
+    apiVersion?: "autoscaling.x-k8s.io/v1beta1";
+    kind?: "ProvisioningRequest";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesProvisioningRequestV1beta1ManifestConfig extends Mani
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec contains specification of the ProvisioningRequest object.
      *     More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status.

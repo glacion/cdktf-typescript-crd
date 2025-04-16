@@ -7,8 +7,8 @@ export class KubernetesAirflowWorkerSetV1beta1Manifest extends Manifest {
 }
 export interface KubernetesAirflowWorkerSetV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "composer.cloud.google.com/v1beta1";
-    kind: "AirflowWorkerSet";
+    apiVersion?: "composer.cloud.google.com/v1beta1";
+    kind?: "AirflowWorkerSet";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAirflowWorkerSetV1beta1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** Format: int32 */

@@ -7,8 +7,8 @@ export class KubernetesSecretProviderClassV1Manifest extends Manifest {
 }
 export interface KubernetesSecretProviderClassV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "secrets-store.csi.x-k8s.io/v1";
-    kind: "SecretProviderClass";
+    apiVersion?: "secrets-store.csi.x-k8s.io/v1";
+    kind?: "SecretProviderClass";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesSecretProviderClassV1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description SecretProviderClassSpec defines the desired state of SecretProviderClass */
     spec?: {

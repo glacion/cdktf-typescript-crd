@@ -7,8 +7,8 @@ export class KubernetesClusterExternalSecretV1beta1Manifest extends Manifest {
 }
 export interface KubernetesClusterExternalSecretV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "external-secrets.io/v1beta1";
-    kind: "ClusterExternalSecret";
+    apiVersion?: "external-secrets.io/v1beta1";
+    kind?: "ClusterExternalSecret";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesClusterExternalSecretV1beta1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ClusterExternalSecretSpec defines the desired state of ClusterExternalSecret. */
     spec?: {

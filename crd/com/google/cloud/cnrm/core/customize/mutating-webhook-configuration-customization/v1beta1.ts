@@ -11,8 +11,8 @@ export class KubernetesMutatingWebhookConfigurationCustomizationV1beta1Manifest 
 }
 export interface KubernetesMutatingWebhookConfigurationCustomizationV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "customize.core.cnrm.cloud.google.com/v1beta1";
-    kind: "MutatingWebhookConfigurationCustomization";
+    apiVersion?: "customize.core.cnrm.cloud.google.com/v1beta1";
+    kind?: "MutatingWebhookConfigurationCustomization";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -21,7 +21,7 @@ export interface KubernetesMutatingWebhookConfigurationCustomizationV1beta1Manif
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description WebhookConfigurationCustomizationSpec is the specification for customizing the webhooks of a config
      *     connector webhook configuration. */

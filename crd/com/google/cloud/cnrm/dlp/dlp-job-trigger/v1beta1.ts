@@ -7,8 +7,8 @@ export class KubernetesDLPJobTriggerV1beta1Manifest extends Manifest {
 }
 export interface KubernetesDLPJobTriggerV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "dlp.cnrm.cloud.google.com/v1beta1";
-    kind: "DLPJobTrigger";
+    apiVersion?: "dlp.cnrm.cloud.google.com/v1beta1";
+    kind?: "DLPJobTrigger";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesDLPJobTriggerV1beta1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description User provided description (max 256 chars) */

@@ -7,8 +7,8 @@ export class KubernetesAllowlistSynchronizerV1Manifest extends Manifest {
 }
 export interface KubernetesAllowlistSynchronizerV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "auto.gke.io/v1";
-    kind: "AllowlistSynchronizer";
+    apiVersion?: "auto.gke.io/v1";
+    kind?: "AllowlistSynchronizer";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAllowlistSynchronizerV1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description AllowlistSynchronizerSpec configures the desired list of allowlist paths to manage synchronization. */
     spec?: {

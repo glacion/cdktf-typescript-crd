@@ -7,8 +7,8 @@ export class KubernetesTagsTagValueV1beta1Manifest extends Manifest {
 }
 export interface KubernetesTagsTagValueV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "tags.cnrm.cloud.google.com/v1beta1";
-    kind: "TagsTagValue";
+    apiVersion?: "tags.cnrm.cloud.google.com/v1beta1";
+    kind?: "TagsTagValue";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesTagsTagValueV1beta1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description User-assigned description of the TagValue. Must not exceed 256 characters. */

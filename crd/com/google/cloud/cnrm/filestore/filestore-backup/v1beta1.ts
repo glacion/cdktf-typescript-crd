@@ -7,8 +7,8 @@ export class KubernetesFilestoreBackupV1beta1Manifest extends Manifest {
 }
 export interface KubernetesFilestoreBackupV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "filestore.cnrm.cloud.google.com/v1beta1";
-    kind: "FilestoreBackup";
+    apiVersion?: "filestore.cnrm.cloud.google.com/v1beta1";
+    kind?: "FilestoreBackup";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesFilestoreBackupV1beta1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description A description of the backup with 2048 characters or less. Requests with longer descriptions will be rejected. */

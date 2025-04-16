@@ -7,8 +7,8 @@ export class KubernetesCloudEventSourceV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesCloudEventSourceV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "eventing.keda.sh/v1alpha1";
-    kind: "CloudEventSource";
+    apiVersion?: "eventing.keda.sh/v1alpha1";
+    kind?: "CloudEventSource";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCloudEventSourceV1alpha1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description CloudEventSourceSpec defines the spec of CloudEventSource */
     spec: {

@@ -7,8 +7,8 @@ export class KubernetesWorkloadCertificateConfigV1alpha1Manifest extends Manifes
 }
 export interface KubernetesWorkloadCertificateConfigV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "security.cloud.google.com/v1alpha1";
-    kind: "WorkloadCertificateConfig";
+    apiVersion?: "security.cloud.google.com/v1alpha1";
+    kind?: "WorkloadCertificateConfig";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesWorkloadCertificateConfigV1alpha1ManifestConfig exten
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Controls which CA workload certificates are issued against.

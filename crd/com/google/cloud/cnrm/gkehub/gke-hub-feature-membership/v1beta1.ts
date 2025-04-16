@@ -7,8 +7,8 @@ export class KubernetesGKEHubFeatureMembershipV1beta1Manifest extends Manifest {
 }
 export interface KubernetesGKEHubFeatureMembershipV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "gkehub.cnrm.cloud.google.com/v1beta1";
-    kind: "GKEHubFeatureMembership";
+    apiVersion?: "gkehub.cnrm.cloud.google.com/v1beta1";
+    kind?: "GKEHubFeatureMembership";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGKEHubFeatureMembershipV1beta1ManifestConfig extends 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Config Management-specific spec. */

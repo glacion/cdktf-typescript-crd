@@ -7,8 +7,8 @@ export class KubernetesTrustConfigV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesTrustConfigV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "security.cloud.google.com/v1alpha1";
-    kind: "TrustConfig";
+    apiVersion?: "security.cloud.google.com/v1alpha1";
+    kind?: "TrustConfig";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesTrustConfigV1alpha1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Configuration for trusting identities from a given SPIFFE trust domain.

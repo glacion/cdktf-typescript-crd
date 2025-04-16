@@ -7,8 +7,8 @@ export class KubernetesVerticalPodAutoscalerV1Manifest extends Manifest {
 }
 export interface KubernetesVerticalPodAutoscalerV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "autoscaling.k8s.io/v1";
-    kind: "VerticalPodAutoscaler";
+    apiVersion?: "autoscaling.k8s.io/v1";
+    kind?: "VerticalPodAutoscaler";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesVerticalPodAutoscalerV1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of the behavior of the autoscaler. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status. */
     spec: {

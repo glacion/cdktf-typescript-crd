@@ -7,8 +7,8 @@ export class KubernetesRecaptchaEnterpriseKeyV1beta1Manifest extends Manifest {
 }
 export interface KubernetesRecaptchaEnterpriseKeyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "recaptchaenterprise.cnrm.cloud.google.com/v1beta1";
-    kind: "RecaptchaEnterpriseKey";
+    apiVersion?: "recaptchaenterprise.cnrm.cloud.google.com/v1beta1";
+    kind?: "RecaptchaEnterpriseKey";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesRecaptchaEnterpriseKeyV1beta1ManifestConfig extends M
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Settings for keys that can be used by Android apps. */

@@ -7,8 +7,8 @@ export class KubernetesClusterCleanupPolicyV2beta1Manifest extends Manifest {
 }
 export interface KubernetesClusterCleanupPolicyV2beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kyverno.io/v2beta1";
-    kind: "ClusterCleanupPolicy";
+    apiVersion?: "kyverno.io/v2beta1";
+    kind?: "ClusterCleanupPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesClusterCleanupPolicyV2beta1ManifestConfig extends Man
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec declares policy behaviors. */
     spec: {

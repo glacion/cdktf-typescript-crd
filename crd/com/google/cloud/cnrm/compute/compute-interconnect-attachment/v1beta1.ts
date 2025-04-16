@@ -7,8 +7,8 @@ export class KubernetesComputeInterconnectAttachmentV1beta1Manifest extends Mani
 }
 export interface KubernetesComputeInterconnectAttachmentV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeInterconnectAttachment";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeInterconnectAttachment";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeInterconnectAttachmentV1beta1ManifestConfig ex
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Whether the VLAN attachment is enabled or disabled.  When using

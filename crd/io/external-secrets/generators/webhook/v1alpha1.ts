@@ -7,8 +7,8 @@ export class KubernetesWebhookV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesWebhookV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "generators.external-secrets.io/v1alpha1";
-    kind: "Webhook";
+    apiVersion?: "generators.external-secrets.io/v1alpha1";
+    kind?: "Webhook";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesWebhookV1alpha1ManifestConfig extends ManifestConfig 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description WebhookSpec controls the behavior of the external generator. Any body parameters should be passed to the server through the parameters field. */
     spec?: {

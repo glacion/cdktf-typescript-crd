@@ -7,8 +7,8 @@ export class KubernetesBigQueryDataTransferConfigV1alpha1Manifest extends Manife
 }
 export interface KubernetesBigQueryDataTransferConfigV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "bigquerydatatransfer.cnrm.cloud.google.com/v1alpha1";
-    kind: "BigQueryDataTransferConfig";
+    apiVersion?: "bigquerydatatransfer.cnrm.cloud.google.com/v1alpha1";
+    kind?: "BigQueryDataTransferConfig";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesBigQueryDataTransferConfigV1alpha1ManifestConfig exte
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description BigQueryDataTransferConfigSpec defines the desired state of BigQueryDataTransferConfig */
     spec: {

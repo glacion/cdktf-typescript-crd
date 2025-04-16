@@ -11,8 +11,8 @@ export class KubernetesCertificateManagerCertificateMapEntryV1alpha1Manifest ext
 }
 export interface KubernetesCertificateManagerCertificateMapEntryV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "certificatemanager.cnrm.cloud.google.com/v1alpha1";
-    kind: "CertificateManagerCertificateMapEntry";
+    apiVersion?: "certificatemanager.cnrm.cloud.google.com/v1alpha1";
+    kind?: "CertificateManagerCertificateMapEntry";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -21,7 +21,7 @@ export interface KubernetesCertificateManagerCertificateMapEntryV1alpha1Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       certificatesRefs: ({

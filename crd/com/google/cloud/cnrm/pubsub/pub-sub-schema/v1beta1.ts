@@ -7,8 +7,8 @@ export class KubernetesPubSubSchemaV1beta1Manifest extends Manifest {
 }
 export interface KubernetesPubSubSchemaV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "pubsub.cnrm.cloud.google.com/v1beta1";
-    kind: "PubSubSchema";
+    apiVersion?: "pubsub.cnrm.cloud.google.com/v1beta1";
+    kind?: "PubSubSchema";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPubSubSchemaV1beta1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The definition of the schema.

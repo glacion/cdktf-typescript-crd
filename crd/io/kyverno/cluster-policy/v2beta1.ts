@@ -7,8 +7,8 @@ export class KubernetesClusterPolicyV2beta1Manifest extends Manifest {
 }
 export interface KubernetesClusterPolicyV2beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kyverno.io/v2beta1";
-    kind: "ClusterPolicy";
+    apiVersion?: "kyverno.io/v2beta1";
+    kind?: "ClusterPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesClusterPolicyV2beta1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec declares policy behaviors. */
     spec: {

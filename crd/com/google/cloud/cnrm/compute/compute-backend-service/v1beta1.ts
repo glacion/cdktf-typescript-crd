@@ -7,8 +7,8 @@ export class KubernetesComputeBackendServiceV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeBackendServiceV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeBackendService";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeBackendService";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeBackendServiceV1beta1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Lifetime of cookies in seconds if session_affinity is

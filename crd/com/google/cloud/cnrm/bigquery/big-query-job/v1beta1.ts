@@ -7,8 +7,8 @@ export class KubernetesBigQueryJobV1beta1Manifest extends Manifest {
 }
 export interface KubernetesBigQueryJobV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "bigquery.cnrm.cloud.google.com/v1beta1";
-    kind: "BigQueryJob";
+    apiVersion?: "bigquery.cnrm.cloud.google.com/v1beta1";
+    kind?: "BigQueryJob";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesBigQueryJobV1beta1ManifestConfig extends ManifestConf
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Immutable. Copies a table. */

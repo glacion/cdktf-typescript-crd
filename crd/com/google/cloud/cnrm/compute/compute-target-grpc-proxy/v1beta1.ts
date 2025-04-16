@@ -7,8 +7,8 @@ export class KubernetesComputeTargetGRPCProxyV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeTargetGRPCProxyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeTargetGRPCProxy";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeTargetGRPCProxy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeTargetGRPCProxyV1beta1ManifestConfig extends M
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description An optional description of this resource. */

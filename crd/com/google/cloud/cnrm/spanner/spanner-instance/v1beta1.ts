@@ -7,8 +7,8 @@ export class KubernetesSpannerInstanceV1beta1Manifest extends Manifest {
 }
 export interface KubernetesSpannerInstanceV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "spanner.cnrm.cloud.google.com/v1beta1";
-    kind: "SpannerInstance";
+    apiVersion?: "spanner.cnrm.cloud.google.com/v1beta1";
+    kind?: "SpannerInstance";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesSpannerInstanceV1beta1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description SpannerInstanceSpec defines the desired state of SpannerInstance */
     spec: {

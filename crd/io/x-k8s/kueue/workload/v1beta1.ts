@@ -7,8 +7,8 @@ export class KubernetesWorkloadV1beta1Manifest extends Manifest {
 }
 export interface KubernetesWorkloadV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kueue.x-k8s.io/v1beta1";
-    kind: "Workload";
+    apiVersion?: "kueue.x-k8s.io/v1beta1";
+    kind?: "Workload";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesWorkloadV1beta1ManifestConfig extends ManifestConfig 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description WorkloadSpec defines the desired state of Workload */
     spec?: {

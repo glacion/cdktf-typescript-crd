@@ -7,8 +7,8 @@ export class KubernetesAtlasSearchIndexConfigV1Manifest extends Manifest {
 }
 export interface KubernetesAtlasSearchIndexConfigV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "atlas.mongodb.com/v1";
-    kind: "AtlasSearchIndexConfig";
+    apiVersion?: "atlas.mongodb.com/v1";
+    kind?: "AtlasSearchIndexConfig";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAtlasSearchIndexConfigV1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Specific pre-defined method chosen to convert database field text into searchable words. This conversion reduces the text of fields into the smallest units of text. These units are called a term or token. This process, known as tokenization, involves a variety of changes made to the text in fields:

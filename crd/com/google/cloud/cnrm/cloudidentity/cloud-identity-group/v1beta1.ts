@@ -7,8 +7,8 @@ export class KubernetesCloudIdentityGroupV1beta1Manifest extends Manifest {
 }
 export interface KubernetesCloudIdentityGroupV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cloudidentity.cnrm.cloud.google.com/v1beta1";
-    kind: "CloudIdentityGroup";
+    apiVersion?: "cloudidentity.cnrm.cloud.google.com/v1beta1";
+    kind?: "CloudIdentityGroup";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCloudIdentityGroupV1beta1ManifestConfig extends Manif
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description CloudIdentityGroupSpec defines the desired state of CloudIdentityGroup */
     spec: {

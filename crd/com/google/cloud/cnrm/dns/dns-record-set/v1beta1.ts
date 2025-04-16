@@ -7,8 +7,8 @@ export class KubernetesDNSRecordSetV1beta1Manifest extends Manifest {
 }
 export interface KubernetesDNSRecordSetV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "dns.cnrm.cloud.google.com/v1beta1";
-    kind: "DNSRecordSet";
+    apiVersion?: "dns.cnrm.cloud.google.com/v1beta1";
+    kind?: "DNSRecordSet";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesDNSRecordSetV1beta1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       managedZoneRef: {

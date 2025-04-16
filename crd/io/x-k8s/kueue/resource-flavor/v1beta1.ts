@@ -7,8 +7,8 @@ export class KubernetesResourceFlavorV1beta1Manifest extends Manifest {
 }
 export interface KubernetesResourceFlavorV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kueue.x-k8s.io/v1beta1";
-    kind: "ResourceFlavor";
+    apiVersion?: "kueue.x-k8s.io/v1beta1";
+    kind?: "ResourceFlavor";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesResourceFlavorV1beta1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ResourceFlavorSpec defines the desired state of the ResourceFlavor */
     spec?: {

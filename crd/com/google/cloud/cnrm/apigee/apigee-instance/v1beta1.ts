@@ -7,8 +7,8 @@ export class KubernetesApigeeInstanceV1beta1Manifest extends Manifest {
 }
 export interface KubernetesApigeeInstanceV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "apigee.cnrm.cloud.google.com/v1beta1";
-    kind: "ApigeeInstance";
+    apiVersion?: "apigee.cnrm.cloud.google.com/v1beta1";
+    kind?: "ApigeeInstance";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesApigeeInstanceV1beta1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ApigeeInstanceSpec defines the desired state of ApigeeInstance */
     spec: {

@@ -7,8 +7,8 @@ export class KubernetesComputeInstanceTemplateV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeInstanceTemplateV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeInstanceTemplate";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeInstanceTemplate";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeInstanceTemplateV1beta1ManifestConfig extends 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. Controls for advanced machine-related behavior features. */

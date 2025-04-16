@@ -7,8 +7,8 @@ export class KubernetesComputeRouterPeerV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeRouterPeerV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeRouterPeer";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeRouterPeer";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeRouterPeerV1beta1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description User-specified flag to indicate which mode to use for advertisement.

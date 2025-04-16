@@ -7,8 +7,8 @@ export class KubernetesClusterPodMonitoringV1Manifest extends Manifest {
 }
 export interface KubernetesClusterPodMonitoringV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.googleapis.com/v1";
-    kind: "ClusterPodMonitoring";
+    apiVersion?: "monitoring.googleapis.com/v1";
+    kind?: "ClusterPodMonitoring";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesClusterPodMonitoringV1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of desired Pod selection for target discovery by
      *     Prometheus. */

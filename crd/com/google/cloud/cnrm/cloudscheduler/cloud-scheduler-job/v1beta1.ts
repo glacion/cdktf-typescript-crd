@@ -7,8 +7,8 @@ export class KubernetesCloudSchedulerJobV1beta1Manifest extends Manifest {
 }
 export interface KubernetesCloudSchedulerJobV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cloudscheduler.cnrm.cloud.google.com/v1beta1";
-    kind: "CloudSchedulerJob";
+    apiVersion?: "cloudscheduler.cnrm.cloud.google.com/v1beta1";
+    kind?: "CloudSchedulerJob";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCloudSchedulerJobV1beta1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description App Engine HTTP target. */

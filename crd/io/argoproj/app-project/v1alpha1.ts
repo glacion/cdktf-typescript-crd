@@ -7,8 +7,8 @@ export class KubernetesAppProjectV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesAppProjectV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "argoproj.io/v1alpha1";
-    kind: "AppProject";
+    apiVersion?: "argoproj.io/v1alpha1";
+    kind?: "AppProject";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAppProjectV1alpha1ManifestConfig extends ManifestConf
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description AppProjectSpec is the specification of an AppProject */
     spec: {

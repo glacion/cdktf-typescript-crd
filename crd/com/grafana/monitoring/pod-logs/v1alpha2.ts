@@ -7,8 +7,8 @@ export class KubernetesPodLogsV1alpha2Manifest extends Manifest {
 }
 export interface KubernetesPodLogsV1alpha2ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.grafana.com/v1alpha2";
-    kind: "PodLogs";
+    apiVersion?: "monitoring.grafana.com/v1alpha2";
+    kind?: "PodLogs";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPodLogsV1alpha2ManifestConfig extends ManifestConfig 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description PodLogsSpec defines how to collect logs for a Pod. */
     spec?: {

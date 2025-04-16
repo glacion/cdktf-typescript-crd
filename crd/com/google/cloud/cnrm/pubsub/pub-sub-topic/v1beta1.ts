@@ -7,8 +7,8 @@ export class KubernetesPubSubTopicV1beta1Manifest extends Manifest {
 }
 export interface KubernetesPubSubTopicV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "pubsub.cnrm.cloud.google.com/v1beta1";
-    kind: "PubSubTopic";
+    apiVersion?: "pubsub.cnrm.cloud.google.com/v1beta1";
+    kind?: "PubSubTopic";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPubSubTopicV1beta1ManifestConfig extends ManifestConf
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description The KMSCryptoKey to be used to protect access to messages published

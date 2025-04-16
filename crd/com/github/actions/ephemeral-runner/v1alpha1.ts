@@ -7,8 +7,8 @@ export class KubernetesEphemeralRunnerV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesEphemeralRunnerV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "actions.github.com/v1alpha1";
-    kind: "EphemeralRunner";
+    apiVersion?: "actions.github.com/v1alpha1";
+    kind?: "EphemeralRunner";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesEphemeralRunnerV1alpha1ManifestConfig extends Manifes
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description EphemeralRunnerSpec defines the desired state of EphemeralRunner */
     spec?: {

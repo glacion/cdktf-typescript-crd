@@ -7,8 +7,8 @@ export class KubernetesTriggerAuthenticationV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesTriggerAuthenticationV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "keda.sh/v1alpha1";
-    kind: "TriggerAuthentication";
+    apiVersion?: "keda.sh/v1alpha1";
+    kind?: "TriggerAuthentication";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesTriggerAuthenticationV1alpha1ManifestConfig extends M
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description TriggerAuthenticationSpec defines the various ways to authenticate */
     spec: {

@@ -7,8 +7,8 @@ export class KubernetesMultiKueueClusterV1beta1Manifest extends Manifest {
 }
 export interface KubernetesMultiKueueClusterV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kueue.x-k8s.io/v1beta1";
-    kind: "MultiKueueCluster";
+    apiVersion?: "kueue.x-k8s.io/v1beta1";
+    kind?: "MultiKueueCluster";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesMultiKueueClusterV1beta1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Information how to connect to the cluster. */

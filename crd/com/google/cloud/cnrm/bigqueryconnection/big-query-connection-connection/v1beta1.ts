@@ -7,8 +7,8 @@ export class KubernetesBigQueryConnectionConnectionV1beta1Manifest extends Manif
 }
 export interface KubernetesBigQueryConnectionConnectionV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "bigqueryconnection.cnrm.cloud.google.com/v1beta1";
-    kind: "BigQueryConnectionConnection";
+    apiVersion?: "bigqueryconnection.cnrm.cloud.google.com/v1beta1";
+    kind?: "BigQueryConnectionConnection";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesBigQueryConnectionConnectionV1beta1ManifestConfig ext
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description BigQueryConnectionConnectionSpec defines the desired state to connect BigQuery to external resources */
     spec?: {

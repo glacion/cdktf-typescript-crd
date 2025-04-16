@@ -7,8 +7,8 @@ export class KubernetesControllerReconcilerV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesControllerReconcilerV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "customize.core.cnrm.cloud.google.com/v1alpha1";
-    kind: "ControllerReconciler";
+    apiVersion?: "customize.core.cnrm.cloud.google.com/v1alpha1";
+    kind?: "ControllerReconciler";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesControllerReconcilerV1alpha1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ControllerReconcilerSpec is the specification of ControllerReconciler. */
     spec: {

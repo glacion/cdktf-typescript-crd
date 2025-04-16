@@ -7,8 +7,8 @@ export class KubernetesComputeTargetTCPProxyV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeTargetTCPProxyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeTargetTCPProxy";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeTargetTCPProxy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeTargetTCPProxyV1beta1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ComputeTargetTCPProxySpec defines the desired state of ComputeTargetTCPProxy */
     spec: {

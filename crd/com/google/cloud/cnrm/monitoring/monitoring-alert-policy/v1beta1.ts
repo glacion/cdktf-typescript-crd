@@ -7,8 +7,8 @@ export class KubernetesMonitoringAlertPolicyV1beta1Manifest extends Manifest {
 }
 export interface KubernetesMonitoringAlertPolicyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.cnrm.cloud.google.com/v1beta1";
-    kind: "MonitoringAlertPolicy";
+    apiVersion?: "monitoring.cnrm.cloud.google.com/v1beta1";
+    kind?: "MonitoringAlertPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesMonitoringAlertPolicyV1beta1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Control over how this alert policy's notification channels are notified. */

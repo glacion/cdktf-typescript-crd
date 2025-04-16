@@ -7,8 +7,8 @@ export class KubernetesComputeHealthCheckV1beta1Manifest extends Manifest {
 }
 export interface KubernetesComputeHealthCheckV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
-    kind: "ComputeHealthCheck";
+    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
+    kind?: "ComputeHealthCheck";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesComputeHealthCheckV1beta1ManifestConfig extends Manif
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description How often (in seconds) to send a health check. The default value is 5

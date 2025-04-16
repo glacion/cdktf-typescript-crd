@@ -7,8 +7,8 @@ export class KubernetesAtlasCustomRoleV1Manifest extends Manifest {
 }
 export interface KubernetesAtlasCustomRoleV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "atlas.mongodb.com/v1";
-    kind: "AtlasCustomRole";
+    apiVersion?: "atlas.mongodb.com/v1";
+    kind?: "AtlasCustomRole";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesAtlasCustomRoleV1ManifestConfig extends ManifestConfi
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description AtlasCustomRoleSpec defines the desired state of CustomRole in Atlas */
     spec?: {

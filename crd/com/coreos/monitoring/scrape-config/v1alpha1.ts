@@ -7,8 +7,8 @@ export class KubernetesScrapeConfigV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesScrapeConfigV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.coreos.com/v1alpha1";
-    kind: "ScrapeConfig";
+    apiVersion?: "monitoring.coreos.com/v1alpha1";
+    kind?: "ScrapeConfig";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesScrapeConfigV1alpha1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ScrapeConfigSpec is a specification of the desired configuration for a scrape configuration. */
     spec: {

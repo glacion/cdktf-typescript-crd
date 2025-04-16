@@ -7,8 +7,8 @@ export class KubernetesEdgeNetworkSubnetV1beta1Manifest extends Manifest {
 }
 export interface KubernetesEdgeNetworkSubnetV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "edgenetwork.cnrm.cloud.google.com/v1beta1";
-    kind: "EdgeNetworkSubnet";
+    apiVersion?: "edgenetwork.cnrm.cloud.google.com/v1beta1";
+    kind?: "EdgeNetworkSubnet";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesEdgeNetworkSubnetV1beta1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. A free-text description of the resource. Max length 1024 characters. */

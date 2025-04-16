@@ -7,8 +7,8 @@ export class KubernetesGlobalContextEntryV2alpha1Manifest extends Manifest {
 }
 export interface KubernetesGlobalContextEntryV2alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kyverno.io/v2alpha1";
-    kind: "GlobalContextEntry";
+    apiVersion?: "kyverno.io/v2alpha1";
+    kind?: "GlobalContextEntry";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGlobalContextEntryV2alpha1ManifestConfig extends Mani
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec declares policy exception behaviors. */
     spec: {

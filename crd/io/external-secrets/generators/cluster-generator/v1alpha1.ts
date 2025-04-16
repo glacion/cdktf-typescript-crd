@@ -7,8 +7,8 @@ export class KubernetesClusterGeneratorV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesClusterGeneratorV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "generators.external-secrets.io/v1alpha1";
-    kind: "ClusterGenerator";
+    apiVersion?: "generators.external-secrets.io/v1alpha1";
+    kind?: "ClusterGenerator";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesClusterGeneratorV1alpha1ManifestConfig extends Manife
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Generator the spec for this generator, must match the kind. */

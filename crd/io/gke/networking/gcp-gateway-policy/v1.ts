@@ -7,8 +7,8 @@ export class KubernetesGCPGatewayPolicyV1Manifest extends Manifest {
 }
 export interface KubernetesGCPGatewayPolicyV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1";
-    kind: "GCPGatewayPolicy";
+    apiVersion?: "networking.gke.io/v1";
+    kind?: "GCPGatewayPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGCPGatewayPolicyV1ManifestConfig extends ManifestConf
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Spec defines the desired state of GCPGatewayPolicy. */
     spec: {

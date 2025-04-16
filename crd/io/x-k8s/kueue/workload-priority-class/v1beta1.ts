@@ -7,8 +7,8 @@ export class KubernetesWorkloadPriorityClassV1beta1Manifest extends Manifest {
 }
 export interface KubernetesWorkloadPriorityClassV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kueue.x-k8s.io/v1beta1";
-    kind: "WorkloadPriorityClass";
+    apiVersion?: "kueue.x-k8s.io/v1beta1";
+    kind?: "WorkloadPriorityClass";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesWorkloadPriorityClassV1beta1ManifestConfig extends Ma
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description description is an arbitrary string that usually provides guidelines on
      *     when this workloadPriorityClass should be used. */

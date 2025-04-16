@@ -7,8 +7,8 @@ export class KubernetesResourceManagerLienV1beta1Manifest extends Manifest {
 }
 export interface KubernetesResourceManagerLienV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "resourcemanager.cnrm.cloud.google.com/v1beta1";
-    kind: "ResourceManagerLien";
+    apiVersion?: "resourcemanager.cnrm.cloud.google.com/v1beta1";
+    kind?: "ResourceManagerLien";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesResourceManagerLienV1beta1ManifestConfig extends Mani
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. A stable, user-visible/meaningful string identifying the origin

@@ -7,8 +7,8 @@ export class KubernetesIAMPolicyMemberV1beta1Manifest extends Manifest {
 }
 export interface KubernetesIAMPolicyMemberV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "iam.cnrm.cloud.google.com/v1beta1";
-    kind: "IAMPolicyMember";
+    apiVersion?: "iam.cnrm.cloud.google.com/v1beta1";
+    kind?: "IAMPolicyMember";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesIAMPolicyMemberV1beta1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description IAMPolicyMemberSpec defines the desired state of IAMPolicyMember */
     spec?: {

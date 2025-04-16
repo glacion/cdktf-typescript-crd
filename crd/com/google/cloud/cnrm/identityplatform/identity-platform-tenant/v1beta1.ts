@@ -7,8 +7,8 @@ export class KubernetesIdentityPlatformTenantV1beta1Manifest extends Manifest {
 }
 export interface KubernetesIdentityPlatformTenantV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "identityplatform.cnrm.cloud.google.com/v1beta1";
-    kind: "IdentityPlatformTenant";
+    apiVersion?: "identityplatform.cnrm.cloud.google.com/v1beta1";
+    kind?: "IdentityPlatformTenant";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesIdentityPlatformTenantV1beta1ManifestConfig extends M
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Whether to allow email/password user authentication. */

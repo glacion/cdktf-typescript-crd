@@ -7,8 +7,8 @@ export class KubernetesUUIDV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesUUIDV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "generators.external-secrets.io/v1alpha1";
-    kind: "UUID";
+    apiVersion?: "generators.external-secrets.io/v1alpha1";
+    kind?: "UUID";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesUUIDV1alpha1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description UUIDSpec controls the behavior of the uuid generator. */
     spec?: Record<string, never>;

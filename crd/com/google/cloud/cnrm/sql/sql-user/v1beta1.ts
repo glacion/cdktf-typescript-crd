@@ -7,8 +7,8 @@ export class KubernetesSQLUserV1beta1Manifest extends Manifest {
 }
 export interface KubernetesSQLUserV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "sql.cnrm.cloud.google.com/v1beta1";
-    kind: "SQLUser";
+    apiVersion?: "sql.cnrm.cloud.google.com/v1beta1";
+    kind?: "SQLUser";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesSQLUserV1beta1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. The host the user can connect from. This is only supported for MySQL instances. Don't set this field for PostgreSQL instances. Can be an IP address. Changing this forces a new resource to be created. */

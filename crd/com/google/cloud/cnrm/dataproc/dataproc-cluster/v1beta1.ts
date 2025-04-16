@@ -7,8 +7,8 @@ export class KubernetesDataprocClusterV1beta1Manifest extends Manifest {
 }
 export interface KubernetesDataprocClusterV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "dataproc.cnrm.cloud.google.com/v1beta1";
-    kind: "DataprocCluster";
+    apiVersion?: "dataproc.cnrm.cloud.google.com/v1beta1";
+    kind?: "DataprocCluster";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesDataprocClusterV1beta1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. The cluster config. Note that Dataproc may set default values, and values may change when clusters are updated. */

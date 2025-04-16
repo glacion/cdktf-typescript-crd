@@ -7,8 +7,8 @@ export class KubernetesECRAuthorizationTokenV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesECRAuthorizationTokenV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "generators.external-secrets.io/v1alpha1";
-    kind: "ECRAuthorizationToken";
+    apiVersion?: "generators.external-secrets.io/v1alpha1";
+    kind?: "ECRAuthorizationToken";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesECRAuthorizationTokenV1alpha1ManifestConfig extends M
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description Auth defines how to authenticate with AWS */

@@ -7,8 +7,8 @@ export class KubernetesStorageBucketV1beta1Manifest extends Manifest {
 }
 export interface KubernetesStorageBucketV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "storage.cnrm.cloud.google.com/v1beta1";
-    kind: "StorageBucket";
+    apiVersion?: "storage.cnrm.cloud.google.com/v1beta1";
+    kind?: "StorageBucket";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesStorageBucketV1beta1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec?: {
       /** @description The bucket's autoclass configuration. */

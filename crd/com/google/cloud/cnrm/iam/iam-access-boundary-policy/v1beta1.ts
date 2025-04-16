@@ -7,8 +7,8 @@ export class KubernetesIAMAccessBoundaryPolicyV1beta1Manifest extends Manifest {
 }
 export interface KubernetesIAMAccessBoundaryPolicyV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "iam.cnrm.cloud.google.com/v1beta1";
-    kind: "IAMAccessBoundaryPolicy";
+    apiVersion?: "iam.cnrm.cloud.google.com/v1beta1";
+    kind?: "IAMAccessBoundaryPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesIAMAccessBoundaryPolicyV1beta1ManifestConfig extends 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The display name of the rule. */

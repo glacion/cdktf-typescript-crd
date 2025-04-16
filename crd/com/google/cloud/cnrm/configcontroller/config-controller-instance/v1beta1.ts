@@ -7,8 +7,8 @@ export class KubernetesConfigControllerInstanceV1beta1Manifest extends Manifest 
 }
 export interface KubernetesConfigControllerInstanceV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "configcontroller.cnrm.cloud.google.com/v1beta1";
-    kind: "ConfigControllerInstance";
+    apiVersion?: "configcontroller.cnrm.cloud.google.com/v1beta1";
+    kind?: "ConfigControllerInstance";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesConfigControllerInstanceV1beta1ManifestConfig extends
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. The location for the resource */

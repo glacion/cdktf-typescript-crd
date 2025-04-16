@@ -7,8 +7,8 @@ export class KubernetesNamespacedControllerReconcilerV1alpha1Manifest extends Ma
 }
 export interface KubernetesNamespacedControllerReconcilerV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "customize.core.cnrm.cloud.google.com/v1alpha1";
-    kind: "NamespacedControllerReconciler";
+    apiVersion?: "customize.core.cnrm.cloud.google.com/v1alpha1";
+    kind?: "NamespacedControllerReconciler";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesNamespacedControllerReconcilerV1alpha1ManifestConfig 
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description NamespacedControllerReconciler is the specification of NamespacedControllerReconciler. */
     spec: {

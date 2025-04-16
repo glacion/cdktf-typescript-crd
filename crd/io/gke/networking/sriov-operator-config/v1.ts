@@ -7,8 +7,8 @@ export class KubernetesSriovOperatorConfigV1Manifest extends Manifest {
 }
 export interface KubernetesSriovOperatorConfigV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "networking.gke.io/v1";
-    kind: "SriovOperatorConfig";
+    apiVersion?: "networking.gke.io/v1";
+    kind?: "SriovOperatorConfig";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesSriovOperatorConfigV1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description SriovOperatorConfigSpec defines the desired state of SriovOperatorConfig */
     spec?: {

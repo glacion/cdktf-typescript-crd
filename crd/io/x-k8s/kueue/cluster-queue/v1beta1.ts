@@ -7,8 +7,8 @@ export class KubernetesClusterQueueV1beta1Manifest extends Manifest {
 }
 export interface KubernetesClusterQueueV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "kueue.x-k8s.io/v1beta1";
-    kind: "ClusterQueue";
+    apiVersion?: "kueue.x-k8s.io/v1beta1";
+    kind?: "ClusterQueue";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesClusterQueueV1beta1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ClusterQueueSpec defines the desired state of ClusterQueue */
     spec?: {

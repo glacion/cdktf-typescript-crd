@@ -7,8 +7,8 @@ export class KubernetesServiceDirectoryEndpointV1beta1Manifest extends Manifest 
 }
 export interface KubernetesServiceDirectoryEndpointV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "servicedirectory.cnrm.cloud.google.com/v1beta1";
-    kind: "ServiceDirectoryEndpoint";
+    apiVersion?: "servicedirectory.cnrm.cloud.google.com/v1beta1";
+    kind?: "ServiceDirectoryEndpoint";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesServiceDirectoryEndpointV1beta1ManifestConfig extends
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       addressRef?: {

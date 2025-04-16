@@ -7,8 +7,8 @@ export class KubernetesCiliumEndpointV2Manifest extends Manifest {
 }
 export interface KubernetesCiliumEndpointV2ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "cilium.io/v2";
-    kind: "CiliumEndpoint";
+    apiVersion?: "cilium.io/v2";
+    kind?: "CiliumEndpoint";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesCiliumEndpointV2ManifestConfig extends ManifestConfig
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description EndpointStatus is the status of a Cilium endpoint. */
     status?: {

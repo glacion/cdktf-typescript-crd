@@ -7,8 +7,8 @@ export class KubernetesLoggingLogExclusionV1beta1Manifest extends Manifest {
 }
 export interface KubernetesLoggingLogExclusionV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "logging.cnrm.cloud.google.com/v1beta1";
-    kind: "LoggingLogExclusion";
+    apiVersion?: "logging.cnrm.cloud.google.com/v1beta1";
+    kind?: "LoggingLogExclusion";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesLoggingLogExclusionV1beta1ManifestConfig extends Mani
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. The BillingAccount that this resource belongs to. Only one of [projectRef, folderRef, organizationRef, billingAccountRef] may be specified. */

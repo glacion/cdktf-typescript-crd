@@ -7,8 +7,8 @@ export class KubernetesVPCAccessConnectorV1beta1Manifest extends Manifest {
 }
 export interface KubernetesVPCAccessConnectorV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "vpcaccess.cnrm.cloud.google.com/v1beta1";
-    kind: "VPCAccessConnector";
+    apiVersion?: "vpcaccess.cnrm.cloud.google.com/v1beta1";
+    kind?: "VPCAccessConnector";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesVPCAccessConnectorV1beta1ManifestConfig extends Manif
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. The range of internal addresses that follows RFC 4632 notation. Example: '10.132.0.0/28'. */

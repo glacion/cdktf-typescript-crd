@@ -7,8 +7,8 @@ export class KubernetesRedisClusterV1beta1Manifest extends Manifest {
 }
 export interface KubernetesRedisClusterV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "redis.cnrm.cloud.google.com/v1beta1";
-    kind: "RedisCluster";
+    apiVersion?: "redis.cnrm.cloud.google.com/v1beta1";
+    kind?: "RedisCluster";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesRedisClusterV1beta1ManifestConfig extends ManifestCon
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description RedisClusterSpec defines the desired state of RedisCluster */
     spec?: {

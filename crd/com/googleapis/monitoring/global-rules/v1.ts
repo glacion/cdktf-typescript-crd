@@ -7,8 +7,8 @@ export class KubernetesGlobalRulesV1Manifest extends Manifest {
 }
 export interface KubernetesGlobalRulesV1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "monitoring.googleapis.com/v1";
-    kind: "GlobalRules";
+    apiVersion?: "monitoring.googleapis.com/v1";
+    kind?: "GlobalRules";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesGlobalRulesV1ManifestConfig extends ManifestConfig {
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description Specification of rules to record and alert on. */
     spec: {

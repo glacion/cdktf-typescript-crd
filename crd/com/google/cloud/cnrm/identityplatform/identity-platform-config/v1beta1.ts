@@ -7,8 +7,8 @@ export class KubernetesIdentityPlatformConfigV1beta1Manifest extends Manifest {
 }
 export interface KubernetesIdentityPlatformConfigV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "identityplatform.cnrm.cloud.google.com/v1beta1";
-    kind: "IdentityPlatformConfig";
+    apiVersion?: "identityplatform.cnrm.cloud.google.com/v1beta1";
+    kind?: "IdentityPlatformConfig";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesIdentityPlatformConfigV1beta1ManifestConfig extends M
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description List of domains authorized for OAuth redirects */

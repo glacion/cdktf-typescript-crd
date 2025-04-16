@@ -7,8 +7,8 @@ export class KubernetesVertexAIDatasetV1beta1Manifest extends Manifest {
 }
 export interface KubernetesVertexAIDatasetV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "vertexai.cnrm.cloud.google.com/v1beta1";
-    kind: "VertexAIDataset";
+    apiVersion?: "vertexai.cnrm.cloud.google.com/v1beta1";
+    kind?: "VertexAIDataset";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesVertexAIDatasetV1beta1ManifestConfig extends Manifest
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description The user-defined name of the Dataset. The name can be up to 128 characters long and can be consist of any UTF-8 characters. */

@@ -7,8 +7,8 @@ export class KubernetesPolicyReportV1alpha2Manifest extends Manifest {
 }
 export interface KubernetesPolicyReportV1alpha2ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "wgpolicyk8s.io/v1alpha2";
-    kind: "PolicyReport";
+    apiVersion?: "wgpolicyk8s.io/v1alpha2";
+    kind?: "PolicyReport";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPolicyReportV1alpha2ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description PolicyReportResult provides result details */
     results?: {

@@ -7,8 +7,8 @@ export class KubernetesLoggingLogSinkV1beta1Manifest extends Manifest {
 }
 export interface KubernetesLoggingLogSinkV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "logging.cnrm.cloud.google.com/v1beta1";
-    kind: "LoggingLogSink";
+    apiVersion?: "logging.cnrm.cloud.google.com/v1beta1";
+    kind?: "LoggingLogSink";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesLoggingLogSinkV1beta1ManifestConfig extends ManifestC
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Options that affect sinks exporting data to BigQuery. */

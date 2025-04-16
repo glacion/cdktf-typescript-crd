@@ -7,8 +7,8 @@ export class KubernetesScaledObjectV1alpha1Manifest extends Manifest {
 }
 export interface KubernetesScaledObjectV1alpha1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "keda.sh/v1alpha1";
-    kind: "ScaledObject";
+    apiVersion?: "keda.sh/v1alpha1";
+    kind?: "ScaledObject";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesScaledObjectV1alpha1ManifestConfig extends ManifestCo
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     /** @description ScaledObjectSpec is the spec for a ScaledObject resource */
     spec: {

@@ -7,8 +7,8 @@ export class KubernetesMembershipV1beta1Manifest extends Manifest {
 }
 export interface KubernetesMembershipV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "hub.gke.io/v1beta1";
-    kind: "Membership";
+    apiVersion?: "hub.gke.io/v1beta1";
+    kind?: "Membership";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesMembershipV1beta1ManifestConfig extends ManifestConfi
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
   };
 }

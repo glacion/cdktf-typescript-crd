@@ -7,8 +7,8 @@ export class KubernetesPrivateCACertificateV1beta1Manifest extends Manifest {
 }
 export interface KubernetesPrivateCACertificateV1beta1ManifestConfig extends ManifestConfig {
   manifest: {
-    apiVersion: "privateca.cnrm.cloud.google.com/v1beta1";
-    kind: "PrivateCACertificate";
+    apiVersion?: "privateca.cnrm.cloud.google.com/v1beta1";
+    kind?: "PrivateCACertificate";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -17,7 +17,7 @@ export interface KubernetesPrivateCACertificateV1beta1ManifestConfig extends Man
         [key: string]: string;
       };
       name: string;
-      namespace: string;
+      namespace?: string;
     };
     spec: {
       /** @description Immutable. */
