@@ -22,14 +22,21 @@ const createStringIndexPropertySignature = (name: string) =>
     ]),
   );
 
-const createStringPropertySignature = (name: string) =>
-  factory.createPropertySignature(undefined, name, undefined, factory.createKeywordTypeNode(SyntaxKind.StringKeyword));
-
 const createMetadataMembers = () => [
   createStringIndexPropertySignature("annotations"),
   createStringIndexPropertySignature("labels"),
-  createStringPropertySignature("name"),
-  createStringPropertySignature("namespace"),
+  factory.createPropertySignature(
+    undefined,
+    "name",
+    undefined,
+    factory.createKeywordTypeNode(SyntaxKind.StringKeyword),
+  ),
+  factory.createPropertySignature(
+    undefined,
+    "namespace",
+    factory.createToken(SyntaxKind.QuestionToken),
+    factory.createKeywordTypeNode(SyntaxKind.StringKeyword),
+  ),
 ];
 
 export const createMetadataPropertySignature = () =>
