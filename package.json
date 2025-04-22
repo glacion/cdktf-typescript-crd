@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/glacion/cdktf-typescript-crd#readme",
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@tsconfig/strictest": "^2.0.5",
     "@types/node": "^22.14.0",
     "eslint": "^9.19.0",
