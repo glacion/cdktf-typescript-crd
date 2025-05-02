@@ -19,111 +19,108 @@ export interface KubernetesWorkloadAllowlistV1ManifestConfig extends ManifestCon
       name: string;
       namespace?: string;
     };
+    /** @description ContainerImageDigests contains an optional list of accepted image digests
+     *     for each container in the MatchingCriteria.
+     *     A workload's image will match the allowlist's image if either they
+     *     match directly, or the workload's image (1) specifies a hash, and
+     *     (2) that hash is present in the container's ImageDigests. */
+    containerImageDigests?: {
+      /** @description The name of the container which accepts the image digests. */
+      containerName: string;
+      /** @description The image SHA256 image digests that will be accepted. */
+      imageDigests: string[];
+    }[];
     /** @description GKE Warden constraints that this workload allowlist exempts. */
     exemptions: string[];
-    /** @description PodSpec          corev1.PodSpec   `json:"podSpec"` */
+    /** @description MatchingCriteria is a subset of podSpec containing criteria that a workload's
+     *     pod spec needs to match in order to be admitted into the cluster */
     matchingCriteria: {
       containers: {
         /** @description Arguments to the entrypoint.
-         *     The container image's CMD is used if this is not provided.
-         *     Variable references $(VAR_NAME) are expanded using the container's environment. If a variable
-         *     cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced
-         *     to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will
-         *     produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless
-         *     of whether the variable exists or not. Cannot be updated.
-         *     More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell */
+         *     Must contain all of the arguments in the workload's container
+         *     The arguments in a workload's container may be a subset of the arguments in an allowlist.
+         *     Supports using regex patterns for arguments that may have multiple possible values & permutations
+         *
+         *
+         *     In order for an arg to be treated as a regex pattern it must be anchored with a caret (^)
+         *     at the beginning of the string and a dollar sign ($) at the end of the string. */
         args?: string[];
         /** @description Entrypoint array. Not executed within a shell.
-         *     The container image's ENTRYPOINT is used if this is not provided.
-         *     Variable references $(VAR_NAME) are expanded using the container's environment. If a variable
-         *     cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced
-         *     to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will
-         *     produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless
-         *     of whether the variable exists or not. Cannot be updated.
-         *     More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell */
+         *     Must be an exact match to the command's in the workload's container */
         command?: string[];
         /** @description List of environment variables to set in the container.
-         *     Cannot be updated. */
+         *     Each env name can be a plain string or regex (for matching with multiple envs that follow a similar pattern)
+         *     Each individual env in the workload’s container must have name equal to an env in the allowlist’s container (or regex match).
+         *     All other sub-fields of env are ignored.
+         *     The envs in a workload container may be a subset of the envs in an allowlist container. */
         env?: {
-          /** @description Name of the environment variable. Must be a C_IDENTIFIER. */
+          /** @description Name of the environment variable. Must be a C_IDENTIFIER.
+           *     Supports using regex to match with multiple envs that follow a similar pattern
+           *     Env name present in the workload must be an exact match or follow regex pattern of the allowlist's env name
+           *
+           *
+           *     In order for an ENV name to be treated as a regex pattern it must be anchored with a caret (^)
+           *     at the beginning of the string and a dollar sign ($) at the end of the string. */
           name: string;
         }[];
         /** @description List of sources to populate environment variables in the container.
-         *     The keys defined within a source must be a C_IDENTIFIER. All invalid keys
-         *     will be reported as an event when the container is starting. When a key exists in multiple
-         *     sources, the value associated with the last source will take precedence.
-         *     Values defined by an Env with a duplicate key will take precedence.
-         *     Cannot be updated. */
+         *     Each individual envFrom in the allowlist's container must have the configMapRef.Name or secretMapRef.Name values equal to the envFrom values in the workload’s container.
+         *     All other sub-fields of env are ignored.
+         *     The envFroms in a workload container may be a subset of the envFroms in an allowlist container. */
         envFrom?: {
           /** @description The ConfigMap to select from */
           configMapRef?: {
             /** @description The name of the ConfigMap to select from.
-             *     More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names */
+             *     Must be exact match to value present in workload */
             name?: string;
           };
           /** @description The Secret to select from */
           secretRef?: {
             /** @description The name of the Secret to select from.
-             *     More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names */
+             *     Must be exact match to value present in workload */
             name?: string;
           };
         }[];
         /** @description Container image name.
          *     More info: https://kubernetes.io/docs/concepts/containers/images
-         *     This field is optional to allow higher level config management to default or override
-         *     container images in workload controllers like Deployments and StatefulSets. */
+         *     Include only the image path and exclude digest/image tag.
+         *     This can either be an exact string match or a matching regex pattern to the workload's container image.
+         *
+         *
+         *     In order for the image path to be treated as a regex pattern it must be anchored with a caret (^)
+         *     at the beginning of the string and a dollar sign ($) at the end of the string. */
         image?: string;
-        /** @description Actions that the management system should take in response to container lifecycle events.
-         *     Cannot be updated. */
+        /** @description LifecycleSubset is functionally a subset of core/v1 Lifecycle, preserving only
+         *     fields used for allowlisting. */
         lifecycle?: {
-          /** @description PostStart is called immediately after a container is created. If the handler fails,
-           *     the container is terminated and restarted according to its restart policy.
-           *     Other management of the container blocks until the hook completes.
-           *     More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks */
+          /** @description Only exec field is required if present in workload container.
+           *     All other sub-fields ignored. */
           postStart?: {
-            /** @description Exec specifies the action to take. */
+            /** @description Exec specifies the action to take.
+             *     Must match value present in workload container */
             exec?: {
-              /** @description Command is the command line to execute inside the container, the working directory for the
-               *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
-               *     not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use
-               *     a shell, you need to explicitly call out to that shell.
-               *     Exit status of 0 is treated as live/healthy and non-zero is unhealthy. */
+              /** @description Must be an exact match to the commands specified in the workload */
               command?: string[];
             };
           };
-          /** @description PreStop is called immediately before a container is terminated due to an
-           *     API request or management event such as liveness/startup probe failure,
-           *     preemption, resource contention, etc. The handler is not called if the
-           *     container crashes or exits. The Pod's termination grace period countdown begins before the
-           *     PreStop hook is executed. Regardless of the outcome of the handler, the
-           *     container will eventually terminate within the Pod's termination grace
-           *     period (unless delayed by finalizers). Other management of the container blocks until the hook completes
-           *     or until the termination grace period is reached.
-           *     More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks */
+          /** @description Only exec field is required if present in workload container.
+           *     All other sub-fields ignored. */
           preStop?: {
-            /** @description Exec specifies the action to take. */
+            /** @description Exec specifies the action to take.
+             *     Must match value present in workload container */
             exec?: {
-              /** @description Command is the command line to execute inside the container, the working directory for the
-               *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
-               *     not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use
-               *     a shell, you need to explicitly call out to that shell.
-               *     Exit status of 0 is treated as live/healthy and non-zero is unhealthy. */
+              /** @description Must be an exact match to the commands specified in the workload */
               command?: string[];
             };
           };
         };
         /** @description Periodic probe of container liveness.
-         *     Container will be restarted if the probe fails.
-         *     Cannot be updated.
-         *     More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes */
+         *     Must be an exact match to the LivenessProbe value in the workload's container */
         livenessProbe?: {
-          /** @description Exec specifies the action to take. */
+          /** @description Exec specifies the action to take.
+           *     Must match value present in workload container */
           exec?: {
-            /** @description Command is the command line to execute inside the container, the working directory for the
-             *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
-             *     not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use
-             *     a shell, you need to explicitly call out to that shell.
-             *     Exit status of 0 is treated as live/healthy and non-zero is unhealthy. */
+            /** @description Must be an exact match to the commands specified in the workload */
             command?: string[];
           };
         };
@@ -132,182 +129,183 @@ export interface KubernetesWorkloadAllowlistV1ManifestConfig extends ManifestCon
          *     Cannot be updated. */
         name: string;
         /** @description Periodic probe of container service readiness.
-         *     Container will be removed from service endpoints if the probe fails.
-         *     Cannot be updated.
-         *     More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes */
+         *     Must be an exact match to the readinessProbe value in the workload's container */
         readinessProbe?: {
-          /** @description Exec specifies the action to take. */
+          /** @description Exec specifies the action to take.
+           *     Must match value present in workload container */
           exec?: {
-            /** @description Command is the command line to execute inside the container, the working directory for the
-             *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
-             *     not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use
-             *     a shell, you need to explicitly call out to that shell.
-             *     Exit status of 0 is treated as live/healthy and non-zero is unhealthy. */
+            /** @description Must be an exact match to the commands specified in the workload */
             command?: string[];
           };
         };
-        /** @description SecurityContext defines the security options the container should be run with.
-         *     If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.
-         *     More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ */
+        /** @description SecurityContext is functionally a subset of core/v1 SecurityContext,
+         *     preserving only fields used for allowlisting.
+         *     Only Capabilities, Privileged, and appArmorProfile subfields
+         *     are used for workload matching */
         securityContext?: {
-          /** @description The capabilities to add/drop when running containers.
-           *     Defaults to the default set of capabilities granted by the container runtime.
-           *     Note that this field cannot be set when spec.os.name is windows. */
+          /** @description AppArmorProfile defines the minimum level of security for the AppArmorProfile of
+           *     allowlisted workloads. Valid configurations are summarized in this table:
+           *     |   Allowlist    |                   Workload                   |
+           *     | omit           | omit, RuntimeDefault                         |
+           *     | Unconfined     | omit,Unconfined,RuntimeDefault,LocalHost     |
+           *     | RuntimeDefault | RuntimeDefault                               |
+           *     | LocalHost      | LocalHost (plus exact match of profile name) | */
+          appArmorProfile?: {
+            /** @description The profile loaded on the node that matching workloads must specify.
+             *     Must be set if and only if type is "Localhost". */
+            localhostProfile?: string;
+            /** @description Type indicates which kind of AppArmor profile will be applied. */
+            type: string;
+          };
+          /** @description The capabilities to add/drop when running containers. */
           capabilities?: {
-            /** @description Added capabilities */
+            /** @description Added capabilities
+             *     This should contain a list of all of capabilities that a workload may add.
+             *     A workload may contain fewer added capabilities than what is present in the allowlist. */
             add?: string[];
-            /** @description Removed capabilities */
+            /** @description Removed capabilities
+             *     Should contain a list of all of capabilities that a workload is required to drop.
+             *     A workload may contain additional dropped capabilities than what is present in the allowlist. */
             drop?: string[];
           };
           /** @description Run container in privileged mode.
-           *     Processes in privileged containers are essentially equivalent to root on the host.
-           *     Defaults to false.
-           *     Note that this field cannot be set when spec.os.name is windows. */
+           *     Must be true if workload has this set to true. Otherwise, it can be omitted or explicitly set to false. */
           privileged?: boolean;
         };
         /** @description StartupProbe indicates that the Pod has successfully initialized.
-         *     If specified, no other probes are executed until this completes successfully.
-         *     If this probe fails, the Pod will be restarted, just as if the livenessProbe failed.
-         *     This can be used to provide different probe parameters at the beginning of a Pod's lifecycle,
-         *     when it might take a long time to load data or warm a cache, than during steady-state operation.
-         *     This cannot be updated.
-         *     More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes */
+         *     Must be an exact match to the startupProbe value in the workload's container */
         startupProbe?: {
-          /** @description Exec specifies the action to take. */
+          /** @description Exec specifies the action to take.
+           *     Must match value present in workload container */
           exec?: {
-            /** @description Command is the command line to execute inside the container, the working directory for the
-             *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
-             *     not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use
-             *     a shell, you need to explicitly call out to that shell.
-             *     Exit status of 0 is treated as live/healthy and non-zero is unhealthy. */
+            /** @description Must be an exact match to the commands specified in the workload */
             command?: string[];
           };
         };
-        /** @description volumeDevices is the list of block devices to be used by the container. */
+        /** @description volumeDevices is the list of block devices to be used by the container.
+         *     The volumeDevices in a workload’s container may be a subset of the volumeMounts in an allowlist’s container. */
         volumeDevices?: {
-          /** @description devicePath is the path inside of the container that the device will be mapped to. */
+          /** @description devicePath is the path inside of the container that the device will be mapped to.
+           *     Must be exact match to devicePath present in the workload */
           devicePath: string;
-          /** @description name must match the name of a persistentVolumeClaim in the pod */
+          /** @description Must be exact match to name present in the worklaod */
           name: string;
         }[];
         /** @description Pod volumes to mount into the container's filesystem.
-         *     Cannot be updated. */
+         *     The VolumeMounts in a workload’s container may be a subset of the volumeMounts in an allowlist’s container. */
         volumeMounts?: {
           /** @description Path within the container at which the volume should be mounted.  Must
-           *     not contain ':'. */
+           *     not contain ':'.
+           *     Must be exact match to value present in the workload */
           mountPath: string;
-          /** @description This must match the Name of a Volume. */
+          /** @description This must match the Name of a Volume.
+           *     Must be exact match to a volumeMount name in the workload container */
           name: string;
           /** @description Mounted read-only if true, read-write otherwise (false or unspecified).
-           *     Defaults to false. */
+           *     Defaults to false.
+           *     The allowlist must have this field omitted or explicitly set to false if the workload does not have readOnly set to true.
+           *     Value is ignored if workload has this set to true */
           readOnly?: boolean;
+          /** @description Path within the volume from which the container's volume should be mounted.
+           *     Defaults to "" (volume's root).
+           *     If present in allowlist, workload must have an exact match. */
+          subPath?: string;
         }[];
       }[];
+      /** @description Must be true if workload has this set to true. Otherwise, it can be omitted or explicitly set to false. */
       hostIPC?: boolean;
+      /** @description Must be true if workload has this set to true. Otherwise, it can be omitted or explicitly set to false. */
       hostNetwork?: boolean;
+      /** @description Must be true if workload has this set to true. Otherwise, it can be omitted or explicitly set to false. */
       hostPID?: boolean;
+      /** @description Must be true if workload has this set to true. Otherwise, it can be omitted or explicitly set to false. */
       hostUsers?: boolean;
       initContainers?: {
         /** @description Arguments to the entrypoint.
-         *     The container image's CMD is used if this is not provided.
-         *     Variable references $(VAR_NAME) are expanded using the container's environment. If a variable
-         *     cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced
-         *     to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will
-         *     produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless
-         *     of whether the variable exists or not. Cannot be updated.
-         *     More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell */
+         *     Must contain all of the arguments in the workload's container
+         *     The arguments in a workload's container may be a subset of the arguments in an allowlist.
+         *     Supports using regex patterns for arguments that may have multiple possible values & permutations
+         *
+         *
+         *     In order for an arg to be treated as a regex pattern it must be anchored with a caret (^)
+         *     at the beginning of the string and a dollar sign ($) at the end of the string. */
         args?: string[];
         /** @description Entrypoint array. Not executed within a shell.
-         *     The container image's ENTRYPOINT is used if this is not provided.
-         *     Variable references $(VAR_NAME) are expanded using the container's environment. If a variable
-         *     cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced
-         *     to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will
-         *     produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless
-         *     of whether the variable exists or not. Cannot be updated.
-         *     More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell */
+         *     Must be an exact match to the command's in the workload's container */
         command?: string[];
         /** @description List of environment variables to set in the container.
-         *     Cannot be updated. */
+         *     Each env name can be a plain string or regex (for matching with multiple envs that follow a similar pattern)
+         *     Each individual env in the workload’s container must have name equal to an env in the allowlist’s container (or regex match).
+         *     All other sub-fields of env are ignored.
+         *     The envs in a workload container may be a subset of the envs in an allowlist container. */
         env?: {
-          /** @description Name of the environment variable. Must be a C_IDENTIFIER. */
+          /** @description Name of the environment variable. Must be a C_IDENTIFIER.
+           *     Supports using regex to match with multiple envs that follow a similar pattern
+           *     Env name present in the workload must be an exact match or follow regex pattern of the allowlist's env name
+           *
+           *
+           *     In order for an ENV name to be treated as a regex pattern it must be anchored with a caret (^)
+           *     at the beginning of the string and a dollar sign ($) at the end of the string. */
           name: string;
         }[];
         /** @description List of sources to populate environment variables in the container.
-         *     The keys defined within a source must be a C_IDENTIFIER. All invalid keys
-         *     will be reported as an event when the container is starting. When a key exists in multiple
-         *     sources, the value associated with the last source will take precedence.
-         *     Values defined by an Env with a duplicate key will take precedence.
-         *     Cannot be updated. */
+         *     Each individual envFrom in the allowlist's container must have the configMapRef.Name or secretMapRef.Name values equal to the envFrom values in the workload’s container.
+         *     All other sub-fields of env are ignored.
+         *     The envFroms in a workload container may be a subset of the envFroms in an allowlist container. */
         envFrom?: {
           /** @description The ConfigMap to select from */
           configMapRef?: {
             /** @description The name of the ConfigMap to select from.
-             *     More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names */
+             *     Must be exact match to value present in workload */
             name?: string;
           };
           /** @description The Secret to select from */
           secretRef?: {
             /** @description The name of the Secret to select from.
-             *     More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names */
+             *     Must be exact match to value present in workload */
             name?: string;
           };
         }[];
         /** @description Container image name.
          *     More info: https://kubernetes.io/docs/concepts/containers/images
-         *     This field is optional to allow higher level config management to default or override
-         *     container images in workload controllers like Deployments and StatefulSets. */
+         *     Include only the image path and exclude digest/image tag.
+         *     This can either be an exact string match or a matching regex pattern to the workload's container image.
+         *
+         *
+         *     In order for the image path to be treated as a regex pattern it must be anchored with a caret (^)
+         *     at the beginning of the string and a dollar sign ($) at the end of the string. */
         image?: string;
-        /** @description Actions that the management system should take in response to container lifecycle events.
-         *     Cannot be updated. */
+        /** @description LifecycleSubset is functionally a subset of core/v1 Lifecycle, preserving only
+         *     fields used for allowlisting. */
         lifecycle?: {
-          /** @description PostStart is called immediately after a container is created. If the handler fails,
-           *     the container is terminated and restarted according to its restart policy.
-           *     Other management of the container blocks until the hook completes.
-           *     More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks */
+          /** @description Only exec field is required if present in workload container.
+           *     All other sub-fields ignored. */
           postStart?: {
-            /** @description Exec specifies the action to take. */
+            /** @description Exec specifies the action to take.
+             *     Must match value present in workload container */
             exec?: {
-              /** @description Command is the command line to execute inside the container, the working directory for the
-               *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
-               *     not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use
-               *     a shell, you need to explicitly call out to that shell.
-               *     Exit status of 0 is treated as live/healthy and non-zero is unhealthy. */
+              /** @description Must be an exact match to the commands specified in the workload */
               command?: string[];
             };
           };
-          /** @description PreStop is called immediately before a container is terminated due to an
-           *     API request or management event such as liveness/startup probe failure,
-           *     preemption, resource contention, etc. The handler is not called if the
-           *     container crashes or exits. The Pod's termination grace period countdown begins before the
-           *     PreStop hook is executed. Regardless of the outcome of the handler, the
-           *     container will eventually terminate within the Pod's termination grace
-           *     period (unless delayed by finalizers). Other management of the container blocks until the hook completes
-           *     or until the termination grace period is reached.
-           *     More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks */
+          /** @description Only exec field is required if present in workload container.
+           *     All other sub-fields ignored. */
           preStop?: {
-            /** @description Exec specifies the action to take. */
+            /** @description Exec specifies the action to take.
+             *     Must match value present in workload container */
             exec?: {
-              /** @description Command is the command line to execute inside the container, the working directory for the
-               *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
-               *     not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use
-               *     a shell, you need to explicitly call out to that shell.
-               *     Exit status of 0 is treated as live/healthy and non-zero is unhealthy. */
+              /** @description Must be an exact match to the commands specified in the workload */
               command?: string[];
             };
           };
         };
         /** @description Periodic probe of container liveness.
-         *     Container will be restarted if the probe fails.
-         *     Cannot be updated.
-         *     More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes */
+         *     Must be an exact match to the LivenessProbe value in the workload's container */
         livenessProbe?: {
-          /** @description Exec specifies the action to take. */
+          /** @description Exec specifies the action to take.
+           *     Must match value present in workload container */
           exec?: {
-            /** @description Command is the command line to execute inside the container, the working directory for the
-             *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
-             *     not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use
-             *     a shell, you need to explicitly call out to that shell.
-             *     Exit status of 0 is treated as live/healthy and non-zero is unhealthy. */
+            /** @description Must be an exact match to the commands specified in the workload */
             command?: string[];
           };
         };
@@ -316,150 +314,180 @@ export interface KubernetesWorkloadAllowlistV1ManifestConfig extends ManifestCon
          *     Cannot be updated. */
         name: string;
         /** @description Periodic probe of container service readiness.
-         *     Container will be removed from service endpoints if the probe fails.
-         *     Cannot be updated.
-         *     More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes */
+         *     Must be an exact match to the readinessProbe value in the workload's container */
         readinessProbe?: {
-          /** @description Exec specifies the action to take. */
+          /** @description Exec specifies the action to take.
+           *     Must match value present in workload container */
           exec?: {
-            /** @description Command is the command line to execute inside the container, the working directory for the
-             *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
-             *     not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use
-             *     a shell, you need to explicitly call out to that shell.
-             *     Exit status of 0 is treated as live/healthy and non-zero is unhealthy. */
+            /** @description Must be an exact match to the commands specified in the workload */
             command?: string[];
           };
         };
-        /** @description SecurityContext defines the security options the container should be run with.
-         *     If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.
-         *     More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ */
+        /** @description SecurityContext is functionally a subset of core/v1 SecurityContext,
+         *     preserving only fields used for allowlisting.
+         *     Only Capabilities, Privileged, and appArmorProfile subfields
+         *     are used for workload matching */
         securityContext?: {
-          /** @description The capabilities to add/drop when running containers.
-           *     Defaults to the default set of capabilities granted by the container runtime.
-           *     Note that this field cannot be set when spec.os.name is windows. */
+          /** @description AppArmorProfile defines the minimum level of security for the AppArmorProfile of
+           *     allowlisted workloads. Valid configurations are summarized in this table:
+           *     |   Allowlist    |                   Workload                   |
+           *     | omit           | omit, RuntimeDefault                         |
+           *     | Unconfined     | omit,Unconfined,RuntimeDefault,LocalHost     |
+           *     | RuntimeDefault | RuntimeDefault                               |
+           *     | LocalHost      | LocalHost (plus exact match of profile name) | */
+          appArmorProfile?: {
+            /** @description The profile loaded on the node that matching workloads must specify.
+             *     Must be set if and only if type is "Localhost". */
+            localhostProfile?: string;
+            /** @description Type indicates which kind of AppArmor profile will be applied. */
+            type: string;
+          };
+          /** @description The capabilities to add/drop when running containers. */
           capabilities?: {
-            /** @description Added capabilities */
+            /** @description Added capabilities
+             *     This should contain a list of all of capabilities that a workload may add.
+             *     A workload may contain fewer added capabilities than what is present in the allowlist. */
             add?: string[];
-            /** @description Removed capabilities */
+            /** @description Removed capabilities
+             *     Should contain a list of all of capabilities that a workload is required to drop.
+             *     A workload may contain additional dropped capabilities than what is present in the allowlist. */
             drop?: string[];
           };
           /** @description Run container in privileged mode.
-           *     Processes in privileged containers are essentially equivalent to root on the host.
-           *     Defaults to false.
-           *     Note that this field cannot be set when spec.os.name is windows. */
+           *     Must be true if workload has this set to true. Otherwise, it can be omitted or explicitly set to false. */
           privileged?: boolean;
         };
         /** @description StartupProbe indicates that the Pod has successfully initialized.
-         *     If specified, no other probes are executed until this completes successfully.
-         *     If this probe fails, the Pod will be restarted, just as if the livenessProbe failed.
-         *     This can be used to provide different probe parameters at the beginning of a Pod's lifecycle,
-         *     when it might take a long time to load data or warm a cache, than during steady-state operation.
-         *     This cannot be updated.
-         *     More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes */
+         *     Must be an exact match to the startupProbe value in the workload's container */
         startupProbe?: {
-          /** @description Exec specifies the action to take. */
+          /** @description Exec specifies the action to take.
+           *     Must match value present in workload container */
           exec?: {
-            /** @description Command is the command line to execute inside the container, the working directory for the
-             *     command  is root ('/') in the container's filesystem. The command is simply exec'd, it is
-             *     not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use
-             *     a shell, you need to explicitly call out to that shell.
-             *     Exit status of 0 is treated as live/healthy and non-zero is unhealthy. */
+            /** @description Must be an exact match to the commands specified in the workload */
             command?: string[];
           };
         };
-        /** @description volumeDevices is the list of block devices to be used by the container. */
+        /** @description volumeDevices is the list of block devices to be used by the container.
+         *     The volumeDevices in a workload’s container may be a subset of the volumeMounts in an allowlist’s container. */
         volumeDevices?: {
-          /** @description devicePath is the path inside of the container that the device will be mapped to. */
+          /** @description devicePath is the path inside of the container that the device will be mapped to.
+           *     Must be exact match to devicePath present in the workload */
           devicePath: string;
-          /** @description name must match the name of a persistentVolumeClaim in the pod */
+          /** @description Must be exact match to name present in the worklaod */
           name: string;
         }[];
         /** @description Pod volumes to mount into the container's filesystem.
-         *     Cannot be updated. */
+         *     The VolumeMounts in a workload’s container may be a subset of the volumeMounts in an allowlist’s container. */
         volumeMounts?: {
           /** @description Path within the container at which the volume should be mounted.  Must
-           *     not contain ':'. */
+           *     not contain ':'.
+           *     Must be exact match to value present in the workload */
           mountPath: string;
-          /** @description This must match the Name of a Volume. */
+          /** @description This must match the Name of a Volume.
+           *     Must be exact match to a volumeMount name in the workload container */
           name: string;
           /** @description Mounted read-only if true, read-write otherwise (false or unspecified).
-           *     Defaults to false. */
+           *     Defaults to false.
+           *     The allowlist must have this field omitted or explicitly set to false if the workload does not have readOnly set to true.
+           *     Value is ignored if workload has this set to true */
           readOnly?: boolean;
+          /** @description Path within the volume from which the container's volume should be mounted.
+           *     Defaults to "" (volume's root).
+           *     If present in allowlist, workload must have an exact match. */
+          subPath?: string;
         }[];
       }[];
-      /** @description PodSecurityContext is functionally a subset of core/v1 PodSecurityContext,
+      /** @description PodSecurityContext is a subset of core/v1 PodSecurityContext,
        *     preserving only fields used for allowlisting. */
       securityContext?: {
-        /** @description fsGroupChangePolicy defines behavior of changing ownership and permission of the volume
-         *     before being exposed inside Pod. This field will only apply to
-         *     volume types which support fsGroup based ownership(and permissions).
-         *     It will have no effect on ephemeral volume types such as: secret, configmaps
-         *     and emptydir.
-         *     Valid values are "OnRootMismatch" and "Always". If not specified, "Always" is used.
-         *     Note that this field cannot be set when spec.os.name is windows. */
-        fsGroupChangePolicy?: string;
+        /** @description AppArmorProfile defines the minimum level of security for the AppArmorProfile of
+         *     allowlisted workloads. Valid configurations are summarized in this table:
+         *     |   Allowlist    |                   Workload                   |
+         *     | omit           | omit, RuntimeDefault                         |
+         *     | Unconfined     | omit,Unconfined,RuntimeDefault,LocalHost     |
+         *     | RuntimeDefault | RuntimeDefault                               |
+         *     | LocalHost      | LocalHost (plus exact match of profile name) | */
+        appArmorProfile?: {
+          /** @description The profile loaded on the node that matching workloads must specify.
+           *     Must be set if and only if type is "Localhost". */
+          localhostProfile?: string;
+          /** @description Type indicates which kind of AppArmor profile will be applied. */
+          type: string;
+        };
       };
+      /** @description Each individual volume in the workload must match with a volume present in the allowlist
+       *     The volumes in a workload may be a subset of the volumes in an allowlist. */
       volumes?: {
-        /** @description gcePersistentDisk represents a GCE Disk resource that is attached to a
-         *     kubelet's host machine and then exposed to the pod.
-         *     More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk */
+        /** @description configMap represents a configMap that should populate this volume.
+         *     An allowlist only needs to include this field if wants to specify the use
+         *     of a non-default value for the defaultMode subfield. */
+        configMap?: {
+          /**
+           * Format: int32
+           * @description defaultMode is optional: mode bits used to set permissions on created files by default.
+           *     Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.
+           *     YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.
+           *     If omitted, any workloads must use the default value (0644) or omit.
+           *     If included, a workload configMap must have an exactly matching DefaultMode value.
+           */
+          defaultMode?: number;
+          name?: string;
+        };
+        /** @description GCEPersistentDiskVolumeSource is functionally a subset of core/v1
+         *     GCEPersistentDiskVolumeSource, preserving only fields used for allowlisting. */
         gcePersistentDisk?: {
           /** @description fsType is filesystem type of the volume that you want to mount.
-           *     Tip: Ensure that the filesystem type is supported by the host operating system.
-           *     Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
-           *     More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
-           *     TODO: how do we prevent errors in the filesystem from compromising the machine */
+           *     Must be exact match to value present in the workload's volume */
           fsType?: string;
           /**
            * Format: int32
            * @description partition is the partition in the volume that you want to mount.
-           *     If omitted, the default is to mount by volume name.
-           *     Examples: For volume /dev/sda1, you specify the partition as "1".
-           *     Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty).
-           *     More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+           *     Must be exact match to value present in the workload's volume
            */
           partition?: number;
           /** @description readOnly here will force the ReadOnly setting in VolumeMounts.
            *     Defaults to false.
-           *     More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk */
+           *     The allowlist must have this field omitted or explicitly set to false if the workload does not have readOnly set to true.
+           *     Value is ignored if workload has this set to true */
           readOnly?: boolean;
         };
-        /** @description hostPath represents a pre-existing file or directory on the host
-         *     machine that is directly exposed to the container. This is generally
-         *     used for system agents or other privileged things that are allowed
-         *     to see the host machine. Most containers will NOT need this.
-         *     More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath */
+        /** @description HostPathVolumeSource is functionally a subset of core/v1
+         *     HostPathVolumeSource, preserving only fields used for allowlisting. */
         hostPath?: {
           /** @description path of the directory on the host.
-           *     If the path is a symlink, it will follow the link to the real path.
-           *     More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath */
+           *     Must be exact match to value present in the workload's volume */
           path: string;
         };
         /** @description name of the volume.
-         *     Must be a DNS_LABEL and unique within the pod.
-         *     More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names */
+         *     Must match name of volume present in the workload */
         name: string;
-        /** @description nfs represents an NFS mount on the host that shares a pod's lifetime
-         *     More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs */
+        /** @description NFSVolumeSource is functionally a subset of core/v1 NFSVolumeSource,
+         *     preserving only fields used for allowlisting. */
         nfs?: {
           /** @description path that is exported by the NFS server.
-           *     More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs */
+           *     Must be exact match to value present in the workload's volume */
           path: string;
           /** @description readOnly here will force the NFS export to be mounted with read-only permissions.
            *     Defaults to false.
-           *     More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs */
+           *     The allowlist must have this field omitted or explicitly set to false if the workload does not have readOnly set to true.
+           *     Value is ignored if workload has this set to true */
           readOnly?: boolean;
         };
-        /** @description persistentVolumeClaimVolumeSource represents a reference to a
-         *     PersistentVolumeClaim in the same namespace.
-         *     More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims */
+        /** @description PersistentVolumeClaimVolumeSource is functionally a subset of
+         *     core/v1 PersistentVolumeClaimVolumeSource, preserving only fields
+         *     used for allowlisting. */
         persistentVolumeClaim?: {
           /** @description readOnly Will force the ReadOnly setting in VolumeMounts.
-           *     Default false. */
+           *     Default false.
+           *     The allowlist must have this field omitted or explicitly set to false if the workload does not have readOnly set to true.
+           *     Value is ignored if workload has this set to true */
           readOnly?: boolean;
         };
       }[];
     };
+    /** @description Minimum GKE Version that this workload allowlist qualifies for.
+     *     Should be set if the workload needing to be allowlisted requires fields
+     *     introduced in a particular GKE version */
     minGKEVersion?: string;
   };
 }

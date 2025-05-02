@@ -38,8 +38,6 @@ export interface KubernetesResourceFlavorV1beta1ManifestConfig extends ManifestC
        *     have.
        *     Workloads' podsets must have tolerations for these nodeTaints in order to
        *     get assigned this ResourceFlavor during admission.
-       *     Only the 'NoSchedule' and 'NoExecute' taint effects are evaluated,
-       *     while 'PreferNoSchedule' is ignored.
        *
        *     An example of a nodeTaint is
        *     cloud.provider.com/preemptible="true":NoSchedule

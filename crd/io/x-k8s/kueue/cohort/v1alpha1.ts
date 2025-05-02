@@ -21,22 +21,6 @@ export interface KubernetesCohortV1alpha1ManifestConfig extends ManifestConfig {
     };
     /** @description CohortSpec defines the desired state of Cohort */
     spec?: {
-      /** @description fairSharing defines the properties of the Cohort when
-       *     participating in FairSharing. The values are only relevant
-       *     if FairSharing is enabled in the Kueue configuration. */
-      fairSharing?: {
-        /** @description weight gives a comparative advantage to this ClusterQueue
-         *     or Cohort when competing for unused resources in the
-         *     Cohort.  The share is based on the dominant resource usage
-         *     above nominal quotas for each resource, divided by the
-         *     weight.  Admission prioritizes scheduling workloads from
-         *     ClusterQueues and Cohorts with the lowest share and
-         *     preempting workloads from the ClusterQueues and Cohorts
-         *     with the highest share.  A zero weight implies infinite
-         *     share value, meaning that this Node will always be at
-         *     disadvantage against other ClusterQueues and Cohorts. */
-        weight?: number | string;
-      };
       /** @description Parent references the name of the Cohort's parent, if
        *     any. It satisfies one of three cases:
        *     1) Unset. This Cohort is the root of its Cohort tree.
@@ -123,22 +107,6 @@ export interface KubernetesCohortV1alpha1ManifestConfig extends ManifestConfig {
           }[];
         }[];
       }[];
-    };
-    status?: {
-      /** @description fairSharing contains the information about the current status of Fair Sharing. */
-      fairSharing?: {
-        /**
-         * Format: int64
-         * @description WeightedShare represent the maximum of the ratios of usage
-         *     above nominal quota to the lendable resources in the
-         *     Cohort, among all the resources provided by the Node, and
-         *     divided by the weight.  If zero, it means that the usage of
-         *     the Node is below the nominal quota.  If the Node has a
-         *     weight of zero, this will return 9223372036854775807, the
-         *     maximum possible share value.
-         */
-        weightedShare: number;
-      };
     };
   };
 }

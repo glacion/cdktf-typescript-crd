@@ -126,6 +126,16 @@ export interface KubernetesCiliumNodeV2ManifestConfig extends ManifestConfig {
       "instance-id"?: string;
       /** @description IPAM is the address management specification. This section can be populated by a user or it can be automatically populated by an IPAM operator. */
       ipam?: {
+        /** @description IPv6Pool is the list of IPv6 addresses available to the node for allocation. When an IPv6 address is used, it will remain on this list but will be added to Status.IPAM.IPv6Used */
+        "ipv6-pool"?: {
+          [key: string]: {
+            /** @description Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP
+             *      The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used. */
+            owner?: string;
+            /** @description Resource is set for both available and allocated IPs, it represents what resource the IP is associated with, e.g. in combination with AWS ENI, this will refer to the ID of the ENI */
+            resource?: string;
+          };
+        };
         /** @description MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs. */
         "max-above-watermark"?: number;
         /** @description MaxAllocate is the maximum number of IPs that can be allocated to the node. When the current amount of allocated IPs will approach this value, the considered value for PreAllocate will decrease down to 0 in order to not attempt to allocate more addresses than defined. */
@@ -134,7 +144,7 @@ export interface KubernetesCiliumNodeV2ManifestConfig extends ManifestConfig {
         "min-allocate"?: number;
         /** @description PodCIDRs is the list of CIDRs available to the node for allocation. When an IP is used, the IP will be added to Status.IPAM.Used */
         podCIDRs?: string[];
-        /** @description Pool is the list of IPs available to the node for allocation. When an IP is used, the IP will remain on this list but will be added to Status.IPAM.Used */
+        /** @description Pool is the list of IPv4 addresses available to the node for allocation. When an IPv4 address is used, it will remain on this list but will be added to Status.IPAM.Used */
         pool?: {
           [key: string]: {
             /** @description Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP
@@ -308,6 +318,16 @@ export interface KubernetesCiliumNodeV2ManifestConfig extends ManifestConfig {
       };
       /** @description IPAM is the IPAM status of the node. */
       ipam?: {
+        /** @description IPv6Used lists all IPv6 addresses out of Spec.IPAM.IPv6Pool which have been allocated and are in use. */
+        "ipv6-used"?: {
+          [key: string]: {
+            /** @description Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP
+             *      The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used. */
+            owner?: string;
+            /** @description Resource is set for both available and allocated IPs, it represents what resource the IP is associated with, e.g. in combination with AWS ENI, this will refer to the ID of the ENI */
+            resource?: string;
+          };
+        };
         /** @description Operator is the Operator status of the node */
         "operator-status"?: {
           /** @description Error is the error message set by cilium-operator. */
@@ -323,11 +343,15 @@ export interface KubernetesCiliumNodeV2ManifestConfig extends ManifestConfig {
             status?: "released" | "depleted" | "in-use";
           };
         };
-        /** @description ReleaseIPs tracks the state for every IP considered for release. value can be one of the following string : * marked-for-release : Set by operator as possible candidate for IP * ready-for-release  : Acknowledged as safe to release by agent * do-not-release     : IP already in use / not owned by the node. Set by agent * released           : IP successfully released. Set by operator */
+        /** @description ReleaseIPs tracks the state for every IPv4 address considered for release. The value can be one of the following strings: * marked-for-release : Set by operator as possible candidate for IP * ready-for-release  : Acknowledged as safe to release by agent * do-not-release     : IP already in use / not owned by the node. Set by agent * released           : IP successfully released. Set by operator */
         "release-ips"?: {
           [key: string]: "marked-for-release" | "ready-for-release" | "do-not-release" | "released";
         };
-        /** @description Used lists all IPs out of Spec.IPAM.Pool which have been allocated and are in use. */
+        /** @description ReleaseIPv6s tracks the state for every IPv6 address considered for release. The value can be one of the following strings: * marked-for-release : Set by operator as possible candidate for IP * ready-for-release  : Acknowledged as safe to release by agent * do-not-release     : IP already in use / not owned by the node. Set by agent * released           : IP successfully released. Set by operator */
+        "release-ipv6s"?: {
+          [key: string]: "marked-for-release" | "ready-for-release" | "do-not-release" | "released";
+        };
+        /** @description Used lists all IPv4 addresses out of Spec.IPAM.Pool which have been allocated and are in use. */
         used?: {
           [key: string]: {
             /** @description Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP

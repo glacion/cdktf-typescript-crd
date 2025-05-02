@@ -68,8 +68,8 @@ export interface KubernetesClusterPodMonitoringV1ManifestConfig extends Manifest
         interval: string;
         /** @description Relabeling rules for metrics scraped from this endpoint. Relabeling rules that
          *     override protected target labels (project_id, location, cluster, namespace, job,
-         *     instance, or __address__) are not permitted. The labelmap action is not permitted
-         *     in general. */
+         *     instance, top_level_controller, top_level_controller_type, or __address__) are
+         *     not permitted. The labelmap action is not permitted in general. */
         metricRelabeling?: {
           /** @description Action to perform based on regex matching. Defaults to 'replace'. */
           action?: string;
@@ -343,7 +343,8 @@ export interface KubernetesClusterPodMonitoringV1ManifestConfig extends Manifest
          *     Permitted keys are `pod`, `container`, and `node` for PodMonitoring and
          *     `pod`, `container`, `node`, and `namespace` for ClusterPodMonitoring. The `container`
          *     label is only populated if the scrape port is referenced by name.
-         *     Defaults to [pod, container] for PodMonitoring and [namespace, pod, container]
+         *     Defaults to [pod, container, top_level_controller_name, top_level_controller_type] for
+         *     PodMonitoring and [namespace, pod, container, top_level_controller_name, top_level_controller_type]
          *     for ClusterPodMonitoring.
          *     If set to null, it will be interpreted as the empty list for PodMonitoring
          *     and to [namespace] for ClusterPodMonitoring. This is for backwards-compatibility

@@ -50,8 +50,8 @@ export interface KubernetesComputeClassV1ManifestConfig extends ManifestConfig {
         /** @description Enabled indicates whether NodePoolAutoCreation is enabled for a given ComputeClass. */
         enabled: boolean;
       };
-      /** @description NodePoolConfig defines required node pool configuration. Auto-provisioned node pools
-       *     will be created with this configuration. */
+      /** @description NodePoolConfig defines required node pool configuration. Existing node pools will be matched with the ComputeClass
+       *     only if their configuration match this field. Auto-provisioned node pools will be created with this configuration. */
       nodePoolConfig?: {
         /** @description ServiceAccount used by the node pool. */
         serviceAccount?: string;
@@ -80,12 +80,112 @@ export interface KubernetesComputeClassV1ManifestConfig extends ManifestConfig {
         machineFamily?: string;
         /** @description MachineType defines preferred machine type for a node. */
         machineType?: string;
+        /** @description MaxPodsPerNode describes the maximum number of pods a node can accommodate. */
+        maxPodsPerNode?: number;
         /** @description MaxRunDurationSeconds defines the maximum duration for the nodes to exist. If unspecified, the nodes can exist indefinitely. */
         maxRunDurationSeconds?: number;
         /** @description MinCores describes a minimum number of CPU cores of a node. */
         minCores?: number;
         /** @description MinMemoryGb describes a minimum GBs of memory of a node. */
         minMemoryGb?: number;
+        /** @description NodeSystemConfig defines node system config for a node. */
+        nodeSystemConfig?: {
+          /** @description KubeletConfig defines kubelet config for a node. */
+          kubeletConfig?: {
+            /** @description This setting enforces the Pod's CPU limit. Setting this value to false means that the CPU limits for Pods are ignored.
+             *     Ignoring CPU limits might be desirable in certain scenarios where Pods are sensitive to CPU limits.
+             *     The risk of disabling cpuCFSQuota is that a rogue Pod can consume more CPU resources than intended. */
+            cpuCfsQuota?: boolean;
+            /** @description This setting sets the CPU CFS quota period value, cpu.cfs_period_us, which specifies the period of how often a cgroup's access to CPU resources should be reallocated.
+             *     This option lets you tune the CPU throttling behavior. Value must be 1ms <= period <= 1s. */
+            cpuCfsQuotaPeriod?: string;
+            /**
+             * @description This setting controls the kubelet's CPU Manager Policy. The default value is none which is the default CPU affinity scheme, providing no affinity beyond what the OS scheduler does automatically.
+             *     Setting this value to static allows Pods in the Guaranteed QoS class with integer CPU requests to be assigned exclusive use of CPUs.
+             * @enum {string}
+             */
+            cpuManagerPolicy?: "none" | "static";
+            /**
+             * Format: int64
+             * @description This setting sets the maximum number of process IDs (PIDs) that each Pod can use.
+             */
+            podPidsLimit?: number;
+          };
+          /** @description LinuxNodeConfig defines linux node config for a node. */
+          linuxNodeConfig?: {
+            /** @description HugepagesConfig defines hugepages config for a node. */
+            hugepageConfig?: {
+              /**
+               * Format: int64
+               * @description Number of 1-gigabyte-sized huge pages to allocate.
+               */
+              hugepage_size1g?: number;
+              /**
+               * Format: int64
+               * @description Number of 2-megabyte-sized huge pages to allocate.
+               */
+              hugepage_size2m?: number;
+            };
+            /** @description SysctlsConfig defines sysctls config for a node. */
+            sysctls?: {
+              /**
+               * Format: int64
+               * @description Low latency busy poll timeout for poll and select. (needs CONFIG_NET_RX_BUSY_POLL) Approximate time in us to busy loop waiting for events.
+               */
+              "net.core.busy_poll"?: number;
+              /**
+               * Format: int64
+               * @description Low latency busy poll timeout for socket reads. (needs CONFIG_NET_RX_BUSY_POLL) Approximate time in us to busy loop waiting for packets on the device queue.
+               */
+              "net.core.busy_read"?: number;
+              /**
+               * Format: int64
+               * @description Maximum number of packets, queued on the INPUT side, when the interface receives packets faster than kernel can process them.
+               */
+              "net.core.netdev_max_backlog"?: number;
+              /**
+               * Format: int64
+               * @description Maximum ancillary buffer size allowed per socket. Ancillary data is a sequence of struct cmsghdr structures with appended data.
+               */
+              "net.core.optmem_max"?: number;
+              /**
+               * Format: int64
+               * @description The maximum receive socket buffer size in bytes.
+               */
+              "net.core.rmem_max"?: number;
+              /**
+               * Format: int64
+               * @description Limit of socket listen() backlog, known in userspace as SOMAXCONN. Defaults to 128. See also tcp_max_syn_backlog for additional tuning for TCP sockets.
+               */
+              "net.core.somaxconn"?: number;
+              /**
+               * Format: int64
+               * @description The default setting (in bytes) of the socket send buffer.
+               */
+              "net.core.wmem_default"?: number;
+              /**
+               * Format: int64
+               * @description The maximum send socket buffer size in bytes.
+               */
+              "net.core.wmem_max"?: number;
+              /** @description Minimal size of receive buffer used by UDP sockets in moderation. Each UDP socket is able to use the size for receiving data, even if total pages of UDP sockets exceed udp_mem pressure. The unit is byte. Default: 1 page. The three values are: min, default, max. Eg. '4096 87380 6291456'. */
+              "net.ipv4.tcp_rmem"?: string;
+              /** @description Allow to reuse TIME-WAIT sockets for new connections when it is safe from protocol viewpoint. Default value is 0. It should not be changed without advice/request of technical experts. */
+              "net.ipv4.tcp_tw_reuse"?: boolean;
+              /** @description Minimal size of send buffer used by UDP sockets in moderation. Each UDP socket is able to use the size for sending data, even if total pages of UDP sockets exceed udp_mem pressure. The unit is byte. Default: 1 page. The three values are: min, default, max. Eg. '4096 87380 6291456'. */
+              "net.ipv4.tcp_wmem"?: string;
+              /** @description Changing this value is same as changing conf/default/disable_ipv6 setting and also all per-interface disable_ipv6 settings to the same value. */
+              "net.ipv6.conf.all.disable_ipv6"?: boolean;
+              /** @description Disable IPv6 operation. */
+              "net.ipv6.conf.default.disable_ipv6"?: boolean;
+              /**
+               * Format: int64
+               * @description Maximum number of memory map areas a process may have.
+               */
+              "vm.max_map_count"?: number;
+            };
+          };
+        };
         /** @description Nodepools describes preference of specific, preexisting nodepools. */
         nodepools?: string[];
         /** @description Reservations defines reservations config for a node. */
@@ -161,6 +261,105 @@ export interface KubernetesComputeClassV1ManifestConfig extends ManifestConfig {
           type?: string;
         };
       }[];
+      /** @description PriorityDefaults define the default rules for all priorities if the rule doesn't exist in some priority.
+       *     Note: PriorityDefaults doesn't apply to priorities with only Nodepools. */
+      priorityDefaults?: {
+        /** @description NodeSystemConfig defines node system config for a node. */
+        nodeSystemConfig?: {
+          /** @description KubeletConfig defines kubelet config for a node. */
+          kubeletConfig?: {
+            /** @description This setting enforces the Pod's CPU limit. Setting this value to false means that the CPU limits for Pods are ignored.
+             *     Ignoring CPU limits might be desirable in certain scenarios where Pods are sensitive to CPU limits.
+             *     The risk of disabling cpuCFSQuota is that a rogue Pod can consume more CPU resources than intended. */
+            cpuCfsQuota?: boolean;
+            /** @description This setting sets the CPU CFS quota period value, cpu.cfs_period_us, which specifies the period of how often a cgroup's access to CPU resources should be reallocated.
+             *     This option lets you tune the CPU throttling behavior. Value must be 1ms <= period <= 1s. */
+            cpuCfsQuotaPeriod?: string;
+            /** @description This setting controls the kubelet's CPU Manager Policy. The default value is none which is the default CPU affinity scheme, providing no affinity beyond what the OS scheduler does automatically.
+             *     Setting this value to static allows Pods in the Guaranteed QoS class with integer CPU requests to be assigned exclusive use of CPUs. */
+            cpuManagerPolicy?: string;
+            /**
+             * Format: int64
+             * @description This setting sets the maximum number of process IDs (PIDs) that each Pod can use.
+             */
+            podPidsLimit?: number;
+          };
+          /** @description LinuxNodeConfig defines linux node config for a node. */
+          linuxNodeConfig?: {
+            /** @description HugepagesConfig defines hugepages config for a node. */
+            hugepageConfig?: {
+              /**
+               * Format: int64
+               * @description Number of 1-gigabyte-sized huge pages to allocate.
+               */
+              hugepage_size1g?: number;
+              /**
+               * Format: int64
+               * @description Number of 2-megabyte-sized huge pages to allocate.
+               */
+              hugepage_size2m?: number;
+            };
+            /** @description SysctlsConfig defines sysctls config for a node. */
+            sysctls?: {
+              /**
+               * Format: int64
+               * @description Low latency busy poll timeout for poll and select. (needs CONFIG_NET_RX_BUSY_POLL) Approximate time in us to busy loop waiting for events.
+               */
+              "net.core.busy_poll"?: number;
+              /**
+               * Format: int64
+               * @description Low latency busy poll timeout for socket reads. (needs CONFIG_NET_RX_BUSY_POLL) Approximate time in us to busy loop waiting for packets on the device queue.
+               */
+              "net.core.busy_read"?: number;
+              /**
+               * Format: int64
+               * @description Maximum number of packets, queued on the INPUT side, when the interface receives packets faster than kernel can process them.
+               */
+              "net.core.netdev_max_backlog"?: number;
+              /**
+               * Format: int64
+               * @description Maximum ancillary buffer size allowed per socket. Ancillary data is a sequence of struct cmsghdr structures with appended data.
+               */
+              "net.core.optmem_max"?: number;
+              /**
+               * Format: int64
+               * @description The maximum receive socket buffer size in bytes.
+               */
+              "net.core.rmem_max"?: number;
+              /**
+               * Format: int64
+               * @description Limit of socket listen() backlog, known in userspace as SOMAXCONN. Defaults to 128. See also tcp_max_syn_backlog for additional tuning for TCP sockets.
+               */
+              "net.core.somaxconn"?: number;
+              /**
+               * Format: int64
+               * @description The default setting (in bytes) of the socket send buffer.
+               */
+              "net.core.wmem_default"?: number;
+              /**
+               * Format: int64
+               * @description The maximum send socket buffer size in bytes.
+               */
+              "net.core.wmem_max"?: number;
+              /** @description Minimal size of receive buffer used by UDP sockets in moderation. Each UDP socket is able to use the size for receiving data, even if total pages of UDP sockets exceed udp_mem pressure. The unit is byte. Default: 1 page. The three values are: min, default, max. Eg. '4096 87380 6291456'. */
+              "net.ipv4.tcp_rmem"?: string;
+              /** @description Allow to reuse TIME-WAIT sockets for new connections when it is safe from protocol viewpoint. Default value is 0. It should not be changed without advice/request of technical experts. */
+              "net.ipv4.tcp_tw_reuse"?: boolean;
+              /** @description Minimal size of send buffer used by UDP sockets in moderation. Each UDP socket is able to use the size for sending data, even if total pages of UDP sockets exceed udp_mem pressure. The unit is byte. Default: 1 page. The three values are: min, default, max. Eg. '4096 87380 6291456'. */
+              "net.ipv4.tcp_wmem"?: string;
+              /** @description Changing this value is same as changing conf/default/disable_ipv6 setting and also all per-interface disable_ipv6 settings to the same value. */
+              "net.ipv6.conf.all.disable_ipv6"?: boolean;
+              /** @description Disable IPv6 operation. */
+              "net.ipv6.conf.default.disable_ipv6"?: boolean;
+              /**
+               * Format: int64
+               * @description Maximum number of memory map areas a process may have.
+               */
+              "vm.max_map_count"?: number;
+            };
+          };
+        };
+      };
       /** @description WhenUnsatisfiable describes autoscaler behaviour in case none
        *     of the provided priorities is satisfiable.
        *     Currently supported values:

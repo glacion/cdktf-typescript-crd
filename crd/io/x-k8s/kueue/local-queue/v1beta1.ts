@@ -116,16 +116,6 @@ export interface KubernetesLocalQueueV1beta1ManifestConfig extends ManifestConfi
         }[];
         /** @description resources used in the flavor. */
         resources?: string[];
-        /** @description topology is the topology that associated with this ResourceFlavor.
-         *
-         *     This is an alpha field and requires enabling the TopologyAwareScheduling
-         *     feature gate. */
-        topology?: {
-          /** @description levels define the levels of topology. */
-          levels: string[];
-          /** @description name is the name of the topology. */
-          name: string;
-        };
       }[];
       /** @description flavorsReservation are the reserved quotas, by flavor currently in use by the
        *     workloads assigned to this LocalQueue. */

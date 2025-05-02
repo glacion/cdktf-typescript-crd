@@ -107,7 +107,7 @@ export interface KubernetesCiliumEndpointV2ManifestConfig extends ManifestConfig
       };
       /** @description Log is the list of the last few warning and error log entries */
       log?: {
-        /** @description Code indicate type of status change Enum: [ok failed] */
+        /** @description Code indicate type of status change Enum: ["ok","failed"] */
         code?: string;
         /** @description Status message */
         message?: string;
@@ -123,7 +123,7 @@ export interface KubernetesCiliumEndpointV2ManifestConfig extends ManifestConfig
         name?: string;
         /** @description Layer 4 port number */
         port?: number;
-        /** @description Layer 4 protocol Enum: [TCP UDP SCTP ICMP ICMPV6 ANY] */
+        /** @description Layer 4 protocol Enum: ["TCP","UDP","SCTP","ICMP","ICMPV6","ANY"] */
         protocol?: string;
       }[];
       /** @description Networking is the networking properties of the endpoint. */

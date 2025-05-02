@@ -23,23 +23,66 @@ export interface KubernetesGCPBackendPolicyV1ManifestConfig extends ManifestConf
     spec: {
       /** @description Default defines default policy configuration for the targeted resource. */
       default?: {
-        /** @description BackendPreference indicates whether the backend should be fully utilized before sending traffic to backends with default preference. Can only be configured for multi-cluster service backends when GCPBackendPolicy targets ServiceExport. The default value is DEFAULT. */
+        /** @description BackendPreference indicates whether the backend should be fully
+         *     utilized before sending traffic to backends with default preference.
+         *     Can only be configured for multi-cluster service backends when
+         *     GCPBackendPolicy targets ServiceExport.
+         *     The default value is DEFAULT. */
         backendPreference?: string;
+        /** @description BalancingMode specifies how to determine whether the backend of a load balancer can handle
+         *     additional traffic or is fully loaded.
+         *     Can be set as RATE, UTILIZATION or CUSTOM_METRICS. */
+        balancingMode?: string;
+        /**
+         * Format: int64
+         * @description CapacityScalerPercent is a multiplier applied to the backend's target capacity of its balancing
+         *     mode. The field is a percentage value in the range [0, 100] with the default value being 100.
+         *     This means the group serves up to 100% of its configured capacity (depending on balancingMode).
+         *     A setting of 0 means the group is completely drained, offering 0% of its available capacity.
+         */
+        capacityScalerPercent?: number;
         /** @description ConnectionDraining contains configuration for connection draining */
         connectionDraining?: {
           /**
            * Format: int64
-           * @description DrainingTimeoutSec is a BackendService parameter. It is used during removal of VMs from instance groups. This guarantees that for the specified time all existing connections to a VM will remain untouched, but no new connections will be accepted. Set timeout to zero to disable connection draining. Enable the feature by specifying a timeout of up to one hour. If the field is omitted, a default value (0s) will be used. See https://cloud.google.com/compute/docs/reference/rest/v1/backendServices
+           * @description DrainingTimeoutSec is a BackendService parameter.
+           *     It is used during removal of VMs from instance groups. This guarantees that for
+           *     the specified time all existing connections to a VM will remain untouched,
+           *     but no new connections will be accepted. Set timeout to zero to disable
+           *     connection draining. Enable the feature by specifying a timeout of up to
+           *     one hour. If the field is omitted, a default value (0s) will be used.
+           *     See https://cloud.google.com/compute/docs/reference/rest/v1/backendServices
            */
           drainingTimeoutSec?: number;
         };
-        /** @description IAP contains the configurations for Identity-Aware Proxy. See https://cloud.google.com/compute/docs/reference/rest/v1/backendServices Identity-Aware Proxy manages access control policies for backend services associated with a HTTPRoute, so they can be accessed only by authenticated users or applications with correct Identity and Access Management (IAM) role. */
+        /** @description CustomMetrics contains configuration for custom backend load reporting metrics. */
+        customMetrics?: {
+          /** @description DryRun specifies whether the metric should be used to determine load of the backend. */
+          dryRun: boolean;
+          /**
+           * Format: int32
+           * @description MaxUtilizationPercent specifies a target capacity for the Custom Metrics utilization balancing mode.
+           *     Default value for GCE resource is 80.
+           */
+          maxUtilizationPercent?: number;
+          /** @description Specifies the name associated with the custom metric. */
+          name: string;
+        }[];
+        /** @description IAP contains the configurations for Identity-Aware Proxy.
+         *     See https://cloud.google.com/compute/docs/reference/rest/v1/backendServices
+         *     Identity-Aware Proxy manages access control policies for backend services associated with a HTTPRoute,
+         *     so they can be accessed only by authenticated users or applications with correct Identity and Access Management (IAM) role. */
         iap?: {
-          /** @description ClientID is the OAuth2 client ID to use for the authentication flow. See iap.oauth2ClientId in https://cloud.google.com/compute/docs/reference/rest/v1/backendServices ClientID must be set if Enabled is set to true. */
+          /** @description ClientID is the OAuth2 client ID to use for the authentication flow.
+           *     See iap.oauth2ClientId in https://cloud.google.com/compute/docs/reference/rest/v1/backendServices
+           *     To use a custom OAuth client, provide both ClientID and Oauth2ClientSecret. If neither is provided, Google managed OAuth is the default. */
           clientID?: string;
-          /** @description Enabled denotes whether the serving infrastructure will authenticate and authorize all incoming requests. If true, the ClientID and Oauth2ClientSecret fields must be non-empty. If not specified, this defaults to false, which means Identity-Aware Proxy is disabled by default. */
+          /** @description Enabled denotes whether the serving infrastructure will authenticate and authorize all incoming requests.
+           *     If true, the ClientID and Oauth2ClientSecret fields must be non-empty.
+           *     If not specified, this defaults to false, which means Identity-Aware Proxy is disabled by default. */
           enabled?: boolean;
-          /** @description Oauth2ClientSecret contains the OAuth2 client secret to use for the authentication flow. Oauth2ClientSecret must be set if Enabled is set to true. */
+          /** @description Oauth2ClientSecret contains the OAuth2 client secret to use for the authentication flow.
+           *     To use a custom OAuth client, provide both ClientID and Oauth2ClientSecret. If neither is provided, Google managed OAuth is the default. */
           oauth2ClientSecret?: {
             /** @description Name is the reference to the secret resource. */
             name?: string;
@@ -47,34 +90,101 @@ export interface KubernetesGCPBackendPolicyV1ManifestConfig extends ManifestConf
         };
         /** @description LoggingConfig contains configuration for logging. */
         logging?: {
-          /** @description Enabled denotes whether to enable logging for the load balancer traffic served by this backend service. If not specified, this defaults to false, which means logging is disabled by default. */
+          /** @description Enabled denotes whether to enable logging for the load balancer traffic
+           *     served by this backend service. If not specified, this defaults to false,
+           *     which means logging is disabled by default. */
           enabled?: boolean;
           /**
            * Format: int32
-           * @description This field can only be specified if logging is enabled for this backend service. The value of the field must be in range [0, 1e6]. This is converted to a floating point value in the range [0, 1] by dividing by 1e6 for use with the GCE api and interpreted as the proportion of requests that will be logged. By default all requests will be logged.
+           * @description This field can only be specified if logging is enabled for this backend
+           *     service. The value of the field must be in range [0, 1e6]. This is
+           *     converted to a floating point value in the range [0, 1] by dividing by 1e6
+           *     for use with the GCE api and interpreted as the proportion of requests that
+           *     will be logged. By default all requests will be logged.
            */
           sampleRate?: number;
         };
         /**
          * Format: int64
-         * @description MaxRatePerEndpoint is a BackendService parameter. It is used to limit the rate of traffic to each endpoint. If the field is omitted, a default value (1e8) will be used. In the future we may add selector based settings for MaxRatePerEndpoint but they will co-exist with this as a top-level setting.
+         * @description MaxRatePerEndpoint configures the target capacity for backends.
+         *     If the field is omitted, a default value (1e8) will be used.
+         *     In the future we may add selector based settings for MaxRatePerEndpoint but they will co-exist
          */
         maxRatePerEndpoint?: number;
+        /** @description Scopes contains LoadBalancer policy configuration per cluster. */
+        scopes?: {
+          /**
+           * @description BackendPreference indicates whether the backend should be fully
+           *     utilized before sending traffic to backends with default preference.
+           *     Can only be configured for multi-cluster service backends when
+           *     GCPBackendPolicy targets ServiceExport.
+           *     The default value is DEFAULT.
+           *     Cannot be specified if the top-level(default) backendPreference is specified.
+           * @enum {string}
+           */
+          backendPreference?: "DEFAULT" | "PREFERRED";
+          /**
+           * @description BalancingMode specifies how to determine whether the backend of a load balancer can handle
+           *     additional traffic or is fully loaded.
+           *     Can be set as RATE, UTILIZATION or CUSTOM_METRICS.
+           * @enum {string}
+           */
+          balancingMode?: "RATE" | "UTILIZATION" | "CUSTOM_METRICS";
+          /**
+           * Format: int64
+           * @description CapacityScalerPercent is a multiplier applied to the backend's target capacity of its balancing
+           *     mode. The field is a percentage value in the range [0, 100] with the default value being 100.
+           *     This means the group serves up to 100% of its configured capacity (depending on balancingMode).
+           *     A setting of 0 means the group is completely drained, offering 0% of its available capacity.
+           */
+          capacityScalerPercent?: number;
+          /** @description CustomMetrics contains configuration for custom backend load reporting metrics. */
+          customMetrics?: {
+            /** @description DryRun specifies whether the metric should be used to determine load of the backend. */
+            dryRun: boolean;
+            /**
+             * Format: int32
+             * @description MaxUtilizationPercent specifies a target capacity for the Custom Metrics utilization balancing mode.
+             *     Default value for GCE resource is 80.
+             */
+            maxUtilizationPercent?: number;
+            /** @description Specifies the name associated with the custom metric. */
+            name: string;
+          }[];
+          /**
+           * Format: int64
+           * @description MaxRatePerEndpoint configures the target capacity for backends.
+           *     If the field is omitted, a default value (1e8) will be used.
+           *     Cannot be specified if the top-level(default) maxRatePerEndpoint is specified.
+           */
+          maxRatePerEndpoint?: number;
+          /** @description Selector is a map of labels that identifies the backend service to apply the policy to. */
+          selector?: {
+            [key: string]: string;
+          };
+        }[];
         /** @description SecurityPolicy is a reference to a GCP Cloud Armor SecurityPolicy resource. */
         securityPolicy?: string;
         /** @description SessionAffinityConfig contains configuration for stickiness parameters. */
         sessionAffinity?: {
           /**
            * Format: int64
-           * @description CookieTTLSec specifies the lifetime of cookies in seconds. This setting requires GENERATED_COOKIE or HTTP_COOKIE session affinity. If set to 0, the cookie is non-persistent and lasts only until the end of the browser session (or equivalent). The maximum allowed value is two weeks (1,209,600).
+           * @description CookieTTLSec specifies the lifetime of cookies in seconds. This setting
+           *     requires GENERATED_COOKIE or HTTP_COOKIE session affinity. If set to 0, the
+           *     cookie is non-persistent and lasts only until the end of the browser
+           *     session (or equivalent). The maximum allowed value is two weeks
+           *     (1,209,600).
            */
           cookieTtlSec?: number;
-          /** @description Type specifies the type of session affinity to use. If not specified, this defaults to NONE. */
+          /** @description Type specifies the type of session affinity to use. If not specified, this
+           *     defaults to NONE. */
           type?: string;
         };
         /**
          * Format: int64
-         * @description TimeoutSec is a BackendService parameter. See https://cloud.google.com/compute/docs/reference/rest/v1/backendServices. If the field is omitted, a default value (30s) will be used.
+         * @description TimeoutSec is a BackendService parameter.
+         *     See https://cloud.google.com/compute/docs/reference/rest/v1/backendServices.
+         *     If the field is omitted, a default value (30s) will be used.
          */
         timeoutSec?: number;
       };
@@ -86,7 +196,10 @@ export interface KubernetesGCPBackendPolicyV1ManifestConfig extends ManifestConf
         kind: string;
         /** @description Name is the name of the target resource. */
         name: string;
-        /** @description Namespace is the namespace of the referent. When unspecified, the local namespace is inferred. Even when policy targets a resource in a different namespace, it MUST only apply to traffic originating from the same namespace as the policy. */
+        /** @description Namespace is the namespace of the referent. When unspecified, the local
+         *     namespace is inferred. Even when policy targets a resource in a different
+         *     namespace, it MUST only apply to traffic originating from the same
+         *     namespace as the policy. */
         namespace?: string;
       };
     };
@@ -284,24 +397,36 @@ export interface KubernetesGCPBackendPolicyV1ManifestConfig extends ManifestConf
       conditions?: {
         /**
          * Format: date-time
-         * @description lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
+         * @description lastTransitionTime is the last time the condition transitioned from one status to another.
+         *     This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
          */
         lastTransitionTime: string;
-        /** @description message is a human readable message indicating details about the transition. This may be an empty string. */
+        /** @description message is a human readable message indicating details about the transition.
+         *     This may be an empty string. */
         message: string;
         /**
          * Format: int64
-         * @description observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.
+         * @description observedGeneration represents the .metadata.generation that the condition was set based upon.
+         *     For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+         *     with respect to the current state of the instance.
          */
         observedGeneration?: number;
-        /** @description reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. */
+        /** @description reason contains a programmatic identifier indicating the reason for the condition's last transition.
+         *     Producers of specific condition types may define expected values and meanings for this field,
+         *     and whether the values are considered a guaranteed API.
+         *     The value should be a CamelCase string.
+         *     This field may not be empty. */
         reason: string;
         /**
          * @description status of the condition, one of True, False, Unknown.
          * @enum {string}
          */
         status: "True" | "False" | "Unknown";
-        /** @description type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt) */
+        /** @description type of condition in CamelCase or in foo.example.com/CamelCase.
+         *     ---
+         *     Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be
+         *     useful (see .node.status.conditions), the ability to deconflict is important.
+         *     The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt) */
         type: string;
       }[];
     };

@@ -40,7 +40,7 @@ export interface KubernetesCiliumEndpointSliceV2alpha1ManifestConfig extends Man
         name?: string;
         /** @description Layer 4 port number */
         port?: number;
-        /** @description Layer 4 protocol Enum: [TCP UDP SCTP ICMP ICMPV6 ANY] */
+        /** @description Layer 4 protocol Enum: ["TCP","UDP","SCTP","ICMP","ICMPV6","ANY"] */
         protocol?: string;
       }[];
       /** @description EndpointNetworking is the addressing information of an endpoint. */

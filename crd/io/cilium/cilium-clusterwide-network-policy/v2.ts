@@ -44,8 +44,8 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
              * @enum {string}
              */
             family: "IPv4" | "IPv6";
-            /** @description Type is a ICMP-type. It should be 0-255 (8bit). */
-            type: number;
+            /** @description Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, "EchoReply"). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply */
+            type: number | string;
           }[];
         }[];
         /** @description ToCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections. Only connections destined for outside of the cluster and not targeting the host will be subject to CIDR rules.  This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.
@@ -54,9 +54,12 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
         /** @description ToCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections to in addition to connections which are allowed via ToEndpoints, along with a list of subnets contained within their corresponding IP block to which traffic should not be allowed. This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.
          *      Example: Any endpoint with the label "app=database-proxy" is allowed to initiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28. */
         toCIDRSet?: ({
-          /** @description CIDR is a CIDR prefix / IP Block. */
+          /**
+           * Format: cidr
+           * @description CIDR is a CIDR prefix / IP Block.
+           */
           cidr?: string;
-          /** @description CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from. */
+          /** @description CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from. */
           cidrGroupRef?: string;
           /** @description ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules. */
           except?: string[];
@@ -103,13 +106,20 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
           | "kube-apiserver"
         )[];
         /** @description ToFQDN allows whitelisting DNS names in place of IPs. The IPs that result from DNS resolution of `ToFQDN.MatchName`s are added to the same EgressRule object as ToCIDRSet entries, and behave accordingly. Any L4 and L7 rules within this EgressRule will also apply to these IPs. The DNS -> IP mapping is re-resolved periodically from within the cilium-agent, and the IPs in the DNS response are effected in the policy for selected pods as-is (i.e. the list of IPs is not modified in any way). Note: An explicit rule to allow for DNS traffic is needed for the pods, as ToFQDN counts as an egress rule and will enforce egress policy when PolicyEnforcment=default. Note: If the resolved IPs are IPs within the kubernetes cluster, the ToFQDN rule will not apply to that IP. Note: ToFQDN cannot occur in the same policy as other To* rules. */
-        toFQDNs?: {
+        toFQDNs?: ({
           /** @description MatchName matches literal DNS names. A trailing "." is automatically added when missing. */
           matchName?: string;
           /** @description MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - "*" matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a "*" as the leftmost character, without a following "." matches all subdomains as well as the name to the right. A trailing "." is automatically added when missing.
            *      Examples: `*.cilium.io` matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not `*cilium.io` matches cilium.io and all subdomains ends with "cilium.io" except those containing "." separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with "sub" sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not */
           matchPattern?: string;
-        }[];
+        } & (
+          | {
+              matchName: unknown;
+            }
+          | {
+              matchPattern: unknown;
+            }
+        ))[];
         /** @description ToGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:
          *      Example: toGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX' */
         toGroups?: {
@@ -123,12 +133,31 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
             securityGroupsNames?: string[];
           };
         }[];
+        /** @description ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate. */
+        toNodes?: {
+          /** @description matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+          matchExpressions?: {
+            /** @description key is the label key that the selector applies to. */
+            key: string;
+            /**
+             * @description operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+             * @enum {string}
+             */
+            operator: "In" | "NotIn" | "Exists" | "DoesNotExist";
+            /** @description values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+            values?: string[];
+          }[];
+          /** @description matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+          matchLabels?: {
+            [key: string]: string;
+          };
+        }[];
         /** @description ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to connect to.
          *      Example: Any endpoint with the label "role=frontend" is allowed to initiate connections to destination port 8080/tcp */
         toPorts?: {
           /** @description listener specifies the name of a custom Envoy listener to which this traffic should be redirected to. */
           listener?: {
-            /** @description EnvoyConfig is a reference to the CEC or CCNP resource in which the listener is defined. */
+            /** @description EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined. */
             envoyConfig: {
               /**
                * @description Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy, respectively. The only case this is currently explicitly needed is when referring to a CiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listener from a cluster scoped policy is not allowed.
@@ -140,6 +169,8 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
             };
             /** @description Name is the name of the listener. */
             name: string;
+            /** @description Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent. */
+            priority?: number;
           };
           /** @description OriginatingTLS is the TLS context for the connections originated by the L7 proxy.  For egress policy this specifies the client-side TLS parameters for the upstream connection originating from the L7 proxy to the remote destination. For ingress policy this specifies the client-side TLS parameters for the connection from the L7 proxy to the local endpoint. */
           originatingTLS?: {
@@ -159,7 +190,12 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
           };
           /** @description Ports is a list of L4 port/protocol */
           ports?: {
-            /** @description Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form "1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end. */
+            /**
+             * Format: int32
+             * @description EndPort can only be an L4 port number.
+             */
+            endPort?: number;
+            /** @description Port can be an L4 port number, or a name in the form of "http" or "http-8080". */
             port: string;
             /**
              * @description Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: "TCP", "UDP", "SCTP", "ANY"
@@ -172,13 +208,20 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
           /** @description Rules is a list of additional port level rules which must be met in order for the PortRule to allow the traffic. If omitted or empty, no layer 7 rules are enforced. */
           rules?: {
             /** @description DNS-specific rules. */
-            dns?: {
+            dns?: ({
               /** @description MatchName matches literal DNS names. A trailing "." is automatically added when missing. */
               matchName?: string;
               /** @description MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - "*" matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a "*" as the leftmost character, without a following "." matches all subdomains as well as the name to the right. A trailing "." is automatically added when missing.
                *      Examples: `*.cilium.io` matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not `*cilium.io` matches cilium.io and all subdomains ends with "cilium.io" except those containing "." separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with "sub" sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not */
               matchPattern?: string;
-            }[];
+            } & (
+              | {
+                  matchName: unknown;
+                }
+              | {
+                  matchPattern: unknown;
+                }
+            ))[];
             /** @description HTTP specific rules. */
             http?: {
               /** @description HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match. */
@@ -204,7 +247,8 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
               headers?: string[];
               /**
                * Format: idn-hostname
-               * @description Host is an extended POSIX regex matched against the host header of a request, e.g. "foo.com"
+               * @description Host is an extended POSIX regex matched against the host header of a request. Examples:
+               *      - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo\.bar\.com will only match the host foo.bar.com
                *      If omitted or empty, the value of the host header is ignored.
                */
               host?: string;
@@ -247,7 +291,20 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
             }[];
             /** @description Name of the L7 protocol for which the Key-value pair rules apply. */
             l7proto?: string;
-          };
+          } & (
+            | {
+                http: unknown;
+              }
+            | {
+                kafka: unknown;
+              }
+            | {
+                dns: unknown;
+              }
+            | {
+                l7proto: unknown;
+              }
+          );
           /** @description ServerNames is a list of allowed TLS SNI values. If not empty, then TLS must be present and one of the provided SNIs must be indicated in the TLS handshake. */
           serverNames?: string[];
           /** @description TerminatingTLS is the TLS context for the connection terminated by the L7 proxy.  For egress policy this specifies the server-side TLS parameters to be applied on the connections originated from the local endpoint and terminated by the L7 proxy. For ingress policy this specifies the server-side TLS parameters to be applied on the connections originated from a remote source and terminated by the L7 proxy. */
@@ -333,8 +390,8 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
              * @enum {string}
              */
             family: "IPv4" | "IPv6";
-            /** @description Type is a ICMP-type. It should be 0-255 (8bit). */
-            type: number;
+            /** @description Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, "EchoReply"). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply */
+            type: number | string;
           }[];
         }[];
         /** @description ToCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections. Only connections destined for outside of the cluster and not targeting the host will be subject to CIDR rules.  This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.
@@ -343,9 +400,12 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
         /** @description ToCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections to in addition to connections which are allowed via ToEndpoints, along with a list of subnets contained within their corresponding IP block to which traffic should not be allowed. This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.
          *      Example: Any endpoint with the label "app=database-proxy" is allowed to initiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28. */
         toCIDRSet?: ({
-          /** @description CIDR is a CIDR prefix / IP Block. */
+          /**
+           * Format: cidr
+           * @description CIDR is a CIDR prefix / IP Block.
+           */
           cidr?: string;
-          /** @description CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from. */
+          /** @description CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from. */
           cidrGroupRef?: string;
           /** @description ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules. */
           except?: string[];
@@ -404,12 +464,36 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
             securityGroupsNames?: string[];
           };
         }[];
+        /** @description ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate. */
+        toNodes?: {
+          /** @description matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+          matchExpressions?: {
+            /** @description key is the label key that the selector applies to. */
+            key: string;
+            /**
+             * @description operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+             * @enum {string}
+             */
+            operator: "In" | "NotIn" | "Exists" | "DoesNotExist";
+            /** @description values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+            values?: string[];
+          }[];
+          /** @description matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+          matchLabels?: {
+            [key: string]: string;
+          };
+        }[];
         /** @description ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is not allowed to connect to.
          *      Example: Any endpoint with the label "role=frontend" is not allowed to initiate connections to destination port 8080/tcp */
         toPorts?: {
           /** @description Ports is a list of L4 port/protocol */
           ports?: {
-            /** @description Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form "1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end. */
+            /**
+             * Format: int32
+             * @description EndPort can only be an L4 port number.
+             */
+            endPort?: number;
+            /** @description Port can be an L4 port number, or a name in the form of "http" or "http-8080". */
             port: string;
             /**
              * @description Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: "TCP", "UDP", "SCTP", "ANY"
@@ -473,6 +557,16 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
           };
         }[];
       }[];
+      /** @description EnableDefaultDeny determines whether this policy configures the subject endpoint(s) to have a default deny mode. If enabled, this causes all traffic not explicitly allowed by a network policy to be dropped.
+       *      If not specified, the default is true for each traffic direction that has rules, and false otherwise. For example, if a policy only has Ingress or IngressDeny rules, then the default for ingress is true and egress is false.
+       *      If multiple policies apply to an endpoint, that endpoint's default deny will be enabled if any policy requests it.
+       *      This is useful for creating broad-based network policies that will not cause endpoints to enter default-deny mode. */
+      enableDefaultDeny?: {
+        /** @description Whether or not the endpoint should have a default-deny rule applied to egress traffic. */
+        egress?: boolean;
+        /** @description Whether or not the endpoint should have a default-deny rule applied to ingress traffic. */
+        ingress?: boolean;
+      };
       /** @description EndpointSelector selects all endpoints which should be subject to this rule. EndpointSelector and NodeSelector cannot be both empty and are mutually exclusive. */
       endpointSelector?: {
         /** @description matchExpressions is a list of label selector requirements. The requirements are ANDed. */
@@ -508,9 +602,12 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
         /** @description FromCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from in addition to FromEndpoints, along with a list of subnets contained within their corresponding IP block from which traffic should not be allowed. This will match on the source IP address of incoming connections. Adding a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.
          *      Example: Any endpoint with the label "app=my-legacy-pet" is allowed to receive connections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12. */
         fromCIDRSet?: ({
-          /** @description CIDR is a CIDR prefix / IP Block. */
+          /**
+           * Format: cidr
+           * @description CIDR is a CIDR prefix / IP Block.
+           */
           cidr?: string;
-          /** @description CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from. */
+          /** @description CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from. */
           cidrGroupRef?: string;
           /** @description ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules. */
           except?: string[];
@@ -556,6 +653,38 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
           | "none"
           | "kube-apiserver"
         )[];
+        /** @description FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:
+         *      Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX' */
+        fromGroups?: {
+          /** @description AWSGroup is an structure that can be used to whitelisting information from AWS integration */
+          aws?: {
+            labels?: {
+              [key: string]: string;
+            };
+            region?: string;
+            securityGroupsIds?: string[];
+            securityGroupsNames?: string[];
+          };
+        }[];
+        /** @description FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule. */
+        fromNodes?: {
+          /** @description matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+          matchExpressions?: {
+            /** @description key is the label key that the selector applies to. */
+            key: string;
+            /**
+             * @description operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+             * @enum {string}
+             */
+            operator: "In" | "NotIn" | "Exists" | "DoesNotExist";
+            /** @description values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+            values?: string[];
+          }[];
+          /** @description matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+          matchLabels?: {
+            [key: string]: string;
+          };
+        }[];
         /** @description FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.
          *      Example: Any Endpoint with the label "team=A" requires consuming endpoint to also carry the label "team=A". */
         fromRequires?: {
@@ -587,8 +716,8 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
              * @enum {string}
              */
             family: "IPv4" | "IPv6";
-            /** @description Type is a ICMP-type. It should be 0-255 (8bit). */
-            type: number;
+            /** @description Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, "EchoReply"). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply */
+            type: number | string;
           }[];
         }[];
         /** @description ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to receive connections on.
@@ -596,7 +725,7 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
         toPorts?: {
           /** @description listener specifies the name of a custom Envoy listener to which this traffic should be redirected to. */
           listener?: {
-            /** @description EnvoyConfig is a reference to the CEC or CCNP resource in which the listener is defined. */
+            /** @description EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined. */
             envoyConfig: {
               /**
                * @description Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy, respectively. The only case this is currently explicitly needed is when referring to a CiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listener from a cluster scoped policy is not allowed.
@@ -608,6 +737,8 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
             };
             /** @description Name is the name of the listener. */
             name: string;
+            /** @description Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent. */
+            priority?: number;
           };
           /** @description OriginatingTLS is the TLS context for the connections originated by the L7 proxy.  For egress policy this specifies the client-side TLS parameters for the upstream connection originating from the L7 proxy to the remote destination. For ingress policy this specifies the client-side TLS parameters for the connection from the L7 proxy to the local endpoint. */
           originatingTLS?: {
@@ -627,7 +758,12 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
           };
           /** @description Ports is a list of L4 port/protocol */
           ports?: {
-            /** @description Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form "1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end. */
+            /**
+             * Format: int32
+             * @description EndPort can only be an L4 port number.
+             */
+            endPort?: number;
+            /** @description Port can be an L4 port number, or a name in the form of "http" or "http-8080". */
             port: string;
             /**
              * @description Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: "TCP", "UDP", "SCTP", "ANY"
@@ -640,13 +776,20 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
           /** @description Rules is a list of additional port level rules which must be met in order for the PortRule to allow the traffic. If omitted or empty, no layer 7 rules are enforced. */
           rules?: {
             /** @description DNS-specific rules. */
-            dns?: {
+            dns?: ({
               /** @description MatchName matches literal DNS names. A trailing "." is automatically added when missing. */
               matchName?: string;
               /** @description MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - "*" matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a "*" as the leftmost character, without a following "." matches all subdomains as well as the name to the right. A trailing "." is automatically added when missing.
                *      Examples: `*.cilium.io` matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not `*cilium.io` matches cilium.io and all subdomains ends with "cilium.io" except those containing "." separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with "sub" sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not */
               matchPattern?: string;
-            }[];
+            } & (
+              | {
+                  matchName: unknown;
+                }
+              | {
+                  matchPattern: unknown;
+                }
+            ))[];
             /** @description HTTP specific rules. */
             http?: {
               /** @description HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match. */
@@ -672,7 +815,8 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
               headers?: string[];
               /**
                * Format: idn-hostname
-               * @description Host is an extended POSIX regex matched against the host header of a request, e.g. "foo.com"
+               * @description Host is an extended POSIX regex matched against the host header of a request. Examples:
+               *      - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo\.bar\.com will only match the host foo.bar.com
                *      If omitted or empty, the value of the host header is ignored.
                */
               host?: string;
@@ -715,7 +859,20 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
             }[];
             /** @description Name of the L7 protocol for which the Key-value pair rules apply. */
             l7proto?: string;
-          };
+          } & (
+            | {
+                http: unknown;
+              }
+            | {
+                kafka: unknown;
+              }
+            | {
+                dns: unknown;
+              }
+            | {
+                l7proto: unknown;
+              }
+          );
           /** @description ServerNames is a list of allowed TLS SNI values. If not empty, then TLS must be present and one of the provided SNIs must be indicated in the TLS handshake. */
           serverNames?: string[];
           /** @description TerminatingTLS is the TLS context for the connection terminated by the L7 proxy.  For egress policy this specifies the server-side TLS parameters to be applied on the connections originated from the local endpoint and terminated by the L7 proxy. For ingress policy this specifies the server-side TLS parameters to be applied on the connections originated from a remote source and terminated by the L7 proxy. */
@@ -744,9 +901,12 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
         /** @description FromCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from in addition to FromEndpoints, along with a list of subnets contained within their corresponding IP block from which traffic should not be allowed. This will match on the source IP address of incoming connections. Adding a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.
          *      Example: Any endpoint with the label "app=my-legacy-pet" is allowed to receive connections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12. */
         fromCIDRSet?: ({
-          /** @description CIDR is a CIDR prefix / IP Block. */
+          /**
+           * Format: cidr
+           * @description CIDR is a CIDR prefix / IP Block.
+           */
           cidr?: string;
-          /** @description CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from. */
+          /** @description CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from. */
           cidrGroupRef?: string;
           /** @description ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules. */
           except?: string[];
@@ -792,6 +952,38 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
           | "none"
           | "kube-apiserver"
         )[];
+        /** @description FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:
+         *      Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX' */
+        fromGroups?: {
+          /** @description AWSGroup is an structure that can be used to whitelisting information from AWS integration */
+          aws?: {
+            labels?: {
+              [key: string]: string;
+            };
+            region?: string;
+            securityGroupsIds?: string[];
+            securityGroupsNames?: string[];
+          };
+        }[];
+        /** @description FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule. */
+        fromNodes?: {
+          /** @description matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+          matchExpressions?: {
+            /** @description key is the label key that the selector applies to. */
+            key: string;
+            /**
+             * @description operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+             * @enum {string}
+             */
+            operator: "In" | "NotIn" | "Exists" | "DoesNotExist";
+            /** @description values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+            values?: string[];
+          }[];
+          /** @description matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+          matchLabels?: {
+            [key: string]: string;
+          };
+        }[];
         /** @description FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.
          *      Example: Any Endpoint with the label "team=A" requires consuming endpoint to also carry the label "team=A". */
         fromRequires?: {
@@ -823,8 +1015,8 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
              * @enum {string}
              */
             family: "IPv4" | "IPv6";
-            /** @description Type is a ICMP-type. It should be 0-255 (8bit). */
-            type: number;
+            /** @description Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, "EchoReply"). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply */
+            type: number | string;
           }[];
         }[];
         /** @description ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is not allowed to receive connections on.
@@ -832,7 +1024,12 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
         toPorts?: {
           /** @description Ports is a list of L4 port/protocol */
           ports?: {
-            /** @description Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form "1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end. */
+            /**
+             * Format: int32
+             * @description EndPort can only be an L4 port number.
+             */
+            endPort?: number;
+            /** @description Port can be an L4 port number, or a name in the form of "http" or "http-8080". */
             port: string;
             /**
              * @description Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: "TCP", "UDP", "SCTP", "ANY"
@@ -903,8 +1100,8 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
              * @enum {string}
              */
             family: "IPv4" | "IPv6";
-            /** @description Type is a ICMP-type. It should be 0-255 (8bit). */
-            type: number;
+            /** @description Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, "EchoReply"). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply */
+            type: number | string;
           }[];
         }[];
         /** @description ToCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections. Only connections destined for outside of the cluster and not targeting the host will be subject to CIDR rules.  This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.
@@ -913,9 +1110,12 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
         /** @description ToCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections to in addition to connections which are allowed via ToEndpoints, along with a list of subnets contained within their corresponding IP block to which traffic should not be allowed. This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.
          *      Example: Any endpoint with the label "app=database-proxy" is allowed to initiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28. */
         toCIDRSet?: ({
-          /** @description CIDR is a CIDR prefix / IP Block. */
+          /**
+           * Format: cidr
+           * @description CIDR is a CIDR prefix / IP Block.
+           */
           cidr?: string;
-          /** @description CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from. */
+          /** @description CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from. */
           cidrGroupRef?: string;
           /** @description ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules. */
           except?: string[];
@@ -962,13 +1162,20 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
           | "kube-apiserver"
         )[];
         /** @description ToFQDN allows whitelisting DNS names in place of IPs. The IPs that result from DNS resolution of `ToFQDN.MatchName`s are added to the same EgressRule object as ToCIDRSet entries, and behave accordingly. Any L4 and L7 rules within this EgressRule will also apply to these IPs. The DNS -> IP mapping is re-resolved periodically from within the cilium-agent, and the IPs in the DNS response are effected in the policy for selected pods as-is (i.e. the list of IPs is not modified in any way). Note: An explicit rule to allow for DNS traffic is needed for the pods, as ToFQDN counts as an egress rule and will enforce egress policy when PolicyEnforcment=default. Note: If the resolved IPs are IPs within the kubernetes cluster, the ToFQDN rule will not apply to that IP. Note: ToFQDN cannot occur in the same policy as other To* rules. */
-        toFQDNs?: {
+        toFQDNs?: ({
           /** @description MatchName matches literal DNS names. A trailing "." is automatically added when missing. */
           matchName?: string;
           /** @description MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - "*" matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a "*" as the leftmost character, without a following "." matches all subdomains as well as the name to the right. A trailing "." is automatically added when missing.
            *      Examples: `*.cilium.io` matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not `*cilium.io` matches cilium.io and all subdomains ends with "cilium.io" except those containing "." separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with "sub" sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not */
           matchPattern?: string;
-        }[];
+        } & (
+          | {
+              matchName: unknown;
+            }
+          | {
+              matchPattern: unknown;
+            }
+        ))[];
         /** @description ToGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:
          *      Example: toGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX' */
         toGroups?: {
@@ -982,12 +1189,31 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
             securityGroupsNames?: string[];
           };
         }[];
+        /** @description ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate. */
+        toNodes?: {
+          /** @description matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+          matchExpressions?: {
+            /** @description key is the label key that the selector applies to. */
+            key: string;
+            /**
+             * @description operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+             * @enum {string}
+             */
+            operator: "In" | "NotIn" | "Exists" | "DoesNotExist";
+            /** @description values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+            values?: string[];
+          }[];
+          /** @description matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+          matchLabels?: {
+            [key: string]: string;
+          };
+        }[];
         /** @description ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to connect to.
          *      Example: Any endpoint with the label "role=frontend" is allowed to initiate connections to destination port 8080/tcp */
         toPorts?: {
           /** @description listener specifies the name of a custom Envoy listener to which this traffic should be redirected to. */
           listener?: {
-            /** @description EnvoyConfig is a reference to the CEC or CCNP resource in which the listener is defined. */
+            /** @description EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined. */
             envoyConfig: {
               /**
                * @description Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy, respectively. The only case this is currently explicitly needed is when referring to a CiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listener from a cluster scoped policy is not allowed.
@@ -999,6 +1225,8 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
             };
             /** @description Name is the name of the listener. */
             name: string;
+            /** @description Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent. */
+            priority?: number;
           };
           /** @description OriginatingTLS is the TLS context for the connections originated by the L7 proxy.  For egress policy this specifies the client-side TLS parameters for the upstream connection originating from the L7 proxy to the remote destination. For ingress policy this specifies the client-side TLS parameters for the connection from the L7 proxy to the local endpoint. */
           originatingTLS?: {
@@ -1018,7 +1246,12 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
           };
           /** @description Ports is a list of L4 port/protocol */
           ports?: {
-            /** @description Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form "1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end. */
+            /**
+             * Format: int32
+             * @description EndPort can only be an L4 port number.
+             */
+            endPort?: number;
+            /** @description Port can be an L4 port number, or a name in the form of "http" or "http-8080". */
             port: string;
             /**
              * @description Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: "TCP", "UDP", "SCTP", "ANY"
@@ -1031,13 +1264,20 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
           /** @description Rules is a list of additional port level rules which must be met in order for the PortRule to allow the traffic. If omitted or empty, no layer 7 rules are enforced. */
           rules?: {
             /** @description DNS-specific rules. */
-            dns?: {
+            dns?: ({
               /** @description MatchName matches literal DNS names. A trailing "." is automatically added when missing. */
               matchName?: string;
               /** @description MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - "*" matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a "*" as the leftmost character, without a following "." matches all subdomains as well as the name to the right. A trailing "." is automatically added when missing.
                *      Examples: `*.cilium.io` matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not `*cilium.io` matches cilium.io and all subdomains ends with "cilium.io" except those containing "." separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with "sub" sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not */
               matchPattern?: string;
-            }[];
+            } & (
+              | {
+                  matchName: unknown;
+                }
+              | {
+                  matchPattern: unknown;
+                }
+            ))[];
             /** @description HTTP specific rules. */
             http?: {
               /** @description HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match. */
@@ -1063,7 +1303,8 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
               headers?: string[];
               /**
                * Format: idn-hostname
-               * @description Host is an extended POSIX regex matched against the host header of a request, e.g. "foo.com"
+               * @description Host is an extended POSIX regex matched against the host header of a request. Examples:
+               *      - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo\.bar\.com will only match the host foo.bar.com
                *      If omitted or empty, the value of the host header is ignored.
                */
               host?: string;
@@ -1106,7 +1347,20 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
             }[];
             /** @description Name of the L7 protocol for which the Key-value pair rules apply. */
             l7proto?: string;
-          };
+          } & (
+            | {
+                http: unknown;
+              }
+            | {
+                kafka: unknown;
+              }
+            | {
+                dns: unknown;
+              }
+            | {
+                l7proto: unknown;
+              }
+          );
           /** @description ServerNames is a list of allowed TLS SNI values. If not empty, then TLS must be present and one of the provided SNIs must be indicated in the TLS handshake. */
           serverNames?: string[];
           /** @description TerminatingTLS is the TLS context for the connection terminated by the L7 proxy.  For egress policy this specifies the server-side TLS parameters to be applied on the connections originated from the local endpoint and terminated by the L7 proxy. For ingress policy this specifies the server-side TLS parameters to be applied on the connections originated from a remote source and terminated by the L7 proxy. */
@@ -1192,8 +1446,8 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
              * @enum {string}
              */
             family: "IPv4" | "IPv6";
-            /** @description Type is a ICMP-type. It should be 0-255 (8bit). */
-            type: number;
+            /** @description Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, "EchoReply"). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply */
+            type: number | string;
           }[];
         }[];
         /** @description ToCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections. Only connections destined for outside of the cluster and not targeting the host will be subject to CIDR rules.  This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.
@@ -1202,9 +1456,12 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
         /** @description ToCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections to in addition to connections which are allowed via ToEndpoints, along with a list of subnets contained within their corresponding IP block to which traffic should not be allowed. This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.
          *      Example: Any endpoint with the label "app=database-proxy" is allowed to initiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28. */
         toCIDRSet?: ({
-          /** @description CIDR is a CIDR prefix / IP Block. */
+          /**
+           * Format: cidr
+           * @description CIDR is a CIDR prefix / IP Block.
+           */
           cidr?: string;
-          /** @description CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from. */
+          /** @description CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from. */
           cidrGroupRef?: string;
           /** @description ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules. */
           except?: string[];
@@ -1263,12 +1520,36 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
             securityGroupsNames?: string[];
           };
         }[];
+        /** @description ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate. */
+        toNodes?: {
+          /** @description matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+          matchExpressions?: {
+            /** @description key is the label key that the selector applies to. */
+            key: string;
+            /**
+             * @description operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+             * @enum {string}
+             */
+            operator: "In" | "NotIn" | "Exists" | "DoesNotExist";
+            /** @description values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+            values?: string[];
+          }[];
+          /** @description matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+          matchLabels?: {
+            [key: string]: string;
+          };
+        }[];
         /** @description ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is not allowed to connect to.
          *      Example: Any endpoint with the label "role=frontend" is not allowed to initiate connections to destination port 8080/tcp */
         toPorts?: {
           /** @description Ports is a list of L4 port/protocol */
           ports?: {
-            /** @description Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form "1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end. */
+            /**
+             * Format: int32
+             * @description EndPort can only be an L4 port number.
+             */
+            endPort?: number;
+            /** @description Port can be an L4 port number, or a name in the form of "http" or "http-8080". */
             port: string;
             /**
              * @description Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: "TCP", "UDP", "SCTP", "ANY"
@@ -1332,6 +1613,16 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
           };
         }[];
       }[];
+      /** @description EnableDefaultDeny determines whether this policy configures the subject endpoint(s) to have a default deny mode. If enabled, this causes all traffic not explicitly allowed by a network policy to be dropped.
+       *      If not specified, the default is true for each traffic direction that has rules, and false otherwise. For example, if a policy only has Ingress or IngressDeny rules, then the default for ingress is true and egress is false.
+       *      If multiple policies apply to an endpoint, that endpoint's default deny will be enabled if any policy requests it.
+       *      This is useful for creating broad-based network policies that will not cause endpoints to enter default-deny mode. */
+      enableDefaultDeny?: {
+        /** @description Whether or not the endpoint should have a default-deny rule applied to egress traffic. */
+        egress?: boolean;
+        /** @description Whether or not the endpoint should have a default-deny rule applied to ingress traffic. */
+        ingress?: boolean;
+      };
       /** @description EndpointSelector selects all endpoints which should be subject to this rule. EndpointSelector and NodeSelector cannot be both empty and are mutually exclusive. */
       endpointSelector?: {
         /** @description matchExpressions is a list of label selector requirements. The requirements are ANDed. */
@@ -1367,9 +1658,12 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
         /** @description FromCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from in addition to FromEndpoints, along with a list of subnets contained within their corresponding IP block from which traffic should not be allowed. This will match on the source IP address of incoming connections. Adding a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.
          *      Example: Any endpoint with the label "app=my-legacy-pet" is allowed to receive connections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12. */
         fromCIDRSet?: ({
-          /** @description CIDR is a CIDR prefix / IP Block. */
+          /**
+           * Format: cidr
+           * @description CIDR is a CIDR prefix / IP Block.
+           */
           cidr?: string;
-          /** @description CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from. */
+          /** @description CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from. */
           cidrGroupRef?: string;
           /** @description ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules. */
           except?: string[];
@@ -1415,6 +1709,38 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
           | "none"
           | "kube-apiserver"
         )[];
+        /** @description FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:
+         *      Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX' */
+        fromGroups?: {
+          /** @description AWSGroup is an structure that can be used to whitelisting information from AWS integration */
+          aws?: {
+            labels?: {
+              [key: string]: string;
+            };
+            region?: string;
+            securityGroupsIds?: string[];
+            securityGroupsNames?: string[];
+          };
+        }[];
+        /** @description FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule. */
+        fromNodes?: {
+          /** @description matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+          matchExpressions?: {
+            /** @description key is the label key that the selector applies to. */
+            key: string;
+            /**
+             * @description operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+             * @enum {string}
+             */
+            operator: "In" | "NotIn" | "Exists" | "DoesNotExist";
+            /** @description values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+            values?: string[];
+          }[];
+          /** @description matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+          matchLabels?: {
+            [key: string]: string;
+          };
+        }[];
         /** @description FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.
          *      Example: Any Endpoint with the label "team=A" requires consuming endpoint to also carry the label "team=A". */
         fromRequires?: {
@@ -1446,8 +1772,8 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
              * @enum {string}
              */
             family: "IPv4" | "IPv6";
-            /** @description Type is a ICMP-type. It should be 0-255 (8bit). */
-            type: number;
+            /** @description Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, "EchoReply"). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply */
+            type: number | string;
           }[];
         }[];
         /** @description ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to receive connections on.
@@ -1455,7 +1781,7 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
         toPorts?: {
           /** @description listener specifies the name of a custom Envoy listener to which this traffic should be redirected to. */
           listener?: {
-            /** @description EnvoyConfig is a reference to the CEC or CCNP resource in which the listener is defined. */
+            /** @description EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined. */
             envoyConfig: {
               /**
                * @description Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy, respectively. The only case this is currently explicitly needed is when referring to a CiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listener from a cluster scoped policy is not allowed.
@@ -1467,6 +1793,8 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
             };
             /** @description Name is the name of the listener. */
             name: string;
+            /** @description Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent. */
+            priority?: number;
           };
           /** @description OriginatingTLS is the TLS context for the connections originated by the L7 proxy.  For egress policy this specifies the client-side TLS parameters for the upstream connection originating from the L7 proxy to the remote destination. For ingress policy this specifies the client-side TLS parameters for the connection from the L7 proxy to the local endpoint. */
           originatingTLS?: {
@@ -1486,7 +1814,12 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
           };
           /** @description Ports is a list of L4 port/protocol */
           ports?: {
-            /** @description Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form "1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end. */
+            /**
+             * Format: int32
+             * @description EndPort can only be an L4 port number.
+             */
+            endPort?: number;
+            /** @description Port can be an L4 port number, or a name in the form of "http" or "http-8080". */
             port: string;
             /**
              * @description Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: "TCP", "UDP", "SCTP", "ANY"
@@ -1499,13 +1832,20 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
           /** @description Rules is a list of additional port level rules which must be met in order for the PortRule to allow the traffic. If omitted or empty, no layer 7 rules are enforced. */
           rules?: {
             /** @description DNS-specific rules. */
-            dns?: {
+            dns?: ({
               /** @description MatchName matches literal DNS names. A trailing "." is automatically added when missing. */
               matchName?: string;
               /** @description MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - "*" matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a "*" as the leftmost character, without a following "." matches all subdomains as well as the name to the right. A trailing "." is automatically added when missing.
                *      Examples: `*.cilium.io` matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not `*cilium.io` matches cilium.io and all subdomains ends with "cilium.io" except those containing "." separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with "sub" sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not */
               matchPattern?: string;
-            }[];
+            } & (
+              | {
+                  matchName: unknown;
+                }
+              | {
+                  matchPattern: unknown;
+                }
+            ))[];
             /** @description HTTP specific rules. */
             http?: {
               /** @description HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match. */
@@ -1531,7 +1871,8 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
               headers?: string[];
               /**
                * Format: idn-hostname
-               * @description Host is an extended POSIX regex matched against the host header of a request, e.g. "foo.com"
+               * @description Host is an extended POSIX regex matched against the host header of a request. Examples:
+               *      - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo\.bar\.com will only match the host foo.bar.com
                *      If omitted or empty, the value of the host header is ignored.
                */
               host?: string;
@@ -1574,7 +1915,20 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
             }[];
             /** @description Name of the L7 protocol for which the Key-value pair rules apply. */
             l7proto?: string;
-          };
+          } & (
+            | {
+                http: unknown;
+              }
+            | {
+                kafka: unknown;
+              }
+            | {
+                dns: unknown;
+              }
+            | {
+                l7proto: unknown;
+              }
+          );
           /** @description ServerNames is a list of allowed TLS SNI values. If not empty, then TLS must be present and one of the provided SNIs must be indicated in the TLS handshake. */
           serverNames?: string[];
           /** @description TerminatingTLS is the TLS context for the connection terminated by the L7 proxy.  For egress policy this specifies the server-side TLS parameters to be applied on the connections originated from the local endpoint and terminated by the L7 proxy. For ingress policy this specifies the server-side TLS parameters to be applied on the connections originated from a remote source and terminated by the L7 proxy. */
@@ -1603,9 +1957,12 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
         /** @description FromCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from in addition to FromEndpoints, along with a list of subnets contained within their corresponding IP block from which traffic should not be allowed. This will match on the source IP address of incoming connections. Adding a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.
          *      Example: Any endpoint with the label "app=my-legacy-pet" is allowed to receive connections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12. */
         fromCIDRSet?: ({
-          /** @description CIDR is a CIDR prefix / IP Block. */
+          /**
+           * Format: cidr
+           * @description CIDR is a CIDR prefix / IP Block.
+           */
           cidr?: string;
-          /** @description CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from. */
+          /** @description CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from. */
           cidrGroupRef?: string;
           /** @description ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules. */
           except?: string[];
@@ -1651,6 +2008,38 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
           | "none"
           | "kube-apiserver"
         )[];
+        /** @description FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:
+         *      Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX' */
+        fromGroups?: {
+          /** @description AWSGroup is an structure that can be used to whitelisting information from AWS integration */
+          aws?: {
+            labels?: {
+              [key: string]: string;
+            };
+            region?: string;
+            securityGroupsIds?: string[];
+            securityGroupsNames?: string[];
+          };
+        }[];
+        /** @description FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule. */
+        fromNodes?: {
+          /** @description matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+          matchExpressions?: {
+            /** @description key is the label key that the selector applies to. */
+            key: string;
+            /**
+             * @description operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+             * @enum {string}
+             */
+            operator: "In" | "NotIn" | "Exists" | "DoesNotExist";
+            /** @description values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+            values?: string[];
+          }[];
+          /** @description matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+          matchLabels?: {
+            [key: string]: string;
+          };
+        }[];
         /** @description FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.
          *      Example: Any Endpoint with the label "team=A" requires consuming endpoint to also carry the label "team=A". */
         fromRequires?: {
@@ -1682,8 +2071,8 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
              * @enum {string}
              */
             family: "IPv4" | "IPv6";
-            /** @description Type is a ICMP-type. It should be 0-255 (8bit). */
-            type: number;
+            /** @description Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, "EchoReply"). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply */
+            type: number | string;
           }[];
         }[];
         /** @description ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is not allowed to receive connections on.
@@ -1691,7 +2080,12 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
         toPorts?: {
           /** @description Ports is a list of L4 port/protocol */
           ports?: {
-            /** @description Port is an L4 port number. For now the string will be strictly parsed as a single uint16. In the future, this field may support ranges in the form "1024-2048 Port can also be a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end. */
+            /**
+             * Format: int32
+             * @description EndPort can only be an L4 port number.
+             */
+            endPort?: number;
+            /** @description Port can be an L4 port number, or a name in the form of "http" or "http-8080". */
             port: string;
             /**
              * @description Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: "TCP", "UDP", "SCTP", "ANY"
@@ -1740,33 +2134,23 @@ export interface KubernetesCiliumClusterwideNetworkPolicyV2ManifestConfig extend
     /** @description Status is the status of the Cilium policy rule.
      *      The reason this field exists in this structure is due a bug in the k8s code-generator that doesn't create a `UpdateStatus` method because the field does not exist in the structure. */
     status?: {
+      conditions?: {
+        /**
+         * Format: date-time
+         * @description The last time the condition transitioned from one status to another.
+         */
+        lastTransitionTime?: string;
+        /** @description A human readable message indicating details about the transition. */
+        message?: string;
+        /** @description The reason for the condition's last transition. */
+        reason?: string;
+        /** @description The status of the condition, one of True, False, or Unknown */
+        status: string;
+        /** @description The type of the policy condition */
+        type: string;
+      }[];
       /** @description DerivativePolicies is the status of all policies derived from the Cilium policy */
       derivativePolicies?: {
-        [key: string]: {
-          /** @description Annotations corresponds to the Annotations in the ObjectMeta of the CNP that have been realized on the node for CNP. That is, if a CNP has been imported and has been assigned annotation X=Y by the user, Annotations in CiliumNetworkPolicyNodeStatus will be X=Y once the CNP that was imported corresponding to Annotation X=Y has been realized on the node. */
-          annotations?: {
-            [key: string]: string;
-          };
-          /** @description Enforcing is set to true once all endpoints present at the time the policy has been imported are enforcing this policy. */
-          enforcing?: boolean;
-          /** @description Error describes any error that occurred when parsing or importing the policy, or realizing the policy for the endpoints to which it applies on the node. */
-          error?: string;
-          /**
-           * Format: date-time
-           * @description LastUpdated contains the last time this status was updated
-           */
-          lastUpdated?: string;
-          /**
-           * Format: int64
-           * @description Revision is the policy revision of the repository which first implemented this policy.
-           */
-          localPolicyRevision?: number;
-          /** @description OK is true when the policy has been parsed and imported successfully into the in-memory policy repository on the node. */
-          ok?: boolean;
-        };
-      };
-      /** @description Nodes is the Cilium policy status for each node */
-      nodes?: {
         [key: string]: {
           /** @description Annotations corresponds to the Annotations in the ObjectMeta of the CNP that have been realized on the node for CNP. That is, if a CNP has been imported and has been assigned annotation X=Y by the user, Annotations in CiliumNetworkPolicyNodeStatus will be X=Y once the CNP that was imported corresponding to Annotation X=Y has been realized on the node. */
           annotations?: {
