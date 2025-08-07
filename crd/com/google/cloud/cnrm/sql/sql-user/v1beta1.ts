@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesSQLUserV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesSQLUserV1beta1ManifestConfig) {
+export class SqlCnrmCloudGoogleComSQLUserV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: SqlCnrmCloudGoogleComSQLUserV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesSQLUserV1beta1ManifestConfig extends ManifestConfig {
+export interface SqlCnrmCloudGoogleComSQLUserV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "sql.cnrm.cloud.google.com/v1beta1";
-    kind?: "SQLUser";
+    apiVersion: "sql.cnrm.cloud.google.com/v1beta1";
+    kind: "SQLUser";
     metadata: {
       annotations?: {
         [key: string]: string;

@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesBackendConfigV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesBackendConfigV1ManifestConfig) {
+export class CloudGoogleComBackendConfigV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: CloudGoogleComBackendConfigV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesBackendConfigV1ManifestConfig extends ManifestConfig {
+export interface CloudGoogleComBackendConfigV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "cloud.google.com/v1";
-    kind?: "BackendConfig";
+    apiVersion: "cloud.google.com/v1";
+    kind: "BackendConfig";
     metadata: {
       annotations?: {
         [key: string]: string;

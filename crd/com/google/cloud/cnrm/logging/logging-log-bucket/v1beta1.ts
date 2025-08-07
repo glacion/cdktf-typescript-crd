@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesLoggingLogBucketV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesLoggingLogBucketV1beta1ManifestConfig) {
+export class LoggingCnrmCloudGoogleComLoggingLogBucketV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: LoggingCnrmCloudGoogleComLoggingLogBucketV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesLoggingLogBucketV1beta1ManifestConfig extends ManifestConfig {
+export interface LoggingCnrmCloudGoogleComLoggingLogBucketV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "logging.cnrm.cloud.google.com/v1beta1";
-    kind?: "LoggingLogBucket";
+    apiVersion: "logging.cnrm.cloud.google.com/v1beta1";
+    kind: "LoggingLogBucket";
     metadata: {
       annotations?: {
         [key: string]: string;

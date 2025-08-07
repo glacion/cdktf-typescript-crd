@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesApigeeInstanceV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesApigeeInstanceV1beta1ManifestConfig) {
+export class ApigeeCnrmCloudGoogleComApigeeInstanceV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: ApigeeCnrmCloudGoogleComApigeeInstanceV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesApigeeInstanceV1beta1ManifestConfig extends ManifestConfig {
+export interface ApigeeCnrmCloudGoogleComApigeeInstanceV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "apigee.cnrm.cloud.google.com/v1beta1";
-    kind?: "ApigeeInstance";
+    apiVersion: "apigee.cnrm.cloud.google.com/v1beta1";
+    kind: "ApigeeInstance";
     metadata: {
       annotations?: {
         [key: string]: string;

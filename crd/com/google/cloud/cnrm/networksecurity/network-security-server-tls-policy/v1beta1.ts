@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesNetworkSecurityServerTLSPolicyV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesNetworkSecurityServerTLSPolicyV1beta1ManifestConfig) {
+export class NetworksecurityCnrmCloudGoogleComNetworkSecurityServerTLSPolicyV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: NetworksecurityCnrmCloudGoogleComNetworkSecurityServerTLSPolicyV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesNetworkSecurityServerTLSPolicyV1beta1ManifestConfig extends ManifestConfig {
+export interface NetworksecurityCnrmCloudGoogleComNetworkSecurityServerTLSPolicyV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "networksecurity.cnrm.cloud.google.com/v1beta1";
-    kind?: "NetworkSecurityServerTLSPolicy";
+    apiVersion: "networksecurity.cnrm.cloud.google.com/v1beta1";
+    kind: "NetworkSecurityServerTLSPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;

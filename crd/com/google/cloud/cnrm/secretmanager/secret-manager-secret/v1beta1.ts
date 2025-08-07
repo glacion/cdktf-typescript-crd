@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesSecretManagerSecretV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesSecretManagerSecretV1beta1ManifestConfig) {
+export class SecretmanagerCnrmCloudGoogleComSecretManagerSecretV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: SecretmanagerCnrmCloudGoogleComSecretManagerSecretV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesSecretManagerSecretV1beta1ManifestConfig extends ManifestConfig {
+export interface SecretmanagerCnrmCloudGoogleComSecretManagerSecretV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "secretmanager.cnrm.cloud.google.com/v1beta1";
-    kind?: "SecretManagerSecret";
+    apiVersion: "secretmanager.cnrm.cloud.google.com/v1beta1";
+    kind: "SecretManagerSecret";
     metadata: {
       annotations?: {
         [key: string]: string;

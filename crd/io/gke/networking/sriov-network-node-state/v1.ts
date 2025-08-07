@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesSriovNetworkNodeStateV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesSriovNetworkNodeStateV1ManifestConfig) {
+export class NetworkingGkeIoSriovNetworkNodeStateV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NetworkingGkeIoSriovNetworkNodeStateV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesSriovNetworkNodeStateV1ManifestConfig extends ManifestConfig {
+export interface NetworkingGkeIoSriovNetworkNodeStateV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "networking.gke.io/v1";
-    kind?: "SriovNetworkNodeState";
+    apiVersion: "networking.gke.io/v1";
+    kind: "SriovNetworkNodeState";
     metadata: {
       annotations?: {
         [key: string]: string;

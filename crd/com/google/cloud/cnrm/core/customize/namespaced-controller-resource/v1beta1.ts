@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesNamespacedControllerResourceV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesNamespacedControllerResourceV1beta1ManifestConfig) {
+export class CustomizeCoreCnrmCloudGoogleComNamespacedControllerResourceV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: CustomizeCoreCnrmCloudGoogleComNamespacedControllerResourceV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesNamespacedControllerResourceV1beta1ManifestConfig extends ManifestConfig {
+export interface CustomizeCoreCnrmCloudGoogleComNamespacedControllerResourceV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "customize.core.cnrm.cloud.google.com/v1beta1";
-    kind?: "NamespacedControllerResource";
+    apiVersion: "customize.core.cnrm.cloud.google.com/v1beta1";
+    kind: "NamespacedControllerResource";
     metadata: {
       annotations?: {
         [key: string]: string;

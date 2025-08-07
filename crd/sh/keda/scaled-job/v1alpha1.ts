@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesScaledJobV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesScaledJobV1alpha1ManifestConfig) {
+export class KedaShScaledJobV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: KedaShScaledJobV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesScaledJobV1alpha1ManifestConfig extends ManifestConfig {
+export interface KedaShScaledJobV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "keda.sh/v1alpha1";
-    kind?: "ScaledJob";
+    apiVersion: "keda.sh/v1alpha1";
+    kind: "ScaledJob";
     metadata: {
       annotations?: {
         [key: string]: string;

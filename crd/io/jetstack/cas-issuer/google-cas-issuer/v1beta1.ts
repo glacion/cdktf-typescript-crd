@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesGoogleCASIssuerV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesGoogleCASIssuerV1beta1ManifestConfig) {
+export class CasIssuerJetstackIoGoogleCASIssuerV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: CasIssuerJetstackIoGoogleCASIssuerV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesGoogleCASIssuerV1beta1ManifestConfig extends ManifestConfig {
+export interface CasIssuerJetstackIoGoogleCASIssuerV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "cas-issuer.jetstack.io/v1beta1";
-    kind?: "GoogleCASIssuer";
+    apiVersion: "cas-issuer.jetstack.io/v1beta1";
+    kind: "GoogleCASIssuer";
     metadata: {
       annotations?: {
         [key: string]: string;

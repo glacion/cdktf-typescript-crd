@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesAuditV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesAuditV1ManifestConfig) {
+export class WardenGkeIoAuditV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: WardenGkeIoAuditV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesAuditV1ManifestConfig extends ManifestConfig {
+export interface WardenGkeIoAuditV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "warden.gke.io/v1";
-    kind?: "Audit";
+    apiVersion: "warden.gke.io/v1";
+    kind: "Audit";
     metadata: {
       annotations?: {
         [key: string]: string;

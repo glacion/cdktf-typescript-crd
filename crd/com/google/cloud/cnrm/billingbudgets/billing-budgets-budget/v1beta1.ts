@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesBillingBudgetsBudgetV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesBillingBudgetsBudgetV1beta1ManifestConfig) {
+export class BillingbudgetsCnrmCloudGoogleComBillingBudgetsBudgetV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: BillingbudgetsCnrmCloudGoogleComBillingBudgetsBudgetV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesBillingBudgetsBudgetV1beta1ManifestConfig extends ManifestConfig {
+export interface BillingbudgetsCnrmCloudGoogleComBillingBudgetsBudgetV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "billingbudgets.cnrm.cloud.google.com/v1beta1";
-    kind?: "BillingBudgetsBudget";
+    apiVersion: "billingbudgets.cnrm.cloud.google.com/v1beta1";
+    kind: "BillingBudgetsBudget";
     metadata: {
       annotations?: {
         [key: string]: string;

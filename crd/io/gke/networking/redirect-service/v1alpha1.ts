@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesRedirectServiceV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesRedirectServiceV1alpha1ManifestConfig) {
+export class NetworkingGkeIoRedirectServiceV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NetworkingGkeIoRedirectServiceV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesRedirectServiceV1alpha1ManifestConfig extends ManifestConfig {
+export interface NetworkingGkeIoRedirectServiceV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "networking.gke.io/v1alpha1";
-    kind?: "RedirectService";
+    apiVersion: "networking.gke.io/v1alpha1";
+    kind: "RedirectService";
     metadata: {
       annotations?: {
         [key: string]: string;

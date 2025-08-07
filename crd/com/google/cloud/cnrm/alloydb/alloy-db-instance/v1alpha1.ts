@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesAlloyDBInstanceV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesAlloyDBInstanceV1alpha1ManifestConfig) {
+export class AlloydbCnrmCloudGoogleComAlloyDBInstanceV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: AlloydbCnrmCloudGoogleComAlloyDBInstanceV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesAlloyDBInstanceV1alpha1ManifestConfig extends ManifestConfig {
+export interface AlloydbCnrmCloudGoogleComAlloyDBInstanceV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "alloydb.cnrm.cloud.google.com/v1alpha1";
-    kind?: "AlloyDBInstance";
+    apiVersion: "alloydb.cnrm.cloud.google.com/v1alpha1";
+    kind: "AlloyDBInstance";
     metadata: {
       annotations?: {
         [key: string]: string;

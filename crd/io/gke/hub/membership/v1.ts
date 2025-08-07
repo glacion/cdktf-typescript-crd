@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesMembershipV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesMembershipV1ManifestConfig) {
+export class HubGkeIoMembershipV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: HubGkeIoMembershipV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesMembershipV1ManifestConfig extends ManifestConfig {
+export interface HubGkeIoMembershipV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "hub.gke.io/v1";
-    kind?: "Membership";
+    apiVersion: "hub.gke.io/v1";
+    kind: "Membership";
     metadata: {
       annotations?: {
         [key: string]: string;

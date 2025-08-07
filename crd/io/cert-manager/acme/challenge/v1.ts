@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesChallengeV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesChallengeV1ManifestConfig) {
+export class AcmeCertManagerIoChallengeV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: AcmeCertManagerIoChallengeV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesChallengeV1ManifestConfig extends ManifestConfig {
+export interface AcmeCertManagerIoChallengeV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "acme.cert-manager.io/v1";
-    kind?: "Challenge";
+    apiVersion: "acme.cert-manager.io/v1";
+    kind: "Challenge";
     metadata: {
       annotations?: {
         [key: string]: string;

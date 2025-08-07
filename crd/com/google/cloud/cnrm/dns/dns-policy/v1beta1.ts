@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesDNSPolicyV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesDNSPolicyV1beta1ManifestConfig) {
+export class DnsCnrmCloudGoogleComDNSPolicyV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: DnsCnrmCloudGoogleComDNSPolicyV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesDNSPolicyV1beta1ManifestConfig extends ManifestConfig {
+export interface DnsCnrmCloudGoogleComDNSPolicyV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "dns.cnrm.cloud.google.com/v1beta1";
-    kind?: "DNSPolicy";
+    apiVersion: "dns.cnrm.cloud.google.com/v1beta1";
+    kind: "DNSPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;

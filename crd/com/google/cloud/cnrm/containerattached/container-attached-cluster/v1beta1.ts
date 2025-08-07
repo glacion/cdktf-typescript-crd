@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesContainerAttachedClusterV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesContainerAttachedClusterV1beta1ManifestConfig) {
+export class ContainerattachedCnrmCloudGoogleComContainerAttachedClusterV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: ContainerattachedCnrmCloudGoogleComContainerAttachedClusterV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesContainerAttachedClusterV1beta1ManifestConfig extends ManifestConfig {
+export interface ContainerattachedCnrmCloudGoogleComContainerAttachedClusterV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "containerattached.cnrm.cloud.google.com/v1beta1";
-    kind?: "ContainerAttachedCluster";
+    apiVersion: "containerattached.cnrm.cloud.google.com/v1beta1";
+    kind: "ContainerAttachedCluster";
     metadata: {
       annotations?: {
         [key: string]: string;

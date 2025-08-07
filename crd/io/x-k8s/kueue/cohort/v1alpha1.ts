@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesCohortV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesCohortV1alpha1ManifestConfig) {
+export class KueueXK8sIoCohortV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: KueueXK8sIoCohortV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesCohortV1alpha1ManifestConfig extends ManifestConfig {
+export interface KueueXK8sIoCohortV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "kueue.x-k8s.io/v1alpha1";
-    kind?: "Cohort";
+    apiVersion: "kueue.x-k8s.io/v1alpha1";
+    kind: "Cohort";
     metadata: {
       annotations?: {
         [key: string]: string;

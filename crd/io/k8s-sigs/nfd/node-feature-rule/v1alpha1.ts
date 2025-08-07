@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesNodeFeatureRuleV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesNodeFeatureRuleV1alpha1ManifestConfig) {
+export class NfdK8sSigsIoNodeFeatureRuleV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NfdK8sSigsIoNodeFeatureRuleV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesNodeFeatureRuleV1alpha1ManifestConfig extends ManifestConfig {
+export interface NfdK8sSigsIoNodeFeatureRuleV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "nfd.k8s-sigs.io/v1alpha1";
-    kind?: "NodeFeatureRule";
+    apiVersion: "nfd.k8s-sigs.io/v1alpha1";
+    kind: "NodeFeatureRule";
     metadata: {
       annotations?: {
         [key: string]: string;

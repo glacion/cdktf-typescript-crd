@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesClusterGeneratorV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesClusterGeneratorV1alpha1ManifestConfig) {
+export class GeneratorsExternalSecretsIoClusterGeneratorV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: GeneratorsExternalSecretsIoClusterGeneratorV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesClusterGeneratorV1alpha1ManifestConfig extends ManifestConfig {
+export interface GeneratorsExternalSecretsIoClusterGeneratorV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "generators.external-secrets.io/v1alpha1";
-    kind?: "ClusterGenerator";
+    apiVersion: "generators.external-secrets.io/v1alpha1";
+    kind: "ClusterGenerator";
     metadata: {
       annotations?: {
         [key: string]: string;

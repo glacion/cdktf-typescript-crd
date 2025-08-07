@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesAirflowWorkerSetV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesAirflowWorkerSetV1beta1ManifestConfig) {
+export class ComposerCloudGoogleComAirflowWorkerSetV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: ComposerCloudGoogleComAirflowWorkerSetV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesAirflowWorkerSetV1beta1ManifestConfig extends ManifestConfig {
+export interface ComposerCloudGoogleComAirflowWorkerSetV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "composer.cloud.google.com/v1beta1";
-    kind?: "AirflowWorkerSet";
+    apiVersion: "composer.cloud.google.com/v1beta1";
+    kind: "AirflowWorkerSet";
     metadata: {
       annotations?: {
         [key: string]: string;

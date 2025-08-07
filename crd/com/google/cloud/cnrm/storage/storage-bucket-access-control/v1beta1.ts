@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesStorageBucketAccessControlV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesStorageBucketAccessControlV1beta1ManifestConfig) {
+export class StorageCnrmCloudGoogleComStorageBucketAccessControlV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: StorageCnrmCloudGoogleComStorageBucketAccessControlV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesStorageBucketAccessControlV1beta1ManifestConfig extends ManifestConfig {
+export interface StorageCnrmCloudGoogleComStorageBucketAccessControlV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "storage.cnrm.cloud.google.com/v1beta1";
-    kind?: "StorageBucketAccessControl";
+    apiVersion: "storage.cnrm.cloud.google.com/v1beta1";
+    kind: "StorageBucketAccessControl";
     metadata: {
       annotations?: {
         [key: string]: string;

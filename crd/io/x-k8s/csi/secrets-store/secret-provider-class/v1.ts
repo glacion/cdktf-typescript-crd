@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesSecretProviderClassV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesSecretProviderClassV1ManifestConfig) {
+export class SecretsStoreCsiXK8sIoSecretProviderClassV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: SecretsStoreCsiXK8sIoSecretProviderClassV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesSecretProviderClassV1ManifestConfig extends ManifestConfig {
+export interface SecretsStoreCsiXK8sIoSecretProviderClassV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "secrets-store.csi.x-k8s.io/v1";
-    kind?: "SecretProviderClass";
+    apiVersion: "secrets-store.csi.x-k8s.io/v1";
+    kind: "SecretProviderClass";
     metadata: {
       annotations?: {
         [key: string]: string;

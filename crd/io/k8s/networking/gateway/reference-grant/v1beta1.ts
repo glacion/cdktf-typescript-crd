@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesReferenceGrantV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesReferenceGrantV1beta1ManifestConfig) {
+export class GatewayNetworkingK8sIoReferenceGrantV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: GatewayNetworkingK8sIoReferenceGrantV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesReferenceGrantV1beta1ManifestConfig extends ManifestConfig {
+export interface GatewayNetworkingK8sIoReferenceGrantV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "gateway.networking.k8s.io/v1beta1";
-    kind?: "ReferenceGrant";
+    apiVersion: "gateway.networking.k8s.io/v1beta1";
+    kind: "ReferenceGrant";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -26,12 +26,10 @@ export interface KubernetesReferenceGrantV1beta1ManifestConfig extends ManifestC
        *     to be an additional place that references can be valid from, or to put
        *     this another way, entries MUST be combined using OR.
        *
-       *
        *     Support: Core */
       from: {
         /** @description Group is the group of the referent.
          *     When empty, the Kubernetes core API group is inferred.
-         *
          *
          *     Support: Core */
         group: string;
@@ -39,15 +37,11 @@ export interface KubernetesReferenceGrantV1beta1ManifestConfig extends ManifestC
          *     additional resources, the following types are part of the "Core"
          *     support level for this field.
          *
-         *
          *     When used to permit a SecretObjectReference:
-         *
          *
          *     * Gateway
          *
-         *
          *     When used to permit a BackendObjectReference:
-         *
          *
          *     * GRPCRoute
          *     * HTTPRoute
@@ -57,7 +51,6 @@ export interface KubernetesReferenceGrantV1beta1ManifestConfig extends ManifestC
         kind: string;
         /** @description Namespace is the namespace of the referent.
          *
-         *
          *     Support: Core */
         namespace: string;
       }[];
@@ -66,19 +59,16 @@ export interface KubernetesReferenceGrantV1beta1ManifestConfig extends ManifestC
        *     additional place that references can be valid to, or to put this another
        *     way, entries MUST be combined using OR.
        *
-       *
        *     Support: Core */
       to: {
         /** @description Group is the group of the referent.
          *     When empty, the Kubernetes core API group is inferred.
-         *
          *
          *     Support: Core */
         group: string;
         /** @description Kind is the kind of the referent. Although implementations may support
          *     additional resources, the following types are part of the "Core"
          *     support level for this field:
-         *
          *
          *     * Secret when used to permit a SecretObjectReference
          *     * Service when used to permit a BackendObjectReference */

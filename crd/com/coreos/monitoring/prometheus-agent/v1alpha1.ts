@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesPrometheusAgentV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesPrometheusAgentV1alpha1ManifestConfig) {
+export class MonitoringCoreosComPrometheusAgentV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: MonitoringCoreosComPrometheusAgentV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesPrometheusAgentV1alpha1ManifestConfig extends ManifestConfig {
+export interface MonitoringCoreosComPrometheusAgentV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "monitoring.coreos.com/v1alpha1";
-    kind?: "PrometheusAgent";
+    apiVersion: "monitoring.coreos.com/v1alpha1";
+    kind: "PrometheusAgent";
     metadata: {
       annotations?: {
         [key: string]: string;

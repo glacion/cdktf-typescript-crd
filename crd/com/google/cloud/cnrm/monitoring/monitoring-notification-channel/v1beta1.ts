@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesMonitoringNotificationChannelV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesMonitoringNotificationChannelV1beta1ManifestConfig) {
+export class MonitoringCnrmCloudGoogleComMonitoringNotificationChannelV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: MonitoringCnrmCloudGoogleComMonitoringNotificationChannelV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesMonitoringNotificationChannelV1beta1ManifestConfig extends ManifestConfig {
+export interface MonitoringCnrmCloudGoogleComMonitoringNotificationChannelV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "monitoring.cnrm.cloud.google.com/v1beta1";
-    kind?: "MonitoringNotificationChannel";
+    apiVersion: "monitoring.cnrm.cloud.google.com/v1beta1";
+    kind: "MonitoringNotificationChannel";
     metadata: {
       annotations?: {
         [key: string]: string;

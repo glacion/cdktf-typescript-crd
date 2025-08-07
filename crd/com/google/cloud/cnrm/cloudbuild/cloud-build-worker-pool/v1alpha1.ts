@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesCloudBuildWorkerPoolV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesCloudBuildWorkerPoolV1alpha1ManifestConfig) {
+export class CloudbuildCnrmCloudGoogleComCloudBuildWorkerPoolV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: CloudbuildCnrmCloudGoogleComCloudBuildWorkerPoolV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesCloudBuildWorkerPoolV1alpha1ManifestConfig extends ManifestConfig {
+export interface CloudbuildCnrmCloudGoogleComCloudBuildWorkerPoolV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "cloudbuild.cnrm.cloud.google.com/v1alpha1";
-    kind?: "CloudBuildWorkerPool";
+    apiVersion: "cloudbuild.cnrm.cloud.google.com/v1alpha1";
+    kind: "CloudBuildWorkerPool";
     metadata: {
       annotations?: {
         [key: string]: string;

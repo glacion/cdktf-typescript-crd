@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesFQDNNetworkPolicyV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesFQDNNetworkPolicyV1alpha1ManifestConfig) {
+export class NetworkingGkeIoFQDNNetworkPolicyV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NetworkingGkeIoFQDNNetworkPolicyV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesFQDNNetworkPolicyV1alpha1ManifestConfig extends ManifestConfig {
+export interface NetworkingGkeIoFQDNNetworkPolicyV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "networking.gke.io/v1alpha1";
-    kind?: "FQDNNetworkPolicy";
+    apiVersion: "networking.gke.io/v1alpha1";
+    kind: "FQDNNetworkPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;

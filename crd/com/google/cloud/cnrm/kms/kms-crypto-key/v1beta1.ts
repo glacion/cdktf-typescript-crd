@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesKMSCryptoKeyV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesKMSCryptoKeyV1beta1ManifestConfig) {
+export class KmsCnrmCloudGoogleComKMSCryptoKeyV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: KmsCnrmCloudGoogleComKMSCryptoKeyV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesKMSCryptoKeyV1beta1ManifestConfig extends ManifestConfig {
+export interface KmsCnrmCloudGoogleComKMSCryptoKeyV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "kms.cnrm.cloud.google.com/v1beta1";
-    kind?: "KMSCryptoKey";
+    apiVersion: "kms.cnrm.cloud.google.com/v1beta1";
+    kind: "KMSCryptoKey";
     metadata: {
       annotations?: {
         [key: string]: string;

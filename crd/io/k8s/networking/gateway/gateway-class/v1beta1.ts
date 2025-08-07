@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesGatewayClassV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesGatewayClassV1beta1ManifestConfig) {
+export class GatewayNetworkingK8sIoGatewayClassV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: GatewayNetworkingK8sIoGatewayClassV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesGatewayClassV1beta1ManifestConfig extends ManifestConfig {
+export interface GatewayNetworkingK8sIoGatewayClassV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "gateway.networking.k8s.io/v1beta1";
-    kind?: "GatewayClass";
+    apiVersion: "gateway.networking.k8s.io/v1beta1";
+    kind: "GatewayClass";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -24,12 +24,9 @@ export interface KubernetesGatewayClassV1beta1ManifestConfig extends ManifestCon
       /** @description ControllerName is the name of the controller that is managing Gateways of
        *     this class. The value of this field MUST be a domain prefixed path.
        *
-       *
        *     Example: "example.net/gateway-controller".
        *
-       *
        *     This field is not mutable and cannot be empty.
-       *
        *
        *     Support: Core */
       controllerName: string;
@@ -39,20 +36,18 @@ export interface KubernetesGatewayClassV1beta1ManifestConfig extends ManifestCon
        *     parameters corresponding to the GatewayClass. This is optional if the
        *     controller does not require any additional configuration.
        *
-       *
        *     ParametersRef can reference a standard Kubernetes resource, i.e. ConfigMap,
        *     or an implementation-specific custom resource. The resource can be
        *     cluster-scoped or namespace-scoped.
        *
-       *
-       *     If the referent cannot be found, the GatewayClass's "InvalidParameters"
-       *     status condition will be true.
-       *
+       *     If the referent cannot be found, refers to an unsupported kind, or when
+       *     the data within that resource is malformed, the GatewayClass SHOULD be
+       *     rejected with the "Accepted" status condition set to "False" and an
+       *     "InvalidParameters" reason.
        *
        *     A Gateway for this GatewayClass may provide its own `parametersRef`. When both are specified,
        *     the merging behavior is implementation specific.
        *     It is generally recommended that GatewayClass provides defaults that can be overridden by a Gateway.
-       *
        *
        *     Support: Implementation-specific */
       parametersRef?: {
@@ -70,13 +65,11 @@ export interface KubernetesGatewayClassV1beta1ManifestConfig extends ManifestCon
     };
     /** @description Status defines the current state of GatewayClass.
      *
-     *
      *     Implementations MUST populate status on all GatewayClass resources which
      *     specify their controller name. */
     status?: {
       /** @description Conditions is the current status from the controller for
        *     this GatewayClass.
-       *
        *
        *     Controllers should prefer to publish conditions using values
        *     of GatewayClassConditionType for the type of each Condition. */
@@ -108,11 +101,7 @@ export interface KubernetesGatewayClassV1beta1ManifestConfig extends ManifestCon
          * @enum {string}
          */
         status: "True" | "False" | "Unknown";
-        /** @description type of condition in CamelCase or in foo.example.com/CamelCase.
-         *     ---
-         *     Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be
-         *     useful (see .node.status.conditions), the ability to deconflict is important.
-         *     The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt) */
+        /** @description type of condition in CamelCase or in foo.example.com/CamelCase. */
         type: string;
       }[];
     };

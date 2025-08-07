@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesIdentityPlatformConfigV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesIdentityPlatformConfigV1beta1ManifestConfig) {
+export class IdentityplatformCnrmCloudGoogleComIdentityPlatformConfigV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: IdentityplatformCnrmCloudGoogleComIdentityPlatformConfigV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesIdentityPlatformConfigV1beta1ManifestConfig extends ManifestConfig {
+export interface IdentityplatformCnrmCloudGoogleComIdentityPlatformConfigV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "identityplatform.cnrm.cloud.google.com/v1beta1";
-    kind?: "IdentityPlatformConfig";
+    apiVersion: "identityplatform.cnrm.cloud.google.com/v1beta1";
+    kind: "IdentityPlatformConfig";
     metadata: {
       annotations?: {
         [key: string]: string;

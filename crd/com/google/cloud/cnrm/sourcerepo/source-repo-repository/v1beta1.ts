@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesSourceRepoRepositoryV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesSourceRepoRepositoryV1beta1ManifestConfig) {
+export class SourcerepoCnrmCloudGoogleComSourceRepoRepositoryV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: SourcerepoCnrmCloudGoogleComSourceRepoRepositoryV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesSourceRepoRepositoryV1beta1ManifestConfig extends ManifestConfig {
+export interface SourcerepoCnrmCloudGoogleComSourceRepoRepositoryV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "sourcerepo.cnrm.cloud.google.com/v1beta1";
-    kind?: "SourceRepoRepository";
+    apiVersion: "sourcerepo.cnrm.cloud.google.com/v1beta1";
+    kind: "SourceRepoRepository";
     metadata: {
       annotations?: {
         [key: string]: string;

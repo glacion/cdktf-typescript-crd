@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesStorageTransferJobV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesStorageTransferJobV1beta1ManifestConfig) {
+export class StoragetransferCnrmCloudGoogleComStorageTransferJobV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: StoragetransferCnrmCloudGoogleComStorageTransferJobV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesStorageTransferJobV1beta1ManifestConfig extends ManifestConfig {
+export interface StoragetransferCnrmCloudGoogleComStorageTransferJobV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "storagetransfer.cnrm.cloud.google.com/v1beta1";
-    kind?: "StorageTransferJob";
+    apiVersion: "storagetransfer.cnrm.cloud.google.com/v1beta1";
+    kind: "StorageTransferJob";
     metadata: {
       annotations?: {
         [key: string]: string;

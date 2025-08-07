@@ -34,7 +34,7 @@ export const createTypescriptSource = async (
   version: V1CustomResourceDefinitionVersion,
   apiVersion = `${definition.spec.group}/${version.name}`,
   kind = definition.spec.names.kind,
-  typeName = `Kubernetes${kind}${pascalCase(version.name)}Manifest`,
+  typeName = `${pascalCase(definition.spec.group)}${kind}${pascalCase(version.name)}`,
   configTypeName = `${typeName}Config`,
 ) => (
   log.info({ class: typeName }, "generating typescript file"),

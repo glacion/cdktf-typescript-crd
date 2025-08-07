@@ -5,6 +5,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "declaration": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "outDir": "dist"
   }
 }

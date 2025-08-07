@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesClusterEphemeralReportV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesClusterEphemeralReportV1ManifestConfig) {
+export class ReportsKyvernoIoClusterEphemeralReportV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: ReportsKyvernoIoClusterEphemeralReportV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesClusterEphemeralReportV1ManifestConfig extends ManifestConfig {
+export interface ReportsKyvernoIoClusterEphemeralReportV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "reports.kyverno.io/v1";
-    kind?: "ClusterEphemeralReport";
+    apiVersion: "reports.kyverno.io/v1";
+    kind: "ClusterEphemeralReport";
     metadata: {
       annotations?: {
         [key: string]: string;

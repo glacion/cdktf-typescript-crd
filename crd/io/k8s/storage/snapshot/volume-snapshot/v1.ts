@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesVolumeSnapshotV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesVolumeSnapshotV1ManifestConfig) {
+export class SnapshotStorageK8sIoVolumeSnapshotV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: SnapshotStorageK8sIoVolumeSnapshotV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesVolumeSnapshotV1ManifestConfig extends ManifestConfig {
+export interface SnapshotStorageK8sIoVolumeSnapshotV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "snapshot.storage.k8s.io/v1";
-    kind?: "VolumeSnapshot";
+    apiVersion: "snapshot.storage.k8s.io/v1";
+    kind: "VolumeSnapshot";
     metadata: {
       annotations?: {
         [key: string]: string;

@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesClusterIssuerV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesClusterIssuerV1ManifestConfig) {
+export class CertManagerIoClusterIssuerV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: CertManagerIoClusterIssuerV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesClusterIssuerV1ManifestConfig extends ManifestConfig {
+export interface CertManagerIoClusterIssuerV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "cert-manager.io/v1";
-    kind?: "ClusterIssuer";
+    apiVersion: "cert-manager.io/v1";
+    kind: "ClusterIssuer";
     metadata: {
       annotations?: {
         [key: string]: string;

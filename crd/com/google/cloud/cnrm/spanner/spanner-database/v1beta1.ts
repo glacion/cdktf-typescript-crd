@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesSpannerDatabaseV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesSpannerDatabaseV1beta1ManifestConfig) {
+export class SpannerCnrmCloudGoogleComSpannerDatabaseV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: SpannerCnrmCloudGoogleComSpannerDatabaseV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesSpannerDatabaseV1beta1ManifestConfig extends ManifestConfig {
+export interface SpannerCnrmCloudGoogleComSpannerDatabaseV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "spanner.cnrm.cloud.google.com/v1beta1";
-    kind?: "SpannerDatabase";
+    apiVersion: "spanner.cnrm.cloud.google.com/v1beta1";
+    kind: "SpannerDatabase";
     metadata: {
       annotations?: {
         [key: string]: string;

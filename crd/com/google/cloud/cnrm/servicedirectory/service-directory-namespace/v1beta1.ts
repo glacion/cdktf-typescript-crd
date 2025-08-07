@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesServiceDirectoryNamespaceV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesServiceDirectoryNamespaceV1beta1ManifestConfig) {
+export class ServicedirectoryCnrmCloudGoogleComServiceDirectoryNamespaceV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: ServicedirectoryCnrmCloudGoogleComServiceDirectoryNamespaceV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesServiceDirectoryNamespaceV1beta1ManifestConfig extends ManifestConfig {
+export interface ServicedirectoryCnrmCloudGoogleComServiceDirectoryNamespaceV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "servicedirectory.cnrm.cloud.google.com/v1beta1";
-    kind?: "ServiceDirectoryNamespace";
+    apiVersion: "servicedirectory.cnrm.cloud.google.com/v1beta1";
+    kind: "ServiceDirectoryNamespace";
     metadata: {
       annotations?: {
         [key: string]: string;

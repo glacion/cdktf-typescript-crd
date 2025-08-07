@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesGlobalContextEntryV2alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesGlobalContextEntryV2alpha1ManifestConfig) {
+export class KyvernoIoGlobalContextEntryV2alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: KyvernoIoGlobalContextEntryV2alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesGlobalContextEntryV2alpha1ManifestConfig extends ManifestConfig {
+export interface KyvernoIoGlobalContextEntryV2alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "kyverno.io/v2alpha1";
-    kind?: "GlobalContextEntry";
+    apiVersion: "kyverno.io/v2alpha1";
+    kind: "GlobalContextEntry";
     metadata: {
       annotations?: {
         [key: string]: string;

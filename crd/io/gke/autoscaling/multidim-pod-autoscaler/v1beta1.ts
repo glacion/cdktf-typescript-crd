@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesMultidimPodAutoscalerV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesMultidimPodAutoscalerV1beta1ManifestConfig) {
+export class AutoscalingGkeIoMultidimPodAutoscalerV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: AutoscalingGkeIoMultidimPodAutoscalerV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesMultidimPodAutoscalerV1beta1ManifestConfig extends ManifestConfig {
+export interface AutoscalingGkeIoMultidimPodAutoscalerV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "autoscaling.gke.io/v1beta1";
-    kind?: "MultidimPodAutoscaler";
+    apiVersion: "autoscaling.gke.io/v1beta1";
+    kind: "MultidimPodAutoscaler";
     metadata: {
       annotations?: {
         [key: string]: string;

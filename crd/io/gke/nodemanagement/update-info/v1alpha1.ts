@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesUpdateInfoV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesUpdateInfoV1alpha1ManifestConfig) {
+export class NodemanagementGkeIoUpdateInfoV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NodemanagementGkeIoUpdateInfoV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesUpdateInfoV1alpha1ManifestConfig extends ManifestConfig {
+export interface NodemanagementGkeIoUpdateInfoV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "nodemanagement.gke.io/v1alpha1";
-    kind?: "UpdateInfo";
+    apiVersion: "nodemanagement.gke.io/v1alpha1";
+    kind: "UpdateInfo";
     metadata: {
       annotations?: {
         [key: string]: string;

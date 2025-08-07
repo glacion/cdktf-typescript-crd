@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesBigQueryDataTransferConfigV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesBigQueryDataTransferConfigV1alpha1ManifestConfig) {
+export class BigquerydatatransferCnrmCloudGoogleComBigQueryDataTransferConfigV1alpha1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: BigquerydatatransferCnrmCloudGoogleComBigQueryDataTransferConfigV1alpha1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesBigQueryDataTransferConfigV1alpha1ManifestConfig extends ManifestConfig {
+export interface BigquerydatatransferCnrmCloudGoogleComBigQueryDataTransferConfigV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "bigquerydatatransfer.cnrm.cloud.google.com/v1alpha1";
-    kind?: "BigQueryDataTransferConfig";
+    apiVersion: "bigquerydatatransfer.cnrm.cloud.google.com/v1alpha1";
+    kind: "BigQueryDataTransferConfig";
     metadata: {
       annotations?: {
         [key: string]: string;

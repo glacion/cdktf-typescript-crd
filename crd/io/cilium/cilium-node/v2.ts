@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesCiliumNodeV2Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesCiliumNodeV2ManifestConfig) {
+export class CiliumIoCiliumNodeV2 extends Manifest {
+  constructor(scope: Construct, id: string, config: CiliumIoCiliumNodeV2Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesCiliumNodeV2ManifestConfig extends ManifestConfig {
+export interface CiliumIoCiliumNodeV2Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "cilium.io/v2";
-    kind?: "CiliumNode";
+    apiVersion: "cilium.io/v2";
+    kind: "CiliumNode";
     metadata: {
       annotations?: {
         [key: string]: string;

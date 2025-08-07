@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesDataformRepositoryV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesDataformRepositoryV1beta1ManifestConfig) {
+export class DataformCnrmCloudGoogleComDataformRepositoryV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: DataformCnrmCloudGoogleComDataformRepositoryV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesDataformRepositoryV1beta1ManifestConfig extends ManifestConfig {
+export interface DataformCnrmCloudGoogleComDataformRepositoryV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "dataform.cnrm.cloud.google.com/v1beta1";
-    kind?: "DataformRepository";
+    apiVersion: "dataform.cnrm.cloud.google.com/v1beta1";
+    kind: "DataformRepository";
     metadata: {
       annotations?: {
         [key: string]: string;

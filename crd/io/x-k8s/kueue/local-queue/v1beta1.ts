@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesLocalQueueV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesLocalQueueV1beta1ManifestConfig) {
+export class KueueXK8sIoLocalQueueV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: KueueXK8sIoLocalQueueV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesLocalQueueV1beta1ManifestConfig extends ManifestConfig {
+export interface KueueXK8sIoLocalQueueV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "kueue.x-k8s.io/v1beta1";
-    kind?: "LocalQueue";
+    apiVersion: "kueue.x-k8s.io/v1beta1";
+    kind: "LocalQueue";
     metadata: {
       annotations?: {
         [key: string]: string;

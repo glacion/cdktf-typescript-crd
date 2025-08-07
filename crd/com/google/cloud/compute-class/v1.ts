@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesComputeClassV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesComputeClassV1ManifestConfig) {
+export class CloudGoogleComComputeClassV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: CloudGoogleComComputeClassV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesComputeClassV1ManifestConfig extends ManifestConfig {
+export interface CloudGoogleComComputeClassV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "cloud.google.com/v1";
-    kind?: "ComputeClass";
+    apiVersion: "cloud.google.com/v1";
+    kind: "ComputeClass";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -32,6 +32,11 @@ export interface KubernetesComputeClassV1ManifestConfig extends ManifestConfig {
          *     ComputeClass should be migrated to nodepool defined by higher priority rule, if possible. */
         optimizeRulePriority: boolean;
       };
+      /** @description Autopilot describes the autopilot settings for a given ComputeClass. */
+      autopilot?: {
+        /** @description Enabled indicates whether nodes created for this compute class should be Autopilot managed. */
+        enabled: boolean;
+      };
       /** @description AutoscalingPolicy describes settings related to active reconciliation of
        *     a given ComputeClass. */
       autoscalingPolicy?: {
@@ -44,6 +49,9 @@ export interface KubernetesComputeClassV1ManifestConfig extends ManifestConfig {
          *     Utilization calculation only cares about GPU resource for accelerator node, CPU and memory utilization will be ignored. */
         gpuConsolidationThreshold?: number;
       };
+      /** @description Description is an arbitrary string that usually provides guidelines on
+       *     when this compute class should be used. */
+      description?: string;
       /** @description NodePoolAutoCreation describes the auto provisioning settings for a given
        *     ComputeClass. */
       nodePoolAutoCreation?: {
@@ -53,12 +61,53 @@ export interface KubernetesComputeClassV1ManifestConfig extends ManifestConfig {
       /** @description NodePoolConfig defines required node pool configuration. Existing node pools will be matched with the ComputeClass
        *     only if their configuration match this field. Auto-provisioned node pools will be created with this configuration. */
       nodePoolConfig?: {
+        /** @description Image type used by nodes in the node pool. */
+        imageType?: string;
+        /** @description NodeLabels is used to add user defined Kubernetes labels to all nodes in the new node pool.
+         *     These labels are applied to the Kubernetes API node object and can be used in nodeSelectors for pod scheduling.
+         *     Note: Node labels are distinct from GKE labels.
+         *     More info: https://cloud.google.com/sdk/gcloud/reference/container/node-pools/create#--node-labels */
+        nodeLabels?: {
+          [key: string]: string;
+        };
         /** @description ServiceAccount used by the node pool. */
         serviceAccount?: string;
+        /** @description WorkloadType defines Collection or Goodput SLO for the workload. Currently
+         *     supported values:
+         *     * HIGH_AVAILABILITY - for Collection SLO
+         *     * HIGH_THROUGHPUT - for Goodput SLO
+         *     HIGH_AVAILABILITY is desired for running serving workloads which require
+         *     most of the infrastructure (slices) running all the time to achieve high
+         *     availability.
+         *     HIGH_THROUGHPUT is desired for running batch/training jobs
+         *     which require all underlying infrastructure (slices) running for most of
+         *     the time to make progress. HIGH_THROUGHPUT can be only set for a multi-host
+         *     scenario, that is, when NodePoolGroup is set. */
+        workloadType?: string;
+      };
+      /** @description NodePoolGroup defines required node pool configurations that are shared between a group of node pools.
+       *     Existing node pools will be matched with the ComputeClass only if their configuration matches this field.
+       *     Auto-provisioned node pools will be created with this configuration. */
+      nodePoolGroup?: {
+        /** @description Name defines the name of the node pool group, e.g. MultiMIG */
+        name: string;
       };
       /** @description Priorities is a description of user preferences to be
        *     used by a given ComputeClass. */
       priorities?: {
+        /** @description FlexStart defines Flex Start provisioning model. */
+        flexStart?: {
+          /**
+           * @description Enabled indicates whether Flex Start provisioning model is enabled.
+           * @default false
+           */
+          enabled: boolean;
+          /** @description NodeRecycling defines node recycling config. */
+          nodeRecycling?: {
+            /** @description LeadTimeSeconds defines how much time before node termination timestamp CA should start looking for a replacement node. */
+            leadTimeSeconds: number;
+          };
+        };
         /** @description Gpu defines preferred GPU config for a node. */
         gpu?: {
           /**
@@ -74,6 +123,11 @@ export interface KubernetesComputeClassV1ManifestConfig extends ManifestConfig {
           driverVersion: "default" | "latest";
           /** @description Type describes preferred GPU accelerator type for a node. */
           type?: string;
+        };
+        /** @description Location describes CCC zonal preferences config. */
+        location?: {
+          /** @description Zones lists zones considered for node autoprovisioning. */
+          zones?: string[];
         };
         /** @description Machine family describes preferred instance family for a node. If none is specified,
          *     the default autoprovisioning machine family is used. */
@@ -170,8 +224,11 @@ export interface KubernetesComputeClassV1ManifestConfig extends ManifestConfig {
               "net.core.wmem_max"?: number;
               /** @description Minimal size of receive buffer used by UDP sockets in moderation. Each UDP socket is able to use the size for receiving data, even if total pages of UDP sockets exceed udp_mem pressure. The unit is byte. Default: 1 page. The three values are: min, default, max. Eg. '4096 87380 6291456'. */
               "net.ipv4.tcp_rmem"?: string;
-              /** @description Allow to reuse TIME-WAIT sockets for new connections when it is safe from protocol viewpoint. Default value is 0. It should not be changed without advice/request of technical experts. */
-              "net.ipv4.tcp_tw_reuse"?: boolean;
+              /**
+               * Format: int64
+               * @description Allow to reuse TIME-WAIT sockets for new connections when it is safe from protocol viewpoint. It should not be changed without advice/request of technical experts.
+               */
+              "net.ipv4.tcp_tw_reuse"?: number;
               /** @description Minimal size of send buffer used by UDP sockets in moderation. Each UDP socket is able to use the size for sending data, even if total pages of UDP sockets exceed udp_mem pressure. The unit is byte. Default: 1 page. The three values are: min, default, max. Eg. '4096 87380 6291456'. */
               "net.ipv4.tcp_wmem"?: string;
               /** @description Changing this value is same as changing conf/default/disable_ipv6 setting and also all per-interface disable_ipv6 settings to the same value. */
@@ -188,6 +245,11 @@ export interface KubernetesComputeClassV1ManifestConfig extends ManifestConfig {
         };
         /** @description Nodepools describes preference of specific, preexisting nodepools. */
         nodepools?: string[];
+        /**
+         * @description PodFamily represents pod-based provisioning and billing config.
+         * @enum {string}
+         */
+        podFamily?: "general-purpose";
         /** @description Reservations defines reservations config for a node. */
         reservations?: {
           /**
@@ -264,6 +326,11 @@ export interface KubernetesComputeClassV1ManifestConfig extends ManifestConfig {
       /** @description PriorityDefaults define the default rules for all priorities if the rule doesn't exist in some priority.
        *     Note: PriorityDefaults doesn't apply to priorities with only Nodepools. */
       priorityDefaults?: {
+        /** @description Location describes CCC zonal preferences config. */
+        location?: {
+          /** @description Zones lists zones considered for node autoprovisioning. */
+          zones?: string[];
+        };
         /** @description NodeSystemConfig defines node system config for a node. */
         nodeSystemConfig?: {
           /** @description KubeletConfig defines kubelet config for a node. */
@@ -343,8 +410,11 @@ export interface KubernetesComputeClassV1ManifestConfig extends ManifestConfig {
               "net.core.wmem_max"?: number;
               /** @description Minimal size of receive buffer used by UDP sockets in moderation. Each UDP socket is able to use the size for receiving data, even if total pages of UDP sockets exceed udp_mem pressure. The unit is byte. Default: 1 page. The three values are: min, default, max. Eg. '4096 87380 6291456'. */
               "net.ipv4.tcp_rmem"?: string;
-              /** @description Allow to reuse TIME-WAIT sockets for new connections when it is safe from protocol viewpoint. Default value is 0. It should not be changed without advice/request of technical experts. */
-              "net.ipv4.tcp_tw_reuse"?: boolean;
+              /**
+               * Format: int64
+               * @description Allow to reuse TIME-WAIT sockets for new connections when it is safe from protocol viewpoint. It should not be changed without advice/request of technical experts.
+               */
+              "net.ipv4.tcp_tw_reuse"?: number;
               /** @description Minimal size of send buffer used by UDP sockets in moderation. Each UDP socket is able to use the size for sending data, even if total pages of UDP sockets exceed udp_mem pressure. The unit is byte. Default: 1 page. The three values are: min, default, max. Eg. '4096 87380 6291456'. */
               "net.ipv4.tcp_wmem"?: string;
               /** @description Changing this value is same as changing conf/default/disable_ipv6 setting and also all per-interface disable_ipv6 settings to the same value. */

@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesCleanupPolicyV2Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesCleanupPolicyV2ManifestConfig) {
+export class KyvernoIoCleanupPolicyV2 extends Manifest {
+  constructor(scope: Construct, id: string, config: KyvernoIoCleanupPolicyV2Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesCleanupPolicyV2ManifestConfig extends ManifestConfig {
+export interface KyvernoIoCleanupPolicyV2Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "kyverno.io/v2";
-    kind?: "CleanupPolicy";
+    apiVersion: "kyverno.io/v2";
+    kind: "CleanupPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;

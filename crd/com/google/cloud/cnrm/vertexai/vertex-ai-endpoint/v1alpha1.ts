@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesVertexAIEndpointV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesVertexAIEndpointV1alpha1ManifestConfig) {
+export class VertexaiCnrmCloudGoogleComVertexAIEndpointV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: VertexaiCnrmCloudGoogleComVertexAIEndpointV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesVertexAIEndpointV1alpha1ManifestConfig extends ManifestConfig {
+export interface VertexaiCnrmCloudGoogleComVertexAIEndpointV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "vertexai.cnrm.cloud.google.com/v1alpha1";
-    kind?: "VertexAIEndpoint";
+    apiVersion: "vertexai.cnrm.cloud.google.com/v1alpha1";
+    kind: "VertexAIEndpoint";
     metadata: {
       annotations?: {
         [key: string]: string;

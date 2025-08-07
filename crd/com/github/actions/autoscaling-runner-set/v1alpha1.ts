@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesAutoscalingRunnerSetV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesAutoscalingRunnerSetV1alpha1ManifestConfig) {
+export class ActionsGithubComAutoscalingRunnerSetV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: ActionsGithubComAutoscalingRunnerSetV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesAutoscalingRunnerSetV1alpha1ManifestConfig extends ManifestConfig {
+export interface ActionsGithubComAutoscalingRunnerSetV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "actions.github.com/v1alpha1";
-    kind?: "AutoscalingRunnerSet";
+    apiVersion: "actions.github.com/v1alpha1";
+    kind: "AutoscalingRunnerSet";
     metadata: {
       annotations?: {
         [key: string]: string;

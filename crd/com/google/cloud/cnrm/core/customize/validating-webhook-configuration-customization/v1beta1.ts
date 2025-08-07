@@ -1,18 +1,19 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesValidatingWebhookConfigurationCustomizationV1beta1Manifest extends Manifest {
+export class CustomizeCoreCnrmCloudGoogleComValidatingWebhookConfigurationCustomizationV1beta1 extends Manifest {
   constructor(
     scope: Construct,
     id: string,
-    config: KubernetesValidatingWebhookConfigurationCustomizationV1beta1ManifestConfig,
+    config: CustomizeCoreCnrmCloudGoogleComValidatingWebhookConfigurationCustomizationV1beta1Config,
   ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesValidatingWebhookConfigurationCustomizationV1beta1ManifestConfig extends ManifestConfig {
+export interface CustomizeCoreCnrmCloudGoogleComValidatingWebhookConfigurationCustomizationV1beta1Config
+  extends ManifestConfig {
   manifest: {
-    apiVersion?: "customize.core.cnrm.cloud.google.com/v1beta1";
-    kind?: "ValidatingWebhookConfigurationCustomization";
+    apiVersion: "customize.core.cnrm.cloud.google.com/v1beta1";
+    kind: "ValidatingWebhookConfigurationCustomization";
     metadata: {
       annotations?: {
         [key: string]: string;

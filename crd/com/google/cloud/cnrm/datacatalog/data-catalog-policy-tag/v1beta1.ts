@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesDataCatalogPolicyTagV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesDataCatalogPolicyTagV1beta1ManifestConfig) {
+export class DatacatalogCnrmCloudGoogleComDataCatalogPolicyTagV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: DatacatalogCnrmCloudGoogleComDataCatalogPolicyTagV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesDataCatalogPolicyTagV1beta1ManifestConfig extends ManifestConfig {
+export interface DatacatalogCnrmCloudGoogleComDataCatalogPolicyTagV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "datacatalog.cnrm.cloud.google.com/v1beta1";
-    kind?: "DataCatalogPolicyTag";
+    apiVersion: "datacatalog.cnrm.cloud.google.com/v1beta1";
+    kind: "DataCatalogPolicyTag";
     metadata: {
       annotations?: {
         [key: string]: string;

@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesProvisioningRequestV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesProvisioningRequestV1ManifestConfig) {
+export class AutoscalingXK8sIoProvisioningRequestV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: AutoscalingXK8sIoProvisioningRequestV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesProvisioningRequestV1ManifestConfig extends ManifestConfig {
+export interface AutoscalingXK8sIoProvisioningRequestV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "autoscaling.x-k8s.io/v1";
-    kind?: "ProvisioningRequest";
+    apiVersion: "autoscaling.x-k8s.io/v1";
+    kind: "ProvisioningRequest";
     metadata: {
       annotations?: {
         [key: string]: string;

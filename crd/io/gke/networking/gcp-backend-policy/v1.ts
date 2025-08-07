@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesGCPBackendPolicyV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesGCPBackendPolicyV1ManifestConfig) {
+export class NetworkingGkeIoGCPBackendPolicyV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NetworkingGkeIoGCPBackendPolicyV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesGCPBackendPolicyV1ManifestConfig extends ManifestConfig {
+export interface NetworkingGkeIoGCPBackendPolicyV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "networking.gke.io/v1";
-    kind?: "GCPBackendPolicy";
+    apiVersion: "networking.gke.io/v1";
+    kind: "GCPBackendPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -94,6 +94,12 @@ export interface KubernetesGCPBackendPolicyV1ManifestConfig extends ManifestConf
            *     served by this backend service. If not specified, this defaults to false,
            *     which means logging is disabled by default. */
           enabled?: boolean;
+          /** @description List of optional fields to include in the log entries (such as
+           *     "tls.cipher" or "orca_load_report", for example). */
+          optionalFields?: string[];
+          /** @description Specifies whether to log all optional fields, none, or a subset configured
+           *     by the optionalFields. */
+          optionalMode?: string;
           /**
            * Format: int32
            * @description This field can only be specified if logging is enabled for this backend

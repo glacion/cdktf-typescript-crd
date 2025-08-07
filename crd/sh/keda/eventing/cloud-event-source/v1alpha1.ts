@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesCloudEventSourceV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesCloudEventSourceV1alpha1ManifestConfig) {
+export class EventingKedaShCloudEventSourceV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: EventingKedaShCloudEventSourceV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesCloudEventSourceV1alpha1ManifestConfig extends ManifestConfig {
+export interface EventingKedaShCloudEventSourceV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "eventing.keda.sh/v1alpha1";
-    kind?: "CloudEventSource";
+    apiVersion: "eventing.keda.sh/v1alpha1";
+    kind: "CloudEventSource";
     metadata: {
       annotations?: {
         [key: string]: string;

@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesManagedKafkaClusterV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesManagedKafkaClusterV1beta1ManifestConfig) {
+export class ManagedkafkaCnrmCloudGoogleComManagedKafkaClusterV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: ManagedkafkaCnrmCloudGoogleComManagedKafkaClusterV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesManagedKafkaClusterV1beta1ManifestConfig extends ManifestConfig {
+export interface ManagedkafkaCnrmCloudGoogleComManagedKafkaClusterV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "managedkafka.cnrm.cloud.google.com/v1beta1";
-    kind?: "ManagedKafkaCluster";
+    apiVersion: "managedkafka.cnrm.cloud.google.com/v1beta1";
+    kind: "ManagedKafkaCluster";
     metadata: {
       annotations?: {
         [key: string]: string;

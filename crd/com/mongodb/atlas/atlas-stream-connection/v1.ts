@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesAtlasStreamConnectionV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesAtlasStreamConnectionV1ManifestConfig) {
+export class AtlasMongodbComAtlasStreamConnectionV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: AtlasMongodbComAtlasStreamConnectionV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesAtlasStreamConnectionV1ManifestConfig extends ManifestConfig {
+export interface AtlasMongodbComAtlasStreamConnectionV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "atlas.mongodb.com/v1";
-    kind?: "AtlasStreamConnection";
+    apiVersion: "atlas.mongodb.com/v1";
+    kind: "AtlasStreamConnection";
     metadata: {
       annotations?: {
         [key: string]: string;

@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesDataFusionInstanceV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesDataFusionInstanceV1beta1ManifestConfig) {
+export class DatafusionCnrmCloudGoogleComDataFusionInstanceV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: DatafusionCnrmCloudGoogleComDataFusionInstanceV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesDataFusionInstanceV1beta1ManifestConfig extends ManifestConfig {
+export interface DatafusionCnrmCloudGoogleComDataFusionInstanceV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "datafusion.cnrm.cloud.google.com/v1beta1";
-    kind?: "DataFusionInstance";
+    apiVersion: "datafusion.cnrm.cloud.google.com/v1beta1";
+    kind: "DataFusionInstance";
     metadata: {
       annotations?: {
         [key: string]: string;

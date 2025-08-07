@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesWebhookV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesWebhookV1alpha1ManifestConfig) {
+export class GeneratorsExternalSecretsIoWebhookV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: GeneratorsExternalSecretsIoWebhookV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesWebhookV1alpha1ManifestConfig extends ManifestConfig {
+export interface GeneratorsExternalSecretsIoWebhookV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "generators.external-secrets.io/v1alpha1";
-    kind?: "Webhook";
+    apiVersion: "generators.external-secrets.io/v1alpha1";
+    kind: "Webhook";
     metadata: {
       annotations?: {
         [key: string]: string;

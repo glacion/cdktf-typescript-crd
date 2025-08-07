@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesArtifactRegistryRepositoryV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesArtifactRegistryRepositoryV1beta1ManifestConfig) {
+export class ArtifactregistryCnrmCloudGoogleComArtifactRegistryRepositoryV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: ArtifactregistryCnrmCloudGoogleComArtifactRegistryRepositoryV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesArtifactRegistryRepositoryV1beta1ManifestConfig extends ManifestConfig {
+export interface ArtifactregistryCnrmCloudGoogleComArtifactRegistryRepositoryV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "artifactregistry.cnrm.cloud.google.com/v1beta1";
-    kind?: "ArtifactRegistryRepository";
+    apiVersion: "artifactregistry.cnrm.cloud.google.com/v1beta1";
+    kind: "ArtifactRegistryRepository";
     metadata: {
       annotations?: {
         [key: string]: string;

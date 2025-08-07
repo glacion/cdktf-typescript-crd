@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesPrivateCACertificateTemplateV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesPrivateCACertificateTemplateV1beta1ManifestConfig) {
+export class PrivatecaCnrmCloudGoogleComPrivateCACertificateTemplateV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: PrivatecaCnrmCloudGoogleComPrivateCACertificateTemplateV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesPrivateCACertificateTemplateV1beta1ManifestConfig extends ManifestConfig {
+export interface PrivatecaCnrmCloudGoogleComPrivateCACertificateTemplateV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "privateca.cnrm.cloud.google.com/v1beta1";
-    kind?: "PrivateCACertificateTemplate";
+    apiVersion: "privateca.cnrm.cloud.google.com/v1beta1";
+    kind: "PrivateCACertificateTemplate";
     metadata: {
       annotations?: {
         [key: string]: string;

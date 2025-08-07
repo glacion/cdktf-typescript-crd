@@ -1,14 +1,19 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesCertificateManagerDNSAuthorizationV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesCertificateManagerDNSAuthorizationV1beta1ManifestConfig) {
+export class CertificatemanagerCnrmCloudGoogleComCertificateManagerDNSAuthorizationV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: CertificatemanagerCnrmCloudGoogleComCertificateManagerDNSAuthorizationV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesCertificateManagerDNSAuthorizationV1beta1ManifestConfig extends ManifestConfig {
+export interface CertificatemanagerCnrmCloudGoogleComCertificateManagerDNSAuthorizationV1beta1Config
+  extends ManifestConfig {
   manifest: {
-    apiVersion?: "certificatemanager.cnrm.cloud.google.com/v1beta1";
-    kind?: "CertificateManagerDNSAuthorization";
+    apiVersion: "certificatemanager.cnrm.cloud.google.com/v1beta1";
+    kind: "CertificateManagerDNSAuthorization";
     metadata: {
       annotations?: {
         [key: string]: string;

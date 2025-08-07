@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesRecaptchaEnterpriseKeyV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesRecaptchaEnterpriseKeyV1beta1ManifestConfig) {
+export class RecaptchaenterpriseCnrmCloudGoogleComRecaptchaEnterpriseKeyV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: RecaptchaenterpriseCnrmCloudGoogleComRecaptchaEnterpriseKeyV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesRecaptchaEnterpriseKeyV1beta1ManifestConfig extends ManifestConfig {
+export interface RecaptchaenterpriseCnrmCloudGoogleComRecaptchaEnterpriseKeyV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "recaptchaenterprise.cnrm.cloud.google.com/v1beta1";
-    kind?: "RecaptchaEnterpriseKey";
+    apiVersion: "recaptchaenterprise.cnrm.cloud.google.com/v1beta1";
+    kind: "RecaptchaEnterpriseKey";
     metadata: {
       annotations?: {
         [key: string]: string;

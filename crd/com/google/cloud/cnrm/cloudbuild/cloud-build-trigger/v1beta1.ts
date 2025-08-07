@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesCloudBuildTriggerV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesCloudBuildTriggerV1beta1ManifestConfig) {
+export class CloudbuildCnrmCloudGoogleComCloudBuildTriggerV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: CloudbuildCnrmCloudGoogleComCloudBuildTriggerV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesCloudBuildTriggerV1beta1ManifestConfig extends ManifestConfig {
+export interface CloudbuildCnrmCloudGoogleComCloudBuildTriggerV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "cloudbuild.cnrm.cloud.google.com/v1beta1";
-    kind?: "CloudBuildTrigger";
+    apiVersion: "cloudbuild.cnrm.cloud.google.com/v1beta1";
+    kind: "CloudBuildTrigger";
     metadata: {
       annotations?: {
         [key: string]: string;

@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesBigQueryRoutineV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesBigQueryRoutineV1beta1ManifestConfig) {
+export class BigqueryCnrmCloudGoogleComBigQueryRoutineV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: BigqueryCnrmCloudGoogleComBigQueryRoutineV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesBigQueryRoutineV1beta1ManifestConfig extends ManifestConfig {
+export interface BigqueryCnrmCloudGoogleComBigQueryRoutineV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "bigquery.cnrm.cloud.google.com/v1beta1";
-    kind?: "BigQueryRoutine";
+    apiVersion: "bigquery.cnrm.cloud.google.com/v1beta1";
+    kind: "BigQueryRoutine";
     metadata: {
       annotations?: {
         [key: string]: string;

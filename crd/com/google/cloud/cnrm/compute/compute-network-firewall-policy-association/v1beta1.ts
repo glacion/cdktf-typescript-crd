@@ -1,18 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesComputeNetworkFirewallPolicyAssociationV1beta1Manifest extends Manifest {
+export class ComputeCnrmCloudGoogleComComputeNetworkFirewallPolicyAssociationV1beta1 extends Manifest {
   constructor(
     scope: Construct,
     id: string,
-    config: KubernetesComputeNetworkFirewallPolicyAssociationV1beta1ManifestConfig,
+    config: ComputeCnrmCloudGoogleComComputeNetworkFirewallPolicyAssociationV1beta1Config,
   ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesComputeNetworkFirewallPolicyAssociationV1beta1ManifestConfig extends ManifestConfig {
+export interface ComputeCnrmCloudGoogleComComputeNetworkFirewallPolicyAssociationV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
-    kind?: "ComputeNetworkFirewallPolicyAssociation";
+    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
+    kind: "ComputeNetworkFirewallPolicyAssociation";
     metadata: {
       annotations?: {
         [key: string]: string;

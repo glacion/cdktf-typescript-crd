@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesPrivateCACAPoolV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesPrivateCACAPoolV1beta1ManifestConfig) {
+export class PrivatecaCnrmCloudGoogleComPrivateCACAPoolV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: PrivatecaCnrmCloudGoogleComPrivateCACAPoolV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesPrivateCACAPoolV1beta1ManifestConfig extends ManifestConfig {
+export interface PrivatecaCnrmCloudGoogleComPrivateCACAPoolV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "privateca.cnrm.cloud.google.com/v1beta1";
-    kind?: "PrivateCACAPool";
+    apiVersion: "privateca.cnrm.cloud.google.com/v1beta1";
+    kind: "PrivateCACAPool";
     metadata: {
       annotations?: {
         [key: string]: string;

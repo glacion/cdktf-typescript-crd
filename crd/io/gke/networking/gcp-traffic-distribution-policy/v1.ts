@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesGCPTrafficDistributionPolicyV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesGCPTrafficDistributionPolicyV1ManifestConfig) {
+export class NetworkingGkeIoGCPTrafficDistributionPolicyV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NetworkingGkeIoGCPTrafficDistributionPolicyV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesGCPTrafficDistributionPolicyV1ManifestConfig extends ManifestConfig {
+export interface NetworkingGkeIoGCPTrafficDistributionPolicyV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "networking.gke.io/v1";
-    kind?: "GCPTrafficDistributionPolicy";
+    apiVersion: "networking.gke.io/v1";
+    kind: "GCPTrafficDistributionPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;

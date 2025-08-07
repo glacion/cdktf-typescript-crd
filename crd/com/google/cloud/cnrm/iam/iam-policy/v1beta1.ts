@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesIAMPolicyV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesIAMPolicyV1beta1ManifestConfig) {
+export class IamCnrmCloudGoogleComIAMPolicyV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: IamCnrmCloudGoogleComIAMPolicyV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesIAMPolicyV1beta1ManifestConfig extends ManifestConfig {
+export interface IamCnrmCloudGoogleComIAMPolicyV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "iam.cnrm.cloud.google.com/v1beta1";
-    kind?: "IAMPolicy";
+    apiVersion: "iam.cnrm.cloud.google.com/v1beta1";
+    kind: "IAMPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;

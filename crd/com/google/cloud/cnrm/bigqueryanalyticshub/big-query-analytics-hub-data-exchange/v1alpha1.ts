@@ -1,14 +1,19 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesBigQueryAnalyticsHubDataExchangeV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesBigQueryAnalyticsHubDataExchangeV1alpha1ManifestConfig) {
+export class BigqueryanalyticshubCnrmCloudGoogleComBigQueryAnalyticsHubDataExchangeV1alpha1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: BigqueryanalyticshubCnrmCloudGoogleComBigQueryAnalyticsHubDataExchangeV1alpha1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesBigQueryAnalyticsHubDataExchangeV1alpha1ManifestConfig extends ManifestConfig {
+export interface BigqueryanalyticshubCnrmCloudGoogleComBigQueryAnalyticsHubDataExchangeV1alpha1Config
+  extends ManifestConfig {
   manifest: {
-    apiVersion?: "bigqueryanalyticshub.cnrm.cloud.google.com/v1alpha1";
-    kind?: "BigQueryAnalyticsHubDataExchange";
+    apiVersion: "bigqueryanalyticshub.cnrm.cloud.google.com/v1alpha1";
+    kind: "BigQueryAnalyticsHubDataExchange";
     metadata: {
       annotations?: {
         [key: string]: string;

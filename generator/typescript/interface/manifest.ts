@@ -7,7 +7,6 @@ import {
   isPropertySignature,
   isTypeLiteralNode,
   isTypeNode,
-  SyntaxKind,
   type Identifier,
   type Node,
   type PropertySignature,
@@ -48,11 +47,11 @@ const findPropertySignatures = (name: string, kind: string, nodes: Node[]) =>
     .filter((node) => !ignoreList.includes(node.name.text)) ??
   (logger.warn({ name, kind }, "no type member found"), []);
 
-const createOptionalStringLiteralPropertySignature = (name: string, value: string) =>
+const createStringLiteralPropertySignature = (name: string, value: string) =>
   factory.createPropertySignature(
     undefined,
     name,
-    factory.createToken(SyntaxKind.QuestionToken),
+    undefined,
     factory.createLiteralTypeNode(factory.createStringLiteral(value)),
   );
 
@@ -66,8 +65,8 @@ export const createManifestPropertySignature = async (
     "manifest",
     undefined,
     factory.createTypeLiteralNode([
-      createOptionalStringLiteralPropertySignature("apiVersion", apiVersion),
-      createOptionalStringLiteralPropertySignature("kind", kind),
+      createStringLiteralPropertySignature("apiVersion", apiVersion),
+      createStringLiteralPropertySignature("kind", kind),
       createMetadataPropertySignature(),
       ...findPropertySignatures(
         apiVersion,

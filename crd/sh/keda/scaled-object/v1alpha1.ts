@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesScaledObjectV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesScaledObjectV1alpha1ManifestConfig) {
+export class KedaShScaledObjectV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: KedaShScaledObjectV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesScaledObjectV1alpha1ManifestConfig extends ManifestConfig {
+export interface KedaShScaledObjectV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "keda.sh/v1alpha1";
-    kind?: "ScaledObject";
+    apiVersion: "keda.sh/v1alpha1";
+    kind: "ScaledObject";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -121,6 +121,7 @@ export interface KubernetesScaledObjectV1alpha1ManifestConfig extends ManifestCo
       cooldownPeriod?: number;
       /** @description Fallback is the spec for fallback options */
       fallback?: {
+        behavior?: string;
         /** Format: int32 */
         failureThreshold: number;
         /** Format: int32 */

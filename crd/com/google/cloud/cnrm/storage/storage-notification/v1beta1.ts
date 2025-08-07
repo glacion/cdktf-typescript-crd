@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesStorageNotificationV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesStorageNotificationV1beta1ManifestConfig) {
+export class StorageCnrmCloudGoogleComStorageNotificationV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: StorageCnrmCloudGoogleComStorageNotificationV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesStorageNotificationV1beta1ManifestConfig extends ManifestConfig {
+export interface StorageCnrmCloudGoogleComStorageNotificationV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "storage.cnrm.cloud.google.com/v1beta1";
-    kind?: "StorageNotification";
+    apiVersion: "storage.cnrm.cloud.google.com/v1beta1";
+    kind: "StorageNotification";
     metadata: {
       annotations?: {
         [key: string]: string;

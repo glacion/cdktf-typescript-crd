@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesRedisInstanceV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesRedisInstanceV1beta1ManifestConfig) {
+export class RedisCnrmCloudGoogleComRedisInstanceV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: RedisCnrmCloudGoogleComRedisInstanceV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesRedisInstanceV1beta1ManifestConfig extends ManifestConfig {
+export interface RedisCnrmCloudGoogleComRedisInstanceV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "redis.cnrm.cloud.google.com/v1beta1";
-    kind?: "RedisInstance";
+    apiVersion: "redis.cnrm.cloud.google.com/v1beta1";
+    kind: "RedisInstance";
     metadata: {
       annotations?: {
         [key: string]: string;

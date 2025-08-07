@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesNetworkServicesGRPCRouteV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesNetworkServicesGRPCRouteV1beta1ManifestConfig) {
+export class NetworkservicesCnrmCloudGoogleComNetworkServicesGRPCRouteV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: NetworkservicesCnrmCloudGoogleComNetworkServicesGRPCRouteV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesNetworkServicesGRPCRouteV1beta1ManifestConfig extends ManifestConfig {
+export interface NetworkservicesCnrmCloudGoogleComNetworkServicesGRPCRouteV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "networkservices.cnrm.cloud.google.com/v1beta1";
-    kind?: "NetworkServicesGRPCRoute";
+    apiVersion: "networkservices.cnrm.cloud.google.com/v1beta1";
+    kind: "NetworkServicesGRPCRoute";
     metadata: {
       annotations?: {
         [key: string]: string;

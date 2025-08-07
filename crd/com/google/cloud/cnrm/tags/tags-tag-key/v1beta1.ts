@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesTagsTagKeyV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesTagsTagKeyV1beta1ManifestConfig) {
+export class TagsCnrmCloudGoogleComTagsTagKeyV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: TagsCnrmCloudGoogleComTagsTagKeyV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesTagsTagKeyV1beta1ManifestConfig extends ManifestConfig {
+export interface TagsCnrmCloudGoogleComTagsTagKeyV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "tags.cnrm.cloud.google.com/v1beta1";
-    kind?: "TagsTagKey";
+    apiVersion: "tags.cnrm.cloud.google.com/v1beta1";
+    kind: "TagsTagKey";
     metadata: {
       annotations?: {
         [key: string]: string;

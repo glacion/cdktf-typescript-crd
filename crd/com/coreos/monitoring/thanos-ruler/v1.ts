@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesThanosRulerV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesThanosRulerV1ManifestConfig) {
+export class MonitoringCoreosComThanosRulerV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: MonitoringCoreosComThanosRulerV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesThanosRulerV1ManifestConfig extends ManifestConfig {
+export interface MonitoringCoreosComThanosRulerV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "monitoring.coreos.com/v1";
-    kind?: "ThanosRuler";
+    apiVersion: "monitoring.coreos.com/v1";
+    kind: "ThanosRuler";
     metadata: {
       annotations?: {
         [key: string]: string;

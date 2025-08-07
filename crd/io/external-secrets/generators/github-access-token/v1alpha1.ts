@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesGithubAccessTokenV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesGithubAccessTokenV1alpha1ManifestConfig) {
+export class GeneratorsExternalSecretsIoGithubAccessTokenV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: GeneratorsExternalSecretsIoGithubAccessTokenV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesGithubAccessTokenV1alpha1ManifestConfig extends ManifestConfig {
+export interface GeneratorsExternalSecretsIoGithubAccessTokenV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "generators.external-secrets.io/v1alpha1";
-    kind?: "GithubAccessToken";
+    apiVersion: "generators.external-secrets.io/v1alpha1";
+    kind: "GithubAccessToken";
     metadata: {
       annotations?: {
         [key: string]: string;

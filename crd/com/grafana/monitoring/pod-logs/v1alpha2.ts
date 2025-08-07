@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesPodLogsV1alpha2Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesPodLogsV1alpha2ManifestConfig) {
+export class MonitoringGrafanaComPodLogsV1alpha2 extends Manifest {
+  constructor(scope: Construct, id: string, config: MonitoringGrafanaComPodLogsV1alpha2Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesPodLogsV1alpha2ManifestConfig extends ManifestConfig {
+export interface MonitoringGrafanaComPodLogsV1alpha2Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "monitoring.grafana.com/v1alpha2";
-    kind?: "PodLogs";
+    apiVersion: "monitoring.grafana.com/v1alpha2";
+    kind: "PodLogs";
     metadata: {
       annotations?: {
         [key: string]: string;

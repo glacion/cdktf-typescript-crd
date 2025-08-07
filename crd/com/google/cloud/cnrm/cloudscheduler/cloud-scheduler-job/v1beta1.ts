@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesCloudSchedulerJobV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesCloudSchedulerJobV1beta1ManifestConfig) {
+export class CloudschedulerCnrmCloudGoogleComCloudSchedulerJobV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: CloudschedulerCnrmCloudGoogleComCloudSchedulerJobV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesCloudSchedulerJobV1beta1ManifestConfig extends ManifestConfig {
+export interface CloudschedulerCnrmCloudGoogleComCloudSchedulerJobV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "cloudscheduler.cnrm.cloud.google.com/v1beta1";
-    kind?: "CloudSchedulerJob";
+    apiVersion: "cloudscheduler.cnrm.cloud.google.com/v1beta1";
+    kind: "CloudSchedulerJob";
     metadata: {
       annotations?: {
         [key: string]: string;

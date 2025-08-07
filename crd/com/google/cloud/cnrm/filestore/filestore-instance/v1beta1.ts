@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesFilestoreInstanceV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesFilestoreInstanceV1beta1ManifestConfig) {
+export class FilestoreCnrmCloudGoogleComFilestoreInstanceV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: FilestoreCnrmCloudGoogleComFilestoreInstanceV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesFilestoreInstanceV1beta1ManifestConfig extends ManifestConfig {
+export interface FilestoreCnrmCloudGoogleComFilestoreInstanceV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "filestore.cnrm.cloud.google.com/v1beta1";
-    kind?: "FilestoreInstance";
+    apiVersion: "filestore.cnrm.cloud.google.com/v1beta1";
+    kind: "FilestoreInstance";
     metadata: {
       annotations?: {
         [key: string]: string;

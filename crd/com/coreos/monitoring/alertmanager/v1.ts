@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesAlertmanagerV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesAlertmanagerV1ManifestConfig) {
+export class MonitoringCoreosComAlertmanagerV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: MonitoringCoreosComAlertmanagerV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesAlertmanagerV1ManifestConfig extends ManifestConfig {
+export interface MonitoringCoreosComAlertmanagerV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "monitoring.coreos.com/v1";
-    kind?: "Alertmanager";
+    apiVersion: "monitoring.coreos.com/v1";
+    kind: "Alertmanager";
     metadata: {
       annotations?: {
         [key: string]: string;

@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesServiceNetworkingConnectionV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesServiceNetworkingConnectionV1beta1ManifestConfig) {
+export class ServicenetworkingCnrmCloudGoogleComServiceNetworkingConnectionV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: ServicenetworkingCnrmCloudGoogleComServiceNetworkingConnectionV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesServiceNetworkingConnectionV1beta1ManifestConfig extends ManifestConfig {
+export interface ServicenetworkingCnrmCloudGoogleComServiceNetworkingConnectionV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "servicenetworking.cnrm.cloud.google.com/v1beta1";
-    kind?: "ServiceNetworkingConnection";
+    apiVersion: "servicenetworking.cnrm.cloud.google.com/v1beta1";
+    kind: "ServiceNetworkingConnection";
     metadata: {
       annotations?: {
         [key: string]: string;

@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesEphemeralRunnerV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesEphemeralRunnerV1alpha1ManifestConfig) {
+export class ActionsGithubComEphemeralRunnerV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: ActionsGithubComEphemeralRunnerV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesEphemeralRunnerV1alpha1ManifestConfig extends ManifestConfig {
+export interface ActionsGithubComEphemeralRunnerV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "actions.github.com/v1alpha1";
-    kind?: "EphemeralRunner";
+    apiVersion: "actions.github.com/v1alpha1";
+    kind: "EphemeralRunner";
     metadata: {
       annotations?: {
         [key: string]: string;

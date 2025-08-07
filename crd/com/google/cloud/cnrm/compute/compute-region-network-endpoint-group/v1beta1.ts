@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesComputeRegionNetworkEndpointGroupV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesComputeRegionNetworkEndpointGroupV1beta1ManifestConfig) {
+export class ComputeCnrmCloudGoogleComComputeRegionNetworkEndpointGroupV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: ComputeCnrmCloudGoogleComComputeRegionNetworkEndpointGroupV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesComputeRegionNetworkEndpointGroupV1beta1ManifestConfig extends ManifestConfig {
+export interface ComputeCnrmCloudGoogleComComputeRegionNetworkEndpointGroupV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
-    kind?: "ComputeRegionNetworkEndpointGroup";
+    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
+    kind: "ComputeRegionNetworkEndpointGroup";
     metadata: {
       annotations?: {
         [key: string]: string;

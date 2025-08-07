@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesIAPIdentityAwareProxyClientV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesIAPIdentityAwareProxyClientV1beta1ManifestConfig) {
+export class IapCnrmCloudGoogleComIAPIdentityAwareProxyClientV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: IapCnrmCloudGoogleComIAPIdentityAwareProxyClientV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesIAPIdentityAwareProxyClientV1beta1ManifestConfig extends ManifestConfig {
+export interface IapCnrmCloudGoogleComIAPIdentityAwareProxyClientV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "iap.cnrm.cloud.google.com/v1beta1";
-    kind?: "IAPIdentityAwareProxyClient";
+    apiVersion: "iap.cnrm.cloud.google.com/v1beta1";
+    kind: "IAPIdentityAwareProxyClient";
     metadata: {
       annotations?: {
         [key: string]: string;

@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesAtlasFederatedAuthV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesAtlasFederatedAuthV1ManifestConfig) {
+export class AtlasMongodbComAtlasFederatedAuthV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: AtlasMongodbComAtlasFederatedAuthV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesAtlasFederatedAuthV1ManifestConfig extends ManifestConfig {
+export interface AtlasMongodbComAtlasFederatedAuthV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "atlas.mongodb.com/v1";
-    kind?: "AtlasFederatedAuth";
+    apiVersion: "atlas.mongodb.com/v1";
+    kind: "AtlasFederatedAuth";
     metadata: {
       annotations?: {
         [key: string]: string;

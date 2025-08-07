@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesEdgeNetworkNetworkV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesEdgeNetworkNetworkV1beta1ManifestConfig) {
+export class EdgenetworkCnrmCloudGoogleComEdgeNetworkNetworkV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: EdgenetworkCnrmCloudGoogleComEdgeNetworkNetworkV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesEdgeNetworkNetworkV1beta1ManifestConfig extends ManifestConfig {
+export interface EdgenetworkCnrmCloudGoogleComEdgeNetworkNetworkV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "edgenetwork.cnrm.cloud.google.com/v1beta1";
-    kind?: "EdgeNetworkNetwork";
+    apiVersion: "edgenetwork.cnrm.cloud.google.com/v1beta1";
+    kind: "EdgeNetworkNetwork";
     metadata: {
       annotations?: {
         [key: string]: string;

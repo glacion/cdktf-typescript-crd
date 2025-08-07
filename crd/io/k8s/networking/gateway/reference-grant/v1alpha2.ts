@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesReferenceGrantV1alpha2Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesReferenceGrantV1alpha2ManifestConfig) {
+export class GatewayNetworkingK8sIoReferenceGrantV1alpha2 extends Manifest {
+  constructor(scope: Construct, id: string, config: GatewayNetworkingK8sIoReferenceGrantV1alpha2Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesReferenceGrantV1alpha2ManifestConfig extends ManifestConfig {
+export interface GatewayNetworkingK8sIoReferenceGrantV1alpha2Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "gateway.networking.k8s.io/v1alpha2";
-    kind?: "ReferenceGrant";
+    apiVersion: "gateway.networking.k8s.io/v1alpha2";
+    kind: "ReferenceGrant";
     metadata: {
       annotations?: {
         [key: string]: string;

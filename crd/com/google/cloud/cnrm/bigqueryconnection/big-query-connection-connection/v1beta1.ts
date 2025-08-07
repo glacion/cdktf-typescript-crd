@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesBigQueryConnectionConnectionV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesBigQueryConnectionConnectionV1beta1ManifestConfig) {
+export class BigqueryconnectionCnrmCloudGoogleComBigQueryConnectionConnectionV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: BigqueryconnectionCnrmCloudGoogleComBigQueryConnectionConnectionV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesBigQueryConnectionConnectionV1beta1ManifestConfig extends ManifestConfig {
+export interface BigqueryconnectionCnrmCloudGoogleComBigQueryConnectionConnectionV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "bigqueryconnection.cnrm.cloud.google.com/v1beta1";
-    kind?: "BigQueryConnectionConnection";
+    apiVersion: "bigqueryconnection.cnrm.cloud.google.com/v1beta1";
+    kind: "BigQueryConnectionConnection";
     metadata: {
       annotations?: {
         [key: string]: string;

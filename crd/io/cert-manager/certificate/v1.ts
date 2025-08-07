@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesCertificateV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesCertificateV1ManifestConfig) {
+export class CertManagerIoCertificateV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: CertManagerIoCertificateV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesCertificateV1ManifestConfig extends ManifestConfig {
+export interface CertManagerIoCertificateV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "cert-manager.io/v1";
-    kind?: "Certificate";
+    apiVersion: "cert-manager.io/v1";
+    kind: "Certificate";
     metadata: {
       annotations?: {
         [key: string]: string;

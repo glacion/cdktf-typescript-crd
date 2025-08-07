@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesEntitlementV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesEntitlementV1alpha1ManifestConfig) {
+export class AnthosGkeIoEntitlementV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: AnthosGkeIoEntitlementV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesEntitlementV1alpha1ManifestConfig extends ManifestConfig {
+export interface AnthosGkeIoEntitlementV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "anthos.gke.io/v1alpha1";
-    kind?: "Entitlement";
+    apiVersion: "anthos.gke.io/v1alpha1";
+    kind: "Entitlement";
     metadata: {
       annotations?: {
         [key: string]: string;

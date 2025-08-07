@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesClusterPolicyV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesClusterPolicyV1ManifestConfig) {
+export class KyvernoIoClusterPolicyV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: KyvernoIoClusterPolicyV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesClusterPolicyV1ManifestConfig extends ManifestConfig {
+export interface KyvernoIoClusterPolicyV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "kyverno.io/v1";
-    kind?: "ClusterPolicy";
+    apiVersion: "kyverno.io/v1";
+    kind: "ClusterPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;

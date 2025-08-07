@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesCiliumLocalRedirectPolicyV2Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesCiliumLocalRedirectPolicyV2ManifestConfig) {
+export class CiliumIoCiliumLocalRedirectPolicyV2 extends Manifest {
+  constructor(scope: Construct, id: string, config: CiliumIoCiliumLocalRedirectPolicyV2Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesCiliumLocalRedirectPolicyV2ManifestConfig extends ManifestConfig {
+export interface CiliumIoCiliumLocalRedirectPolicyV2Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "cilium.io/v2";
-    kind?: "CiliumLocalRedirectPolicy";
+    apiVersion: "cilium.io/v2";
+    kind: "CiliumLocalRedirectPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;

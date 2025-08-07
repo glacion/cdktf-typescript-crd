@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesAllowlistSynchronizerV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesAllowlistSynchronizerV1ManifestConfig) {
+export class AutoGkeIoAllowlistSynchronizerV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: AutoGkeIoAllowlistSynchronizerV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesAllowlistSynchronizerV1ManifestConfig extends ManifestConfig {
+export interface AutoGkeIoAllowlistSynchronizerV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "auto.gke.io/v1";
-    kind?: "AllowlistSynchronizer";
+    apiVersion: "auto.gke.io/v1";
+    kind: "AllowlistSynchronizer";
     metadata: {
       annotations?: {
         [key: string]: string;

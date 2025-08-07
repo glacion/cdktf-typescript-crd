@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesStorageVersionMigrationV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesStorageVersionMigrationV1alpha1ManifestConfig) {
+export class MigrationK8sIoStorageVersionMigrationV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: MigrationK8sIoStorageVersionMigrationV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesStorageVersionMigrationV1alpha1ManifestConfig extends ManifestConfig {
+export interface MigrationK8sIoStorageVersionMigrationV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "migration.k8s.io/v1alpha1";
-    kind?: "StorageVersionMigration";
+    apiVersion: "migration.k8s.io/v1alpha1";
+    kind: "StorageVersionMigration";
     metadata: {
       annotations?: {
         [key: string]: string;

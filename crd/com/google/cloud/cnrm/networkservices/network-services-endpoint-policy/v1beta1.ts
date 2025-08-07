@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesNetworkServicesEndpointPolicyV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesNetworkServicesEndpointPolicyV1beta1ManifestConfig) {
+export class NetworkservicesCnrmCloudGoogleComNetworkServicesEndpointPolicyV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: NetworkservicesCnrmCloudGoogleComNetworkServicesEndpointPolicyV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesNetworkServicesEndpointPolicyV1beta1ManifestConfig extends ManifestConfig {
+export interface NetworkservicesCnrmCloudGoogleComNetworkServicesEndpointPolicyV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "networkservices.cnrm.cloud.google.com/v1beta1";
-    kind?: "NetworkServicesEndpointPolicy";
+    apiVersion: "networkservices.cnrm.cloud.google.com/v1beta1";
+    kind: "NetworkServicesEndpointPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;

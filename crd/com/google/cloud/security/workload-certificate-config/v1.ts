@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesWorkloadCertificateConfigV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesWorkloadCertificateConfigV1ManifestConfig) {
+export class SecurityCloudGoogleComWorkloadCertificateConfigV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: SecurityCloudGoogleComWorkloadCertificateConfigV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesWorkloadCertificateConfigV1ManifestConfig extends ManifestConfig {
+export interface SecurityCloudGoogleComWorkloadCertificateConfigV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "security.cloud.google.com/v1";
-    kind?: "WorkloadCertificateConfig";
+    apiVersion: "security.cloud.google.com/v1";
+    kind: "WorkloadCertificateConfig";
     metadata: {
       annotations?: {
         [key: string]: string;

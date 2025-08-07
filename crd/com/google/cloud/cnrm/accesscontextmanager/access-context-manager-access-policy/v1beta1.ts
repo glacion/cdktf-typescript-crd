@@ -1,14 +1,19 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesAccessContextManagerAccessPolicyV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesAccessContextManagerAccessPolicyV1beta1ManifestConfig) {
+export class AccesscontextmanagerCnrmCloudGoogleComAccessContextManagerAccessPolicyV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: AccesscontextmanagerCnrmCloudGoogleComAccessContextManagerAccessPolicyV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesAccessContextManagerAccessPolicyV1beta1ManifestConfig extends ManifestConfig {
+export interface AccesscontextmanagerCnrmCloudGoogleComAccessContextManagerAccessPolicyV1beta1Config
+  extends ManifestConfig {
   manifest: {
-    apiVersion?: "accesscontextmanager.cnrm.cloud.google.com/v1beta1";
-    kind?: "AccessContextManagerAccessPolicy";
+    apiVersion: "accesscontextmanager.cnrm.cloud.google.com/v1beta1";
+    kind: "AccessContextManagerAccessPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;

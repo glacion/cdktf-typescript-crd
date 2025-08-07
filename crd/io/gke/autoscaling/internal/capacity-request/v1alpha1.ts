@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesCapacityRequestV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesCapacityRequestV1alpha1ManifestConfig) {
+export class InternalAutoscalingGkeIoCapacityRequestV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: InternalAutoscalingGkeIoCapacityRequestV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesCapacityRequestV1alpha1ManifestConfig extends ManifestConfig {
+export interface InternalAutoscalingGkeIoCapacityRequestV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "internal.autoscaling.gke.io/v1alpha1";
-    kind?: "CapacityRequest";
+    apiVersion: "internal.autoscaling.gke.io/v1alpha1";
+    kind: "CapacityRequest";
     metadata: {
       annotations?: {
         [key: string]: string;

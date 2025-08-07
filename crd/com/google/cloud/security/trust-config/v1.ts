@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesTrustConfigV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesTrustConfigV1ManifestConfig) {
+export class SecurityCloudGoogleComTrustConfigV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: SecurityCloudGoogleComTrustConfigV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesTrustConfigV1ManifestConfig extends ManifestConfig {
+export interface SecurityCloudGoogleComTrustConfigV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "security.cloud.google.com/v1";
-    kind?: "TrustConfig";
+    apiVersion: "security.cloud.google.com/v1";
+    kind: "TrustConfig";
     metadata: {
       annotations?: {
         [key: string]: string;

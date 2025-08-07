@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesAtlasSearchIndexConfigV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesAtlasSearchIndexConfigV1ManifestConfig) {
+export class AtlasMongodbComAtlasSearchIndexConfigV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: AtlasMongodbComAtlasSearchIndexConfigV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesAtlasSearchIndexConfigV1ManifestConfig extends ManifestConfig {
+export interface AtlasMongodbComAtlasSearchIndexConfigV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "atlas.mongodb.com/v1";
-    kind?: "AtlasSearchIndexConfig";
+    apiVersion: "atlas.mongodb.com/v1";
+    kind: "AtlasSearchIndexConfig";
     metadata: {
       annotations?: {
         [key: string]: string;

@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesGlobalRulesV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesGlobalRulesV1alpha1ManifestConfig) {
+export class MonitoringGoogleapisComGlobalRulesV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: MonitoringGoogleapisComGlobalRulesV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesGlobalRulesV1alpha1ManifestConfig extends ManifestConfig {
+export interface MonitoringGoogleapisComGlobalRulesV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "monitoring.googleapis.com/v1alpha1";
-    kind?: "GlobalRules";
+    apiVersion: "monitoring.googleapis.com/v1alpha1";
+    kind: "GlobalRules";
     metadata: {
       annotations?: {
         [key: string]: string;

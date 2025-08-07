@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesEgressNATPolicyV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesEgressNATPolicyV1ManifestConfig) {
+export class NetworkingGkeIoEgressNATPolicyV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NetworkingGkeIoEgressNATPolicyV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesEgressNATPolicyV1ManifestConfig extends ManifestConfig {
+export interface NetworkingGkeIoEgressNATPolicyV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "networking.gke.io/v1";
-    kind?: "EgressNATPolicy";
+    apiVersion: "networking.gke.io/v1";
+    kind: "EgressNATPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;

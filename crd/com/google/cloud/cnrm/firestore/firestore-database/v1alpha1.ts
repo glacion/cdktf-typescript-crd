@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesFirestoreDatabaseV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesFirestoreDatabaseV1alpha1ManifestConfig) {
+export class FirestoreCnrmCloudGoogleComFirestoreDatabaseV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: FirestoreCnrmCloudGoogleComFirestoreDatabaseV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesFirestoreDatabaseV1alpha1ManifestConfig extends ManifestConfig {
+export interface FirestoreCnrmCloudGoogleComFirestoreDatabaseV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "firestore.cnrm.cloud.google.com/v1alpha1";
-    kind?: "FirestoreDatabase";
+    apiVersion: "firestore.cnrm.cloud.google.com/v1alpha1";
+    kind: "FirestoreDatabase";
     metadata: {
       annotations?: {
         [key: string]: string;

@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesServiceNetworkEndpointGroupV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesServiceNetworkEndpointGroupV1beta1ManifestConfig) {
+export class NetworkingGkeIoServiceNetworkEndpointGroupV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NetworkingGkeIoServiceNetworkEndpointGroupV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesServiceNetworkEndpointGroupV1beta1ManifestConfig extends ManifestConfig {
+export interface NetworkingGkeIoServiceNetworkEndpointGroupV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "networking.gke.io/v1beta1";
-    kind?: "ServiceNetworkEndpointGroup";
+    apiVersion: "networking.gke.io/v1beta1";
+    kind: "ServiceNetworkEndpointGroup";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -70,7 +70,7 @@ export interface KubernetesServiceNetworkEndpointGroupV1beta1ManifestConfig exte
         networkEndpointType?: string;
         /** @description SelfLink is the GCE Server-defined fully-qualified URL for the GCE NEG resource */
         selfLink?: string;
-        /** @description Current condition of this network endpoint group. */
+        /** @description Current condition of this network endpoint group. If state is empty, it should be considered the ACTIVE state. */
         state?: string;
         /** @description URL of the subnetwork to which all network endpoints in the NEG belong. */
         subnetURL?: string;

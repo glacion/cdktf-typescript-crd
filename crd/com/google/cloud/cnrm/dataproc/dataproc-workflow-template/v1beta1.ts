@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesDataprocWorkflowTemplateV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesDataprocWorkflowTemplateV1beta1ManifestConfig) {
+export class DataprocCnrmCloudGoogleComDataprocWorkflowTemplateV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: DataprocCnrmCloudGoogleComDataprocWorkflowTemplateV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesDataprocWorkflowTemplateV1beta1ManifestConfig extends ManifestConfig {
+export interface DataprocCnrmCloudGoogleComDataprocWorkflowTemplateV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "dataproc.cnrm.cloud.google.com/v1beta1";
-    kind?: "DataprocWorkflowTemplate";
+    apiVersion: "dataproc.cnrm.cloud.google.com/v1beta1";
+    kind: "DataprocWorkflowTemplate";
     metadata: {
       annotations?: {
         [key: string]: string;

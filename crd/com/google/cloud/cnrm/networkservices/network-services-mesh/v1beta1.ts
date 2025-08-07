@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesNetworkServicesMeshV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesNetworkServicesMeshV1beta1ManifestConfig) {
+export class NetworkservicesCnrmCloudGoogleComNetworkServicesMeshV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NetworkservicesCnrmCloudGoogleComNetworkServicesMeshV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesNetworkServicesMeshV1beta1ManifestConfig extends ManifestConfig {
+export interface NetworkservicesCnrmCloudGoogleComNetworkServicesMeshV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "networkservices.cnrm.cloud.google.com/v1beta1";
-    kind?: "NetworkServicesMesh";
+    apiVersion: "networkservices.cnrm.cloud.google.com/v1beta1";
+    kind: "NetworkServicesMesh";
     metadata: {
       annotations?: {
         [key: string]: string;

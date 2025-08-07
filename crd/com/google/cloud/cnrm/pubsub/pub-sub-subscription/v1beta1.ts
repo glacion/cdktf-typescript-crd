@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesPubSubSubscriptionV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesPubSubSubscriptionV1beta1ManifestConfig) {
+export class PubsubCnrmCloudGoogleComPubSubSubscriptionV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: PubsubCnrmCloudGoogleComPubSubSubscriptionV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesPubSubSubscriptionV1beta1ManifestConfig extends ManifestConfig {
+export interface PubsubCnrmCloudGoogleComPubSubSubscriptionV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "pubsub.cnrm.cloud.google.com/v1beta1";
-    kind?: "PubSubSubscription";
+    apiVersion: "pubsub.cnrm.cloud.google.com/v1beta1";
+    kind: "PubSubSubscription";
     metadata: {
       annotations?: {
         [key: string]: string;

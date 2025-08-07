@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesOrderV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesOrderV1ManifestConfig) {
+export class AcmeCertManagerIoOrderV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: AcmeCertManagerIoOrderV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesOrderV1ManifestConfig extends ManifestConfig {
+export interface AcmeCertManagerIoOrderV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "acme.cert-manager.io/v1";
-    kind?: "Order";
+    apiVersion: "acme.cert-manager.io/v1";
+    kind: "Order";
     metadata: {
       annotations?: {
         [key: string]: string;

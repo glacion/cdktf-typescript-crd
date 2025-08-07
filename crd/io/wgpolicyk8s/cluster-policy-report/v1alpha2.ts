@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesClusterPolicyReportV1alpha2Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesClusterPolicyReportV1alpha2ManifestConfig) {
+export class Wgpolicyk8sIoClusterPolicyReportV1alpha2 extends Manifest {
+  constructor(scope: Construct, id: string, config: Wgpolicyk8sIoClusterPolicyReportV1alpha2Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesClusterPolicyReportV1alpha2ManifestConfig extends ManifestConfig {
+export interface Wgpolicyk8sIoClusterPolicyReportV1alpha2Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "wgpolicyk8s.io/v1alpha2";
-    kind?: "ClusterPolicyReport";
+    apiVersion: "wgpolicyk8s.io/v1alpha2";
+    kind: "ClusterPolicyReport";
     metadata: {
       annotations?: {
         [key: string]: string;

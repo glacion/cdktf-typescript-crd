@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesTriggerAuthenticationV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesTriggerAuthenticationV1alpha1ManifestConfig) {
+export class KedaShTriggerAuthenticationV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: KedaShTriggerAuthenticationV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesTriggerAuthenticationV1alpha1ManifestConfig extends ManifestConfig {
+export interface KedaShTriggerAuthenticationV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "keda.sh/v1alpha1";
-    kind?: "TriggerAuthentication";
+    apiVersion: "keda.sh/v1alpha1";
+    kind: "TriggerAuthentication";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -68,6 +68,7 @@ export interface KubernetesTriggerAuthenticationV1alpha1ManifestConfig extends M
         secrets: {
           name: string;
           parameter: string;
+          secretKey?: string;
           versionId?: string;
           versionStage?: string;
         }[];
@@ -113,6 +114,10 @@ export interface KubernetesTriggerAuthenticationV1alpha1ManifestConfig extends M
         }[];
         vaultUri: string;
       };
+      boundServiceAccountToken?: {
+        parameter: string;
+        serviceAccountName: string;
+      }[];
       configMapTargetRef?: {
         key: string;
         name: string;

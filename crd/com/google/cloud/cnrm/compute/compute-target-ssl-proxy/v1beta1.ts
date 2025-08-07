@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesComputeTargetSSLProxyV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesComputeTargetSSLProxyV1beta1ManifestConfig) {
+export class ComputeCnrmCloudGoogleComComputeTargetSSLProxyV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: ComputeCnrmCloudGoogleComComputeTargetSSLProxyV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesComputeTargetSSLProxyV1beta1ManifestConfig extends ManifestConfig {
+export interface ComputeCnrmCloudGoogleComComputeTargetSSLProxyV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
-    kind?: "ComputeTargetSSLProxy";
+    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
+    kind: "ComputeTargetSSLProxy";
     metadata: {
       annotations?: {
         [key: string]: string;

@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesGCPDataSourceV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesGCPDataSourceV1ManifestConfig) {
+export class DatalayerGkeIoGCPDataSourceV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: DatalayerGkeIoGCPDataSourceV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesGCPDataSourceV1ManifestConfig extends ManifestConfig {
+export interface DatalayerGkeIoGCPDataSourceV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "datalayer.gke.io/v1";
-    kind?: "GCPDataSource";
+    apiVersion: "datalayer.gke.io/v1";
+    kind: "GCPDataSource";
     metadata: {
       annotations?: {
         [key: string]: string;

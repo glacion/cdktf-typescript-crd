@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesBigtableAppProfileV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesBigtableAppProfileV1beta1ManifestConfig) {
+export class BigtableCnrmCloudGoogleComBigtableAppProfileV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: BigtableCnrmCloudGoogleComBigtableAppProfileV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesBigtableAppProfileV1beta1ManifestConfig extends ManifestConfig {
+export interface BigtableCnrmCloudGoogleComBigtableAppProfileV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "bigtable.cnrm.cloud.google.com/v1beta1";
-    kind?: "BigtableAppProfile";
+    apiVersion: "bigtable.cnrm.cloud.google.com/v1beta1";
+    kind: "BigtableAppProfile";
     metadata: {
       annotations?: {
         [key: string]: string;

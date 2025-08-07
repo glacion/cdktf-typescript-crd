@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesHealthCheckPolicyV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesHealthCheckPolicyV1ManifestConfig) {
+export class NetworkingGkeIoHealthCheckPolicyV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NetworkingGkeIoHealthCheckPolicyV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesHealthCheckPolicyV1ManifestConfig extends ManifestConfig {
+export interface NetworkingGkeIoHealthCheckPolicyV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "networking.gke.io/v1";
-    kind?: "HealthCheckPolicy";
+    apiVersion: "networking.gke.io/v1";
+    kind: "HealthCheckPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;

@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesNVIDIADriverV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesNVIDIADriverV1alpha1ManifestConfig) {
+export class NvidiaComNVIDIADriverV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NvidiaComNVIDIADriverV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesNVIDIADriverV1alpha1ManifestConfig extends ManifestConfig {
+export interface NvidiaComNVIDIADriverV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "nvidia.com/v1alpha1";
-    kind?: "NVIDIADriver";
+    apiVersion: "nvidia.com/v1alpha1";
+    kind: "NVIDIADriver";
     metadata: {
       annotations?: {
         [key: string]: string;

@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesResourceManagerLienV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesResourceManagerLienV1beta1ManifestConfig) {
+export class ResourcemanagerCnrmCloudGoogleComResourceManagerLienV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: ResourcemanagerCnrmCloudGoogleComResourceManagerLienV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesResourceManagerLienV1beta1ManifestConfig extends ManifestConfig {
+export interface ResourcemanagerCnrmCloudGoogleComResourceManagerLienV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "resourcemanager.cnrm.cloud.google.com/v1beta1";
-    kind?: "ResourceManagerLien";
+    apiVersion: "resourcemanager.cnrm.cloud.google.com/v1beta1";
+    kind: "ResourceManagerLien";
     metadata: {
       annotations?: {
         [key: string]: string;

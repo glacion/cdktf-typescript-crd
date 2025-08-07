@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesClusterPodMonitoringV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesClusterPodMonitoringV1alpha1ManifestConfig) {
+export class MonitoringGoogleapisComClusterPodMonitoringV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: MonitoringGoogleapisComClusterPodMonitoringV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesClusterPodMonitoringV1alpha1ManifestConfig extends ManifestConfig {
+export interface MonitoringGoogleapisComClusterPodMonitoringV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "monitoring.googleapis.com/v1alpha1";
-    kind?: "ClusterPodMonitoring";
+    apiVersion: "monitoring.googleapis.com/v1alpha1";
+    kind: "ClusterPodMonitoring";
     metadata: {
       annotations?: {
         [key: string]: string;

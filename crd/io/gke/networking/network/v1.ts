@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesNetworkV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesNetworkV1ManifestConfig) {
+export class NetworkingGkeIoNetworkV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NetworkingGkeIoNetworkV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesNetworkV1ManifestConfig extends ManifestConfig {
+export interface NetworkingGkeIoNetworkV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "networking.gke.io/v1";
-    kind?: "Network";
+    apiVersion: "networking.gke.io/v1";
+    kind: "Network";
     metadata: {
       annotations?: {
         [key: string]: string;

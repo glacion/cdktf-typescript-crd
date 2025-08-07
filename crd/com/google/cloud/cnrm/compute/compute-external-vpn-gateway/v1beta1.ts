@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesComputeExternalVPNGatewayV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesComputeExternalVPNGatewayV1beta1ManifestConfig) {
+export class ComputeCnrmCloudGoogleComComputeExternalVPNGatewayV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: ComputeCnrmCloudGoogleComComputeExternalVPNGatewayV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesComputeExternalVPNGatewayV1beta1ManifestConfig extends ManifestConfig {
+export interface ComputeCnrmCloudGoogleComComputeExternalVPNGatewayV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
-    kind?: "ComputeExternalVPNGateway";
+    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
+    kind: "ComputeExternalVPNGateway";
     metadata: {
       annotations?: {
         [key: string]: string;

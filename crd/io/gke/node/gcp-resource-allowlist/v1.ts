@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesGCPResourceAllowlistV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesGCPResourceAllowlistV1ManifestConfig) {
+export class NodeGkeIoGCPResourceAllowlistV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NodeGkeIoGCPResourceAllowlistV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesGCPResourceAllowlistV1ManifestConfig extends ManifestConfig {
+export interface NodeGkeIoGCPResourceAllowlistV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "node.gke.io/v1";
-    kind?: "GCPResourceAllowlist";
+    apiVersion: "node.gke.io/v1";
+    kind: "GCPResourceAllowlist";
     metadata: {
       annotations?: {
         [key: string]: string;

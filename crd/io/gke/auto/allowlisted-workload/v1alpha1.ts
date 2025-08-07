@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesAllowlistedWorkloadV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesAllowlistedWorkloadV1alpha1ManifestConfig) {
+export class AutoGkeIoAllowlistedWorkloadV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: AutoGkeIoAllowlistedWorkloadV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesAllowlistedWorkloadV1alpha1ManifestConfig extends ManifestConfig {
+export interface AutoGkeIoAllowlistedWorkloadV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "auto.gke.io/v1alpha1";
-    kind?: "AllowlistedWorkload";
+    apiVersion: "auto.gke.io/v1alpha1";
+    kind: "AllowlistedWorkload";
     metadata: {
       annotations?: {
         [key: string]: string;

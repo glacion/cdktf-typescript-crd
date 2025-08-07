@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesDataplaneV2EncryptionV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesDataplaneV2EncryptionV1alpha1ManifestConfig) {
+export class NetworkingGkeIoDataplaneV2EncryptionV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NetworkingGkeIoDataplaneV2EncryptionV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesDataplaneV2EncryptionV1alpha1ManifestConfig extends ManifestConfig {
+export interface NetworkingGkeIoDataplaneV2EncryptionV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "networking.gke.io/v1alpha1";
-    kind?: "DataplaneV2Encryption";
+    apiVersion: "networking.gke.io/v1alpha1";
+    kind: "DataplaneV2Encryption";
     metadata: {
       annotations?: {
         [key: string]: string;

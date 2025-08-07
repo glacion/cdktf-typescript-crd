@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesApplicationSetV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesApplicationSetV1alpha1ManifestConfig) {
+export class ArgoprojIoApplicationSetV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: ArgoprojIoApplicationSetV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesApplicationSetV1alpha1ManifestConfig extends ManifestConfig {
+export interface ArgoprojIoApplicationSetV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "argoproj.io/v1alpha1";
-    kind?: "ApplicationSet";
+    apiVersion: "argoproj.io/v1alpha1";
+    kind: "ApplicationSet";
     metadata: {
       annotations?: {
         [key: string]: string;

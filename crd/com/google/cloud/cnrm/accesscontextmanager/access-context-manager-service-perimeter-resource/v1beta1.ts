@@ -1,18 +1,19 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesAccessContextManagerServicePerimeterResourceV1beta1Manifest extends Manifest {
+export class AccesscontextmanagerCnrmCloudGoogleComAccessContextManagerServicePerimeterResourceV1beta1 extends Manifest {
   constructor(
     scope: Construct,
     id: string,
-    config: KubernetesAccessContextManagerServicePerimeterResourceV1beta1ManifestConfig,
+    config: AccesscontextmanagerCnrmCloudGoogleComAccessContextManagerServicePerimeterResourceV1beta1Config,
   ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesAccessContextManagerServicePerimeterResourceV1beta1ManifestConfig extends ManifestConfig {
+export interface AccesscontextmanagerCnrmCloudGoogleComAccessContextManagerServicePerimeterResourceV1beta1Config
+  extends ManifestConfig {
   manifest: {
-    apiVersion?: "accesscontextmanager.cnrm.cloud.google.com/v1beta1";
-    kind?: "AccessContextManagerServicePerimeterResource";
+    apiVersion: "accesscontextmanager.cnrm.cloud.google.com/v1beta1";
+    kind: "AccessContextManagerServicePerimeterResource";
     metadata: {
       annotations?: {
         [key: string]: string;

@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesFolderV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesFolderV1beta1ManifestConfig) {
+export class ResourcemanagerCnrmCloudGoogleComFolderV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: ResourcemanagerCnrmCloudGoogleComFolderV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesFolderV1beta1ManifestConfig extends ManifestConfig {
+export interface ResourcemanagerCnrmCloudGoogleComFolderV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "resourcemanager.cnrm.cloud.google.com/v1beta1";
-    kind?: "Folder";
+    apiVersion: "resourcemanager.cnrm.cloud.google.com/v1beta1";
+    kind: "Folder";
     metadata: {
       annotations?: {
         [key: string]: string;

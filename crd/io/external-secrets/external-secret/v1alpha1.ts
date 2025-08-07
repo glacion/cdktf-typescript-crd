@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesExternalSecretV1alpha1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesExternalSecretV1alpha1ManifestConfig) {
+export class ExternalSecretsIoExternalSecretV1alpha1 extends Manifest {
+  constructor(scope: Construct, id: string, config: ExternalSecretsIoExternalSecretV1alpha1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesExternalSecretV1alpha1ManifestConfig extends ManifestConfig {
+export interface ExternalSecretsIoExternalSecretV1alpha1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "external-secrets.io/v1alpha1";
-    kind?: "ExternalSecret";
+    apiVersion: "external-secrets.io/v1alpha1";
+    kind: "ExternalSecret";
     metadata: {
       annotations?: {
         [key: string]: string;

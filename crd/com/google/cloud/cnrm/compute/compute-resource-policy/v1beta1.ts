@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesComputeResourcePolicyV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesComputeResourcePolicyV1beta1ManifestConfig) {
+export class ComputeCnrmCloudGoogleComComputeResourcePolicyV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: ComputeCnrmCloudGoogleComComputeResourcePolicyV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesComputeResourcePolicyV1beta1ManifestConfig extends ManifestConfig {
+export interface ComputeCnrmCloudGoogleComComputeResourcePolicyV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "compute.cnrm.cloud.google.com/v1beta1";
-    kind?: "ComputeResourcePolicy";
+    apiVersion: "compute.cnrm.cloud.google.com/v1beta1";
+    kind: "ComputeResourcePolicy";
     metadata: {
       annotations?: {
         [key: string]: string;

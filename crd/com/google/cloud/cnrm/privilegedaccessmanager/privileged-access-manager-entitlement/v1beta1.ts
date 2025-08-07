@@ -1,14 +1,19 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesPrivilegedAccessManagerEntitlementV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesPrivilegedAccessManagerEntitlementV1beta1ManifestConfig) {
+export class PrivilegedaccessmanagerCnrmCloudGoogleComPrivilegedAccessManagerEntitlementV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: PrivilegedaccessmanagerCnrmCloudGoogleComPrivilegedAccessManagerEntitlementV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesPrivilegedAccessManagerEntitlementV1beta1ManifestConfig extends ManifestConfig {
+export interface PrivilegedaccessmanagerCnrmCloudGoogleComPrivilegedAccessManagerEntitlementV1beta1Config
+  extends ManifestConfig {
   manifest: {
-    apiVersion?: "privilegedaccessmanager.cnrm.cloud.google.com/v1beta1";
-    kind?: "PrivilegedAccessManagerEntitlement";
+    apiVersion: "privilegedaccessmanager.cnrm.cloud.google.com/v1beta1";
+    kind: "PrivilegedAccessManagerEntitlement";
     metadata: {
       annotations?: {
         [key: string]: string;

@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesBinaryAuthorizationPolicyV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesBinaryAuthorizationPolicyV1beta1ManifestConfig) {
+export class BinaryauthorizationCnrmCloudGoogleComBinaryAuthorizationPolicyV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: BinaryauthorizationCnrmCloudGoogleComBinaryAuthorizationPolicyV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesBinaryAuthorizationPolicyV1beta1ManifestConfig extends ManifestConfig {
+export interface BinaryauthorizationCnrmCloudGoogleComBinaryAuthorizationPolicyV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "binaryauthorization.cnrm.cloud.google.com/v1beta1";
-    kind?: "BinaryAuthorizationPolicy";
+    apiVersion: "binaryauthorization.cnrm.cloud.google.com/v1beta1";
+    kind: "BinaryAuthorizationPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;

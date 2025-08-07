@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesPubSubLiteReservationV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesPubSubLiteReservationV1beta1ManifestConfig) {
+export class PubsubliteCnrmCloudGoogleComPubSubLiteReservationV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: PubsubliteCnrmCloudGoogleComPubSubLiteReservationV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesPubSubLiteReservationV1beta1ManifestConfig extends ManifestConfig {
+export interface PubsubliteCnrmCloudGoogleComPubSubLiteReservationV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "pubsublite.cnrm.cloud.google.com/v1beta1";
-    kind?: "PubSubLiteReservation";
+    apiVersion: "pubsublite.cnrm.cloud.google.com/v1beta1";
+    kind: "PubSubLiteReservation";
     metadata: {
       annotations?: {
         [key: string]: string;

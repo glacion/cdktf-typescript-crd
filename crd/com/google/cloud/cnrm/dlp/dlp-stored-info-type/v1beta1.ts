@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesDLPStoredInfoTypeV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesDLPStoredInfoTypeV1beta1ManifestConfig) {
+export class DlpCnrmCloudGoogleComDLPStoredInfoTypeV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: DlpCnrmCloudGoogleComDLPStoredInfoTypeV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesDLPStoredInfoTypeV1beta1ManifestConfig extends ManifestConfig {
+export interface DlpCnrmCloudGoogleComDLPStoredInfoTypeV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "dlp.cnrm.cloud.google.com/v1beta1";
-    kind?: "DLPStoredInfoType";
+    apiVersion: "dlp.cnrm.cloud.google.com/v1beta1";
+    kind: "DLPStoredInfoType";
     metadata: {
       annotations?: {
         [key: string]: string;

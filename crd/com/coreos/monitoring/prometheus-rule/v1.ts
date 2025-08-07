@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesPrometheusRuleV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesPrometheusRuleV1ManifestConfig) {
+export class MonitoringCoreosComPrometheusRuleV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: MonitoringCoreosComPrometheusRuleV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesPrometheusRuleV1ManifestConfig extends ManifestConfig {
+export interface MonitoringCoreosComPrometheusRuleV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "monitoring.coreos.com/v1";
-    kind?: "PrometheusRule";
+    apiVersion: "monitoring.coreos.com/v1";
+    kind: "PrometheusRule";
     metadata: {
       annotations?: {
         [key: string]: string;

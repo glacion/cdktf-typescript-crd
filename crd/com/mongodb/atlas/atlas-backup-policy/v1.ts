@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesAtlasBackupPolicyV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesAtlasBackupPolicyV1ManifestConfig) {
+export class AtlasMongodbComAtlasBackupPolicyV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: AtlasMongodbComAtlasBackupPolicyV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesAtlasBackupPolicyV1ManifestConfig extends ManifestConfig {
+export interface AtlasMongodbComAtlasBackupPolicyV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "atlas.mongodb.com/v1";
-    kind?: "AtlasBackupPolicy";
+    apiVersion: "atlas.mongodb.com/v1";
+    kind: "AtlasBackupPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;

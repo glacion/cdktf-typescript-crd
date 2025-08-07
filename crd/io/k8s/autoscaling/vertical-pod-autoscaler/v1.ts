@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesVerticalPodAutoscalerV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesVerticalPodAutoscalerV1ManifestConfig) {
+export class AutoscalingK8sIoVerticalPodAutoscalerV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: AutoscalingK8sIoVerticalPodAutoscalerV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesVerticalPodAutoscalerV1ManifestConfig extends ManifestConfig {
+export interface AutoscalingK8sIoVerticalPodAutoscalerV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "autoscaling.k8s.io/v1";
-    kind?: "VerticalPodAutoscaler";
+    apiVersion: "autoscaling.k8s.io/v1";
+    kind: "VerticalPodAutoscaler";
     metadata: {
       annotations?: {
         [key: string]: string;

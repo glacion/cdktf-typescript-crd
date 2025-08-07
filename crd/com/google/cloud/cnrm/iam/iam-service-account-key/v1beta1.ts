@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesIAMServiceAccountKeyV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesIAMServiceAccountKeyV1beta1ManifestConfig) {
+export class IamCnrmCloudGoogleComIAMServiceAccountKeyV1beta1 extends Manifest {
+  constructor(scope: Construct, id: string, config: IamCnrmCloudGoogleComIAMServiceAccountKeyV1beta1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesIAMServiceAccountKeyV1beta1ManifestConfig extends ManifestConfig {
+export interface IamCnrmCloudGoogleComIAMServiceAccountKeyV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "iam.cnrm.cloud.google.com/v1beta1";
-    kind?: "IAMServiceAccountKey";
+    apiVersion: "iam.cnrm.cloud.google.com/v1beta1";
+    kind: "IAMServiceAccountKey";
     metadata: {
       annotations?: {
         [key: string]: string;

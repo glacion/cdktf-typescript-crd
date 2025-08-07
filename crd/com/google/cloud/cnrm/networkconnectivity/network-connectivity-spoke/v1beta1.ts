@@ -1,14 +1,18 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesNetworkConnectivitySpokeV1beta1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesNetworkConnectivitySpokeV1beta1ManifestConfig) {
+export class NetworkconnectivityCnrmCloudGoogleComNetworkConnectivitySpokeV1beta1 extends Manifest {
+  constructor(
+    scope: Construct,
+    id: string,
+    config: NetworkconnectivityCnrmCloudGoogleComNetworkConnectivitySpokeV1beta1Config,
+  ) {
     super(scope, id, config);
   }
 }
-export interface KubernetesNetworkConnectivitySpokeV1beta1ManifestConfig extends ManifestConfig {
+export interface NetworkconnectivityCnrmCloudGoogleComNetworkConnectivitySpokeV1beta1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "networkconnectivity.cnrm.cloud.google.com/v1beta1";
-    kind?: "NetworkConnectivitySpoke";
+    apiVersion: "networkconnectivity.cnrm.cloud.google.com/v1beta1";
+    kind: "NetworkConnectivitySpoke";
     metadata: {
       annotations?: {
         [key: string]: string;

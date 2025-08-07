@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesGKEIPRouteV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesGKEIPRouteV1ManifestConfig) {
+export class NetworkingGkeIoGKEIPRouteV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NetworkingGkeIoGKEIPRouteV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesGKEIPRouteV1ManifestConfig extends ManifestConfig {
+export interface NetworkingGkeIoGKEIPRouteV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "networking.gke.io/v1";
-    kind?: "GKEIPRoute";
+    apiVersion: "networking.gke.io/v1";
+    kind: "GKEIPRoute";
     metadata: {
       annotations?: {
         [key: string]: string;
@@ -32,6 +32,15 @@ export interface KubernetesGKEIPRouteV1ManifestConfig extends ManifestConfig {
          *      Examples: `1.2.3.4`, `128::1`, `my-ip-address`. */
         value: string;
       }[];
+      /** @description LoadBalancing defines the fields required to use a GKEIPRoute in a
+       *     load-balancing setup. */
+      loadBalancing?: {
+        /** @description HealthCheckName is the name of the health check that will
+         *     be used to determine which endpoints associated with the
+         *     GKEIPRoute are healthy, and route traffic accordingly. Must be
+         *     in the same project and region as the cluster. */
+        healthCheckName: string;
+      };
       /** @description Network defines Pods network interface the prefixes will be attracted to. If not specified, we will use the Primary Network of the Pod. */
       network?: string;
       /** @description ParentRefs references the resources (usually Gateways) that a Route wants to be attached to. Note that the referenced parent resource needs to allow this for the attachment to be complete. For Gateways, that means the Gateway needs to allow attachment from Routes of this kind and namespace.

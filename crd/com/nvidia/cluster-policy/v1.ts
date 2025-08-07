@@ -1,14 +1,14 @@
 import { Manifest, type ManifestConfig } from "@cdktf/provider-kubernetes/lib/manifest";
 import { Construct } from "constructs";
-export class KubernetesClusterPolicyV1Manifest extends Manifest {
-  constructor(scope: Construct, id: string, config: KubernetesClusterPolicyV1ManifestConfig) {
+export class NvidiaComClusterPolicyV1 extends Manifest {
+  constructor(scope: Construct, id: string, config: NvidiaComClusterPolicyV1Config) {
     super(scope, id, config);
   }
 }
-export interface KubernetesClusterPolicyV1ManifestConfig extends ManifestConfig {
+export interface NvidiaComClusterPolicyV1Config extends ManifestConfig {
   manifest: {
-    apiVersion?: "nvidia.com/v1";
-    kind?: "ClusterPolicy";
+    apiVersion: "nvidia.com/v1";
+    kind: "ClusterPolicy";
     metadata: {
       annotations?: {
         [key: string]: string;
